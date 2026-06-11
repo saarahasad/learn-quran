@@ -4,17 +4,27 @@ import "./LandingPage.css";
 
 const featureCards = [
   {
+    icon: "01",
     title: "Scene-based revision",
     body: "Move through each surah in clear memory scenes with anchors, meanings, and tafsir notes.",
   },
   {
+    icon: "02",
     title: "Active recall tools",
     body: "Switch from study to quiz or recitation practice so revision becomes measurable.",
   },
   {
+    icon: "03",
     title: "Private progress tracking",
     body: "Keep memorisation dates, revision sessions, and self-assessment scores on this device.",
   },
+];
+
+const revisionFlow = [
+  "Pick a surah",
+  "Study the scene",
+  "Test recall",
+  "Log the result",
 ];
 
 export default function LandingPage() {
@@ -72,6 +82,14 @@ export default function LandingPage() {
                 <span>Study modes</span>
               </div>
             </div>
+            <div className="landing-flow-card">
+              <p>Revision flow</p>
+              <ol>
+                {revisionFlow.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+            </div>
           </aside>
         </div>
       </section>
@@ -93,6 +111,7 @@ export default function LandingPage() {
       <section className="landing-features" aria-label="Learning features">
         {featureCards.map((feature) => (
           <article key={feature.title}>
+            <span>{feature.icon}</span>
             <h3>{feature.title}</h3>
             <p>{feature.body}</p>
           </article>
