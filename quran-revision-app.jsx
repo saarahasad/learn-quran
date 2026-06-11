@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import {
   MadaniMushafPage,
   MushafViewToggle,
-  highlightMushafText,
 } from "./src/components/MadaniMushaf.jsx";
 import TextbookStudy from "./src/components/TextbookStudy.jsx";
 import { GENERATED_SURAHS } from "./src/data/generatedSurahs.js";
 import { JUZ30_GENERATED_SURAHS } from "./src/data/juz30GeneratedSurahs.js";
+import { highlightMushafText } from "./src/utils/mushafText.js";
 import "./src/styles/mushaf.css";
 import "./src/styles/surah-home.css";
 
