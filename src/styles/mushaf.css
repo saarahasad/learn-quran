@@ -1,0 +1,445 @@
+/* Madani Mushaf — King Fahd Complex style */
+
+@import url("https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap");
+
+
+@font-face {
+  font-family: "KFGQPC Uthman Taha Naskh";
+  src: url("https://raw.githubusercontent.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff2/UthmanTN1B%20Ver10.woff2") format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mushaf-page {
+  background: #fffef9;
+  border: 1px solid #e8e0d4;
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  margin: 0 1.5rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(60, 40, 20, 0.06);
+}
+
+.mushaf-header {
+  position: relative;
+  margin: 0 auto 1rem;
+  max-width: 520px;
+  padding: 14px 52px;
+  text-align: center;
+}
+
+.mushaf-header-frame {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #8b6914;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #faf6ee 0%, #f5edd8 50%, #faf6ee 100%);
+  box-shadow: inset 0 0 0 1px #c9a227, inset 0 0 24px rgba(201, 162, 39, 0.12);
+}
+
+.mushaf-header-frame::before,
+.mushaf-header-frame::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #8b6914;
+  background: radial-gradient(circle at 30% 30%, #e8d4a0, #c9a227 40%, #8b6914);
+}
+
+.mushaf-header-frame::before {
+  top: -2px;
+  right: -2px;
+  border-radius: 0 4px 0 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.mushaf-header-frame::after {
+  bottom: -2px;
+  left: -2px;
+  border-radius: 0 0 0 4px;
+  border-right: none;
+  border-top: none;
+}
+
+.mushaf-header-title {
+  position: relative;
+  z-index: 1;
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", "Scheherazade New", serif;
+  font-size: clamp(1.8rem, 4.8vw, 2.4rem);
+  color: #1a1814;
+  line-height: 1.6;
+  direction: rtl;
+  font-weight: 700;
+}
+
+.mushaf-meta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.mushaf-meta--right {
+  right: 4px;
+}
+
+.mushaf-meta--left {
+  left: 4px;
+}
+
+.mushaf-meta-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid #8b6914;
+  background: radial-gradient(circle at 35% 35%, #f8f0dc, #e8d4a0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  direction: rtl;
+  line-height: 1.1;
+}
+
+.mushaf-meta-label {
+  font-size: 9px;
+  color: #5c4a20;
+  letter-spacing: 0;
+}
+
+.mushaf-meta-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3d3010;
+}
+
+.mushaf-basmala {
+  text-align: center;
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", "Scheherazade New", serif;
+  font-size: clamp(1.6rem, 4.2vw, 2.1rem);
+  line-height: 2.2;
+  color: #1a1814;
+  direction: rtl;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #ede8e0;
+}
+
+.mushaf-body {
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", "Scheherazade New", serif;
+  font-size: clamp(1.7rem, 4.5vw, 2.2rem);
+  line-height: 2.35;
+  color: #1a1814;
+  direction: rtl;
+  text-align: justify;
+  text-justify: inter-word;
+  word-spacing: 0.05em;
+  letter-spacing: 0.01em;
+  hyphens: none;
+}
+
+.mushaf-body .mushaf-red {
+  color: #b91c1c;
+}
+
+.mushaf-ayah {
+  display: inline;
+}
+
+.mushaf-verse-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  width: 1.65em;
+  height: 1.65em;
+  margin: 0 0.15em 0 0.35em;
+  flex-shrink: 0;
+  position: relative;
+  top: -0.05em;
+}
+
+.mushaf-verse-marker svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mushaf-verse-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: 0.42em;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+  line-height: 1;
+  padding-top: 0.05em;
+}
+
+.mushaf-view-toggle {
+  display: flex;
+  gap: 6px;
+  margin: 0 1.5rem 0.75rem;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #ede8e0;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.mushaf-view-toggle button {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  background: transparent;
+  color: #8a8278;
+  transition: all 0.15s;
+}
+
+.mushaf-view-toggle button.active {
+  background: #f5edd8;
+  color: #5c4a20;
+}
+
+.mushaf-study-section {
+  padding: 0 1.5rem;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+/* Study mode — stacked Arabic + English, no full-width justify */
+.study-ayah-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1.125rem 1.25rem 0.625rem;
+  cursor: pointer;
+}
+
+.study-ayah-num {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.35rem;
+}
+
+.study-ayah-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.study-ayah-ar {
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", "Scheherazade New", serif;
+  font-size: clamp(1.95rem, 5.4vw, 2.55rem);
+  line-height: 1.85;
+  color: #1a1814;
+  direction: rtl;
+  text-align: right;
+}
+
+.study-ayah-ar .mushaf-red {
+  color: #b91c1c;
+}
+
+.study-ayah-en {
+  font-family: "Lora", serif;
+  font-size: clamp(1.2rem, 3.4vw, 1.35rem);
+  line-height: 1.65;
+  color: #4a4540;
+  font-style: italic;
+  text-align: left;
+}
+
+.study-ayah-actions {
+  padding: 0 1.25rem 0.75rem 3.5rem;
+}
+
+.study-ayah-details {
+  background: #fdfaf6;
+  border-top: 1px solid;
+  padding: 0.75rem 1.25rem 0.875rem 3.5rem;
+}
+
+/* Quiz — grouped Arabic + English, readable sizes */
+.quiz-section {
+  padding: 1.25rem 1.5rem;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.quiz-question-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.25rem 1.25rem 1rem;
+  margin-bottom: 0.875rem;
+}
+
+.quiz-ayah-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.quiz-ayah-ar {
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", "Scheherazade New", serif;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  line-height: 1.85;
+  color: #1a1814;
+  direction: rtl;
+  text-align: right;
+  width: 100%;
+}
+
+.quiz-ayah-ar .mushaf-red {
+  color: #b91c1c;
+}
+
+.quiz-ayah-en {
+  font-family: "Lora", serif;
+  font-size: clamp(1.2rem, 3.4vw, 1.35rem);
+  line-height: 1.65;
+  color: #4a4540;
+  font-style: italic;
+  width: 100%;
+}
+
+.quiz-arrange-hint {
+  margin: 0 0 0.625rem;
+  font-size: 0.8125rem;
+  color: #8a8278;
+  font-style: italic;
+}
+
+.quiz-arrange-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4375rem;
+}
+
+.quiz-arrange-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+}
+
+.quiz-arrange-row--dragging {
+  opacity: 0.45;
+}
+
+.quiz-arrange-row--over {
+  box-shadow: 0 2px 8px rgba(196, 120, 26, 0.15);
+}
+
+.quiz-arrange-row .quiz-ayah-pair {
+  flex: 1;
+  min-width: 0;
+}
+
+.quiz-arrange-handle {
+  flex-shrink: 0;
+  padding-top: 0.35rem;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: -0.15em;
+  color: #b0a898;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+
+.quiz-arrange-handle:active {
+  cursor: grabbing;
+  color: #c4781a;
+}
+
+.quiz-option-btn {
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  font-family: "Lora", serif;
+  font-size: clamp(1.2rem, 3.4vw, 1.25rem);
+  font-style: italic;
+  text-align: left;
+  line-height: 1.55;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%;
+}
+
+.quiz-option-ar {
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.5rem, 4.2vw, 1.8rem);
+  direction: rtl;
+  display: block;
+  text-align: right;
+  line-height: 1.8;
+}
+
+.quiz-word-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quiz-word-btn-ar {
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.5rem, 4.2vw, 1.8rem);
+  direction: rtl;
+  line-height: 1.75;
+  text-align: right;
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.quiz-word-btn-en {
+  font-family: "Lora", serif;
+  font-size: clamp(1.125rem, 3vw, 1.25rem);
+  font-style: italic;
+  text-align: left;
+  line-height: 1.55;
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.quiz-fill-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: clamp(1.2rem, 3.4vw, 1.25rem);
+  font-family: "Lora", serif;
+  color: #1a1814;
+  outline: none;
+  margin-bottom: 0.5rem;
+}
