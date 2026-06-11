@@ -155,6 +155,7 @@ export default function DiaryPage() {
   const scoredSessions = memorisedSurahs.flatMap((surah) => (
     getEntry(diary, surah.revelationOrder).scores || []
   ));
+  const completionPercent = Math.round((stats.memorised / SURAHS.length) * 100);
 
   const averages = METRICS.map((metric) => {
     const sessions = scoredSessions.filter((score) => Number.isFinite(score[metric.key]));
@@ -188,10 +189,17 @@ export default function DiaryPage() {
   return (
     <main className="diary-page">
       <header className="diary-header">
-        <Link to="/surahs" className="diary-back-link">← Back to surahs</Link>
-        <div>
+        <div className="diary-header-copy">
           <p>Memorisation Diary</p>
           <h1>Track, test, and revise Juz 30</h1>
+          <div className="diary-header-progress" aria-label={`${completionPercent}% memorised`}>
+            <span style={{ width: `${completionPercent}%` }} />
+          </div>
+          <strong>{completionPercent}% memorised</strong>
+        </div>
+        <div className="diary-header-actions">
+          <Link to="/" className="diary-back-link">Home</Link>
+          <Link to="/surahs" className="diary-back-link primary">Surah library</Link>
         </div>
       </header>
 

@@ -9,6 +9,7 @@ import TextbookStudy from "./src/components/TextbookStudy.jsx";
 import { GENERATED_SURAHS } from "./src/data/generatedSurahs.js";
 import { JUZ30_GENERATED_SURAHS } from "./src/data/juz30GeneratedSurahs.js";
 import "./src/styles/mushaf.css";
+import "./src/styles/surah-home.css";
 
 const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap');`;
 
@@ -551,52 +552,115 @@ export default function App() {
 // HOME
 // ════════════════════════════════════════════════
 function Home({surahs,go}) {
+  const totalAyahs = surahs.reduce((sum,s)=>sum+s.ayahCount,0);
+  const textbookCount = surahs.filter(s=>s.hasTextbook).length;
+  const firstSurah = surahs[0];
+  const featuredSurahs = [
+    ...surahs.filter(s=>s.hasTextbook),
+    ...surahs.filter(s=>!s.hasTextbook),
+  ].slice(0,3);
+
   return (
-    <div style={{minHeight:"100vh",background:C.cream,fontFamily:"'Inter',sans-serif"}}>
+    <div className="surah-home">
       <style>{FONTS}</style>
-      <div style={{background:"#fff",borderBottom:`1px solid ${C.border}`,padding:"1.25rem 1.5rem",display:"flex",justifyContent:"space-between",alignItems:"center",gap:14,flexWrap:"wrap"}}>
-        <div>
-          <div style={{fontFamily:"'Scheherazade New',serif",fontSize:38,color:C.ink,lineHeight:1.2}}>مُراجَعة</div>
-          <div style={{fontFamily:"'Lora',serif",fontSize:14,color:C.ink3,fontStyle:"italic"}}>Qur'an Revision · Iʿrāb · Quiz{SHOW_TEACHER?" · Virtual Teacher":""}</div>
-        </div>
-        <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",justifyContent:"flex-end"}}>
-          <Link to="/" style={{background:"#fff",color:C.ink2,border:`1px solid ${C.border}`,borderRadius:999,padding:"9px 14px",fontSize:14,fontWeight:700,textDecoration:"none",whiteSpace:"nowrap"}}>
-            Home
+      <section className="surah-home-hero" aria-labelledby="surah-home-title">
+        <nav className="surah-home-nav" aria-label="Surah library">
+          <Link to="/" className="surah-home-brand">
+            <span className="surah-home-brand-ar" dir="rtl">مُراجَعة</span>
+            <span>Qur'an Revision</span>
           </Link>
-          <Link to="/diary" style={{background:C.tealBg,color:C.tealDark,border:"1px solid #b8ddd6",borderRadius:999,padding:"9px 14px",fontSize:14,fontWeight:700,textDecoration:"none",whiteSpace:"nowrap"}}>
-            Memorisation Diary
-          </Link>
+          <div className="surah-home-links">
+            <Link to="/">Landing</Link>
+            <Link to="/diary">Diary</Link>
+          </div>
+        </nav>
+
+        <div className="surah-home-hero-grid">
+          <div className="surah-home-copy">
+            <p className="surah-home-kicker">Juz 30 workspace</p>
+            <h1 id="surah-home-title">Choose a surah and keep the session moving.</h1>
+            <p>
+              Revision, quizzes, recitation practice, and i'rab study now sit behind a calmer
+              library view with clearer entry points for the next thing to do.
+            </p>
+            {firstSurah&&(
+              <div className="surah-home-actions">
+                <button type="button" className="surah-home-button primary" onClick={()=>go(firstSurah.id,"revise")}>
+                  Start revision
+                </button>
+                <button type="button" className="surah-home-button secondary" onClick={()=>go(firstSurah.id,"quiz")}>
+                  Open quiz mode
+                </button>
+              </div>
+            )}
+          </div>
+
+          <aside className="surah-home-summary" aria-label="Library summary">
+            <div className="surah-home-summary-card" dir="rtl">
+              <span>وَلَقَدْ يَسَّرْنَا ٱلْقُرْءَانَ لِلذِّكْرِ</span>
+            </div>
+            <div className="surah-home-stats">
+              <div><strong>{surahs.length}</strong><span>Sūrahs</span></div>
+              <div><strong>{totalAyahs}</strong><span>Āyāt</span></div>
+              <div><strong>{textbookCount}</strong><span>I'rab guides</span></div>
+            </div>
+          </aside>
         </div>
-      </div>
-      <div style={{padding:"1.5rem"}}>
-        <div style={{fontSize:12,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",color:C.ink3,marginBottom:12}}>Juz 30 · {surahs.length} Sūrahs</div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:14}}>
+      </section>
+
+      <section className="surah-home-routes" aria-label="Featured study routes">
+        {featuredSurahs.map((surah,i)=>{
+          const c=C.s[i%C.s.length];
+          return (
+            <article className="surah-route-card" key={surah.id} style={{"--route-bg":c.bg,"--route-mid":c.mid,"--route-deep":c.deep,"--route-border":c.border}}>
+              <span className="surah-route-number">Sūrah {surah.revelationOrder}</span>
+              <div className="surah-route-ar" dir="rtl">{surah.nameAr}</div>
+              <h2>{surah.name}</h2>
+              <p>{surah.ayahCount} āyāt across {surah.scenes.length} memory scenes.</p>
+              <button type="button" onClick={()=>go(surah.id,surah.hasTextbook?"iraab":"revise")}>
+                {surah.hasTextbook?"Study with I'rab":"Start revising"}
+              </button>
+            </article>
+          );
+        })}
+      </section>
+
+      <section className="surah-library" aria-label="All Juz 30 surahs">
+        <div className="surah-library-heading">
+          <div>
+            <p className="surah-home-kicker">Complete library</p>
+            <h2>All Juz 30 sūrahs</h2>
+          </div>
+          <Link to="/diary">Track memorisation</Link>
+        </div>
+
+        <div className="surah-card-grid">
           {surahs.map((s,i)=>{
             const c=C.s[i%C.s.length];
-            return <div key={s.id} style={{background:"#fff",border:`1px solid ${c.border}`,borderRadius:14,overflow:"hidden",boxShadow:"0 2px 12px -4px rgba(26,24,20,.06)"}}>
-              <div style={{background:c.bg,padding:"14px 16px 10px",textAlign:"right",position:"relative"}}>
-                <span style={{position:"absolute",left:12,top:12,fontSize:10,fontWeight:700,letterSpacing:"0.06em",background:"#fff",color:c.deep,border:`1px solid ${c.border}`,borderRadius:20,padding:"3px 10px"}}>Sūrah {s.revelationOrder}</span>
-                <div style={{fontFamily:"'Scheherazade New',serif",fontSize:31,color:c.deep}}>{s.nameAr}</div>
-                <div style={{fontFamily:"'Lora',serif",fontSize:16,color:c.mid,fontStyle:"italic",marginTop:2}}>{s.name}</div>
+            return <article key={s.id} className="surah-card" style={{"--surah-bg":c.bg,"--surah-mid":c.mid,"--surah-deep":c.deep,"--surah-border":c.border}}>
+              <div className="surah-card-top">
+                <span>Sūrah {s.revelationOrder}</span>
+                <div className="surah-card-ar" dir="rtl">{s.nameAr}</div>
+                <h3>{s.name}</h3>
               </div>
-              <div style={{padding:"10px 16px 14px"}}>
-                <div style={{fontSize:13,color:C.ink3,marginBottom:12}}>{s.ayahCount} āyāt · {s.scenes.length} scenes</div>
+              <div className="surah-card-body">
+                <div className="surah-card-meta">{s.ayahCount} āyāt · {s.scenes.length} scenes</div>
                 {s.hasTextbook&&(
-                  <button onClick={()=>go(s.id,"iraab")} style={{width:"100%",marginBottom:8,background:c.mid,color:"#fff",border:"none",borderRadius:8,padding:"9px 0",fontSize:13,fontWeight:600,cursor:"pointer",letterSpacing:"0.02em"}}>
-                    📐 Study with Iʿrāb
+                  <button type="button" className="surah-card-primary" onClick={()=>go(s.id,"iraab")}>
+                    Study with Iʿrāb
                   </button>
                 )}
-                <div style={{display:"grid",gridTemplateColumns:SHOW_TEACHER?"1fr 1fr 1fr 1fr":"1fr 1fr 1fr",gap:6}}>
-                  <button onClick={()=>go(s.id,"revise")} style={{background:c.bg,color:c.deep,border:"none",borderRadius:8,padding:"8px 4px",fontSize:12,fontWeight:600,cursor:"pointer"}}>📖 Revise</button>
-                  <button onClick={()=>go(s.id,"quiz")} style={{background:"#f0f0ec",color:C.ink2,border:"none",borderRadius:8,padding:"8px 4px",fontSize:12,fontWeight:600,cursor:"pointer"}}>✏️ Quiz</button>
-                  <button onClick={()=>go(s.id,"recitation")} style={{background:C.tealBg,color:C.tealDark,border:"none",borderRadius:8,padding:"8px 4px",fontSize:12,fontWeight:600,cursor:"pointer"}}>🎙 Recite</button>
-                  {SHOW_TEACHER&&<button onClick={()=>go(s.id,"teacher")} style={{background:C.ink,color:"#fff",border:"none",borderRadius:8,padding:"8px 4px",fontSize:12,fontWeight:600,cursor:"pointer"}}>🎓 Teach</button>}
+                <div className="surah-card-actions">
+                  <button type="button" onClick={()=>go(s.id,"revise")}>Revise</button>
+                  <button type="button" onClick={()=>go(s.id,"quiz")}>Quiz</button>
+                  <button type="button" onClick={()=>go(s.id,"recitation")}>Recite</button>
+                  {SHOW_TEACHER&&<button type="button" onClick={()=>go(s.id,"teacher")}>Teach</button>}
                 </div>
               </div>
-            </div>;
+            </article>;
           })}
         </div>
-      </div>
+      </section>
     </div>
   );
 }
