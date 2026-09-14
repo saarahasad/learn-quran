@@ -1,0 +1,4741 @@
+/* ── Baqarah study flow charts ── */
+.baqarah-guide-block--chart {
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.baqarah-guide-block--chart .baqarah-guide-panel__header {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.baqarah-chart {
+  background: #fff;
+  width: 100%;
+}
+
+.baqarah-chart-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.25rem;
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 55%, #15803d 100%);
+  color: #fff;
+  font-family: "Lora", serif;
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Page 3 topics tree */
+.baqarah-topics-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.25rem 2.25rem;
+  min-height: 14rem;
+}
+
+.baqarah-topics-tree__root {
+  position: relative;
+  z-index: 1;
+}
+
+.baqarah-topics-tree__node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7.5rem;
+  padding: 0.65rem 1.35rem;
+  background: linear-gradient(180deg, #d4b896 0%, #b8956a 100%);
+  color: #fff;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.baqarah-topics-tree__node--oval {
+  border-radius: 999px;
+}
+
+.baqarah-topics-tree__node--rect {
+  border-radius: 10px;
+}
+
+.baqarah-topics-tree__node--rejecters {
+  background: linear-gradient(180deg, #f472b6 0%, #e11d48 100%);
+}
+
+.baqarah-topics-tree__node--hypocrites {
+  background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+}
+
+.baqarah-topics-tree__fork {
+  width: min(48rem, 100%);
+  margin-top: 0.1rem;
+}
+
+.baqarah-topics-tree__svg {
+  display: block;
+  width: 100%;
+  height: 3.5rem;
+}
+
+.baqarah-topics-tree__children {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+  width: 100%;
+  max-width: none;
+  margin-top: 0.35rem;
+}
+
+.baqarah-topics-tree__child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.baqarah-topics-tree__page {
+  font-family: "Lora", serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #374151;
+}
+
+/* Page 3 full topics map (lesson PDF slides 10–11, 62) */
+.baqarah-chart--page3-map .baqarah-page3-map__tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.25rem 1.5rem;
+}
+
+.baqarah-page3-map__verse-range {
+  margin-top: 0.35rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.baqarah-page3-map__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0 1.15rem 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.baqarah-page3-map__column {
+  padding: 1rem 1rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.baqarah-page3-map__column--rejecters {
+  border-color: var(--topic-rose-border);
+  border-top: 4px solid var(--topic-rose-accent);
+  background: linear-gradient(180deg, var(--topic-rose-bg) 0%, #fff 4rem);
+}
+
+.baqarah-page3-map__column--hypocrites {
+  border-color: var(--topic-amber-border);
+  border-top: 4px solid var(--topic-amber-accent);
+  background: linear-gradient(180deg, var(--topic-amber-bg) 0%, #fff 4rem);
+}
+
+.baqarah-page3-map__column-head {
+  margin-bottom: 0.85rem;
+  text-align: center;
+}
+
+.baqarah-page3-map__column-range {
+  display: block;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.baqarah-page3-map__column-title {
+  margin: 0.25rem 0 0;
+  font-family: "Lora", serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-weight: 700;
+  color: #111827;
+}
+
+.baqarah-page3-map__column--rejecters .baqarah-page3-map__column-title {
+  color: var(--topic-rose-accent);
+}
+
+.baqarah-page3-map__column--hypocrites .baqarah-page3-map__column-title {
+  color: var(--topic-amber-accent);
+}
+
+.baqarah-page3-map__subtopics {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.baqarah-page3-map__subtopic {
+  position: relative;
+  padding: 0.4rem 0.5rem 0.4rem 0.85rem;
+  border-bottom: 1px solid #f3f4f6;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #374151;
+}
+
+.baqarah-page3-map__subtopic:last-child {
+  border-bottom: none;
+}
+
+.baqarah-page3-map__subtopic--bullet::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: inherit;
+  font-weight: 700;
+}
+
+.baqarah-page3-map__column--rejecters .baqarah-page3-map__subtopic--bullet {
+  color: var(--topic-rose-accent);
+  font-weight: 700;
+}
+
+.baqarah-page3-map__column--hypocrites .baqarah-page3-map__subtopic--bullet {
+  color: var(--topic-amber-accent);
+  font-weight: 700;
+}
+
+.baqarah-page3-map__verse-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+}
+
+.baqarah-page3-map__verse-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.85rem;
+  height: 1.85rem;
+  padding: 0 0.4rem;
+  border-radius: 6px;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.baqarah-page3-map__column--rejecters .baqarah-page3-map__verse-pill {
+  background: var(--topic-rose-accent);
+}
+
+.baqarah-page3-map__column--hypocrites .baqarah-page3-map__verse-pill {
+  background: var(--topic-amber-accent);
+}
+
+.baqarah-page3-map__strip {
+  display: flex;
+  gap: 3px;
+  margin: 0 1.15rem 1.15rem;
+  height: 2rem;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.baqarah-page3-map__strip-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0 0.5rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.baqarah-page3-map__strip-seg--rejecters {
+  background: linear-gradient(180deg, #fb7185 0%, var(--topic-rose-accent) 100%);
+}
+
+.baqarah-page3-map__strip-seg--hypocrites {
+  background: linear-gradient(180deg, #fbbf24 0%, var(--topic-amber-accent) 100%);
+}
+
+/* Page 4 topics map */
+.baqarah-page4-map__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 1.25rem 1.15rem;
+}
+
+.baqarah-page4-map__column {
+  padding: 1rem 1rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.baqarah-page4-map__column--amber {
+  border-color: var(--topic-amber-border);
+  border-top: 4px solid var(--topic-amber-accent);
+  background: linear-gradient(180deg, var(--topic-amber-bg) 0%, #fff 4rem);
+}
+
+.baqarah-page4-map__column--teal {
+  border-color: var(--topic-teal-border);
+  border-top: 4px solid var(--topic-teal-accent);
+  background: linear-gradient(180deg, var(--topic-teal-bg) 0%, #fff 4rem);
+}
+
+.baqarah-page4-map__column-head {
+  margin-bottom: 0.85rem;
+  text-align: center;
+}
+
+.baqarah-page4-map__letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.35rem;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+  color: #fff;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.baqarah-page4-map__column--teal .baqarah-page4-map__letter {
+  background: linear-gradient(180deg, #2dd4bf 0%, #0d9488 100%);
+}
+
+.baqarah-page4-map__column-range {
+  display: block;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.baqarah-page4-map__column-title {
+  margin: 0.25rem 0 0;
+  font-family: "Lora", serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-weight: 700;
+  color: #111827;
+}
+
+.baqarah-page4-map__column--amber .baqarah-page4-map__column-title {
+  color: var(--topic-amber-accent);
+}
+
+.baqarah-page4-map__column--teal .baqarah-page4-map__column-title {
+  color: var(--topic-teal-accent);
+}
+
+.baqarah-page4-map__subtopics {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.baqarah-page4-map__subtopic {
+  padding: 0.55rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.baqarah-page4-map__subtopic:last-child {
+  border-bottom: none;
+}
+
+.baqarah-page4-map__subtopic-label {
+  display: block;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.baqarah-page4-map__subtopic-verses {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.baqarah-page4-map__subtopic-detail {
+  margin: 0.2rem 0 0;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: #4b5563;
+}
+
+.baqarah-page4-map__verse-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.baqarah-page4-map__verse-pill {
+  min-width: 2rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  background: var(--topic-amber-accent);
+}
+
+.baqarah-page4-map__column--teal .baqarah-page4-map__verse-pill {
+  background: var(--topic-teal-accent);
+}
+
+.baqarah-page4-map__strip {
+  display: flex;
+  gap: 2px;
+  margin: 0 1.15rem 1.15rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.baqarah-page4-map__strip-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.5rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+}
+
+.baqarah-page4-map__strip-seg--amber {
+  background: linear-gradient(180deg, #fbbf24 0%, var(--topic-amber-accent) 100%);
+}
+
+.baqarah-page4-map__strip-seg--teal {
+  background: linear-gradient(180deg, #2dd4bf 0%, var(--topic-teal-accent) 100%);
+}
+
+/* Covenant topics overview (Topic B) */
+.baqarah-covenant-map__intro {
+  padding: 1rem 1.25rem 0.5rem;
+}
+
+.baqarah-covenant-map__lead {
+  margin: 0 0 0.35rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--topic-teal-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.baqarah-covenant-map__summary {
+  margin: 0;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #374151;
+}
+
+.baqarah-covenant-map__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  padding: 0.75rem 1.15rem 1.25rem;
+}
+
+.baqarah-covenant-map__pillar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.baqarah-covenant-map__pillar-top {
+  width: 100%;
+  padding: 0.65rem 0.5rem;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+  color: #fff;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  line-height: 1.5;
+}
+
+.baqarah-covenant-map__pillar-en {
+  margin: 0;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #374151;
+}
+
+.baqarah-covenant-map__pillar-anchor {
+  width: 100%;
+  padding: 0.55rem 0.5rem;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #d4b896 0%, #b8956a 100%);
+  color: #fff;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  line-height: 1.5;
+}
+
+.baqarah-covenant-map__arrow {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1;
+}
+
+/* Parable response linking */
+.baqarah-parable-link__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.15rem;
+}
+
+.baqarah-parable-link__row {
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.baqarah-parable-link__label {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--topic-amber-accent);
+}
+
+.baqarah-parable-link__flow {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem 0.85rem;
+}
+
+.baqarah-parable-link__phrase {
+  padding: 0.55rem 0.75rem;
+  border: 2px solid #374151;
+  border-radius: 6px;
+  background: #fff;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.6;
+  color: #111827;
+}
+
+.baqarah-parable-link__phrase--response {
+  background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
+  border-color: #b45309;
+}
+
+.baqarah-parable-link__suffix {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.78em;
+  color: #6b7280;
+}
+
+.baqarah-parable-link__bridge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.baqarah-parable-link__bridge-label {
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e11d48;
+}
+
+.baqarah-parable-link__bridge-arrow {
+  font-size: 1.25rem;
+  color: #92400e;
+}
+
+.baqarah-parable-link__note {
+  margin: 0.65rem 0 0;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #4b5563;
+  text-align: center;
+}
+
+/* Page 5 topics map */
+.baqarah-page5-map__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  padding: 1.15rem;
+}
+
+.baqarah-page5-map__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.95rem 1rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.baqarah-page5-map__card--rose {
+  border-color: var(--topic-rose-border);
+  border-top: 4px solid var(--topic-rose-accent);
+  background: linear-gradient(180deg, var(--topic-rose-bg) 0%, #fff 3.5rem);
+}
+
+.baqarah-page5-map__card--amber {
+  border-color: var(--topic-amber-border);
+  border-top: 4px solid var(--topic-amber-accent);
+  background: linear-gradient(180deg, var(--topic-amber-bg) 0%, #fff 3.5rem);
+}
+
+.baqarah-page5-map__card--teal {
+  border-color: var(--topic-teal-border);
+  border-top: 4px solid var(--topic-teal-accent);
+  background: linear-gradient(180deg, var(--topic-teal-bg) 0%, #fff 3.5rem);
+}
+
+.baqarah-page5-map__card--green {
+  border-color: var(--topic-green-border);
+  border-top: 4px solid var(--topic-green-accent);
+  background: linear-gradient(180deg, var(--topic-green-bg) 0%, #fff 3.5rem);
+}
+
+.baqarah-page5-map__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.baqarah-page5-map__letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+  color: #fff;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.baqarah-page5-map__card--rose .baqarah-page5-map__letter {
+  background: linear-gradient(180deg, #fb7185 0%, var(--topic-rose-accent) 100%);
+}
+
+.baqarah-page5-map__card--amber .baqarah-page5-map__letter {
+  background: linear-gradient(180deg, #fbbf24 0%, var(--topic-amber-accent) 100%);
+}
+
+.baqarah-page5-map__card--teal .baqarah-page5-map__letter {
+  background: linear-gradient(180deg, #2dd4bf 0%, var(--topic-teal-accent) 100%);
+}
+
+.baqarah-page5-map__card--green .baqarah-page5-map__letter {
+  background: linear-gradient(180deg, #4ade80 0%, var(--topic-green-accent) 100%);
+}
+
+.baqarah-page5-map__title {
+  margin: 0;
+  font-family: "Lora", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.35;
+}
+
+.baqarah-page5-map__card--rose .baqarah-page5-map__title {
+  color: var(--topic-rose-accent);
+}
+
+.baqarah-page5-map__card--amber .baqarah-page5-map__title {
+  color: var(--topic-amber-accent);
+}
+
+.baqarah-page5-map__card--teal .baqarah-page5-map__title {
+  color: var(--topic-teal-accent);
+}
+
+.baqarah-page5-map__card--green .baqarah-page5-map__title {
+  color: var(--topic-green-accent);
+}
+
+.baqarah-page5-map__subtitle {
+  margin: 0.15rem 0 0;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #4b5563;
+}
+
+.baqarah-page5-map__subtopics {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.baqarah-page5-map__subtopics li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.86rem;
+  color: #374151;
+}
+
+.baqarah-page5-map__subtopics li:last-child {
+  border-bottom: none;
+}
+
+.baqarah-page5-map__sub-verses {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.baqarah-page5-map__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f3f4f6;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.baqarah-page5-map__pills {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.baqarah-page5-map__pill {
+  min-width: 1.65rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #374151;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.baqarah-page5-map__card--rose .baqarah-page5-map__pill {
+  background: var(--topic-rose-bg);
+  color: var(--topic-rose-accent);
+}
+
+.baqarah-page5-map__card--amber .baqarah-page5-map__pill {
+  background: var(--topic-amber-bg);
+  color: var(--topic-amber-accent);
+}
+
+.baqarah-page5-map__card--teal .baqarah-page5-map__pill {
+  background: var(--topic-teal-bg);
+  color: var(--topic-teal-accent);
+}
+
+.baqarah-page5-map__card--green .baqarah-page5-map__pill {
+  background: var(--topic-green-bg);
+  color: var(--topic-green-accent);
+}
+
+.baqarah-page5-map__strip {
+  display: flex;
+  gap: 2px;
+  margin: 0 1.15rem 1.15rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.baqarah-page5-map__strip-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.baqarah-page5-map__strip-seg--rose {
+  background: linear-gradient(180deg, #fb7185 0%, var(--topic-rose-accent) 100%);
+}
+
+.baqarah-page5-map__strip-seg--amber {
+  background: linear-gradient(180deg, #fbbf24 0%, var(--topic-amber-accent) 100%);
+}
+
+.baqarah-page5-map__strip-seg--teal {
+  background: linear-gradient(180deg, #2dd4bf 0%, var(--topic-teal-accent) 100%);
+}
+
+.baqarah-page5-map__strip-seg--green {
+  background: linear-gradient(180deg, #4ade80 0%, var(--topic-green-accent) 100%);
+}
+
+.baqarah-mushaf-map__subtopics {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.baqarah-mushaf-map__subtopic {
+  position: relative;
+  padding: 0.3rem 0 0.3rem 0.75rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #4b5563;
+}
+
+.baqarah-mushaf-map__subtopic--bullet {
+  font-weight: 700;
+}
+
+.baqarah-mushaf-map__subtopic--bullet::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+}
+
+/* Rejecters consequence flow */
+.baqarah-consequence-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(10rem, 14rem) minmax(0, 1fr);
+  gap: 1rem 1.25rem;
+  align-items: start;
+  padding: 1.5rem 1.25rem 1.75rem;
+}
+
+.baqarah-consequence-flow__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.baqarah-consequence-flow__step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 11rem;
+  min-height: 2.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 4px;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+.baqarah-consequence-flow__step--book {
+  background: linear-gradient(180deg, #d4b896 0%, #b8956a 100%);
+}
+
+.baqarah-consequence-flow__step--guidance {
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+}
+
+.baqarah-consequence-flow__step--seal {
+  background: #111827;
+}
+
+.baqarah-consequence-flow__step--kufr {
+  background: linear-gradient(180deg, #f472b6 0%, #db2777 100%);
+}
+
+.baqarah-consequence-flow__arrow {
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #b8956a;
+  font-weight: 700;
+}
+
+.baqarah-consequence-flow__arrow--green {
+  color: #16a34a;
+  font-size: 1.35rem;
+}
+
+.baqarah-consequence-flow__cut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0.15rem 0;
+}
+
+.baqarah-consequence-flow__cut-label {
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #db2777;
+  letter-spacing: 0.02em;
+}
+
+.baqarah-consequence-flow__cut-label--side {
+  margin-top: 0.65rem;
+}
+
+.baqarah-consequence-flow__cut-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.baqarah-consequence-flow__scissors {
+  font-size: 1.45rem;
+  line-height: 1;
+  transform: rotate(-90deg);
+}
+
+.baqarah-consequence-flow__x {
+  position: absolute;
+  top: -0.15rem;
+  right: -0.1rem;
+  color: #dc2626;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.baqarah-consequence-flow__senses {
+  display: flex;
+  gap: 0.65rem;
+  font-size: 1.35rem;
+  line-height: 1;
+  margin: 0.1rem 0 0.2rem;
+}
+
+.baqarah-consequence-flow__side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding-top: 2.5rem;
+}
+
+.baqarah-consequence-flow__side--right {
+  padding-top: 1.5rem;
+}
+
+.baqarah-consequence-flow__verse-box {
+  width: 100%;
+  padding: 0.85rem 0.75rem;
+  border: 3px solid #111827;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+  color: #fff;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(0.82rem, 1.8vw, 0.98rem);
+  line-height: 1.75;
+  text-align: center;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.85);
+}
+
+.baqarah-consequence-flow__side--left .baqarah-consequence-flow__verse-box {
+  min-height: 8.5rem;
+}
+
+.baqarah-consequence-flow__cite {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+  background: #d4b896;
+  color: #1f2937;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .baqarah-consequence-flow {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .baqarah-consequence-flow__side {
+    padding-top: 0;
+    order: 2;
+  }
+
+  .baqarah-consequence-flow__side--right {
+    order: 3;
+  }
+
+  .baqarah-consequence-flow__main {
+    order: 1;
+  }
+
+  .baqarah-topics-tree__children {
+    gap: 1rem;
+  }
+
+  .baqarah-topics-tree__node {
+    min-width: 6.5rem;
+    font-size: 0.85rem;
+    padding: 0.55rem 0.9rem;
+  }
+
+  .baqarah-page3-map__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .baqarah-page4-map__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .baqarah-covenant-map__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .baqarah-page5-map__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .baqarah-page6-map__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Verse segment map charts */
+.baqarah-segment-map {
+  margin: 1rem 0 0;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.baqarah-segment-map__banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 55%, #15803d 100%);
+  color: #fff;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.baqarah-segment-map__row {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.55rem 0.65rem;
+  padding: 1rem 0.85rem 0.5rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.baqarah-segment-map__row:last-of-type {
+  border-bottom: none;
+}
+
+.baqarah-segment-map__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 1 1 0;
+  min-width: min(100%, 7rem);
+  max-width: none;
+}
+
+.baqarah-segment-map__item:only-child {
+  flex: 1 1 100%;
+}
+
+.baqarah-segment-map__box {
+  width: 100%;
+  padding: 0.45rem 0.65rem;
+  border: 2px solid #374151;
+  border-radius: 4px;
+  background: #fff;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  line-height: 1.45;
+  white-space: nowrap;
+  text-align: center;
+  color: #111827;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.85);
+}
+
+.baqarah-segment-map__box--accent,
+.baqarah-segment-map__box--green {
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+  color: #fff;
+  border-color: #14532d;
+}
+
+.baqarah-segment-map__box--muted {
+  border-style: dashed;
+  border-color: #9ca3af;
+  color: #6b7280;
+  background: #f9fafb;
+}
+
+.baqarah-segment-map--rose .baqarah-segment-map__banner {
+  background: linear-gradient(180deg, #fb7185 0%, var(--topic-rose-accent) 55%, #9f1239 100%);
+}
+
+.baqarah-segment-map--rose .baqarah-segment-map__box--accent {
+  background: linear-gradient(180deg, #fb7185 0%, var(--topic-rose-accent) 100%);
+  border-color: #9f1239;
+  color: #fff;
+}
+
+.baqarah-segment-map--rose .baqarah-segment-map__note--emphasis,
+.baqarah-segment-map--rose .baqarah-segment-map__footnote-question {
+  color: var(--topic-rose-accent);
+}
+
+.baqarah-segment-map--rose .baqarah-segment-map__footnote-footer {
+  color: var(--topic-rose-accent);
+}
+
+.baqarah-segment-map--rose .baqarah-segment-map__crossref {
+  background: linear-gradient(180deg, #fb7185 0%, var(--topic-rose-accent) 100%);
+}
+
+.baqarah-segment-map--amber .baqarah-segment-map__banner {
+  background: linear-gradient(180deg, #fbbf24 0%, var(--topic-amber-accent) 55%, #92400e 100%);
+}
+
+.baqarah-segment-map--amber .baqarah-segment-map__box--accent {
+  background: linear-gradient(180deg, #fbbf24 0%, var(--topic-amber-accent) 100%);
+  border-color: #92400e;
+  color: #fff;
+}
+
+.baqarah-segment-map--amber .baqarah-segment-map__note--emphasis,
+.baqarah-segment-map--amber .baqarah-segment-map__footnote-question {
+  color: var(--topic-amber-accent);
+}
+
+.baqarah-segment-map--amber .baqarah-segment-map__footnote-footer {
+  color: var(--topic-amber-accent);
+}
+
+.baqarah-segment-map--amber .baqarah-segment-map__crossref {
+  background: linear-gradient(180deg, #fbbf24 0%, var(--topic-amber-accent) 100%);
+}
+
+.baqarah-segment-map--green .baqarah-segment-map__banner {
+  background: linear-gradient(180deg, #4ade80 0%, var(--topic-green-accent) 55%, #065f46 100%);
+}
+
+.baqarah-segment-map--green .baqarah-segment-map__box--accent {
+  background: linear-gradient(180deg, #4ade80 0%, var(--topic-green-accent) 100%);
+  border-color: #065f46;
+}
+
+.baqarah-segment-map--green .baqarah-segment-map__note--emphasis,
+.baqarah-segment-map--green .baqarah-segment-map__footnote-question {
+  color: var(--topic-green-accent);
+}
+
+.baqarah-segment-map--teal .baqarah-segment-map__banner {
+  background: linear-gradient(180deg, #2dd4bf 0%, var(--topic-teal-accent) 55%, #115e59 100%);
+}
+
+.baqarah-segment-map--teal .baqarah-segment-map__box--accent {
+  background: linear-gradient(180deg, #2dd4bf 0%, var(--topic-teal-accent) 100%);
+  border-color: #115e59;
+}
+
+.baqarah-segment-map--teal .baqarah-segment-map__note--emphasis,
+.baqarah-segment-map--teal .baqarah-segment-map__footnote-question {
+  color: var(--topic-teal-accent);
+}
+
+.baqarah-segment-map__arrow {
+  color: #a16207;
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.baqarah-segment-map__notes {
+  width: 100%;
+  text-align: center;
+}
+
+.baqarah-segment-map__note {
+  margin: 0;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: clamp(0.88rem, 1.6vw, 1rem);
+  line-height: 1.45;
+  color: #374151;
+}
+
+.baqarah-segment-map__note--emphasis {
+  color: #15803d;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.baqarah-segment-map__note--muted {
+  color: #6b7280;
+}
+
+.baqarah-segment-map__note ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1rem;
+  text-align: left;
+}
+
+.baqarah-segment-map__prefix {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.baqarah-segment-map__group-note {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.5rem 0.75rem;
+}
+
+.baqarah-segment-map__footnotes {
+  padding: 1rem 1.15rem 1.15rem;
+  background: #fafafa;
+  border-top: 1px solid #e5e7eb;
+}
+
+.baqarah-segment-map__footnote-line,
+.baqarah-segment-map__footnote-question {
+  margin: 0 0 0.65rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.baqarah-segment-map__footnote-question {
+  font-weight: 700;
+  color: #15803d;
+}
+
+.baqarah-segment-map__footnote-answer {
+  margin: 0 0 0.65rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.95rem;
+  color: #b91c1c;
+}
+
+.baqarah-segment-map__footnote-footer {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-family: "Lora", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a5c3e;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.baqarah-segment-map__crossref {
+  margin-bottom: 0.85rem;
+  padding: 0.85rem;
+  border: 2px solid #111827;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+  color: #fff;
+}
+
+.baqarah-segment-map__crossref-ar {
+  margin: 0 0 0.5rem;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  line-height: 1.75;
+  text-align: center;
+}
+
+.baqarah-segment-map__crossref-en {
+  margin: 0 0 0.35rem;
+  font-family: "Lora", serif;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.baqarah-segment-map__crossref cite {
+  display: block;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-style: normal;
+  opacity: 0.9;
+}
+
+.baqarah-study-blocks .baqarah-segment-map {
+  margin-top: 0;
+}
+
+.baqarah-study-blocks .baqarah-segment-map + .baqarah-verse-study__qa--standalone {
+  margin-top: 0;
+}
+
+/* Storm parable (verse 19) */
+.baqarah-chart--storm {
+  padding: 0 0 1.25rem;
+}
+
+.baqarah-storm-chart__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+
+.baqarah-storm-chart__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.85rem 0.5rem;
+  border: 2px solid #d97706;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+  text-align: center;
+}
+
+.baqarah-storm-chart__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: #d97706;
+  color: #fff;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.baqarah-storm-chart__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.baqarah-storm-chart__ar {
+  margin: 0;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  line-height: 1.6;
+}
+
+.baqarah-storm-chart__en {
+  margin: 0;
+  font-family: "Lora", serif;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #57534e;
+}
+
+/* Encompassing (verse 19) */
+.baqarah-chart--encompassing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.baqarah-encompassing__visual {
+  position: relative;
+  width: 9rem;
+  height: 9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.baqarah-encompassing__figures {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1.35rem;
+}
+
+.baqarah-encompassing__arrow {
+  position: absolute;
+  font-size: 1.25rem;
+  color: #e11d48;
+  font-weight: 700;
+}
+
+.baqarah-encompassing__arrow--top { top: 0; left: 50%; transform: translateX(-50%); }
+.baqarah-encompassing__arrow--bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
+.baqarah-encompassing__arrow--left { left: 0; top: 50%; transform: translateY(-50%); }
+.baqarah-encompassing__arrow--right { right: 0; top: 50%; transform: translateY(-50%); }
+
+.baqarah-encompassing__ar {
+  margin: 0;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.75;
+  text-align: center;
+}
+
+.baqarah-encompassing__en {
+  margin: 0;
+  font-family: "Lora", serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #44403c;
+  text-align: center;
+  max-width: 28rem;
+}
+
+/* Jannah features (verse 25) */
+.baqarah-chart--jannah-features {
+  padding: 0 0 1.25rem;
+}
+
+.baqarah-jannah-features__list {
+  list-style: none;
+  margin: 0;
+  padding: 1.35rem 1.5rem 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.baqarah-jannah-features__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.1rem;
+  align-items: center;
+  padding: 1.15rem 1.25rem;
+  border-radius: 12px;
+  border: 2px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.baqarah-jannah-features__item--teal {
+  border-color: var(--topic-teal-border);
+  background: linear-gradient(135deg, var(--topic-teal-bg) 0%, #fff 55%);
+}
+
+.baqarah-jannah-features__item--amber {
+  border-color: var(--topic-amber-border);
+  background: linear-gradient(135deg, var(--topic-amber-bg) 0%, #fff 55%);
+}
+
+.baqarah-jannah-features__item--rose {
+  border-color: var(--topic-rose-border);
+  background: linear-gradient(135deg, var(--topic-rose-bg) 0%, #fff 55%);
+}
+
+.baqarah-jannah-features__item--green {
+  border-color: var(--topic-green-border);
+  background: linear-gradient(135deg, var(--topic-green-bg) 0%, #fff 55%);
+}
+
+.baqarah-jannah-features__badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.baqarah-jannah-features__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  color: #fff;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.baqarah-jannah-features__item--teal .baqarah-jannah-features__num {
+  background: linear-gradient(180deg, #2dd4bf 0%, var(--topic-teal-accent) 100%);
+}
+
+.baqarah-jannah-features__item--amber .baqarah-jannah-features__num {
+  background: linear-gradient(180deg, #fbbf24 0%, var(--topic-amber-accent) 100%);
+}
+
+.baqarah-jannah-features__item--rose .baqarah-jannah-features__num {
+  background: linear-gradient(180deg, #fb7185 0%, var(--topic-rose-accent) 100%);
+}
+
+.baqarah-jannah-features__item--green .baqarah-jannah-features__num {
+  background: linear-gradient(180deg, #4ade80 0%, var(--topic-green-accent) 100%);
+}
+
+.baqarah-jannah-features__icon {
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.baqarah-jannah-features__body {
+  min-width: 0;
+}
+
+.baqarah-jannah-features__ar {
+  margin: 0 0 0.45rem;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.65rem);
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.baqarah-jannah-features__en {
+  margin: 0;
+  font-family: "Lora", serif;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: #1f2937;
+}
+
+.baqarah-jannah-features__note {
+  margin: 0.4rem 0 0;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: clamp(0.92rem, 1.6vw, 1rem);
+  line-height: 1.5;
+  color: #57534e;
+  font-style: italic;
+}
+
+/* Jannah equation */
+.baqarah-chart--jannah-equation {
+  padding: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+  background: linear-gradient(180deg, #f0fdf4 0%, #fff 100%);
+}
+
+.baqarah-jannah-equation__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.65rem;
+}
+
+.baqarah-jannah-equation__term {
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  background: #fff;
+  border: 2px solid #86efac;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  line-height: 1.5;
+}
+
+.baqarah-jannah-equation__term--accent {
+  border-color: #16a34a;
+  background: #dcfce7;
+  font-weight: 600;
+}
+
+.baqarah-jannah-equation__term--reward {
+  border-color: #e11d48;
+  background: #ffe4e6;
+}
+
+.baqarah-jannah-equation__plus,
+.baqarah-jannah-equation__eq {
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #57534e;
+}
+
+.baqarah-jannah-equation__caption {
+  margin: 0.85rem 0 0;
+  font-family: "Lora", serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #44403c;
+}
+
+/* Jannah word breakdown */
+.baqarah-chart--jannah-words {
+  padding: 0 0 1rem;
+}
+
+.baqarah-jannah-words__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: 0.65rem;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.baqarah-jannah-words__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 0.5rem;
+  border: 2px solid #86efac;
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+}
+
+.baqarah-jannah-words__icon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.baqarah-jannah-words__ar {
+  margin: 0;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.baqarah-jannah-words__gloss {
+  margin: 0;
+  font-family: "Lora", serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.baqarah-jannah-words__note {
+  margin: 0;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: #78716c;
+}
+
+/* Fear & hope balance */
+.baqarah-chart--fear-hope {
+  padding: 0 0 1.25rem;
+}
+
+.baqarah-fear-hope__scale {
+  position: relative;
+  width: min(18rem, 100%);
+  height: 7rem;
+  margin: 1.5rem auto 1rem;
+}
+
+.baqarah-fear-hope__pillar {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.35rem;
+  height: 3.5rem;
+  background: #78716c;
+  border-radius: 2px;
+}
+
+.baqarah-fear-hope__beam {
+  position: absolute;
+  top: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 14rem;
+  height: 0.35rem;
+  background: #57534e;
+  border-radius: 2px;
+}
+
+.baqarah-fear-hope__pan {
+  position: absolute;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  width: 5.5rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.baqarah-fear-hope__pan--left {
+  left: 0;
+  background: #ffe4e6;
+  border: 2px solid #f43f5e;
+  color: #be123c;
+}
+
+.baqarah-fear-hope__pan--right {
+  right: 0;
+  background: #dcfce7;
+  border: 2px solid #22c55e;
+  color: #15803d;
+}
+
+.baqarah-fear-hope__compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding: 0 1.25rem;
+}
+
+.baqarah-fear-hope__side {
+  padding: 0.85rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.baqarah-fear-hope__side--fear {
+  background: #fff1f2;
+  border: 2px solid #fda4af;
+}
+
+.baqarah-fear-hope__side--hope {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+}
+
+.baqarah-fear-hope__label {
+  margin: 0 0 0.35rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.baqarah-fear-hope__formula {
+  margin: 0 0 0.25rem;
+  font-family: "Lora", serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.baqarah-fear-hope__outcome {
+  margin: 0;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.82rem;
+  color: #57534e;
+}
+
+.baqarah-fear-hope__balance-note {
+  margin: 1rem 1.25rem 0;
+  padding: 0.75rem 0.85rem;
+  border-radius: 6px;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  font-family: "Lora", serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #44403c;
+}
+
+.baqarah-study-blocks .baqarah-chart {
+  margin-top: 0.75rem;
+}
+
+.baqarah-study-blocks .baqarah-chart:first-child {
+  margin-top: 0;
+}
+
+.baqarah-verse-study__blocks .baqarah-chart,
+.baqarah-study-blocks .baqarah-chart {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.baqarah-verse-study__blocks .baqarah-segment-map,
+.baqarah-study-blocks .baqarah-segment-map {
+  margin: 0;
+}
+
+/* Topic-colored chart banners inside verse study panels */
+.baqarah-verse-study.baqarah-guide-topic--rose .baqarah-chart-banner,
+.baqarah-guide-panel.baqarah-guide-topic--rose .baqarah-chart-banner {
+  background: linear-gradient(180deg, #fb7185 0%, var(--topic-rose-accent) 55%, #9f1239 100%);
+}
+
+.baqarah-verse-study.baqarah-guide-topic--green .baqarah-chart-banner,
+.baqarah-guide-panel.baqarah-guide-topic--green .baqarah-chart-banner {
+  background: linear-gradient(180deg, #4ade80 0%, var(--topic-green-accent) 55%, #065f46 100%);
+}
+
+.baqarah-verse-study.baqarah-guide-topic--amber .baqarah-chart-banner,
+.baqarah-guide-panel.baqarah-guide-topic--amber .baqarah-chart-banner {
+  background: linear-gradient(180deg, #fbbf24 0%, var(--topic-amber-accent) 55%, #92400e 100%);
+}
+
+.baqarah-verse-study.baqarah-guide-topic--teal .baqarah-chart-banner,
+.baqarah-guide-panel.baqarah-guide-topic--teal .baqarah-chart-banner {
+  background: linear-gradient(180deg, #2dd4bf 0%, var(--topic-teal-accent) 55%, #0f766e 100%);
+}
+
+/* Mosquito parable flow (verse 26) */
+.baqarah-chart--mosquito-parable {
+  padding-bottom: 1.25rem;
+}
+
+.baqarah-mosquito-parable__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.25rem 1rem 0.75rem;
+}
+
+.baqarah-mosquito-parable__icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.baqarah-mosquito-parable__center-ar {
+  margin: 0;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.35rem, 2.6vw, 1.6rem);
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.baqarah-mosquito-parable__branches {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  align-items: start;
+}
+
+.baqarah-mosquito-parable__branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.baqarah-mosquito-parable__figure {
+  font-size: 1.5rem;
+}
+
+.baqarah-mosquito-parable__label {
+  margin: 0;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  line-height: 1.55;
+  color: #fff;
+  font-weight: 600;
+}
+
+.baqarah-mosquito-parable__branch--reject .baqarah-mosquito-parable__label {
+  background: linear-gradient(180deg, #f43f5e 0%, #be123c 100%);
+}
+
+.baqarah-mosquito-parable__branch--believe .baqarah-mosquito-parable__label {
+  background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
+}
+
+.baqarah-mosquito-parable__action {
+  margin: 0;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 700;
+}
+
+.baqarah-mosquito-parable__branch--reject .baqarah-mosquito-parable__action {
+  color: #be123c;
+}
+
+.baqarah-mosquito-parable__branch--believe .baqarah-mosquito-parable__action {
+  color: #15803d;
+}
+
+.baqarah-mosquito-parable__bubble {
+  margin-top: 0.35rem;
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1rem, 1.9vw, 1.2rem);
+  line-height: 1.65;
+  border: 2px solid;
+  max-width: 100%;
+}
+
+.baqarah-mosquito-parable__bubble--reject {
+  border-color: #fda4af;
+  background: #fff1f2;
+}
+
+.baqarah-mosquito-parable__bubble--believe {
+  border-color: #86efac;
+  background: #f0fdf4;
+  position: relative;
+  padding-bottom: 1.85rem;
+}
+
+.baqarah-mosquito-parable__mushaf {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+}
+
+.baqarah-mosquito-parable__middle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 2.5rem;
+}
+
+.baqarah-mosquito-parable__effect {
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1rem, 1.9vw, 1.2rem);
+  line-height: 1.55;
+  text-align: center;
+  border: 2px solid;
+  font-weight: 600;
+}
+
+.baqarah-mosquito-parable__effect--reject {
+  border-color: #fda4af;
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.baqarah-mosquito-parable__effect--guide {
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.baqarah-mosquito-parable__footer {
+  margin: 1rem 1.25rem 0;
+  padding: 0.9rem 1.15rem;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+  color: #fff;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  line-height: 1.7;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Revelation context — fly & spider */
+.baqarah-chart--revelation-context {
+  padding-bottom: 1rem;
+}
+
+.baqarah-revelation-context__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.baqarah-revelation-context__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.85rem;
+  border: 2px solid #111827;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.baqarah-revelation-context__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.baqarah-revelation-context__icon {
+  font-size: 1.5rem;
+}
+
+.baqarah-revelation-context__label {
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+  color: #fff;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.baqarah-revelation-context__ar {
+  margin: 0;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+.baqarah-revelation-context__en {
+  margin: 0;
+  font-family: "Lora", serif;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #57534e;
+  padding: 0.5rem;
+  background: #f5f5f4;
+  border-radius: 4px;
+}
+
+.baqarah-revelation-context__cite {
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.72rem;
+  font-style: normal;
+  color: #78716c;
+}
+
+/* Fāsiq concept */
+.baqarah-chart--fasiq {
+  padding-bottom: 1rem;
+}
+
+.baqarah-fasiq__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.baqarah-fasiq__panel {
+  padding: 0.85rem;
+  border-radius: 8px;
+  border: 2px solid;
+}
+
+.baqarah-fasiq__panel--reject {
+  border-color: #fda4af;
+  background: #fff1f2;
+}
+
+.baqarah-fasiq__panel--fasiq {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.baqarah-fasiq__ar {
+  margin: 0 0 0.5rem;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.baqarah-fasiq__groups {
+  margin: 0 0 0.65rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  color: #57534e;
+}
+
+.baqarah-fasiq__outcomes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.baqarah-fasiq__book {
+  position: relative;
+  display: inline-flex;
+  align-self: center;
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.baqarah-fasiq__mark {
+  position: absolute;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.baqarah-fasiq__mark--yes {
+  left: -0.15rem;
+  bottom: 0;
+  color: #16a34a;
+}
+
+.baqarah-fasiq__mark--no {
+  right: -0.15rem;
+  bottom: 0;
+  color: #e11d48;
+}
+
+.baqarah-fasiq__book--reject-only .baqarah-fasiq__mark--no:first-of-type {
+  left: 0.15rem;
+}
+
+.baqarah-fasiq__book--reject-only .baqarah-fasiq__mark--no:last-of-type {
+  right: 0.15rem;
+}
+
+.baqarah-fasiq__effect {
+  margin: 0;
+  font-family: "Lora", serif;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.baqarah-fasiq__effect--reject {
+  color: #be123c;
+}
+
+.baqarah-fasiq__effect--guide {
+  color: #15803d;
+}
+
+.baqarah-fasiq__meaning {
+  margin: 0 0 0.5rem;
+  font-family: "Lora", serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #15803d;
+}
+
+.baqarah-fasiq__etymology {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.baqarah-fasiq__dates {
+  margin: 0;
+  text-align: center;
+}
+
+.baqarah-fasiq__dates img {
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #d6d3d1;
+}
+
+.baqarah-fasiq__dates figcaption {
+  margin-top: 0.25rem;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: 0.9rem;
+}
+
+.baqarah-fasiq__note {
+  margin: 0;
+  font-family: "Lora", serif;
+  font-size: 0.78rem;
+  color: #57534e;
+  text-align: center;
+}
+
+/* Covenant break (verse 27) */
+.baqarah-chart--covenant-break {
+  padding-bottom: 1rem;
+}
+
+.baqarah-covenant-break__list {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 1.25rem 1.25rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.baqarah-covenant-break__item {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 0.65rem;
+  align-items: start;
+  padding: 0.75rem 0.85rem;
+  border: 2px solid #d97706;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fffbeb 0%, #fff 100%);
+}
+
+.baqarah-covenant-break__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: #d97706;
+  color: #fff;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.baqarah-covenant-break__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.baqarah-covenant-break__ar {
+  margin: 0 0 0.25rem;
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.baqarah-covenant-break__label {
+  margin: 0 0 0.15rem;
+  font-family: var(--edx-font, "Inter", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #b45309;
+}
+
+.baqarah-covenant-break__note {
+  margin: 0;
+  font-family: "Lora", serif;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #44403c;
+}
+
+@media (max-width: 720px) {
+  .baqarah-storm-chart__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .baqarah-fear-hope__compare {
+    grid-template-columns: 1fr;
+  }
+
+  .baqarah-mosquito-parable__branches {
+    grid-template-columns: 1fr;
+  }
+
+  .baqarah-mosquito-parable__middle {
+    padding-top: 0;
+    order: -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .baqarah-revelation-context__grid,
+  .baqarah-fasiq__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .baqarah-segment-map__item {
+    flex: 1 1 calc(50% - 0.35rem);
+    min-width: 0;
+  }
+
+  .baqarah-segment-map__item:only-child {
+    flex: 1 1 100%;
+  }
+
+  .baqarah-segment-map__box {
+    white-space: normal;
+    line-height: 1.5;
+    font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+  }
+}
+
+/* Unified Arabic type scale — all Qur'anic text in page guides */
+.baqarah-page-guide .baqarah-consequence-flow__step,
+.baqarah-page-guide .baqarah-guide-verse-num,
+.baqarah-page-guide .baqarah-guide-note-phrase,
+.baqarah-page-guide .baqarah-segment-map__box,
+.baqarah-page-guide .baqarah-segment-map__prefix,
+.baqarah-page-guide .baqarah-segment-map__crossref-ar,
+.baqarah-page-guide .baqarah-verse-study__num,
+.baqarah-page-guide .baqarah-verse-study__arabic,
+.baqarah-page-guide .baqarah-phrase-block__arabic,
+.baqarah-page-guide .baqarah-word-table__ar,
+.baqarah-page-guide .baqarah-decision-flow__ar,
+.baqarah-page-guide .baqarah-hadith-card__ar,
+.baqarah-page-guide .baqarah-verse-annotated__ar,
+.baqarah-page-guide .baqarah-word-card__ar,
+.baqarah-page-guide .baqarah-flow__arabic,
+.baqarah-page-guide .baqarah-concept-verse__ar,
+.baqarah-page-guide .baqarah-spotlight__ar,
+.baqarah-page-guide .baqarah-cmd-compare__ar,
+.baqarah-page-guide .baqarah-visual-flow__ar,
+.baqarah-page-guide .baqarah-qa-example__ar,
+.baqarah-page-guide .baqarah-qa-example__highlight,
+.baqarah-page-guide .baqarah-branching__ar,
+.baqarah-page-guide .baqarah-springs-cube__ar,
+.baqarah-page-guide .baqarah-page-bridge__highlight,
+.baqarah-page-guide .baqarah-word-bubble__word,
+.baqarah-page-guide .baqarah-concept-explain__title > span,
+.baqarah-page-guide .baqarah-vtags__words,
+.baqarah-page-guide .baqarah-parable-link__phrase,
+.baqarah-page-guide .baqarah-covenant-map__pillar-top,
+.baqarah-page-guide .baqarah-covenant-map__pillar-anchor,
+.baqarah-page-guide .baqarah-consequence-flow__verse-box,
+.baqarah-page-guide .baqarah-storm-chart__ar,
+.baqarah-page-guide .baqarah-encompassing__ar,
+.baqarah-page-guide .baqarah-jannah-features__ar,
+.baqarah-page-guide .baqarah-jannah-equation__term,
+.baqarah-page-guide .baqarah-jannah-words__ar,
+.baqarah-page-guide .baqarah-mosquito-parable__center-ar,
+.baqarah-page-guide .baqarah-mosquito-parable__label,
+.baqarah-page-guide .baqarah-mosquito-parable__action,
+.baqarah-page-guide .baqarah-mosquito-parable__bubble,
+.baqarah-page-guide .baqarah-mosquito-parable__effect,
+.baqarah-page-guide .baqarah-mosquito-parable__footer,
+.baqarah-page-guide .baqarah-revelation-context__ar,
+.baqarah-page-guide .baqarah-fasiq__ar,
+.baqarah-page-guide .baqarah-fasiq__dates figcaption,
+.baqarah-page-guide .baqarah-covenant-break__ar,
+.baqarah-page-guide .baqarah-ayah61-quiz__arabic,
+.baqarah-page-guide .baqarah-ayah61-quiz__phrase,
+.baqarah-page-guide .baqarah-ayah61-quiz__segments,
+.baqarah-page-guide .baqarah-ayah61-quiz__option.is-arabic,
+.baqarah-page-guide .baqarah-ayah61-quiz__chip-ar,
+.baqarah-page-guide .baqarah-ayah61-quiz__which-ar,
+.baqarah-page-guide .baqarah-ayah61-quiz__lesson-arabic,
+.baqarah-page-guide .baqarah-ayah61-quiz__food-ar,
+.baqarah-page-guide .baqarah-ayah61-quiz__word-ar,
+.baqarah-page-guide .baqarah-ayah61-quiz__blank.is-filled {
+  font-size: var(--baqarah-ar-size);
+}
+
+/* Page 6 topics map */
+.baqarah-chart--page6-map .baqarah-page6-map__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.baqarah-page6-map__card {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.baqarah-page6-map__card--rose {
+  border-color: #fecdd3;
+  background: linear-gradient(180deg, #fff1f2 0%, #fff 40%);
+}
+
+.baqarah-page6-map__card--green {
+  border-color: #bbf7d0;
+  background: linear-gradient(180deg, #f0fdf4 0%, #fff 40%);
+}
+
+.baqarah-page6-map__head {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  align-items: flex-start;
+}
+
+.baqarah-page6-map__letter {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.baqarah-page6-map__card--rose .baqarah-page6-map__letter { background: #e11d48; }
+.baqarah-page6-map__card--green .baqarah-page6-map__letter { background: #16a34a; }
+
+.baqarah-page6-map__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.baqarah-page6-map__card--rose .baqarah-page6-map__title { color: #be123c; }
+.baqarah-page6-map__card--green .baqarah-page6-map__title { color: #15803d; }
+
+.baqarah-page6-map__subtitle {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #4b5563;
+}
+
+.baqarah-page6-map__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.baqarah-page6-map__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.baqarah-page6-map__pill {
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.baqarah-page6-map__card--rose .baqarah-page6-map__pill {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.baqarah-page6-map__card--green .baqarah-page6-map__pill {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.baqarah-page6-map__strip {
+  display: flex;
+  margin: 0 1rem 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 2rem;
+}
+
+.baqarah-page6-map__strip-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+.baqarah-page6-map__strip-seg--rose { background: #fb7185; }
+.baqarah-page6-map__strip-seg--green { background: #4ade80; }
+
+/* Verse 30 opening chart */
+.baqarah-v30-opening__verse,
+.baqarah-angels-objection__verse,
+.baqarah-angels-glorify__verse,
+.baqarah-v30-response__verse,
+.baqarah-v32-analysis__verse {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.baqarah-v30-opening__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.baqarah-v30-opening__word {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1rem;
+  background: #fff;
+}
+
+.baqarah-v30-opening__arrow {
+  display: block;
+  text-align: center;
+  color: #9ca3af;
+  margin: 0.25rem 0;
+}
+
+.baqarah-v30-opening__note {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #374151;
+}
+
+.baqarah-v30-opening__note p { margin: 0.2rem 0; }
+
+.baqarah-v30-opening__col--omitted .baqarah-v30-opening__word {
+  border-style: dashed;
+  color: #6b7280;
+}
+
+.baqarah-v30-opening__sub {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.baqarah-v30-opening__k-label {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.1rem 0.35rem;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.baqarah-v30-opening__khalifah-box ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+}
+
+/* Khalifah chart */
+.baqarah-khalifah__root {
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #15803d;
+}
+
+.baqarah-khalifah__fork svg {
+  display: block;
+  width: min(320px, 80%);
+  margin: 0 auto;
+}
+
+.baqarah-khalifah__branches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.baqarah-khalifah__branch {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0.85rem;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.baqarah-khalifah__num {
+  display: inline-flex;
+  width: 1.4rem;
+  height: 1.4rem;
+  align-items: center;
+  justify-content: center;
+  background: #dc2626;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.baqarah-khalifah__head {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.baqarah-khalifah__arrow {
+  display: block;
+  text-align: center;
+  color: #dc2626;
+  margin: 0.35rem 0;
+}
+
+.baqarah-khalifah__list {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.84rem;
+}
+
+.baqarah-khalifah__verse {
+  padding: 0.65rem;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #4ade80, #15803d);
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.baqarah-khalifah__verse cite {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  font-style: normal;
+  opacity: 0.9;
+}
+
+.baqarah-khalifah__en {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #374151;
+}
+
+/* Angels objection */
+.baqarah-angels-objection__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.baqarah-angels-objection__word {
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.baqarah-angels-objection__arrow {
+  display: block;
+  text-align: center;
+  color: #9ca3af;
+  margin: 0.25rem 0;
+}
+
+.baqarah-angels-objection__note {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #7c2d12;
+}
+
+/* Angels glorification */
+.baqarah-angels-glorify__words {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+  padding: 1rem 1rem 0;
+  text-align: center;
+  font-size: 0.82rem;
+}
+
+.baqarah-angels-glorify__num {
+  display: inline-flex;
+  width: 1.2rem;
+  height: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  background: #dc2626;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  margin-right: 0.2rem;
+}
+
+.baqarah-angels-glorify__word-col--laka ol {
+  margin: 0.25rem 0 0;
+  padding-left: 1rem;
+  text-align: left;
+  color: #15803d;
+}
+
+.baqarah-angels-glorify__hub {
+  margin: 0.75rem 1rem 1rem;
+  padding: 0.85rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+.baqarah-angels-glorify__hub-title {
+  margin: 0 0 0.5rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.baqarah-angels-glorify__defs article {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  margin-bottom: 0.35rem;
+}
+
+/* Verse 30 Allah response */
+.baqarah-v30-response__points {
+  margin: 0;
+  padding: 1rem 1rem 1rem 2rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.baqarah-v30-response__point--accent {
+  color: #15803d;
+  font-weight: 600;
+}
+
+/* Verse 30 speakers */
+.baqarah-v30-speakers__list {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.baqarah-v30-speakers__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.baqarah-v30-speakers__text {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.65;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.baqarah-v30-speakers__label {
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.baqarah-v30-speakers__label--brown { background: #92400e; }
+.baqarah-v30-speakers__label--green { background: #16a34a; }
+
+.baqarah-v30-speakers__legend {
+  margin: 0;
+  padding: 0 1rem 1rem;
+  font-size: 0.78rem;
+  color: #6b7280;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.baqarah-v30-speakers__swatch {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 2px;
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+
+.baqarah-v30-speakers__swatch--blue { background: #93c5fd; }
+.baqarah-v30-speakers__swatch--purple { background: #d8b4fe; }
+
+/* Verse 32 analysis */
+.baqarah-v32-analysis__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.baqarah-v32-analysis__grid article {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.65rem;
+  background: #fff;
+}
+
+.baqarah-v32-analysis__ar {
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.baqarah-v32-analysis__tag {
+  margin: 0.25rem 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.baqarah-v32-analysis__note {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #374151;
+}
+
+.baqarah-v32-analysis__note--accent {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.baqarah-v32-analysis__table {
+  width: 100%;
+  font-size: 0.78rem;
+  border-collapse: collapse;
+  margin: 0.25rem 0;
+}
+
+.baqarah-v32-analysis__table td {
+  padding: 0.2rem 0.35rem;
+  border: 1px solid #e5e7eb;
+}
+
+/* Verses 33–37 charts — shared verse banner */
+.baqarah-v33-analysis__verse,
+.baqarah-v34-prostration__verse,
+.baqarah-v35-garden__verse,
+.baqarah-v35-tree__verse,
+.baqarah-v36-descent__verse,
+.baqarah-v37-repentance__verse,
+.baqarah-angels-quiz__verse {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+/* Verse 33 */
+.baqarah-v33-analysis__part {
+  padding: 0.75rem 1rem 0;
+}
+
+.baqarah-v33-analysis__part h6 {
+  margin: 0 0 0.5rem;
+  font-size: 0.82rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.baqarah-v33-analysis__grid,
+.baqarah-v34-prostration__grid,
+.baqarah-v35-garden__grid,
+.baqarah-v35-tree__grid,
+.baqarah-v36-descent__grid,
+.baqarah-v37-repentance__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  padding: 0 0 1rem;
+}
+
+.baqarah-v33-analysis__grid article,
+.baqarah-v34-prostration__grid article,
+.baqarah-v35-garden__grid article,
+.baqarah-v35-tree__grid article,
+.baqarah-v36-descent__grid article,
+.baqarah-v37-repentance__grid article {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.65rem;
+  background: #fff;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.baqarah-v33-analysis__ar,
+.baqarah-v34-prostration__ar {
+  margin: 0 0 0.25rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.baqarah-v33-analysis__tag {
+  margin: 0.2rem 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.baqarah-v33-analysis__note--accent,
+.baqarah-v34-prostration__note--accent,
+.baqarah-v35-garden__accent,
+.baqarah-v35-tree__accent {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.baqarah-v33-analysis__table {
+  width: 100%;
+  font-size: 0.78rem;
+  border-collapse: collapse;
+  margin: 0.25rem 0;
+}
+
+.baqarah-v33-analysis__table td {
+  padding: 0.2rem 0.35rem;
+  border: 1px solid #e5e7eb;
+}
+
+/* Angels manner quiz */
+.baqarah-angels-quiz__question {
+  margin: 0;
+  padding: 0.75rem 1rem 0;
+  font-weight: 600;
+}
+
+.baqarah-angels-quiz__options {
+  margin: 0.5rem 0 0;
+  padding: 0 1rem 1rem 2rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.baqarah-angels-quiz__option--correct {
+  color: #b91c1c;
+  font-weight: 700;
+  border: 2px solid #fca5a5;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  margin-left: -0.5rem;
+  list-style-position: inside;
+}
+
+/* Angels hiding */
+.baqarah-angels-hiding__main {
+  margin: 0 1rem;
+  padding: 0.85rem;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #4ade80, #15803d);
+  color: #fff;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.baqarah-angels-hiding__detail {
+  margin: 0.75rem 1rem 1rem;
+  padding: 0.85rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.baqarah-angels-hiding__detail cite {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: #991b1b;
+  font-style: normal;
+}
+
+.baqarah-angels-hiding__detail ol {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.baqarah-angels-hiding__accent {
+  color: #15803d;
+  font-weight: 600;
+}
+
+/* Verse 34 */
+.baqarah-v34-prostration__how {
+  margin: 0.35rem 0 0.15rem;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.baqarah-v34-prostration__grid ul {
+  margin: 0.15rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.baqarah-v34-prostration__note {
+  margin-top: 0.35rem;
+  color: #6b7280;
+  font-size: 0.78rem;
+}
+
+.baqarah-v34-prostration__footer {
+  margin: 0;
+  padding: 0.75rem 1rem 1rem;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+/* Key meanings */
+.baqarah-key-meanings__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.baqarah-key-meanings__item {
+  text-align: center;
+  padding: 0.85rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.baqarah-key-meanings__item--positive {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.baqarah-key-meanings__item--negative {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.baqarah-key-meanings__ar {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.baqarah-key-meanings__en {
+  margin: 0.25rem 0 0;
+  font-weight: 600;
+}
+
+.baqarah-key-meanings__item--positive .baqarah-key-meanings__en {
+  color: #15803d;
+}
+
+.baqarah-key-meanings__item--negative .baqarah-key-meanings__en {
+  color: #b91c1c;
+}
+
+/* Verse 35–37 grid text */
+.baqarah-v35-garden__grid p[dir="rtl"],
+.baqarah-v35-tree__grid p[dir="rtl"],
+.baqarah-v36-descent__grid p[dir="rtl"],
+.baqarah-v37-repentance__grid p[dir="rtl"] {
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .baqarah-page6-map__grid,
+  .baqarah-khalifah__branches,
+  .baqarah-angels-objection__cols,
+  .baqarah-angels-glorify__words {
+    grid-template-columns: 1fr;
+  }
+
+  .baqarah-v30-speakers__row {
+    grid-template-columns: 1fr;
+  }
+
+  .baqarah-key-meanings__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Page 6 linking & events maps */
+.baqarah-page6-linking__banner {
+  margin: 1rem;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #4ade80 0%, #16a34a 55%, #15803d 100%);
+}
+
+.baqarah-page6-linking__note {
+  margin: 0 1rem 1rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.baqarah-page6-events__layout {
+  display: grid;
+  grid-template-columns: minmax(88px, 0.75fr) minmax(100px, 0.9fr) minmax(0, 2.5fr);
+  gap: 0.75rem;
+  padding: 1rem;
+  align-items: stretch;
+}
+
+.baqarah-page6-events__sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.baqarah-page6-events--rose .baqarah-page6-events__sidebar {
+  background: linear-gradient(180deg, #fb7185, #e11d48);
+}
+
+.baqarah-page6-events--green .baqarah-page6-events__sidebar {
+  background: linear-gradient(180deg, #4ade80, #16a34a);
+}
+
+.baqarah-page6-events__bracket {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-left: 4px solid #92400e;
+  background: #fff7ed;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: #7c2d12;
+}
+
+.baqarah-page6-events__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.baqarah-page6-events__item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.baqarah-page6-events__item--rose {
+  border-color: #fecdd3;
+  background: #fff1f2;
+}
+
+.baqarah-page6-events__item--green {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+.baqarah-page6-events__words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.baqarah-page6-events__word {
+  padding: 0.2rem 0.45rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.baqarah-page6-events__sub {
+  color: #b91c1c;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.baqarah-page6-events__item-note {
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+.baqarah-page6-events__num {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dc2626;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.baqarah-page6-events__verse {
+  font-size: 0.78rem;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+/* Baqarah unique phrases */
+.baqarah-baqarah-unique__head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.baqarah-baqarah-unique__col--other { color: #b91c1c; }
+.baqarah-baqarah-unique__col--baqarah { color: #15803d; }
+
+.baqarah-baqarah-unique__rows {
+  margin: 0.5rem 0 0;
+  padding: 0 1rem 1rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.baqarah-baqarah-unique__row {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 0.65rem;
+  align-items: start;
+}
+
+.baqarah-baqarah-unique__num {
+  width: 1.4rem;
+  height: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dc2626;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.baqarah-baqarah-unique__phrase {
+  display: block;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  background: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.baqarah-baqarah-unique__other .baqarah-baqarah-unique__phrase {
+  color: #991b1b;
+}
+
+.baqarah-baqarah-unique__phrase--green {
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.baqarah-baqarah-unique__empty {
+  color: #9ca3af;
+  padding: 0.45rem;
+}
+
+.baqarah-baqarah-unique__note {
+  display: block;
+  font-size: 0.74rem;
+  color: #6b7280;
+  margin-top: 0.15rem;
+}
+
+.baqarah-baqarah-unique__stack + .baqarah-baqarah-unique__stack {
+  margin-top: 0.35rem;
+}
+
+/* Speech & knowledge pattern charts */
+.baqarah-page6-speech__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(180px, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.baqarah-page6-speech__verses {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.baqarah-page6-speech__verse-row {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.baqarah-page6-speech__verse-num {
+  font-size: 0.78rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.baqarah-page6-speech__marks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.baqarah-page6-speech__mark {
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.baqarah-page6-speech__mark--qala {
+  background: #dbeafe;
+  border: 2px solid #3b82f6;
+  color: #1e40af;
+}
+
+.baqarah-page6-speech__mark--qalu {
+  background: #fce7f3;
+  border: 2px solid #ec4899;
+  color: #9d174d;
+}
+
+.baqarah-page6-speech__mark--qulna {
+  background: #dcfce7;
+  border: 2px solid #22c55e;
+  color: #166534;
+}
+
+.baqarah-page6-speech__mark--fa {
+  background: #ffedd5;
+  border: 2px dashed #f97316;
+  color: #9a3412;
+  border-radius: 999px;
+}
+
+.baqarah-page6-speech__mark--inni {
+  background: #eff6ff;
+  border: 2px solid #3b82f6;
+  color: #1e40af;
+}
+
+.baqarah-page6-speech__mark--ilm {
+  background: #ffedd5;
+  border: 2px solid #f97316;
+  color: #9a3412;
+}
+
+.baqarah-page6-speech__mark--waw {
+  background: #fef2f2;
+  border: 2px dashed #ef4444;
+  color: #991b1b;
+  border-radius: 999px;
+}
+
+.baqarah-page6-speech__legend {
+  padding: 0.85rem;
+  border-radius: 10px;
+  background: #faf6ef;
+  border: 1px solid #e7dcc8;
+}
+
+.baqarah-page6-speech__legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 0.55rem;
+}
+
+.baqarah-page6-speech__legend-item:last-child {
+  margin-bottom: 0;
+}
+
+.baqarah-page6-speech__swatch {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.15rem;
+  border-radius: 3px;
+}
+
+.baqarah-page6-speech__swatch--outline-red {
+  border: 2px solid #dc2626;
+  background: #fff;
+}
+
+.baqarah-page6-speech__swatch--solid-blue {
+  background: #3b82f6;
+}
+
+.baqarah-page6-speech__swatch--solid-pink {
+  background: #ec4899;
+}
+
+.baqarah-page6-speech__swatch--solid-green {
+  background: #22c55e;
+}
+
+.baqarah-page6-speech__swatch--oval-orange {
+  border: 2px dashed #f97316;
+  border-radius: 999px;
+  background: #ffedd5;
+}
+
+.baqarah-page6-speech__swatch--outline-blue {
+  border: 2px solid #3b82f6;
+  background: #eff6ff;
+}
+
+.baqarah-page6-speech__swatch--solid-orange {
+  background: #f97316;
+}
+
+.baqarah-page6-speech__swatch--oval-red {
+  border: 2px dashed #ef4444;
+  border-radius: 999px;
+  background: #fef2f2;
+}
+
+@media (max-width: 720px) {
+  .baqarah-page6-events__layout,
+  .baqarah-page6-speech__layout,
+  .baqarah-baqarah-unique__row,
+  .baqarah-page8-map__grid,
+  .baqarah-page8-main__branches,
+  .baqarah-page8-linking__groups,
+  .baqarah-balaun__branches {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Page 8 topics map */
+.baqarah-page8-map__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.baqarah-page8-map__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 2px solid transparent;
+}
+
+.baqarah-page8-map__card--rose {
+  background: #fff1f2;
+  border-color: #fecdd3;
+}
+
+.baqarah-page8-map__card--green {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.baqarah-page8-map__head {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.baqarah-page8-map__letter {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.baqarah-page8-map__card--rose .baqarah-page8-map__letter { background: #e11d48; }
+.baqarah-page8-map__card--green .baqarah-page8-map__letter { background: #16a34a; }
+
+.baqarah-page8-map__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.baqarah-page8-map__card--rose .baqarah-page8-map__title { color: #be123c; }
+.baqarah-page8-map__card--green .baqarah-page8-map__title { color: #15803d; }
+
+.baqarah-page8-map__subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.baqarah-page8-map__subtopics {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+}
+
+.baqarah-page8-map__subtopics li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.baqarah-page8-map__sub-verses {
+  flex-shrink: 0;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.baqarah-page8-map__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.baqarah-page8-map__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.baqarah-page8-map__pill {
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.baqarah-page8-map__card--rose .baqarah-page8-map__pill {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.baqarah-page8-map__card--green .baqarah-page8-map__pill {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.baqarah-page8-map__strip {
+  display: flex;
+  margin: 0 1rem 1rem;
+  height: 1.75rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.baqarah-page8-map__strip-seg {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.baqarah-page8-map__strip-seg--rose { background: #fb7185; }
+.baqarah-page8-map__strip-seg--green { background: #4ade80; }
+
+/* Page 8 detailed topics */
+.baqarah-page8-detailed__key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 1rem 0.75rem;
+  font-size: 0.78rem;
+}
+
+.baqarah-page8-detailed__key-item {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.baqarah-page8-detailed__key-item--rose {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.baqarah-page8-detailed__key-item--green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.baqarah-page8-detailed__key-item--sin {
+  background: #fff1f2;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
+}
+
+.baqarah-page8-detailed__list {
+  margin: 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.baqarah-page8-detailed__row {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 0.5rem 0.75rem;
+  align-items: start;
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 0.35rem;
+  border-radius: 8px;
+  border-left: 4px solid transparent;
+  font-size: 0.84rem;
+}
+
+.baqarah-page8-detailed__row--rose {
+  background: #fff1f2;
+  border-left-color: #fb7185;
+}
+
+.baqarah-page8-detailed__row--green {
+  background: #f0fdf4;
+  border-left-color: #4ade80;
+}
+
+.baqarah-page8-detailed__verse {
+  font-weight: 700;
+  min-width: 1.5rem;
+}
+
+.baqarah-page8-detailed__topic {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.baqarah-page8-detailed__summary {
+  margin: 0;
+  grid-column: 1 / -1;
+  line-height: 1.45;
+}
+
+.baqarah-page8-detailed__strip {
+  display: flex;
+  margin: 1rem;
+  height: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.baqarah-page8-detailed__strip-seg {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.baqarah-page8-detailed__strip-seg--rose { background: #fb7185; }
+.baqarah-page8-detailed__strip-seg--green { background: #4ade80; }
+
+/* Page 8 main topic */
+.baqarah-page8-main__body {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.baqarah-page8-main__lead {
+  margin: 0;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #374151;
+}
+
+.baqarah-page8-main__fork {
+  max-width: 200px;
+  margin: 0.5rem auto;
+}
+
+.baqarah-page8-main__fork svg {
+  width: 100%;
+  height: auto;
+}
+
+.baqarah-page8-main__branches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.baqarah-page8-main__branch {
+  padding: 0.85rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.baqarah-page8-main__branch p {
+  margin: 0.35rem 0 0;
+}
+
+.baqarah-page8-main__branch-label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.baqarah-page8-main__branch--rose {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+}
+
+.baqarah-page8-main__branch--rose .baqarah-page8-main__branch-label {
+  color: #be123c;
+}
+
+.baqarah-page8-main__branch--green {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.baqarah-page8-main__branch--green .baqarah-page8-main__branch-label {
+  color: #15803d;
+}
+
+/* Page 8 repeated words */
+.baqarah-page8-repeated__list {
+  margin: 0;
+  padding: 0.75rem 1rem 1rem;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.baqarah-page8-repeated__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.15rem 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  border-left: 4px solid transparent;
+}
+
+.baqarah-page8-repeated__item--rose {
+  background: #fff1f2;
+  border-left-color: #fb7185;
+}
+
+.baqarah-page8-repeated__item--green {
+  background: #f0fdf4;
+  border-left-color: #4ade80;
+}
+
+.baqarah-page8-repeated__ar {
+  margin: 0;
+  grid-column: 1;
+  font-weight: 600;
+}
+
+.baqarah-page8-repeated__en {
+  margin: 0;
+  grid-column: 1;
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+.baqarah-page8-repeated__verses {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  align-self: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+/* Page 8 linking pattern */
+.baqarah-page8-linking__groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.baqarah-page8-linking__group {
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.baqarah-page8-linking__label {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.baqarah-page8-linking__note {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.baqarah-page8-linking__pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.baqarah-page8-linking__pill {
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.baqarah-page8-linking__pill--waw {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.baqarah-page8-linking__pill--thumma {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.baqarah-page8-linking__caption {
+  margin: 0 1rem 1rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* بَلَاءٌ charts */
+.baqarah-balaun__root {
+  margin: 1rem auto 0.25rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.baqarah-balaun__meaning {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.baqarah-balaun__fork {
+  max-width: 180px;
+  margin: 0.25rem auto;
+}
+
+.baqarah-balaun__fork svg {
+  width: 100%;
+}
+
+.baqarah-balaun__branches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem 1rem;
+}
+
+.baqarah-balaun__branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+.baqarah-balaun__branch--good {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.baqarah-balaun__branch--bad {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+}
+
+.baqarah-balaun-refs__list {
+  padding: 0.75rem 1rem 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.baqarah-balaun-refs__item {
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: #f8fafc;
+  border-left: 4px solid #16a34a;
+  font-size: 0.84rem;
+}
+
+.baqarah-balaun-refs__ar {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+}
+
+.baqarah-balaun-refs__item cite {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-style: normal;
+}
+
+/* Āyah 61 learn & quiz — self-contained light theme (do not reuse dark hifdh chip styles) */
+.baqarah-ayah61-quiz {
+  margin: 1.25rem 0 0;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #c7d2fe;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  color: #1e293b;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.baqarah-guide-block--memorize-quiz {
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.baqarah-ayah61-quiz__header {
+  margin-bottom: 0.85rem;
+}
+
+.baqarah-ayah61-quiz__title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.baqarah-ayah61-quiz__lead {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #475569;
+}
+
+.baqarah-ayah61-quiz__tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.baqarah-ayah61-quiz__tab {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 2px solid #cbd5e1;
+  background: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.baqarah-ayah61-quiz__tab.is-active {
+  border-color: #4f46e5;
+  background: #4f46e5;
+  color: #fff;
+}
+
+.baqarah-ayah61-quiz__mode-desc {
+  margin: 0 0 0.55rem;
+  font-size: 0.82rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+.baqarah-ayah61-quiz__modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.baqarah-ayah61-quiz__mode {
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #94a3b8;
+  background: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.baqarah-ayah61-quiz__mode.is-active {
+  border-color: #4f46e5;
+  background: #4f46e5;
+  color: #fff;
+}
+
+.baqarah-ayah61-quiz__panel,
+.baqarah-ayah61-quiz__lesson {
+  padding: 0.85rem;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+}
+
+.baqarah-ayah61-quiz__round {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6366f1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.baqarah-ayah61-quiz__prompt {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #0f172a;
+}
+
+.baqarah-ayah61-quiz__hint {
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: #fef9c3;
+  border: 1px solid #fde047;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: #713f12;
+}
+
+/* Match page-guide Arabic scale (--baqarah-ar-size on .baqarah-page-guide) */
+.baqarah-ayah61-quiz__arabic,
+.baqarah-ayah61-quiz__chip-ar,
+.baqarah-ayah61-quiz__which-ar,
+.baqarah-ayah61-quiz__lesson-arabic,
+.baqarah-ayah61-quiz__food-ar,
+.baqarah-ayah61-quiz__word-ar,
+.baqarah-ayah61-quiz__option.is-arabic,
+.baqarah-ayah61-quiz__blank.is-filled {
+  font-family: "KFGQPC Uthman Taha Naskh", "Scheherazade New", serif;
+  font-size: var(--baqarah-ar-size, clamp(1.35rem, 2.2vw, 1.75rem));
+  line-height: 2;
+  color: #111827;
+}
+
+.baqarah-ayah61-quiz__phrase,
+.baqarah-ayah61-quiz__segments {
+  margin: 0.25rem 0 0.75rem;
+  padding: 0.65rem;
+  border-radius: 8px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.baqarah-ayah61-quiz__blank {
+  display: inline-block;
+  min-width: 3.5rem;
+  margin: 0 0.2rem;
+  padding: 0 0.15rem 0.1rem;
+  border-bottom: 3px solid #6366f1;
+  color: #6366f1;
+  font-weight: 700;
+  vertical-align: baseline;
+}
+
+.baqarah-ayah61-quiz__blank.is-filled.is-correct {
+  border-bottom-color: #16a34a;
+  color: #15803d;
+}
+
+.baqarah-ayah61-quiz__blank.is-filled.is-wrong {
+  border-bottom-color: #dc2626;
+  color: #b91c1c;
+}
+
+.baqarah-ayah61-quiz__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.baqarah-ayah61-quiz__option {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.baqarah-ayah61-quiz__option.is-arabic {
+  text-align: right;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.baqarah-ayah61-quiz__option:hover:not(:disabled) {
+  border-color: #818cf8;
+  background: #eef2ff;
+}
+
+.baqarah-ayah61-quiz__option.is-correct {
+  border-color: #22c55e;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.baqarah-ayah61-quiz__option.is-wrong {
+  border-color: #f87171;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.baqarah-ayah61-quiz__picked,
+.baqarah-ayah61-quiz__pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.65rem;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px dashed #94a3b8;
+}
+
+.baqarah-ayah61-quiz__picked {
+  border-style: solid;
+  border-color: #818cf8;
+  background: #eef2ff;
+}
+
+.baqarah-ayah61-quiz__placeholder {
+  color: #64748b;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.baqarah-ayah61-quiz__chip {
+  display: inline-flex;
+  max-width: 100%;
+  border: 1px solid #94a3b8;
+  background: #fff;
+  color: #0f172a;
+  border-radius: 10px;
+  padding: 0.45rem 0.65rem;
+  cursor: pointer;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.baqarah-ayah61-quiz__chip.is-picked {
+  border-color: #4f46e5;
+  background: #e0e7ff;
+}
+
+.baqarah-ayah61-quiz__chip-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  align-items: center;
+}
+
+.baqarah-ayah61-quiz__chip-ar {
+  line-height: 2;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.baqarah-ayah61-quiz__chip-en {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #64748b;
+  direction: ltr;
+}
+
+.baqarah-ayah61-quiz__cta {
+  appearance: none;
+  margin-top: 0.65rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #4f46e5;
+  color: #fff;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.baqarah-ayah61-quiz__cta.is-ghost {
+  background: #fff;
+  color: #4f46e5;
+  border: 1px solid #818cf8;
+}
+
+.baqarah-ayah61-quiz__cta:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.baqarah-ayah61-quiz__feedback {
+  margin: 0.65rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.baqarah-ayah61-quiz__explain {
+  margin: 0.5rem 0 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  background: #f1f5f9;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #334155;
+}
+
+.baqarah-ayah61-quiz__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.baqarah-ayah61-quiz__which-options {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.baqarah-ayah61-quiz__which-option {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #fafafa;
+  color: #0f172a;
+  text-align: right;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.baqarah-ayah61-quiz__which-option:hover:not(:disabled) {
+  border-color: #818cf8;
+  background: #f8fafc;
+}
+
+.baqarah-ayah61-quiz__which-option.is-correct {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
+.baqarah-ayah61-quiz__which-option.is-wrong {
+  border-color: #f87171;
+  background: #fef2f2;
+}
+
+.baqarah-ayah61-quiz__which-label {
+  flex-shrink: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #e2e8f0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.baqarah-ayah61-quiz__which-ar {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Lesson steps */
+.baqarah-ayah61-quiz__lesson-progress {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6366f1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.baqarah-ayah61-quiz__lesson-title {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.baqarah-ayah61-quiz__lesson-story,
+.baqarah-ayah61-quiz__lesson-english {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.baqarah-ayah61-quiz__lesson-arabic {
+  margin: 0 0 0.65rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  text-align: right;
+  direction: rtl;
+}
+
+.baqarah-ayah61-quiz__food-list {
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.baqarah-ayah61-quiz__food-item {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.1rem 0.5rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+}
+
+.baqarah-ayah61-quiz__food-num {
+  grid-row: 1 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: #f59e0b;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.baqarah-ayah61-quiz__food-ar {
+  direction: rtl;
+  text-align: right;
+}
+
+.baqarah-ayah61-quiz__food-en {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #92400e;
+}
+
+.baqarah-ayah61-quiz__food-hint {
+  grid-column: 2;
+  font-size: 0.75rem;
+  color: #78716c;
+  font-style: italic;
+}
+
+.baqarah-ayah61-quiz__word-list {
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.baqarah-ayah61-quiz__word-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.baqarah-ayah61-quiz__word-ar {
+  direction: rtl;
+}
+
+.baqarah-ayah61-quiz__word-en {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.baqarah-ayah61-quiz__lesson-tip {
+  margin: 0 0 0.75rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  background: #ecfdf5;
+  border: 1px solid #6ee7b7;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #065f46;
+}
+
+.baqarah-ayah61-quiz__lesson-nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.baqarah-ayah61-quiz__complete {
+  padding: 0.85rem;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  color: #1e293b;
+}
+
+.baqarah-ayah61-quiz__complete-score {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.baqarah-ayah61-quiz__complete-copy {
+  margin: 0 0 0.85rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.baqarah-ayah61-quiz__question-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Page 10 drill popup */
+.page10-drill-backdrop {
+  z-index: 10002;
+}
+
+.page10-drill-dialog {
+  width: min(100%, 42rem);
+  max-height: min(92vh, 52rem);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 24px 64px rgba(17, 24, 39, 0.22);
+  overflow: hidden;
+}
+
+.page10-drill-dialog__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(180deg, #fff7ed 0%, #fff 100%);
+}
+
+.page10-drill-dialog__kicker {
+  margin: 0 0 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #c2410c;
+}
+
+.page10-drill-dialog__title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.page10-drill-dialog__close {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.page10-drill-dialog__close:hover {
+  background: #e5e7eb;
+}
+
+.page10-drill-dialog__body {
+  overflow: auto;
+  padding: 0.5rem 0.85rem 1rem;
+}
+
+.page10-drill-dialog__body .baqarah-ayah61-quiz {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Phone layout — āyah 61 / page 10 memorize quiz */
+@media (max-width: 640px) {
+  .baqarah-guide-block--memorize-quiz {
+    padding: 0.75rem 0.65rem;
+  }
+
+  .baqarah-ayah61-quiz {
+    margin-top: 0.85rem;
+    padding: 0.75rem 0.65rem;
+  }
+
+  .baqarah-ayah61-quiz__panel,
+  .baqarah-ayah61-quiz__lesson {
+    padding: 0.7rem 0.65rem;
+  }
+
+  .baqarah-ayah61-quiz__lead {
+    font-size: 0.84rem;
+  }
+
+  .baqarah-ayah61-quiz__modes {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    gap: 0.35rem;
+    margin-inline: -0.15rem;
+    padding-inline: 0.15rem 0.35rem;
+    padding-bottom: 0.2rem;
+    scrollbar-width: none;
+  }
+
+  .baqarah-ayah61-quiz__modes::-webkit-scrollbar {
+    display: none;
+  }
+
+  .baqarah-ayah61-quiz__mode {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.72rem;
+  }
+
+  .baqarah-ayah61-quiz__arabic,
+  .baqarah-ayah61-quiz__chip-ar,
+  .baqarah-ayah61-quiz__which-ar,
+  .baqarah-ayah61-quiz__lesson-arabic,
+  .baqarah-ayah61-quiz__food-ar,
+  .baqarah-ayah61-quiz__word-ar,
+  .baqarah-ayah61-quiz__option.is-arabic,
+  .baqarah-ayah61-quiz__blank.is-filled,
+  .baqarah-page-guide .baqarah-ayah61-quiz__arabic,
+  .baqarah-page-guide .baqarah-ayah61-quiz__phrase,
+  .baqarah-page-guide .baqarah-ayah61-quiz__segments,
+  .baqarah-page-guide .baqarah-ayah61-quiz__option.is-arabic,
+  .baqarah-page-guide .baqarah-ayah61-quiz__chip-ar,
+  .baqarah-page-guide .baqarah-ayah61-quiz__which-ar,
+  .baqarah-page-guide .baqarah-ayah61-quiz__lesson-arabic,
+  .baqarah-page-guide .baqarah-ayah61-quiz__food-ar,
+  .baqarah-page-guide .baqarah-ayah61-quiz__word-ar,
+  .baqarah-page-guide .baqarah-ayah61-quiz__blank.is-filled {
+    font-size: clamp(1.05rem, 4.8vw, 1.4rem);
+    line-height: 1.85;
+  }
+
+  .baqarah-ayah61-quiz__option,
+  .baqarah-ayah61-quiz__which-option,
+  .baqarah-ayah61-quiz__tab {
+    min-height: 2.75rem;
+  }
+
+  .baqarah-ayah61-quiz__option {
+    padding: 0.8rem 0.75rem;
+  }
+
+  .baqarah-ayah61-quiz__which-option {
+    padding: 0.75rem 0.65rem;
+  }
+
+  .baqarah-ayah61-quiz__picked,
+  .baqarah-ayah61-quiz__pool {
+    gap: 0.35rem;
+    padding: 0.55rem;
+  }
+
+  .baqarah-ayah61-quiz__chip {
+    padding: 0.4rem 0.5rem;
+  }
+
+  .baqarah-ayah61-quiz__lesson-nav,
+  .baqarah-ayah61-quiz__actions {
+    flex-direction: column;
+  }
+
+  .baqarah-ayah61-quiz__lesson-nav .baqarah-ayah61-quiz__cta,
+  .baqarah-ayah61-quiz__actions .baqarah-ayah61-quiz__cta,
+  .baqarah-ayah61-quiz__question-block > .baqarah-ayah61-quiz__cta {
+    width: 100%;
+    min-height: 2.75rem;
+    text-align: center;
+  }
+
+  .page10-drill-backdrop {
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .page10-drill-dialog {
+    width: 100%;
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+
+  .page10-drill-dialog__header {
+    padding: max(0.85rem, env(safe-area-inset-top, 0px)) 0.85rem 0.65rem;
+  }
+
+  .page10-drill-dialog__body {
+    padding: 0.35rem 0.65rem max(1rem, env(safe-area-inset-bottom, 0px));
+  }
+}

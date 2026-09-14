@@ -1,0 +1,628 @@
+/* Iʿrāb tables — aligned with Baqarah page guide theme */
+.baqarah-iraab-study {
+  --iraab-accent: var(--baqarah-guide-accent, #1a5c3e);
+  --iraab-accent-soft: var(--baqarah-guide-accent-soft, #ecfdf3);
+  --iraab-surface: #fff;
+  --iraab-row-alt: #f8faf9;
+  --iraab-border: #e2e8e4;
+  --iraab-ink: var(--fl-text, #111827);
+  --iraab-ink-soft: var(--fl-text-muted, #6b7280);
+  --iraab-badge-harf-bg: #fff4e8;
+  --iraab-badge-harf-fg: #9a3412;
+  --iraab-badge-ism-bg: #ecfdf3;
+  --iraab-badge-ism-fg: #14532d;
+  --iraab-badge-fil-bg: #eff6ff;
+  --iraab-badge-fil-fg: #1e3a8a;
+  --iraab-badge-jumlah-bg: #f5f3ff;
+  --iraab-badge-jumlah-fg: #4c1d95;
+}
+
+.baqarah-iraab-study__header {
+  margin-bottom: 1.25rem;
+}
+
+.baqarah-iraab-study__header h3 {
+  margin: 0.15rem 0 0.35rem;
+  font-family: var(--edx-font, "DM Sans", system-ui, sans-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--iraab-ink);
+}
+
+.baqarah-iraab-study__intro {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--iraab-ink-soft);
+}
+
+.baqarah-iraab-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--iraab-ink-soft);
+}
+
+/* Mode toggle — base styles in mushaf.css */
+
+/* Legend */
+.baqarah-iraab-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--iraab-border);
+  border-radius: 12px;
+  background: var(--iraab-accent-soft);
+}
+
+.baqarah-iraab-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--iraab-ink-soft);
+}
+
+/* Jump nav */
+.baqarah-iraab-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.35rem;
+}
+
+.baqarah-iraab-jump__link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+  min-width: 3.5rem;
+  padding: 0.45rem 0.6rem;
+  border: 1.5px solid var(--iraab-border);
+  border-radius: 10px;
+  background: var(--iraab-surface);
+  text-decoration: none;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.baqarah-iraab-jump__link:hover,
+.baqarah-iraab-jump__link.is-active {
+  border-color: var(--iraab-accent);
+  background: var(--iraab-accent-soft);
+  box-shadow: 0 2px 8px rgba(26, 92, 62, 0.08);
+}
+
+.baqarah-iraab-jump__num {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--iraab-accent);
+  line-height: 1.1;
+}
+
+.baqarah-iraab-jump__label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--iraab-ink-soft);
+}
+
+/* Āyah card */
+.baqarah-iraab-ayah {
+  margin-bottom: 2rem;
+  scroll-margin-top: 1rem;
+}
+
+.baqarah-iraab-ayah__card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  padding: 1.35rem 1.5rem 1.15rem;
+  border-radius: 14px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #154a32 0%, var(--iraab-accent) 55%, #2d7a56 100%);
+  box-shadow: 0 8px 24px rgba(26, 92, 62, 0.18);
+}
+
+.baqarah-iraab-ayah__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12) 0, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0, transparent 40%);
+  pointer-events: none;
+}
+
+.baqarah-iraab-ayah__label,
+.baqarah-iraab-ayah__text,
+.baqarah-iraab-ayah__translation {
+  position: relative;
+  z-index: 1;
+}
+
+.baqarah-iraab-ayah__label {
+  margin: 0 0 0.65rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.baqarah-iraab-ayah__text {
+  margin: 0;
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  line-height: 2.2;
+}
+
+.baqarah-iraab-ayah__translation {
+  margin: 0.55rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Table */
+.baqarah-iraab-table-wrap {
+  overflow: hidden;
+  border: 1px solid var(--iraab-border);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(17, 24, 39, 0.05);
+}
+
+.baqarah-iraab-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--iraab-surface);
+}
+
+.baqarah-iraab-table thead tr {
+  background: var(--edx-navbar, #111827);
+}
+
+.baqarah-iraab-table thead th {
+  padding: 0.75rem 1rem;
+  font-family: var(--edx-font, "DM Sans", system-ui, sans-serif);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+  text-align: left;
+  border: none;
+}
+
+.baqarah-iraab-col-word,
+.baqarah-iraab-col-type {
+  width: 12%;
+}
+
+.baqarah-iraab-col-ar {
+  width: 34%;
+}
+
+.baqarah-iraab-col-en {
+  width: 42%;
+}
+
+.baqarah-iraab-table thead th.baqarah-iraab-col-word,
+.baqarah-iraab-table thead th.baqarah-iraab-col-type {
+  text-align: center;
+}
+
+.baqarah-iraab-table tbody tr {
+  border-bottom: 1px solid var(--iraab-border);
+  transition: background 0.15s ease;
+}
+
+.baqarah-iraab-table tbody tr:nth-child(even) {
+  background: var(--iraab-row-alt);
+}
+
+.baqarah-iraab-table tbody tr:hover {
+  background: var(--iraab-accent-soft);
+}
+
+.baqarah-iraab-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.baqarah-iraab-table td {
+  padding: 0.9rem 1rem;
+  vertical-align: top;
+}
+
+.baqarah-iraab-word {
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--iraab-accent);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.baqarah-iraab-type {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.baqarah-iraab-badge {
+  display: inline-block;
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  direction: rtl;
+  white-space: nowrap;
+}
+
+.baqarah-iraab-badge--harf {
+  background: var(--iraab-badge-harf-bg);
+  color: var(--iraab-badge-harf-fg);
+}
+
+.baqarah-iraab-badge--ism {
+  background: var(--iraab-badge-ism-bg);
+  color: var(--iraab-badge-ism-fg);
+}
+
+.baqarah-iraab-badge--fil {
+  background: var(--iraab-badge-fil-bg);
+  color: var(--iraab-badge-fil-fg);
+}
+
+.baqarah-iraab-badge--jumlah {
+  background: var(--iraab-badge-jumlah-bg);
+  color: var(--iraab-badge-jumlah-fg);
+}
+
+.baqarah-iraab-ar {
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 0.98rem;
+  line-height: 2;
+  color: var(--iraab-ink);
+  text-align: right;
+}
+
+.baqarah-iraab-ar .term {
+  color: var(--iraab-accent);
+  font-weight: 700;
+}
+
+.baqarah-iraab-en {
+  font-family: var(--edx-font, "DM Sans", system-ui, sans-serif);
+  font-size: 0.84rem;
+  line-height: 1.75;
+  color: var(--iraab-ink-soft);
+}
+
+.baqarah-iraab-en .ar {
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 0.98rem;
+  color: var(--iraab-accent);
+  font-weight: 700;
+}
+
+.baqarah-iraab-en strong {
+  color: var(--iraab-ink);
+  font-weight: 600;
+}
+
+.baqarah-iraab-en .note {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.76rem;
+  color: var(--iraab-ink-soft);
+  font-style: italic;
+}
+
+/* ── Glance view ── */
+.iraab-view-toggle {
+  display: inline-flex;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  padding: 0.25rem;
+  border: 1px solid var(--iraab-border);
+  border-radius: 999px;
+  background: var(--iraab-surface);
+}
+
+.iraab-view-toggle__btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--iraab-ink-soft);
+  background: transparent;
+  cursor: pointer;
+}
+
+.iraab-view-toggle__btn.is-active {
+  color: #fff;
+  background: var(--iraab-accent);
+}
+
+.iraab-glance__intro {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--iraab-ink-soft);
+}
+
+.iraab-glance-ayah {
+  margin-bottom: 2rem;
+  scroll-margin-top: 1rem;
+}
+
+.iraab-glance-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.iraab-glance-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+}
+
+.iraab-glance-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--iraab-ink-soft);
+}
+
+.iraab-glance-legend__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+}
+
+.iraab-glance-legend__item--raf .iraab-glance-legend__dot { background: #16a34a; }
+.iraab-glance-legend__item--nasb .iraab-glance-legend__dot { background: #2563eb; }
+.iraab-glance-legend__item--jarr .iraab-glance-legend__dot { background: #d97706; }
+.iraab-glance-legend__item--jazm .iraab-glance-legend__dot { background: #7c3aed; }
+.iraab-glance-legend__item--mabni .iraab-glance-legend__dot { background: #6b7280; }
+
+.iraab-glance-legend__en {
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.iraab-glance-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--iraab-ink-soft);
+  cursor: pointer;
+}
+
+.iraab-glance-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+  padding: 0.85rem;
+  border: 1px solid var(--iraab-border);
+  border-radius: 12px;
+  background: var(--iraab-row-alt);
+}
+
+.iraab-glance-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 2.6rem;
+  padding: 0.4rem 0.45rem 0.35rem;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.iraab-glance-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(17, 24, 39, 0.08);
+}
+
+.iraab-glance-chip.is-active {
+  box-shadow: 0 4px 14px rgba(26, 92, 62, 0.15);
+}
+
+.iraab-glance-chip--raf { border-bottom: 3px solid #16a34a; }
+.iraab-glance-chip--nasb { border-bottom: 3px solid #2563eb; }
+.iraab-glance-chip--jarr { border-bottom: 3px solid #d97706; }
+.iraab-glance-chip--jazm { border-bottom: 3px solid #7c3aed; }
+.iraab-glance-chip--mabni { border-bottom: 3px solid #6b7280; }
+.iraab-glance-chip--neutral { border-bottom: 3px solid #d1d5db; }
+
+.iraab-glance-chip.is-active.iraab-glance-chip--raf { background: #f0fdf4; }
+.iraab-glance-chip.is-active.iraab-glance-chip--nasb { background: #eff6ff; }
+.iraab-glance-chip.is-active.iraab-glance-chip--jarr { background: #fffbeb; }
+.iraab-glance-chip.is-active.iraab-glance-chip--jazm { background: #f5f3ff; }
+.iraab-glance-chip.is-active.iraab-glance-chip--mabni { background: #f9fafb; }
+
+.iraab-glance-chip__word {
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--iraab-ink);
+}
+
+.iraab-glance-chip__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+  max-width: 5.5rem;
+}
+
+.iraab-glance-chip__role {
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--iraab-accent);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.iraab-glance-chip__case {
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 0.58rem;
+  color: var(--iraab-ink-soft);
+}
+
+.iraab-glance-detail {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--iraab-border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.iraab-glance-detail__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin-bottom: 0.55rem;
+}
+
+.iraab-glance-detail__word {
+  margin: 0;
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 1.75rem;
+  color: var(--iraab-accent);
+}
+
+.iraab-glance-detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.iraab-glance-detail__case {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+}
+
+.iraab-glance-detail__case--raf { background: #dcfce7; color: #166534; }
+.iraab-glance-detail__case--nasb { background: #dbeafe; color: #1e40af; }
+.iraab-glance-detail__case--jarr { background: #ffedd5; color: #9a3412; }
+.iraab-glance-detail__case--jazm { background: #ede9fe; color: #5b21b6; }
+.iraab-glance-detail__case--mabni { background: #f3f4f6; color: #374151; }
+
+.iraab-glance-detail__role {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--iraab-ink-soft);
+}
+
+.iraab-glance-detail__chipline {
+  margin: 0 0 0.65rem;
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--iraab-ink);
+}
+
+.iraab-glance-detail__ar {
+  font-family: "Scheherazade New", "Amiri", serif;
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--iraab-ink);
+  text-align: right;
+}
+
+.iraab-glance-detail__ar .term {
+  color: var(--iraab-accent);
+  font-weight: 700;
+}
+
+.iraab-glance-detail__en {
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px dashed var(--iraab-border);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--iraab-ink-soft);
+}
+
+@media (max-width: 760px) {
+  .baqarah-guide-mode-toggle {
+    max-width: none;
+  }
+
+  .baqarah-iraab-table col {
+    width: auto !important;
+  }
+
+  .baqarah-iraab-table,
+  .baqarah-iraab-table thead,
+  .baqarah-iraab-table tbody,
+  .baqarah-iraab-table th,
+  .baqarah-iraab-table td,
+  .baqarah-iraab-table tr {
+    display: block;
+  }
+
+  .baqarah-iraab-table thead {
+    display: none;
+  }
+
+  .baqarah-iraab-table tbody tr {
+    margin-bottom: 0.85rem;
+    padding: 0.85rem;
+    border: 1px solid var(--iraab-border);
+    border-radius: 10px;
+    background: var(--iraab-surface) !important;
+  }
+
+  .baqarah-iraab-table td {
+    padding: 0.25rem 0;
+    border: none;
+  }
+
+  .baqarah-iraab-word {
+    text-align: right;
+    font-size: 1.55rem;
+  }
+
+  .baqarah-iraab-type {
+    text-align: right;
+    padding-top: 0.25rem;
+  }
+
+  .baqarah-iraab-ar {
+    margin-top: 0.45rem;
+  }
+
+  .baqarah-iraab-en {
+    margin-top: 0.45rem;
+    padding-top: 0.45rem;
+    border-top: 1px dashed var(--iraab-border);
+  }
+}

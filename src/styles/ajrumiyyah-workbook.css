@@ -1,0 +1,799 @@
+@font-face {
+  font-family: "UthmanTN";
+  src: url("/fonts/UthmanTN.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.wb-print,
+.wb-print * {
+  box-sizing: border-box;
+}
+
+.wb-print,
+.ajr-study-workbook {
+  direction: ltr;
+}
+
+.wb-print {
+  margin: 0;
+  background: #f7f5f0;
+  color: #000;
+  font-family: "UthmanTN", "Amiri", "Traditional Arabic", serif;
+  overflow-x: hidden;
+}
+
+.wb {
+  --wb-rule: #e4dfd4;
+  width: min(100%, 220mm);
+  max-width: 220mm;
+  margin: 0 auto;
+  padding: 14mm 14mm 18mm;
+  background: #fff;
+  color: #000;
+  overflow-x: hidden;
+}
+
+.wb--show-answers .wb-fill {
+  display: block;
+}
+
+.wb--show-answers .wb-lines {
+  min-height: 0;
+  background: none;
+  border-bottom: none;
+}
+
+.wb--show-answers .wb-lines__rules {
+  display: none;
+}
+
+.wb--show-answers .wb-fill:not(.wb-fill--block) {
+  position: static;
+  line-height: 1.7;
+  padding: 2px 0 4px;
+}
+
+.wb p,
+.wb h1,
+.wb h2,
+.wb h3,
+.wb ol,
+.wb ul,
+.wb li,
+.wb table,
+.wb-lines,
+.wb-passage,
+.wb-matn-ref,
+.wb-q__text,
+.wb-ex__inst,
+.wb-ans__q,
+.wb-ans__a {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.wb h1,
+.wb h2,
+.wb h3 {
+  font-weight: 400;
+  margin: 0;
+}
+
+.wb-cover {
+  text-align: center;
+  padding: 8mm 0 10mm;
+  border: none;
+  border-bottom: 1px solid #d9d3c8;
+  margin-bottom: 10mm;
+  min-height: 0;
+  display: block;
+  break-after: page;
+  page-break-after: always;
+  background: transparent;
+}
+
+.wb-kicker {
+  margin: 0;
+  font-size: 12pt;
+  letter-spacing: 0.08em;
+  color: #7c2d12;
+}
+
+.wb .wb-kicker,
+.wb .wb-en-line,
+.wb .wb-en-inline,
+.wb .wb-series,
+.wb .wb-en,
+.wb .wb-howto,
+.wb .wb-hint,
+.wb h1,
+.wb h2,
+.wb h3,
+.wb .wb-matn-ref,
+.wb .wb-matn-prompt,
+.wb .wb-legend,
+.wb .wb-repeat-label,
+.wb .wb-q__num,
+.wb .wb-ans__num,
+.wb .wb-q__cat,
+.wb .wb-ans__cat,
+.wb .wb-ex__title,
+.wb .wb-table th,
+.wb .wb-ans__q,
+.wb .wb-ans__a,
+.wb .wb-fill {
+  color: #000;
+}
+
+.wb-en-line {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+  font-size: 10.5pt;
+  line-height: 1.4;
+  color: #000;
+  margin: 2px 0 6px;
+  text-align: right;
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: block;
+  width: 100%;
+  font-variant-ligatures: none;
+}
+
+.wb-cover .wb-en-line,
+.wb-cover .wb-en {
+  text-align: center;
+}
+
+.wb h2 + .wb-en-line {
+  text-align: right;
+  margin-top: 2px;
+  margin-bottom: 5mm;
+}
+
+.wb-en-inline {
+  font-family: "Iowan Old Style", Palatino, "Times New Roman", serif;
+  font-size: 10.5pt;
+  color: #000;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.wb-series {
+  margin: 4px 0 10px;
+  font-size: 12pt;
+  color: #000;
+}
+
+.wb-cover h1 {
+  font-size: 26pt;
+  line-height: 1.4;
+  color: #000;
+  margin-top: 10px;
+}
+
+.wb-en {
+  margin: 4px 0 14px;
+  font-size: 12pt;
+  color: #000;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+}
+
+.wb-howto {
+  text-align: right;
+  margin: 0 auto;
+  max-width: 150mm;
+  width: 100%;
+  padding: 0;
+  font-size: 13pt;
+  line-height: 1.65;
+  color: #000;
+  border: none;
+  background: transparent;
+  list-style-position: outside;
+  padding-right: 8mm;
+}
+
+.wb-howto li {
+  margin: 0 0 6px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.wb-howto .wb-en-line {
+  text-align: right;
+  margin-bottom: 0;
+}
+
+.wb-hint {
+  margin: 12px 0 0;
+  font-size: 12pt;
+  color: #000;
+}
+
+.wb-matn-copy {
+  margin-bottom: 8mm;
+}
+
+.wb-questions,
+.wb-exercises {
+  break-before: page;
+  page-break-before: always;
+  margin-bottom: 8mm;
+}
+
+.wb h2 {
+  font-size: 18pt;
+  color: #000;
+  border-bottom: 1px solid #d9d3c8;
+  padding-bottom: 2mm;
+  margin-bottom: 1mm;
+}
+
+.wb-matn-prompt,
+.wb-legend {
+  font-size: 13pt;
+  color: #000;
+  margin: 0 0 8px;
+}
+
+.wb-matn-ref {
+  font-size: 16.5pt;
+  line-height: 1.85;
+  color: #000;
+  background: transparent;
+  border: none;
+  border-right: 2px solid #000;
+  padding: 4px 12px 6px 4px;
+  margin: 2px 0 10px;
+}
+
+.wb-copy-block {
+  margin: 0 0 5mm;
+}
+
+.wb-repeat-label {
+  margin: 0 0 2px;
+  font-size: 11.5pt;
+  color: #000;
+  font-weight: 400;
+}
+
+.wb-lines {
+  --rows: 3;
+  --line-h: 8mm;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(var(--line-h) * var(--rows));
+  margin: 0 0 2mm;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid var(--wb-rule);
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--line-h) - 1px),
+    var(--wb-rule) calc(var(--line-h) - 1px),
+    var(--wb-rule) var(--line-h)
+  );
+}
+
+.wb-lines__rules {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(var(--line-h) * var(--rows));
+}
+
+.wb-lines span {
+  display: block;
+  height: var(--line-h);
+  border-bottom: none;
+}
+
+.wb-fill {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0;
+  padding: 1px 0 0;
+  font-size: 14.5pt;
+  line-height: var(--line-h);
+  color: #000;
+  z-index: 1;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.ajrumiyyah-content .course-card .wb .wb-fill {
+  color: #000;
+}
+
+.wb-fill--block {
+  position: static;
+  right: auto;
+  left: auto;
+  padding: 8px 0;
+  margin: 4px 0 8px;
+  border: none;
+  border-right: 2px solid #000;
+  background: transparent;
+  line-height: 1.7;
+  font-size: 14.5pt;
+}
+
+.wb-q,
+.wb-ex {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 6mm;
+  padding-bottom: 5mm;
+  border-bottom: 1px solid #eeeae3;
+}
+
+.wb-q:last-child,
+.wb-ex:last-child {
+  border-bottom: none;
+}
+
+.wb-q__head,
+.wb-ans__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.wb-q__prompt,
+.wb-ex__prompt {
+  text-align: right;
+  margin: 0 0 4px;
+}
+
+.wb-q__prompt .wb-en-line,
+.wb-ex__prompt .wb-en-line {
+  text-align: right;
+  margin-bottom: 0;
+}
+
+.wb-q__num,
+.wb-ans__num {
+  display: inline;
+  min-width: 0;
+  height: auto;
+  border: none;
+  color: #000;
+  font-size: 13pt;
+  padding: 0;
+  font-weight: 600;
+}
+
+.wb-q__cat,
+.wb-ans__cat {
+  font-size: 10.5pt;
+  color: #000;
+}
+
+.wb-q__text {
+  font-size: 14.5pt;
+  line-height: 1.7;
+  margin: 0 0 2px;
+  white-space: normal;
+}
+
+.wb-ex__title {
+  font-size: 15pt;
+  color: #000;
+  margin-bottom: 4px;
+}
+
+.wb-ex__inst {
+  font-size: 13.5pt;
+  line-height: 1.65;
+  margin: 0 0 6px;
+}
+
+.wb-passage {
+  font-size: 14.5pt;
+  line-height: 1.8;
+  color: #000;
+  background: transparent;
+  border: none;
+  border-right: 2px solid #000;
+  padding: 4px 12px 6px 4px;
+  margin: 0 0 8px;
+}
+
+.wb-blanks {
+  font-size: 14.5pt;
+  line-height: 2;
+  padding-right: 6mm;
+  margin: 0 0 6px;
+}
+
+.wb-table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 12pt;
+  margin: 4px 0 8px;
+}
+
+.wb-table th,
+.wb-table td {
+  border: 1px solid #d9d3c8;
+  padding: 7px 8px;
+  text-align: right;
+}
+
+.wb-table th {
+  background: #f7f5f0;
+  font-weight: 400;
+  color: #000;
+}
+
+.wb-table td {
+  height: 10mm;
+}
+
+.wb-repeat {
+  break-before: page;
+  page-break-before: always;
+}
+
+.wb-key {
+  break-before: page;
+  page-break-before: always;
+}
+
+.wb-key__banner {
+  text-align: center;
+  border: 2px solid #000;
+  padding: 10mm 6mm;
+  margin-bottom: 8mm;
+}
+
+.wb-key__banner h2 {
+  border: none;
+  color: #000;
+  font-size: 24pt;
+  margin: 6px 0;
+  padding: 0;
+}
+
+.wb-ans {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 5mm;
+  padding-bottom: 4mm;
+  border-bottom: 1px dotted #e7dcc8;
+}
+
+.wb-ans__q {
+  margin: 0 0 4px;
+  font-size: 14.5pt;
+  color: #000;
+}
+
+.wb-ans__a {
+  margin: 0;
+  font-size: 16pt;
+  line-height: 1.8;
+  color: #000;
+}
+
+.wb-index {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 16mm 14mm;
+}
+
+.wb-index h1 {
+  font-size: 22pt;
+  margin: 0 0 4px;
+}
+
+.wb-index__en {
+  color: #57534e;
+  margin: 0 0 16px;
+  font-family: "Iowan Old Style", Palatino, serif;
+}
+
+.wb-index-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wb-index-list li {
+  margin: 0 0 8px;
+}
+
+.wb-index-list a {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid #e7dcc8;
+  text-decoration: none;
+  color: inherit;
+  background: #fffef8;
+}
+
+.wb-index-list a:hover {
+  border-color: #9a3412;
+}
+
+.wb-index-group {
+  margin: 18px 0 8px;
+}
+
+.wb-index-group__title {
+  font-size: 1.15rem;
+  color: #7c2d12;
+  border-bottom: 1px solid #e7dcc8;
+  padding-bottom: 6px;
+  margin: 0 0 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.wb-index-group__en {
+  font-family: "Iowan Old Style", Palatino, serif;
+  font-size: 0.95rem;
+  color: #57534e;
+  font-weight: 400;
+}
+
+.wb-index-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 1px solid #e7dcc8;
+  background: #fffef8;
+  padding: 14px 16px;
+  margin: 0 0 12px;
+}
+
+.wb-index-card.is-done {
+  background: #f4faf4;
+  border-color: #bbd7bb;
+}
+
+.wb-index-card.is-done .wb-index-card__ar,
+.wb-index-card.is-done .wb-index-card__en {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(0, 0, 0, 0.28);
+}
+
+.wb-index-card__check,
+.wb-toolbar__check {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border: 1.5px solid #78716c;
+  border-radius: 4px;
+  background: #fff;
+  color: #166534;
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.wb-index-card__check.is-done,
+.wb-toolbar__check.is-done {
+  background: #166534;
+  border-color: #166534;
+  color: #fff;
+}
+
+.wb-index-card__check:hover,
+.wb-toolbar__check:hover {
+  border-color: #44403c;
+}
+
+.wb-index-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-toolbar__check {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-family: "Iowan Old Style", Palatino, system-ui, serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fafaf9;
+  background: transparent;
+  border-color: #a8a29e;
+}
+
+.wb-toolbar__check.is-done {
+  background: #166534;
+  border-color: #166534;
+  color: #fff;
+}
+
+.wb-index-card__titles {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.wb-index-card__ar {
+  font-size: 1.15rem;
+}
+
+.wb-index-card__en {
+  font-family: "Iowan Old Style", Palatino, serif;
+  color: #57534e;
+  font-size: 0.95rem;
+}
+
+.wb-index-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  direction: ltr;
+}
+
+.wb-index-card__actions a {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #9a3412;
+  color: #7c2d12;
+  text-decoration: none;
+  font-family: "Iowan Old Style", Palatino, system-ui, serif;
+  font-size: 0.9rem;
+  background: #fff;
+}
+
+.wb-index-card__actions a:hover {
+  background: #faf6ee;
+}
+
+.wb-index-card__actions a.wb-index-card__primary {
+  background: #7c2d12;
+  color: #fffef8;
+  border-color: #7c2d12;
+}
+
+.wb-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #1c1917;
+  color: #fafaf9;
+  font-family: "Iowan Old Style", Palatino, system-ui, serif;
+}
+
+.wb-toolbar a,
+.wb-toolbar button {
+  color: #fafaf9;
+  background: transparent;
+  border: 1px solid #a8a29e;
+  padding: 6px 12px;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.wb-toolbar button:hover,
+.wb-toolbar a:hover {
+  background: #44403c;
+}
+
+.wb-toolbar__title {
+  font-size: 0.95rem;
+}
+
+.wb-answers-toggle.is-on {
+  background: #000;
+  border-color: #000;
+  color: #fff;
+}
+
+.ajrumiyyah-content .ajr-study-workbook__bar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.ajrumiyyah-content .ajr-study-workbook__actions .wb-answers-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  color: #000;
+  background: #fff;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ajrumiyyah-content .ajr-study-workbook__actions .wb-answers-toggle.is-on {
+  background: #000;
+  color: #fff;
+}
+
+@media print {
+  .wb-toolbar {
+    display: none !important;
+  }
+
+  .wb-print {
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .wb {
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .wb-lines {
+    --line-h: 8mm;
+  }
+
+  .wb-repeat,
+  .wb-questions,
+  .wb-exercises {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .wb-cover {
+    break-after: page;
+    page-break-after: always;
+    min-height: 0;
+  }
+}
+
+@media screen {
+  .wb-cover {
+    min-height: 0;
+    padding: 6mm 0 8mm;
+  }
+
+  .wb-print .wb {
+    box-shadow: none;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 16mm 18mm 18mm;
+}

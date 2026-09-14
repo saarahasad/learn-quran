@@ -1,0 +1,384 @@
+<div class="damma-commentary">
+  <style>
+    .damma-commentary {
+      --dcm-blue: #2b6ca3;
+      --dcm-blue-bg: #eaf4fc;
+      --dcm-blue-line: #bfe0f5;
+      --dcm-yellow: #9a7c1f;
+      --dcm-yellow-bg: #fdf6e0;
+      --dcm-yellow-line: #f3e4a8;
+      --dcm-pink: #b34f5c;
+      --dcm-pink-bg: #fdeef0;
+      --dcm-pink-line: #f6c9ce;
+      --dcm-green: #2f8a56;
+      --dcm-green-bg: #eaf7ee;
+      --dcm-green-line: #bfe6cc;
+      --dcm-purple: #6a4c93;
+      --dcm-purple-bg: #f1ecf9;
+      --dcm-purple-line: #dccdf0;
+      --dcm-ink: #2c2c2c;
+      --dcm-sub: #6b6b6b;
+      --dcm-line: #d8dee2;
+
+      box-sizing: border-box;
+      max-width: 830px;
+      margin: 0 auto;
+      padding: 8px 16px 40px;
+      background: #ffffff;
+      color: var(--dcm-ink);
+      font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .damma-commentary *, .damma-commentary *::before, .damma-commentary *::after {
+      box-sizing: border-box;
+    }
+    .damma-commentary .dcm-ar {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      unicode-bidi: embed;
+    }
+
+    .damma-commentary h2.dcm-h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 40px 0 6px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--dcm-blue-line);
+      color: var(--dcm-ink);
+    }
+    .damma-commentary h2.dcm-h2:first-of-type { margin-top: 8px; }
+    .damma-commentary h2.dcm-h2 .dcm-num {
+      display: inline-block;
+      width: 26px; height: 26px;
+      line-height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      background: var(--dcm-blue-bg);
+      color: var(--dcm-blue);
+      font-size: 0.85rem;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .damma-commentary h2.dcm-h2 .dcm-ar {
+      font-size: 1.3rem;
+      color: var(--dcm-blue);
+      margin-left: 6px;
+    }
+    .damma-commentary h3.dcm-h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--dcm-sub);
+      text-align: center;
+      margin: 24px 0 14px;
+    }
+
+    .damma-commentary p { margin: 0 0 14px; }
+
+    .damma-commentary .dcm-lead {
+      font-size: 1.05rem;
+      color: var(--dcm-ink);
+      background: var(--dcm-blue-bg);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 0 0 8px;
+    }
+
+    .damma-commentary .dcm-example {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 6px;
+      background: var(--dcm-blue-bg);
+      color: var(--dcm-blue);
+      font-size: 1.15rem;
+      margin: 0 2px;
+    }
+
+    .damma-commentary .dcm-callout {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 4px 0 18px;
+      font-size: 0.92rem;
+      color: var(--dcm-sub);
+    }
+    .damma-commentary .dcm-callout.dcm-yellow { background: var(--dcm-yellow-bg); color: var(--dcm-yellow); }
+    .damma-commentary .dcm-callout.dcm-pink { background: var(--dcm-pink-bg); color: var(--dcm-pink); }
+    .damma-commentary .dcm-callout.dcm-green { background: var(--dcm-green-bg); color: var(--dcm-green); }
+    .damma-commentary .dcm-callout.dcm-purple { background: var(--dcm-purple-bg); color: var(--dcm-purple); }
+    .damma-commentary .dcm-callout.dcm-blue { background: var(--dcm-blue-bg); color: var(--dcm-blue); }
+    .damma-commentary .dcm-callout strong { color: inherit; }
+
+    .damma-commentary table.dcm-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 20px;
+      font-size: 0.85rem;
+    }
+    .damma-commentary table.dcm-table th,
+    .damma-commentary table.dcm-table td {
+      text-align: left;
+      padding: 8px 9px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    .damma-commentary table.dcm-table th {
+      color: var(--dcm-sub);
+      font-weight: 600;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .damma-commentary table.dcm-table td.dcm-td-ar {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      font-size: 1.05rem;
+      color: var(--dcm-blue);
+    }
+
+    .damma-commentary .dcm-divider {
+      height: 1px;
+      background: #eee;
+      margin: 32px 0;
+      border: none;
+    }
+
+    /* sentence cards */
+    .damma-commentary .dcm-sentence {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 0 0 12px;
+    }
+    .damma-commentary .dcm-sentence .dcm-ar {
+      font-size: 1.22rem;
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1.9;
+    }
+    .damma-commentary .dcm-sentence .dcm-gloss {
+      font-size: 0.85rem;
+      color: var(--dcm-sub);
+      font-style: italic;
+    }
+    .damma-commentary .dcm-hl {
+      border-bottom: 2px dotted currentColor;
+      padding-bottom: 1px;
+    }
+
+    /* contrast pair */
+    .damma-commentary .dcm-contrast {
+      display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 0 8px;
+    }
+    .damma-commentary .dcm-contrast > div { flex: 1 1 260px; }
+
+    /* ---------- chart / diagram elements ---------- */
+    .damma-commentary .dcm-chart {
+      margin: 18px 0 34px;
+      padding: 18px 6px 4px;
+      background: #fbfcfd;
+      border-radius: 18px;
+    }
+    .damma-commentary .dcm-chart-row {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 16px 12px; max-width: 680px; margin: 0 auto;
+    }
+    .damma-commentary .dcm-chart-branch {
+      display: flex; flex-direction: column; align-items: center;
+      flex: 1 1 220px; max-width: 300px;
+    }
+    .damma-commentary .dcm-chart-node {
+      border-radius: 12px; padding: 10px 12px; text-align: center; width: 100%;
+    }
+    .damma-commentary .dcm-chart-node .dcm-ar { font-size: 1.02rem; display: block; }
+    .damma-commentary .dcm-chart-node .dcm-en { font-size: 0.62rem; color: #777; margin-top: 3px; display: block; }
+    .damma-commentary .dcm-chart-node .dcm-ex {
+      display: block; margin-top: 6px; padding-top: 6px; border-top: 1px dashed rgba(0,0,0,.1); font-size: 0.88rem;
+    }
+    .damma-commentary .dcm-chart-arrow {
+      font-size: 1.3rem; color: var(--dcm-sub); margin: 2px 0; line-height: 1;
+    }
+    .damma-commentary .dcm-chart-arrow.dcm-down::before { content: "↓"; }
+
+    .damma-commentary .dcm-c1 { background: var(--dcm-blue-bg); }
+    .damma-commentary .dcm-c1 .dcm-ar, .damma-commentary .dcm-c1 .dcm-ex { color: var(--dcm-blue); }
+    .damma-commentary .dcm-c2 { background: var(--dcm-yellow-bg); }
+    .damma-commentary .dcm-c2 .dcm-ar, .damma-commentary .dcm-c2 .dcm-ex { color: var(--dcm-yellow); }
+    .damma-commentary .dcm-c3 { background: var(--dcm-pink-bg); }
+    .damma-commentary .dcm-c3 .dcm-ar, .damma-commentary .dcm-c3 .dcm-ex { color: var(--dcm-pink); }
+    .damma-commentary .dcm-c4 { background: var(--dcm-green-bg); }
+    .damma-commentary .dcm-c4 .dcm-ar, .damma-commentary .dcm-c4 .dcm-ex { color: var(--dcm-green); }
+    .damma-commentary .dcm-c5 { background: var(--dcm-purple-bg); }
+    .damma-commentary .dcm-c5 .dcm-ar, .damma-commentary .dcm-c5 .dcm-ex { color: var(--dcm-purple); }
+
+    /* named-word / definition entry */
+    .damma-commentary .dcm-word-entry {
+      border-radius: 12px; padding: 12px 16px; margin: 0 0 12px;
+    }
+    .damma-commentary .dcm-word-entry .dcm-word-head {
+      display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px;
+    }
+    .damma-commentary .dcm-word-entry .dcm-word-ar { font-size: 1.2rem; font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif; direction: rtl; }
+    .damma-commentary .dcm-word-entry .dcm-word-num {
+      font-size: 0.68rem; color: #fff; background: var(--dcm-blue); border-radius: 50%;
+      width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .damma-commentary .dcm-word-entry .dcm-word-def { font-size: 0.85rem; color: var(--dcm-sub); margin-bottom: 6px; }
+    .damma-commentary .dcm-word-entry .dcm-word-ex { font-size: 1rem; font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif; direction: rtl; color: var(--dcm-blue); display: block; margin: 2px 0; }
+
+    /* i'rab breakdown rows */
+    .damma-commentary .dcm-irab-row {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid #f0f0f0;
+    }
+    .damma-commentary .dcm-irab-row:last-child { border-bottom: none; }
+    .damma-commentary .dcm-irab-word {
+      flex: 0 0 108px;
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl; font-size: 1.25rem; color: var(--dcm-blue);
+      background: var(--dcm-blue-bg); border-radius: 8px; padding: 6px 8px; text-align: center;
+    }
+    .damma-commentary .dcm-irab-desc { flex: 1; font-size: 0.9rem; }
+    .damma-commentary .dcm-irab-desc .dcm-ar { font-size: 1rem; }
+
+    /* footnote */
+    .damma-commentary .dcm-fn {
+      font-size: 0.8rem; color: var(--dcm-sub); border-left: 3px solid var(--dcm-blue-line);
+      padding: 6px 12px; margin: 0 0 14px; background: #fbfcfd; border-radius: 0 8px 8px 0;
+    }
+    .damma-commentary .dcm-fn .dcm-fn-num { font-weight: 700; color: var(--dcm-blue); margin-right: 4px; }
+
+    @media (max-width: 560px) {
+      .damma-commentary .dcm-chart-row { flex-direction: column; align-items: center; }
+      .damma-commentary .dcm-chart-branch { max-width: 260px; }
+      .damma-commentary .dcm-contrast { flex-direction: column; }
+      table.dcm-table { font-size: 0.75rem; }
+      .damma-commentary .dcm-irab-row { flex-direction: column; }
+      .damma-commentary .dcm-irab-word { flex: none; width: 100%; }
+    }
+  </style>
+
+  <p class="dcm-lead">
+    This is the full working-out of <strong>State 3</strong> — the case that applies when the speech before إِلَّا is <span class="dcm-ar">نَاقِص</span> (incomplete: the mustathnā minhu is never mentioned), which the commentary already established always co-occurs with negation. Here the choice-based flexibility of State 2 disappears entirely, replaced by a single mechanical rule: let the sentence's own governor decide.
+  </p>
+
+  <h2 class="dcm-h2"><span class="dcm-num">1</span>The governing rule <span class="dcm-ar">الْقَاعِدَةُ الْعَامَّة</span></h2>
+  <p>
+    <span class="dcm-example">كَانَ الْمُسْتَثْنَى عَلَى حَسَبِ مَا قَبْلَ إِلَّا مِنَ الْعَوَامِلِ</span> — "the excepted noun follows whatever governor precedes إلا dictates." Since the mustathnā minhu was never stated, there is no "whole" for the excepted noun to be pulled out of or substituted for — so إلا effectively steps aside, and the noun after it is simply assigned whatever case the sentence's own verb (or preposition) would assign it if إلا weren't there at all. Three outcomes follow, one for each type of governor:
+  </p>
+  <div class="dcm-chart">
+    <div class="dcm-chart-row">
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c1">
+          <span class="dcm-ar">رَفْعُ الْفَاعِلِيَّةِ</span>
+          <span class="dcm-en">governor requires a fāʿil → marfūʿ</span>
+        </div>
+      </div>
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c2">
+          <span class="dcm-ar">نَصْبُ الْمَفْعُولِيَّةِ</span>
+          <span class="dcm-en">governor requires a mafʿūl bihi → manṣūb</span>
+        </div>
+      </div>
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c3">
+          <span class="dcm-ar">الْجَرُّ بِحَرْفِ جَرٍّ</span>
+          <span class="dcm-en">governor is a preposition → majrūr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="dcm-divider">
+
+  <h2 class="dcm-h2"><span class="dcm-num">2</span>Case 1 — the governor requires a fāʿil <span class="dcm-ar">رَفْعُ الْفَاعِلِيَّةِ</span></h2>
+  <div class="dcm-sentence dcm-c1">
+    <span class="dcm-ar">مَا حَضَرَ إِلَّا <span class="dcm-hl">عَلِيٌّ</span></span>
+    <span class="dcm-gloss">"None were present except ʿAlī."</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">مَا</span>
+    <span class="dcm-irab-desc">Particle of negation, mabnī, no locus of iʿrāb.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">حَضَرَ</span>
+    <span class="dcm-irab-desc">Māḍī verb, mabnī on a fatḥah — this is the governor (عَامِل), and by nature it requires a fāʿil.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">إِلَّا</span>
+    <span class="dcm-irab-desc">Particle of exception, mabnī, no locus of iʿrāb — extra, not governing.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">عَلِيٌّ</span>
+    <span class="dcm-irab-desc">Fāʿil of حَضَرَ, marfūʿ, sign of rafʿ the visible ḍammah — علي fills the subject slot that حضر always needs, exactly as it would if إلا were absent (مَا حَضَرَ عَلِيٌّ, "ʿAlī was not present," negated and then excepted).</span>
+  </div>
+
+  <hr class="dcm-divider">
+
+  <h2 class="dcm-h2"><span class="dcm-num">3</span>Case 2 — the governor requires a mafʿūl bihi <span class="dcm-ar">نَصْبُ الْمَفْعُولِيَّةِ</span></h2>
+  <div class="dcm-sentence dcm-c2">
+    <span class="dcm-ar">مَا رَأَيْتُ إِلَّا <span class="dcm-hl">عَلِيًّا</span></span>
+    <span class="dcm-gloss">"I did not see except ʿAlī."</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">مَا</span>
+    <span class="dcm-irab-desc">Particle of negation, mabnī, no locus of iʿrāb.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">رَأَيْتُ</span>
+    <span class="dcm-irab-desc">Māḍī verb + attached fāʿil pronoun تُ ("I"), mabnī on sukūn in the position of rafʿ — رأيت is transitive, so its governor-nature demands a mafʿūl bihi.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">إِلَّا</span>
+    <span class="dcm-irab-desc">Particle of exception, mabnī, no locus of iʿrāb.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">عَلِيًّا</span>
+    <span class="dcm-irab-desc">Mafʿūl bihi of رَأَيْتُ, manṣūb, sign of naṣb the visible fatḥah — علياً fills the object slot رأيت requires, exactly as it would without إلا present.</span>
+  </div>
+
+  <hr class="dcm-divider">
+
+  <h2 class="dcm-h2"><span class="dcm-num">4</span>Case 3 — the governor is a preposition <span class="dcm-ar">الْجَرُّ بِحَرْفِ جَرٍّ</span></h2>
+  <div class="dcm-sentence dcm-c3">
+    <span class="dcm-ar">مَا مَرَرْتُ إِلَّا <span class="dcm-hl">بِزَيْدٍ</span></span>
+    <span class="dcm-gloss">"I did not pass except by Zayd."</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">مَا</span>
+    <span class="dcm-irab-desc">Particle of negation, mabnī, no locus of iʿrāb.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">مَرَرْتُ</span>
+    <span class="dcm-irab-desc">Māḍī verb + attached fāʿil pronoun تُ ("I"), mabnī on sukūn in the position of rafʿ. مَرَّ is intransitive and takes its object via the preposition بِـ, so its governing demand here is for jarr, not naṣb.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">إِلَّا</span>
+    <span class="dcm-irab-desc">Particle of exception, mabnī, no locus of iʿrāb.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">بِزَيْدٍ</span>
+    <span class="dcm-irab-desc">بِ: particle of jarr, mabnī. زَيْدٍ: majrūr by بِ, sign of jarr the visible kasrah — the preposition بِـ is what governs زيد, entirely independent of إلا.</span>
+  </div>
+
+  <hr class="dcm-divider">
+
+  <h2 class="dcm-h2"><span class="dcm-num">5</span>Summary table</h2>
+  <table class="dcm-table">
+    <tr><th>Example</th><th>Governor (عامل)</th><th>Type of governor</th><th>Word after إلا</th><th>Case</th></tr>
+    <tr><td class="dcm-td-ar">مَا حَضَرَ إِلَّا عَلِيٌّ</td><td class="dcm-td-ar">حَضَرَ</td><td>intransitive verb, needs fāʿil</td><td class="dcm-td-ar">عَلِيٌّ</td><td>marfūʿ (ḍammah)</td></tr>
+    <tr><td class="dcm-td-ar">مَا رَأَيْتُ إِلَّا عَلِيًّا</td><td class="dcm-td-ar">رَأَيْتُ</td><td>transitive verb, needs mafʿūl bihi</td><td class="dcm-td-ar">عَلِيًّا</td><td>manṣūb (fatḥah)</td></tr>
+    <tr><td class="dcm-td-ar">مَا مَرَرْتُ إِلَّا بِزَيْدٍ</td><td class="dcm-td-ar">مَرَرْتُ بِـ</td><td>preposition (jarr)</td><td class="dcm-td-ar">بِزَيْدٍ</td><td>majrūr (kasrah)</td></tr>
+  </table>
+
+  <p class="dcm-callout dcm-green">
+    <strong>How to apply this rule quickly:</strong> mentally strip out إلا (and the negation, if you like) and ask what the bare sentence would need — حَضَرَ عَلِيٌّ needs a fāʿil, رَأَيْتُ عَلِيًّا needs a mafʿūl bihi, مَرَرْتُ بِزَيْدٍ needs a majrūr after بِـ. Whatever the plain sentence would require is exactly what the word after إلا becomes once you put the negation and إلا back in. Nothing about إلا itself changes the case here — it is the pre-existing governor (حضر / رأيت / مررت بـ) doing all the work.
+  </p>
+
+  <hr class="dcm-divider">
+  <p class="dcm-callout dcm-blue" style="margin-bottom:0;">
+    <strong>In short — the three states, side by side:</strong> when the sentence before إلا is complete and affirmative, the mustathnā is always manṣūb (State 1). When it is complete and negative, the mustathnā may follow the mustathnā minhu's own case as a badal, or take naṣb, though naṣb here is rare (State 2). When it is incomplete — and therefore always negative — إلا drops out of the case-assignment picture altogether, and the word after it simply takes whatever case the sentence's real governor (a verb needing a fāʿil, a transitive verb needing a mafʿūl bihi, or a preposition) would assign it regardless (State 3).
+  </p>
+</div>

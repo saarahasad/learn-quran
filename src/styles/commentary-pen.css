@@ -1,0 +1,96 @@
+/* Commentary ink — text color, not a marker highlight */
+
+.ajr-pen-root {
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+
+.ajrumiyyah-content .ajr-pen-mark,
+.ajrumiyyah-content .ajr-pen-mark * {
+  background: none !important;
+  font-weight: inherit;
+}
+
+.ajrumiyyah-content .ajr-pen-mark--must,
+.ajrumiyyah-content .ajr-pen-mark--must * {
+  color: #dc1f1f !important;
+}
+
+.ajrumiyyah-content .ajr-pen-mark--rec,
+.ajrumiyyah-content .ajr-pen-mark--rec * {
+  color: #1558d6 !important;
+}
+
+.ajrumiyyah-content .ajr-pen-mark--imp,
+.ajrumiyyah-content .ajr-pen-mark--imp * {
+  color: #0c8f34 !important;
+}
+
+.ajr-pen-popover {
+  position: fixed;
+  z-index: 80;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.28rem;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  padding: 0.32rem;
+  border: 1px solid #e5d9c6;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 32px rgba(28, 18, 8, 0.16);
+}
+
+.ajr-pen-pop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  margin: 0;
+  padding: 0.32rem 0.5rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #1f2937;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ajr-pen-pop:hover {
+  background: #f6f1e8;
+}
+
+.ajr-pen-pop__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+}
+
+.ajr-pen-pop--must .ajr-pen-pop__dot {
+  background: #dc1f1f;
+}
+
+.ajr-pen-pop--rec .ajr-pen-pop__dot {
+  background: #1558d6;
+}
+
+.ajr-pen-pop--imp .ajr-pen-pop__dot {
+  background: #0c8f34;
+}
+
+.ajr-pen-pop--erase .ajr-pen-pop__dot {
+  background: #f3f4f6;
+  box-shadow: inset 0 0 0 1.5px #9ca3af;
+}
+
+.ajr-pen-pop--wipe {
+  margin-inline-start: 0.15rem;
+  padding-inline: 0.45rem;
+  border-inline-start: 1px solid #eee4d4;
+  border-radius: 0 8px 8px 0;
+  color: #6b6256;
+  font-weight: 600;
+}

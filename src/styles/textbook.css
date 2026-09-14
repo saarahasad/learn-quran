@@ -2,37 +2,37 @@
 .textbook-page {
   --font-serif: 'Lora', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
-  --color-text-primary: #222222;
-  --color-text-secondary: #444444;
-  --color-text-info: #0d5c4a;
-  --color-background-secondary: #f0f7ff;
-  --color-background-info: #d4f0e8;
-  --color-border-secondary: #c5d9f0;
-  --color-border-tertiary: #e8ecf2;
+  --color-text-primary: #1a2e42;
+  --color-text-secondary: #5a7189;
+  --color-text-info: #185FA5;
+  --color-background-secondary: #ffffff;
+  --color-background-info: #EAF3DE;
+  --color-border-secondary: #B5D4F4;
+  --color-border-tertiary: #d4e6f8;
   --border-radius-md: 10px;
   --border-radius-lg: 14px;
-  --accent: #1a7a62;
+  --accent: #378ADD;
   --accent-purple: #5b4fa8;
-  --accent-amber: #b45309;
+  --accent-amber: #c47700;
   --accent-rose: #be3a5a;
-  --accent-sky: #2563eb;
-  --term-role: #166534;
+  --accent-sky: #378ADD;
+  --term-role: #3B6D11;
   --term-particle: #6d28d9;
-  --term-marker: #b45309;
-  --term-verse: #0369a1;
-  --term-verse-underline: rgba(3, 105, 161, 0.42);
+  --term-marker: #185FA5;
+  --term-verse: #185FA5;
+  --term-verse-underline: rgba(24, 95, 165, 0.42);
   --base: 1.125rem;
   min-height: 100vh;
-  background: #ffffff;
-  font-family: var(--font-sans);
+  background: var(--edx-bg, #f2f0f1);
+  font-family: var(--edx-font, var(--font-sans));
   font-size: var(--base);
   color: var(--color-text-primary);
 }
 
 .textbook-page__header {
   background: #fff;
-  border-bottom: 2px solid #e8ecf2;
-  padding: 12px 1.5rem;
+  border-bottom: 1px solid var(--edx-border-light, #e4e4e4);
+  padding: 10px 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -87,9 +87,9 @@
 }
 
 .textbook-page__btn--teal {
-  background: #d4f0e8;
-  color: #0d5c4a;
-  border: 1px solid #9dd9c8;
+  background: var(--edx-success-bg);
+  color: var(--edx-success);
+  border: 1px solid var(--edx-success-border);
 }
 
 .textbook-page__btn--outline {
@@ -165,18 +165,18 @@
 }
 
 .textbook-toolbar__radios input:checked + .textbook-toolbar__chip {
-  background: linear-gradient(135deg, #d4f0e8 0%, #e8e4ff 100%);
+  background: linear-gradient(135deg, var(--edx-success-bg) 0%, var(--edx-blue-50) 100%);
   border-color: var(--accent);
   color: var(--accent);
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(26, 122, 98, 0.15);
+  box-shadow: 0 2px 8px rgba(24, 95, 165, 0.15);
 }
 
 /* View mode colors */
 .textbook-toolbar__radios label:nth-child(1) input:checked + .textbook-toolbar__chip {
-  background: #e8f4f8;
-  border-color: #2a8aa8;
-  color: #165a6e;
+  background: var(--edx-blue-50);
+  border-color: var(--edx-blue-500);
+  color: var(--edx-blue-900);
 }
 
 .textbook-toolbar__radios label:nth-child(2) input:checked + .textbook-toolbar__chip {

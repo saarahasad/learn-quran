@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Writing workbooks</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4efe6;
+      color: #1c1917;
+      font-family: "Iowan Old Style", Palatino, "Times New Roman", serif;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 28px 20px 48px; }
+    h1 { margin: 0 0 4px; font-size: 1.7rem; font-weight: 600; }
+    .lead { margin: 0 0 22px; color: #57534e; max-width: 40rem; }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(260px, 340px) 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .list { display: flex; flex-direction: column; gap: 12px; }
+    .card {
+      background: #fffef8;
+      border: 1px solid #e7dcc8;
+      padding: 14px 16px;
+      cursor: pointer;
+    }
+    .card.is-done h2,
+    .card.is-done .card__en { text-decoration: line-through; text-decoration-color: rgba(0,0,0,.28); }
+    .card__head { display: flex; align-items: center; gap: 8px; }
+    .check {
+      width: 1.2rem; height: 1.2rem; flex-shrink: 0;
+      border: 1.5px solid #78716c; border-radius: 4px;
+      background: #fff; color: #fff; cursor: pointer; padding: 0;
+      font-size: 0.8rem; font-weight: 800; line-height: 1;
+    }
+    .card.is-done .check { background: #166534; border-color: #166534; }
+    .card.is-done { background: #f4faf4; border-color: #bbd7bb; }
+    .card__num { color: #9a3412; font-size: 0.85rem; }
+    .card h2 { margin: 4px 0 2px; font-size: 1.2rem; font-weight: 400; font-family: "Traditional Arabic", Amiri, serif; }
+    .card__en { margin: 0 0 12px; color: #57534e; font-size: 0.92rem; }
+    .card__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .group-label {
+      margin: 14px 0 0;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #9a3412;
+    }
+    .group-label-ar {
+      margin: 0 0 8px;
+      color: #7c2d12;
+      font-size: 1.05rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 7px 12px;
+      border: 1px solid #9a3412;
+      background: #fff;
+      color: #7c2d12;
+      text-decoration: none;
+      font: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .btn--primary { background: #7c2d12; color: #fffef8; border-color: #7c2d12; }
+    .viewer {
+      background: #fffef8;
+      border: 1px solid #e7dcc8;
+      min-height: 78vh;
+      position: sticky;
+      top: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    .viewer__bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid #e7dcc8;
+      background: #1c1917;
+      color: #fafaf9;
+    }
+    .viewer__bar a { color: #fafaf9; }
+    .viewer iframe, .viewer .empty {
+      flex: 1;
+      width: 100%;
+      min-height: 72vh;
+      border: 0;
+      background: #fff;
+    }
+    .empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #78716c;
+      padding: 24px;
+    }
+    .empty[hidden],
+    iframe[hidden] {
+      display: none !important;
+    }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+      .viewer { position: static; min-height: 70vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p dir="rtl" lang="ar" style="margin:0 0 4px;color:#7c2d12">كُرَّاسَةُ تَمَارِينَ</p>
+    <h1>Writing workbooks</h1>
+    <p class="lead">Click a workbook to view it here, then download the PDF to print and fill by hand. Arabic questions include English underneath.</p>
+    <div class="layout">
+      <div class="list"><p class="group-label">Signs of rafʿ</p>
+      <p class="group-label-ar" dir="rtl" lang="ar">عَلَامَاتُ الرَّفْعِ</p>
+      
+      <article class="card" data-pdf="./rafa-signs.pdf" data-title="Chapter: Understanding the Signs of Declension" data-progress="comm:alamat-irab:0">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">1</div>
+        </div>
+        <h2 dir="rtl" lang="ar">بَابُ مَعْرِفَةِ عَلَامَاتِ الْإِعْرَابِ</h2>
+        <p class="card__en">Chapter: Understanding the Signs of Declension</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./rafa-signs.pdf">View PDF</button>
+          <a class="btn" href="./rafa-signs.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./dammah.pdf" data-title="Positions of the Ḍammah" data-progress="comm:alamat-irab:1">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">2</div>
+        </div>
+        <h2 dir="rtl" lang="ar">مَوَاضِعُ الضَّمَّةِ</h2>
+        <p class="card__en">Positions of the Ḍammah</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./dammah.pdf">View PDF</button>
+          <a class="btn" href="./dammah.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./waw.pdf" data-title="The Letter Wāw as a Representative of the Ḍammah" data-progress="comm:alamat-irab:2">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">3</div>
+        </div>
+        <h2 dir="rtl" lang="ar">نِيَابَةُ الْوَاوِ عَنِ الضَّمَّةِ</h2>
+        <p class="card__en">The Letter Wāw as a Representative of the Ḍammah</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./waw.pdf">View PDF</button>
+          <a class="btn" href="./waw.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./alif.pdf" data-title="The Letter Alif as a Representative of the Ḍammah" data-progress="comm:alamat-irab:4">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">4</div>
+        </div>
+        <h2 dir="rtl" lang="ar">نِيَابَةُ الْأَلِفِ عَنِ الضَّمَّةِ</h2>
+        <p class="card__en">The Letter Alif as a Representative of the Ḍammah</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./alif.pdf">View PDF</button>
+          <a class="btn" href="./alif.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./nun.pdf" data-title="The Letter Nūn as a Representative of the Ḍammah" data-progress="comm:alamat-irab:5">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">5</div>
+        </div>
+        <h2 dir="rtl" lang="ar">نِيَابَةُ النُّونِ عَنِ الضَّمَّةِ</h2>
+        <p class="card__en">The Letter Nūn as a Representative of the Ḍammah</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./nun.pdf">View PDF</button>
+          <a class="btn" href="./nun.pdf" download>Download</a>
+        </div>
+      </article><p class="group-label">Nominatives, fāʿil, and nāʾib</p>
+      <p class="group-label-ar" dir="rtl" lang="ar">الْمَرْفُوعَاتُ وَالْفَاعِلُ</p>
+      
+      <article class="card" data-pdf="./marfuat.pdf" data-title="The Types of the Marfūʿ Words and Examples of Them" data-progress="comm:marfuat:0">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">1</div>
+        </div>
+        <h2 dir="rtl" lang="ar">عَدَدُ الْمَرْفُوعَاتِ وَأَمْثِلَتُهَا</h2>
+        <p class="card__en">The Types of the Marfūʿ Words and Examples of Them</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./marfuat.pdf">View PDF</button>
+          <a class="btn" href="./marfuat.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./fail.pdf" data-title="Chapter of the Subject" data-progress="comm:fail:0">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">2</div>
+        </div>
+        <h2 dir="rtl" lang="ar">بَابُ الْفَاعِلِ</h2>
+        <p class="card__en">Chapter of the Subject</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./fail.pdf">View PDF</button>
+          <a class="btn" href="./fail.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./fail-zahir.pdf" data-title="Categories of the Subject and Types of the Apparent" data-progress="comm:fail:1">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">3</div>
+        </div>
+        <h2 dir="rtl" lang="ar">أَقْسَامُ الْفَاعِلِ وَأَنْوَاعُ الظَّاهِرِ مِنْهُ</h2>
+        <p class="card__en">Categories of the Subject and Types of the Apparent</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./fail-zahir.pdf">View PDF</button>
+          <a class="btn" href="./fail-zahir.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./fail-mudmar.pdf" data-title="Types of the Implicit Subject" data-progress="comm:fail:3">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">4</div>
+        </div>
+        <h2 dir="rtl" lang="ar">أَنْوَاعُ الْفَاعِلِ الْمُضْمَرِ</h2>
+        <p class="card__en">Types of the Implicit Subject</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./fail-mudmar.pdf">View PDF</button>
+          <a class="btn" href="./fail-mudmar.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./naib-fail.pdf" data-title="The Deputy of the Subject" data-progress="comm:naib-fail:0">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">5</div>
+        </div>
+        <h2 dir="rtl" lang="ar">النَّائِبُ عَنِ الْفَاعِلِ</h2>
+        <p class="card__en">The Deputy of the Subject</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./naib-fail.pdf">View PDF</button>
+          <a class="btn" href="./naib-fail.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./naib-verb.pdf" data-title="Altering the Verb After Removing Its Subject" data-progress="comm:naib-fail:1">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">6</div>
+        </div>
+        <h2 dir="rtl" lang="ar">تَغْيِيرُ الْفِعْلِ بَعْدَ حَذْفِ الْفَاعِلِ</h2>
+        <p class="card__en">Altering the Verb After Removing Its Subject</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./naib-verb.pdf">View PDF</button>
+          <a class="btn" href="./naib-verb.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./naib-types.pdf" data-title="Categories of the Deputy of the Subject" data-progress="comm:naib-fail:3">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">7</div>
+        </div>
+        <h2 dir="rtl" lang="ar">أَقْسَامُ نَائِبِ الْفَاعِلِ</h2>
+        <p class="card__en">Categories of the Deputy of the Subject</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./naib-types.pdf">View PDF</button>
+          <a class="btn" href="./naib-types.pdf" download>Download</a>
+        </div>
+      </article><p class="group-label">Mubtadaʾ, khabar, and nawāsikh</p>
+      <p class="group-label-ar" dir="rtl" lang="ar">الْمُبْتَدَأُ وَالنَّوَاسِخُ</p>
+      
+      <article class="card" data-pdf="./mubtada-khabar.pdf" data-title="The Nominal Subject and Predicate" data-progress="comm:mubtada-khabar:0">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">1</div>
+        </div>
+        <h2 dir="rtl" lang="ar">الْمُبْتَدَأُ وَالْخَبَرُ</h2>
+        <p class="card__en">The Nominal Subject and Predicate</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./mubtada-khabar.pdf">View PDF</button>
+          <a class="btn" href="./mubtada-khabar.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./mubtada-types.pdf" data-title="The Mubtadaʾ is of Two Types: Apparent and Implicit" data-progress="comm:mubtada-khabar:3">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">2</div>
+        </div>
+        <h2 dir="rtl" lang="ar">الْمُبْتَدَأُ قِسْمَانِ: ظَاهِرٌ وَمُضْمَرٌ</h2>
+        <p class="card__en">The Mubtadaʾ is of Two Types: Apparent and Implicit</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./mubtada-types.pdf">View PDF</button>
+          <a class="btn" href="./mubtada-types.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./khabar-types.pdf" data-title="Categories of the Predicate" data-progress="comm:mubtada-khabar:7">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">3</div>
+        </div>
+        <h2 dir="rtl" lang="ar">أَقْسَامُ الْخَبَرِ</h2>
+        <p class="card__en">Categories of the Predicate</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./khabar-types.pdf">View PDF</button>
+          <a class="btn" href="./khabar-types.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./nawasikh.pdf" data-title="The Abrogators of the Mubtadaʾ and Khabar" data-progress="comm:awamil-mubtada:0">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">4</div>
+        </div>
+        <h2 dir="rtl" lang="ar">نَوَاسِخُ الْمُبْتَدَأِ وَالْخَبَرِ</h2>
+        <p class="card__en">The Abrogators of the Mubtadaʾ and Khabar</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./nawasikh.pdf">View PDF</button>
+          <a class="btn" href="./nawasikh.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./kana.pdf" data-title="Kāna and Its Sisters" data-progress="comm:awamil-mubtada:1">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">5</div>
+        </div>
+        <h2 dir="rtl" lang="ar">كَانَ وَأَخَوَاتُهَا</h2>
+        <p class="card__en">Kāna and Its Sisters</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./kana.pdf">View PDF</button>
+          <a class="btn" href="./kana.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./inna.pdf" data-title="Inna and Its Sisters" data-progress="comm:awamil-mubtada:5">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">6</div>
+        </div>
+        <h2 dir="rtl" lang="ar">إِنَّ وَأَخَوَاتُهَا</h2>
+        <p class="card__en">Inna and Its Sisters</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./inna.pdf">View PDF</button>
+          <a class="btn" href="./inna.pdf" download>Download</a>
+        </div>
+      </article>
+      <article class="card" data-pdf="./zanna.pdf" data-title="Ẓanna and Its Sisters" data-progress="comm:awamil-mubtada:9">
+        <div class="card__head">
+          <button type="button" class="check" aria-label="Mark completed"></button>
+          <div class="card__num">7</div>
+        </div>
+        <h2 dir="rtl" lang="ar">ظَنَّ وَأَخَوَاتُهَا</h2>
+        <p class="card__en">Ẓanna and Its Sisters</p>
+        <div class="card__actions">
+          <button type="button" class="btn btn--primary" data-view="./zanna.pdf">View PDF</button>
+          <a class="btn" href="./zanna.pdf" download>Download</a>
+        </div>
+      </article></div>
+      <section class="viewer">
+        <div class="viewer__bar">
+          <span id="viewer-title">Select a workbook</span>
+          <a id="viewer-download" href="#" download hidden>Download this PDF</a>
+        </div>
+        <div class="empty" id="viewer-empty">Choose a PDF on the left to preview it.</div>
+        <iframe id="viewer-frame" title="PDF preview" hidden></iframe>
+      </section>
+    </div>
+  </div>
+  <script>
+    const frame = document.getElementById("viewer-frame");
+    const empty = document.getElementById("viewer-empty");
+    const title = document.getElementById("viewer-title");
+    const dl = document.getElementById("viewer-download");
+    function showPdf(pdf, name, card) {
+      document.querySelectorAll(".card").forEach((c) => c.classList.remove("is-active"));
+      if (card) card.classList.add("is-active");
+      empty.hidden = true;
+      empty.style.display = "none";
+      frame.hidden = false;
+      frame.src = pdf;
+      title.textContent = name;
+      dl.hidden = false;
+      dl.href = pdf;
+    }
+    document.querySelectorAll("[data-view]").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const card = btn.closest(".card");
+        showPdf(btn.getAttribute("data-view"), card.dataset.title, card);
+      });
+    });
+    document.querySelectorAll(".card").forEach((card) => {
+      card.addEventListener("click", (event) => {
+        if (event.target.closest("a, .check")) return;
+        showPdf(card.dataset.pdf, card.dataset.title, card);
+      });
+    });
+    const KEY = "course_progress_v1";
+    const COURSE = "ajrumiyyah";
+    function readDone() {
+      try {
+        const store = JSON.parse(localStorage.getItem(KEY) || "{}");
+        return Array.isArray(store[COURSE]) ? store[COURSE] : [];
+      } catch { return []; }
+    }
+    function writeDone(ids) {
+      let store = {};
+      try { store = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch {}
+      store[COURSE] = ids;
+      localStorage.setItem(KEY, JSON.stringify(store));
+    }
+    function paintChecks() {
+      const done = new Set(readDone());
+      document.querySelectorAll(".card[data-progress]").forEach((card) => {
+        const on = done.has(card.dataset.progress);
+        card.classList.toggle("is-done", on);
+        const btn = card.querySelector(".check");
+        if (btn) btn.textContent = on ? "✓" : "";
+      });
+    }
+    document.querySelectorAll(".check").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const id = btn.closest(".card")?.dataset.progress;
+        if (!id) return;
+        const current = readDone();
+        writeDone(current.includes(id) ? current.filter((x) => x !== id) : [...current, id]);
+        paintChecks();
+      });
+    });
+    paintChecks();
+    const first = document.querySelector(".card");
+    if (first) showPdf(first.dataset.pdf, first.dataset.title, first);
+  </script>
+</body>
+</html>

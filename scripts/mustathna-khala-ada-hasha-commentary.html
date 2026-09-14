@@ -1,0 +1,397 @@
+<div class="damma-commentary">
+  <style>
+    .damma-commentary {
+      --dcm-blue: #2b6ca3;
+      --dcm-blue-bg: #eaf4fc;
+      --dcm-blue-line: #bfe0f5;
+      --dcm-yellow: #9a7c1f;
+      --dcm-yellow-bg: #fdf6e0;
+      --dcm-yellow-line: #f3e4a8;
+      --dcm-pink: #b34f5c;
+      --dcm-pink-bg: #fdeef0;
+      --dcm-pink-line: #f6c9ce;
+      --dcm-green: #2f8a56;
+      --dcm-green-bg: #eaf7ee;
+      --dcm-green-line: #bfe6cc;
+      --dcm-purple: #6a4c93;
+      --dcm-purple-bg: #f1ecf9;
+      --dcm-purple-line: #dccdf0;
+      --dcm-ink: #2c2c2c;
+      --dcm-sub: #6b6b6b;
+      --dcm-line: #d8dee2;
+
+      box-sizing: border-box;
+      max-width: 830px;
+      margin: 0 auto;
+      padding: 8px 16px 40px;
+      background: #ffffff;
+      color: var(--dcm-ink);
+      font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .damma-commentary *, .damma-commentary *::before, .damma-commentary *::after {
+      box-sizing: border-box;
+    }
+    .damma-commentary .dcm-ar {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      unicode-bidi: embed;
+    }
+
+    .damma-commentary h2.dcm-h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 40px 0 6px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--dcm-blue-line);
+      color: var(--dcm-ink);
+    }
+    .damma-commentary h2.dcm-h2:first-of-type { margin-top: 8px; }
+    .damma-commentary h2.dcm-h2 .dcm-num {
+      display: inline-block;
+      width: 26px; height: 26px;
+      line-height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      background: var(--dcm-blue-bg);
+      color: var(--dcm-blue);
+      font-size: 0.85rem;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .damma-commentary h2.dcm-h2 .dcm-ar {
+      font-size: 1.3rem;
+      color: var(--dcm-blue);
+      margin-left: 6px;
+    }
+    .damma-commentary h3.dcm-h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--dcm-sub);
+      text-align: center;
+      margin: 24px 0 14px;
+    }
+
+    .damma-commentary p { margin: 0 0 14px; }
+
+    .damma-commentary .dcm-lead {
+      font-size: 1.05rem;
+      color: var(--dcm-ink);
+      background: var(--dcm-blue-bg);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 0 0 8px;
+    }
+
+    .damma-commentary .dcm-example {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 6px;
+      background: var(--dcm-blue-bg);
+      color: var(--dcm-blue);
+      font-size: 1.15rem;
+      margin: 0 2px;
+    }
+
+    .damma-commentary .dcm-callout {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 4px 0 18px;
+      font-size: 0.92rem;
+      color: var(--dcm-sub);
+    }
+    .damma-commentary .dcm-callout.dcm-yellow { background: var(--dcm-yellow-bg); color: var(--dcm-yellow); }
+    .damma-commentary .dcm-callout.dcm-pink { background: var(--dcm-pink-bg); color: var(--dcm-pink); }
+    .damma-commentary .dcm-callout.dcm-green { background: var(--dcm-green-bg); color: var(--dcm-green); }
+    .damma-commentary .dcm-callout.dcm-purple { background: var(--dcm-purple-bg); color: var(--dcm-purple); }
+    .damma-commentary .dcm-callout.dcm-blue { background: var(--dcm-blue-bg); color: var(--dcm-blue); }
+    .damma-commentary .dcm-callout strong { color: inherit; }
+
+    .damma-commentary table.dcm-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 20px;
+      font-size: 0.85rem;
+    }
+    .damma-commentary table.dcm-table th,
+    .damma-commentary table.dcm-table td {
+      text-align: left;
+      padding: 8px 9px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    .damma-commentary table.dcm-table th {
+      color: var(--dcm-sub);
+      font-weight: 600;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .damma-commentary table.dcm-table td.dcm-td-ar {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      font-size: 1.05rem;
+      color: var(--dcm-blue);
+    }
+
+    .damma-commentary .dcm-divider {
+      height: 1px;
+      background: #eee;
+      margin: 32px 0;
+      border: none;
+    }
+
+    /* sentence cards */
+    .damma-commentary .dcm-sentence {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 0 0 12px;
+    }
+    .damma-commentary .dcm-sentence .dcm-ar {
+      font-size: 1.22rem;
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1.9;
+    }
+    .damma-commentary .dcm-sentence .dcm-gloss {
+      font-size: 0.85rem;
+      color: var(--dcm-sub);
+      font-style: italic;
+    }
+    .damma-commentary .dcm-hl {
+      border-bottom: 2px dotted currentColor;
+      padding-bottom: 1px;
+    }
+
+    /* contrast pair */
+    .damma-commentary .dcm-contrast {
+      display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 0 8px;
+    }
+    .damma-commentary .dcm-contrast > div { flex: 1 1 260px; }
+
+    /* ---------- chart / diagram elements ---------- */
+    .damma-commentary .dcm-chart {
+      margin: 18px 0 34px;
+      padding: 18px 6px 4px;
+      background: #fbfcfd;
+      border-radius: 18px;
+    }
+    .damma-commentary .dcm-chart-row {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 16px 12px; max-width: 680px; margin: 0 auto;
+    }
+    .damma-commentary .dcm-chart-branch {
+      display: flex; flex-direction: column; align-items: center;
+      flex: 1 1 220px; max-width: 300px;
+    }
+    .damma-commentary .dcm-chart-node {
+      border-radius: 12px; padding: 10px 12px; text-align: center; width: 100%;
+    }
+    .damma-commentary .dcm-chart-node .dcm-ar { font-size: 1.02rem; display: block; }
+    .damma-commentary .dcm-chart-node .dcm-en { font-size: 0.62rem; color: #777; margin-top: 3px; display: block; }
+    .damma-commentary .dcm-chart-node .dcm-ex {
+      display: block; margin-top: 6px; padding-top: 6px; border-top: 1px dashed rgba(0,0,0,.1); font-size: 0.88rem;
+    }
+    .damma-commentary .dcm-chart-arrow {
+      font-size: 1.3rem; color: var(--dcm-sub); margin: 2px 0; line-height: 1; text-align: center;
+    }
+    .damma-commentary .dcm-chart-arrow.dcm-down::before { content: "↓"; }
+
+    .damma-commentary .dcm-c1 { background: var(--dcm-blue-bg); }
+    .damma-commentary .dcm-c1 .dcm-ar, .damma-commentary .dcm-c1 .dcm-ex { color: var(--dcm-blue); }
+    .damma-commentary .dcm-c2 { background: var(--dcm-yellow-bg); }
+    .damma-commentary .dcm-c2 .dcm-ar, .damma-commentary .dcm-c2 .dcm-ex { color: var(--dcm-yellow); }
+    .damma-commentary .dcm-c3 { background: var(--dcm-pink-bg); }
+    .damma-commentary .dcm-c3 .dcm-ar, .damma-commentary .dcm-c3 .dcm-ex { color: var(--dcm-pink); }
+    .damma-commentary .dcm-c4 { background: var(--dcm-green-bg); }
+    .damma-commentary .dcm-c4 .dcm-ar, .damma-commentary .dcm-c4 .dcm-ex { color: var(--dcm-green); }
+    .damma-commentary .dcm-c5 { background: var(--dcm-purple-bg); }
+    .damma-commentary .dcm-c5 .dcm-ar, .damma-commentary .dcm-c5 .dcm-ex { color: var(--dcm-purple); }
+
+    /* named-word / definition entry */
+    .damma-commentary .dcm-word-entry {
+      border-radius: 12px; padding: 12px 16px; margin: 0 0 12px;
+    }
+    .damma-commentary .dcm-word-entry .dcm-word-head {
+      display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px;
+    }
+    .damma-commentary .dcm-word-entry .dcm-word-ar { font-size: 1.2rem; font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif; direction: rtl; }
+    .damma-commentary .dcm-word-entry .dcm-word-num {
+      font-size: 0.68rem; color: #fff; background: var(--dcm-blue); border-radius: 50%;
+      width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .damma-commentary .dcm-word-entry .dcm-word-def { font-size: 0.85rem; color: var(--dcm-sub); margin-bottom: 6px; }
+    .damma-commentary .dcm-word-entry .dcm-word-ex { font-size: 1rem; font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif; direction: rtl; color: var(--dcm-blue); display: block; margin: 2px 0; }
+
+    /* i'rab breakdown rows */
+    .damma-commentary .dcm-irab-row {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid #f0f0f0;
+    }
+    .damma-commentary .dcm-irab-row:last-child { border-bottom: none; }
+    .damma-commentary .dcm-irab-word {
+      flex: 0 0 108px;
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl; font-size: 1.25rem; color: var(--dcm-blue);
+      background: var(--dcm-blue-bg); border-radius: 8px; padding: 6px 8px; text-align: center;
+    }
+    .damma-commentary .dcm-irab-desc { flex: 1; font-size: 0.9rem; }
+    .damma-commentary .dcm-irab-desc .dcm-ar { font-size: 1rem; }
+
+    /* footnote */
+    .damma-commentary .dcm-fn {
+      font-size: 0.8rem; color: var(--dcm-sub); border-left: 3px solid var(--dcm-blue-line);
+      padding: 6px 12px; margin: 0 0 14px; background: #fbfcfd; border-radius: 0 8px 8px 0;
+    }
+    .damma-commentary .dcm-fn .dcm-fn-num { font-weight: 700; color: var(--dcm-blue); margin-right: 4px; }
+
+    @media (max-width: 560px) {
+      .damma-commentary .dcm-chart-row { flex-direction: column; align-items: center; }
+      .damma-commentary .dcm-chart-branch { max-width: 260px; }
+      .damma-commentary .dcm-contrast { flex-direction: column; }
+      table.dcm-table { font-size: 0.75rem; }
+      .damma-commentary .dcm-irab-row { flex-direction: column; }
+      .damma-commentary .dcm-irab-word { flex: none; width: 100%; }
+    }
+  </style>
+
+  <p class="dcm-lead">
+    The last three tools of exception — <span class="dcm-ar">خَلَا، عَدَا،</span> and <span class="dcm-ar">حَاشَا</span> — are the "flexible" family flagged at the very start of this chapter: sometimes particles, sometimes genuine past-tense verbs. That dual identity is exactly what produces this section's headline rule — the noun after them can take <em>either</em> of two case endings, and which one you pick depends entirely on which identity you mentally assign the word in that instance.
+  </p>
+
+  <h2 class="dcm-h2"><span class="dcm-num">1</span>The core dual rule <span class="dcm-ar">يَجُوزُ النَّصْبُ وَالْجَرُّ</span></h2>
+  <p>
+    Ibn Ājurrūm states it plainly: <span class="dcm-example">وَالْمُسْتَثْنَى بِـ خَلَا وَعَدَا وَحَاشَا يَجُوزُ نَصْبُهُ وَجَرُّهُ</span> — "the word excepted with khalā, ʿadā, and ḥāshā may be either manṣūb or majrūr."
+  </p>
+  <div class="dcm-chart">
+    <div class="dcm-chart-row">
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c1">
+          <span class="dcm-ar">قَامَ الْقَوْمُ خَلَا زَيْدًا / زَيْدٍ</span>
+        </div>
+      </div>
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c2">
+          <span class="dcm-ar">... عَدَا عَمْرًا / عَمْرٍو</span>
+        </div>
+      </div>
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c3">
+          <span class="dcm-ar">... حَاشَا بَكْرًا / بَكْرٍ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>Every one of the three follows the identical pattern — a manṣūb form and a majrūr form, both correct:</p>
+  <table class="dcm-table">
+    <tr><th>Tool</th><th>Manṣūb form</th><th>Majrūr form</th></tr>
+    <tr><td class="dcm-td-ar">خَلَا</td><td class="dcm-td-ar">زَيْدًا</td><td class="dcm-td-ar">زَيْدٍ</td></tr>
+    <tr><td class="dcm-td-ar">عَدَا</td><td class="dcm-td-ar">عَمْرًا</td><td class="dcm-td-ar">عَمْرٍو</td></tr>
+    <tr><td class="dcm-td-ar">حَاشَا</td><td class="dcm-td-ar">بَكْرًا</td><td class="dcm-td-ar">بَكْرٍ</td></tr>
+  </table>
+
+  <hr class="dcm-divider">
+
+  <h2 class="dcm-h2"><span class="dcm-num">2</span>The secret behind the choice <span class="dcm-ar">السِّرُّ فِي ذَلِكَ</span></h2>
+  <p>
+    <span class="dcm-example">السِّرُّ فِي ذَلِكَ أَنَّ هَذِهِ الْأَدَوَاتِ تُسْتَعْمَلُ أَفْعَالًا تَارَةً وَتُسْتَعْمَلُ حُرُوفًا تَارَةً أُخْرَى</span> — the reason is that these three words are used sometimes as verbs and sometimes as particles. Each identity carries its own consequence for the noun that follows:
+  </p>
+  <div class="dcm-contrast">
+    <div class="dcm-word-entry dcm-c1">
+      <div class="dcm-word-head"><span class="dcm-word-ar">إِنْ قُدِّرَتْ فِعْلًا</span><span style="font-size:0.72rem; color:var(--dcm-sub); text-transform:uppercase;">read as a verb</span></div>
+      <div class="dcm-word-def">The following noun becomes مَفْعُولٌ بِهِ (object), manṣūb. The فَاعِل (subject) is a hidden pronoun, obligatorily concealed (ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا) — roughly "he was apart from Zayd," with "he" referring back to the mustathnā minhu.</div>
+    </div>
+    <div class="dcm-word-entry dcm-c2">
+      <div class="dcm-word-head"><span class="dcm-word-ar">إِنْ قُدِّرَتْ حَرْفًا</span><span style="font-size:0.72rem; color:var(--dcm-sub); text-transform:uppercase;">read as a particle</span></div>
+      <div class="dcm-word-def">The following noun becomes مَجْرُورٌ, governed into jarr by the particle itself — functioning exactly like a preposition-style exception tool, no verbal sense involved at all.</div>
+    </div>
+  </div>
+
+  <h3 class="dcm-h3">iʿrāb of قَامَ الْقَوْمُ خَلَا زَيْدًا (verb reading)</h3>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">قَامَ</span>
+    <span class="dcm-irab-desc">Māḍī verb, mabnī on a fatḥah.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">الْقَوْمُ</span>
+    <span class="dcm-irab-desc">Fāʿil of قَامَ, marfūʿ.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">خَلَا</span>
+    <span class="dcm-irab-desc">Māḍī verb, mabnī on a fatḥah (taqdīran — implied, since alif maqṣūrah blocks the visible fatḥah). Its فاعل is a hidden pronoun (هُوَ), obligatorily concealed, referring back to القوم.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">زَيْدًا</span>
+    <span class="dcm-irab-desc">Mafʿūl bihi of خَلَا, manṣūb, sign of naṣb the visible fatḥah.</span>
+  </div>
+
+  <h3 class="dcm-h3">iʿrāb of قَامَ الْقَوْمُ خَلَا زَيْدٍ (particle reading)</h3>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">خَلَا</span>
+    <span class="dcm-irab-desc">Particle of exception (حَرْفُ اسْتِثْنَاءٍ), mabnī, no locus of iʿrāb.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">زَيْدٍ</span>
+    <span class="dcm-irab-desc">Majrūr by خَلَا, sign of jarr the visible kasrah.</span>
+  </div>
+
+  <p class="dcm-callout dcm-green">
+    Both parsings describe exactly the same sentence and mean the same thing — they only disagree on whether خلا is functioning grammatically as a concealed-subject verb or as a bare preposition-like particle in that instance. Since both readings are always legitimate wherever this rule applies, the speaker is free to choose either.
+  </p>
+
+  <hr class="dcm-divider">
+
+  <h2 class="dcm-h2"><span class="dcm-num">3</span>The exception to the exception — "مَا" of the infinitive <span class="dcm-ar">مَا الْمَصْدَرِيَّةُ</span></h2>
+  <p>
+    This dual freedom is not unconditional. The commentary closes with an important restriction: the choice only exists when خلا/عدا/حاشا are <em>not</em> preceded by <span class="dcm-ar">مَا الْمَصْدَرِيَّة</span> ("the mā of the infinitive"). If this مَا does precede them, the noun after them must be manṣūb — no alternative is permitted.
+  </p>
+  <div class="dcm-chart">
+    <div class="dcm-chart-row">
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c1">
+          <span class="dcm-en">without مَا</span>
+          <span class="dcm-ar">قَامَ الْقَوْمُ خَلَا زَيْدٍ / زَيْدًا</span>
+          <span class="dcm-en">both readings possible</span>
+        </div>
+      </div>
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c3">
+          <span class="dcm-en">with مَا المصدرية</span>
+          <span class="dcm-ar">قَامَ الْقَوْمُ مَا خَلَا زَيْدًا</span>
+          <span class="dcm-en">manṣūb only — obligatory</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>
+    The reasoning given is grammatically tight: <span class="dcm-ar">مَا الْمَصْدَرِيَّة</span> is a particle that only ever attaches to a verb — it never precedes a particle. So the moment مَا appears directly before خلا (or عدا), it forces خلا to be read purely as a verb; the particle-reading is no longer available, and with it goes the jarr option. Only the verb-reading survives, which means the following noun is locked into being its mafʿūl bihi — manṣūb, with no choice left.
+  </p>
+
+  <h3 class="dcm-h3">iʿrāb of قَامَ الْقَوْمُ مَا خَلَا زَيْدًا</h3>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">قَامَ الْقَوْمُ</span>
+    <span class="dcm-irab-desc">Parsed exactly as before — māḍī verb + fāʿil, marfūʿ.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">مَا</span>
+    <span class="dcm-irab-desc">مَا الْمَصْدَرِيَّة ("the mā of the infinitive"), mabnī, no locus of iʿrāb — its only function is to force what follows it to be read as a verb.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">خَلَا</span>
+    <span class="dcm-irab-desc">Māḍī verb, mabnī on an implied fatḥah — now obligatorily a verb, since مَا cannot precede a particle. Its fāʿil is the same obligatorily-hidden pronoun as before.</span>
+  </div>
+  <div class="dcm-irab-row">
+    <span class="dcm-irab-word">زَيْدًا</span>
+    <span class="dcm-irab-desc">Mafʿūl bihi of خَلَا, manṣūb, sign of naṣb the visible fatḥah — the only possible reading; جر (jarr) is not permitted here at all.</span>
+  </div>
+
+  <hr class="dcm-divider">
+  <p class="dcm-callout dcm-blue" style="margin-bottom:0;">
+    <strong>In short:</strong> خلا، عدا، and حاشا are unique among the eight exception-tools in offering a genuine either/or on the case of the following noun — manṣūb if you read the tool as a concealed-subject verb (noun = mafʿūl bihi), or majrūr if you read it as a bare particle (noun = majrūr by it). That freedom disappears the instant مَا الْمَصْدَرِيَّة is placed directly before the tool: since مَا only ever attaches to verbs, its presence forces the verb-reading exclusively, and the following noun must then be manṣūb with no alternative.
+  </p>
+</div>

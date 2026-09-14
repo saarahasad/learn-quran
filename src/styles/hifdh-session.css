@@ -1,0 +1,2843 @@
+/* Hifdh memorization session — full-screen overlay */
+
+.hifdh-session {
+  --hifdh-bg: #faf5ee;
+  --hifdh-bg-deep: #f3ebe0;
+  --hifdh-ink: var(--fl-text, #111827);
+  --hifdh-muted: var(--fl-text-muted, #6b7280);
+  --hifdh-accent: var(--baqarah-guide-accent, #1a5c3e);
+  --hifdh-accent-soft: var(--baqarah-guide-accent-soft, #ecfdf3);
+  --hifdh-ring-track: rgba(26, 92, 62, 0.12);
+  --hifdh-ring-fill: var(--hifdh-accent);
+  --hifdh-fade: 350ms ease;
+  --mushaf-blue: #185fa5;
+  --mushaf-blue-deep: #134a82;
+  --mushaf-blue-light: #b5d4f4;
+  --mushaf-blue-pale: #e8f4fc;
+  --hifdh-topbar-h: 2.35rem;
+  --hifdh-dock-h: 7rem;
+  --hifdh-side-dock-w: min(24rem, 38vw);
+  --hifdh-mushaf-max-w: 780px;
+
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--mushaf-blue-pale) 0%, #dceef8 50%, #c8e2f4 100%);
+  color: #f3f4f6;
+  font-family: var(--edx-font, "DM Sans", system-ui, sans-serif);
+  opacity: 0;
+  animation: hifdh-fade-in var(--hifdh-fade) forwards;
+}
+
+.hifdh-session--mushaf-only {
+  --hifdh-topbar-h: 2.35rem;
+  --hifdh-dock-h: 7rem;
+}
+
+.hifdh-session--mushaf-only.hifdh-session--overlay-dock {
+  --hifdh-dock-h: 0.75rem;
+}
+
+.hifdh-session--mushaf-only.hifdh-session--side-dock {
+  --hifdh-dock-h: 0.35rem;
+  --hifdh-side-dock-w: min(24rem, 38vw);
+}
+
+.hifdh-session--verse-study {
+  background: linear-gradient(180deg, var(--mushaf-blue-pale) 0%, #dceef8 50%, #c8e2f4 100%);
+}
+
+.hifdh-session__chrome--study {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  pointer-events: auto;
+}
+
+.hifdh-session__chrome--study .hifdh-session__topbar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hifdh-session__body--study {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  justify-content: stretch;
+}
+
+.hifdh-session__study-page {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.hifdh-session__study-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0.75rem 1rem 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hifdh-session__study-scroll .baqarah-verse-study {
+  margin: 0 auto;
+  max-width: 42rem;
+}
+
+.hifdh-session__study-empty {
+  margin: 1rem auto;
+  max-width: 28rem;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #374151;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.hifdh-session__study-bar {
+  flex-shrink: 0;
+  padding: 0.65rem 1rem 0.85rem;
+  background: linear-gradient(180deg, transparent, var(--mushaf-blue-pale) 40%);
+  border-top: 1px solid rgba(19, 74, 130, 0.08);
+}
+
+.hifdh-session__study-bar .hifdh-teacher-prompt__reply {
+  max-width: 20rem;
+  margin: 0 auto;
+  display: block;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__mushaf {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  padding:
+    var(--hifdh-topbar-h)
+    clamp(0.25rem, 1vw, 0.5rem)
+    var(--hifdh-dock-h);
+  background: transparent;
+  border: none;
+  overflow: hidden;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__mushaf-inner {
+  width: min(100%, var(--hifdh-mushaf-max-w, 780px));
+  height: auto;
+  max-height: 100%;
+  margin: 0 auto;
+}
+
+.hifdh-session--mushaf-only .mushaf-img-page {
+  width: 100%;
+  height: auto;
+  max-width: var(--hifdh-mushaf-max-w, 780px);
+  display: block;
+  background: transparent;
+  border: none;
+  box-shadow:
+    0 16px 48px rgba(19, 74, 130, 0.22),
+    0 4px 12px rgba(19, 74, 130, 0.12);
+}
+
+.hifdh-session--mushaf-only .mushaf-img-frame {
+  width: 100%;
+  height: auto;
+}
+
+.hifdh-session--mushaf-only .mushaf-img-frame img {
+  width: 100%;
+  height: auto;
+  max-height: calc(
+    100dvh - var(--hifdh-topbar-h) - var(--hifdh-dock-h) - 1rem
+  );
+  object-fit: contain;
+  object-position: top center;
+}
+
+.hifdh-session--mushaf-only .mushaf-img-caption {
+  display: none;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__mushaf.is-dimmed .mushaf-img-frame img {
+  filter: blur(6px) saturate(0.85);
+  opacity: 0.35;
+  transition: filter var(--hifdh-fade), opacity var(--hifdh-fade);
+}
+
+.hifdh-session__chrome {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.hifdh-session__chrome--over-mushaf {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hifdh-session__chrome--over-mushaf .hifdh-session__topbar,
+.hifdh-session__chrome--over-mushaf .hifdh-session__dock {
+  pointer-events: auto;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  padding: 0.6rem 1rem 0.25rem;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__meta,
+.hifdh-session--mushaf-only .hifdh-session__pause {
+  color: #134a82;
+  text-shadow: none;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__pause:hover,
+.hifdh-session--mushaf-only .hifdh-session__pause:focus-visible {
+  background: rgba(255, 255, 255, 0.55);
+  color: #0f3d6b;
+}
+
+.hifdh-session__dock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1rem 0.85rem;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hifdh-session__dock--overlay {
+  top: 0;
+  bottom: 0;
+  align-items: center;
+  padding:
+    calc(var(--hifdh-topbar-h, 2.85rem) + 0.65rem)
+    clamp(0.75rem, 3vw, 1.25rem)
+    1.25rem;
+  background: rgba(19, 74, 130, 0.14);
+}
+
+.hifdh-session__dock--overlay .hifdh-session__panel {
+  width: min(100%, 26rem);
+  border-radius: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.2rem 1.35rem 1.35rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+
+.hifdh-session__dock--overlay .hifdh-session__panel.hifdh-teacher-prompt {
+  width: min(100%, 38rem);
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  text-align: start;
+}
+
+.hifdh-session__dock .hifdh-session__panel {
+  width: min(100%, 22rem);
+  text-align: center;
+  pointer-events: auto;
+  padding: 0.75rem 1rem 0.85rem;
+  border-radius: 14px 14px 0 0;
+  background: rgba(22, 27, 34, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.hifdh-session__dock .hifdh-session__ring-wrap {
+  margin-bottom: 0.65rem;
+}
+
+.hifdh-session__dock .hifdh-session__ring {
+  width: 3.25rem;
+  height: 3.25rem;
+}
+
+.hifdh-session__dock .hifdh-session__ayah-label {
+  margin-bottom: 0.35rem;
+}
+
+.hifdh-session__dock .hifdh-session__status {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+}
+
+/* Side dock — controls on the right, mushaf uses full remaining page */
+.hifdh-session--side-dock .hifdh-session__mushaf {
+  padding:
+    var(--hifdh-topbar-h)
+    var(--hifdh-side-dock-w)
+    0.35rem
+    clamp(0.25rem, 1vw, 0.5rem);
+}
+
+.hifdh-session--side-dock .hifdh-session__mushaf-inner {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+}
+
+.hifdh-session--side-dock .mushaf-img-page {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+}
+
+.hifdh-session--side-dock .mushaf-img-frame {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hifdh-session--side-dock .mushaf-img-frame img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(100dvh - var(--hifdh-topbar-h) - 0.75rem);
+  object-fit: contain;
+  object-position: top center;
+}
+
+.hifdh-session--side-dock .hifdh-session__topbar {
+  padding-right: calc(var(--hifdh-side-dock-w) + 0.65rem);
+}
+
+.hifdh-session--side-dock .hifdh-session__dock {
+  top: var(--hifdh-topbar-h);
+  left: auto;
+  right: 0;
+  bottom: 0;
+  width: var(--hifdh-side-dock-w);
+  max-width: 100%;
+  padding: 0.5rem 0.75rem 0.75rem 0.5rem;
+  justify-content: center;
+  align-items: stretch;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.hifdh-session--side-dock .hifdh-session__dock .hifdh-session__panel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0.85rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(19, 74, 130, 0.12);
+  background: #fff;
+  box-shadow: -6px 0 28px rgba(19, 74, 130, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+  color: var(--hifdh-ink);
+}
+
+.hifdh-session--side-dock .hifdh-session__ring-wrap {
+  margin-bottom: 0.65rem;
+}
+
+.hifdh-session--side-dock .hifdh-session__ayah-label {
+  margin-bottom: 0.35rem;
+}
+
+.hifdh-session--side-dock .hifdh-session__round,
+.hifdh-session--side-dock .hifdh-session__status {
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.hifdh-session--side-dock .hifdh-session__status {
+  margin-top: 0.35rem;
+}
+
+.hifdh-session--side-dock .hifdh-session__cta {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.86rem;
+}
+
+.hifdh-session--side-dock .hifdh-session__cta--shadow-next {
+  margin-top: 0.5rem;
+}
+
+.hifdh-session--side-dock .hifdh-session__arabic {
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+  line-height: 1.85;
+  padding: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.hifdh-session--side-dock .hifdh-session__test-prompt {
+  padding: 0.65rem 0.5rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hifdh-session__ayah-label--chain,
+.hifdh-session__chain-task {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.hifdh-session__chain-task {
+  margin: 0 0 0.75rem;
+  font-size: clamp(0.88rem, 2.5vw, 1rem);
+  line-height: 1.5;
+  font-weight: 500;
+  color: #374151;
+}
+
+.hifdh-session--side-dock .hifdh-session__chain-task {
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+.hifdh-chain-text {
+  width: 100%;
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.hifdh-chain-text__label {
+  margin: 0 0 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.hifdh-chain-text__segment {
+  margin: 0 0 0.5rem;
+  padding: 0.5rem 0.35rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.hifdh-session--side-dock .hifdh-chain-text__segment {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(19, 74, 130, 0.08);
+}
+
+.hifdh-chain-text__join-hint {
+  margin: 0.15rem 0 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mushaf-blue, #185fa5);
+}
+
+.hifdh-session--side-dock .hifdh-session__assess-btn {
+  padding: 0.75rem 0.65rem;
+  font-size: 0.9rem;
+  min-width: 0;
+}
+
+.hifdh-session--side-dock .hifdh-session__record-block,
+.hifdh-session--side-dock .hifdh-session__playback,
+.hifdh-session--side-dock .hifdh-session__assess,
+.hifdh-session--side-dock .hifdh-teacher-whisper {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.hifdh-session--side-dock .hifdh-teacher-whisper--dock {
+  text-align: center;
+}
+
+.hifdh-session--side-dock .hifdh-teacher-whisper--dock .hifdh-session__cta {
+  width: 100%;
+}
+
+.hifdh-session__next {
+  appearance: none;
+  border: 1px solid rgba(19, 74, 130, 0.22);
+  background: rgba(255, 255, 255, 0.6);
+  color: #134a82;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--hifdh-fade), border-color var(--hifdh-fade);
+}
+
+.hifdh-session__next:hover,
+.hifdh-session__next:focus-visible {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(19, 74, 130, 0.35);
+}
+
+.hifdh-session--mushaf-only .hifdh-session__lead,
+.hifdh-session--mushaf-only .hifdh-session__title,
+.hifdh-session--mushaf-only .hifdh-session__hadith,
+.hifdh-session--mushaf-only .hifdh-session__bismillah,
+.hifdh-session--mushaf-only .hifdh-session__copy,
+.hifdh-session--mushaf-only .hifdh-session__hint,
+.hifdh-session--mushaf-only .hifdh-session__round,
+.hifdh-session--mushaf-only .hifdh-session__status,
+.hifdh-session--mushaf-only .hifdh-session__ayah-label,
+.hifdh-session--mushaf-only .hifdh-session__ring-label,
+.hifdh-session--mushaf-only .hifdh-session__assess-prompt,
+.hifdh-session--mushaf-only .hifdh-session__assess-feedback,
+.hifdh-session--mushaf-only .hifdh-session__translation,
+.hifdh-session--mushaf-only .hifdh-session__tafsir-body,
+.hifdh-session--mushaf-only .hifdh-session__keyword-gloss {
+  color: #e5e7eb;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__ayah-label,
+.hifdh-session--mushaf-only .hifdh-session__round,
+.hifdh-session--mushaf-only .hifdh-session__status,
+.hifdh-session--mushaf-only .hifdh-session__ring-label,
+.hifdh-session--mushaf-only .hifdh-session__keywords-label,
+.hifdh-session--mushaf-only .hifdh-session__tafsir-label {
+  color: #9ca3af;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__cta {
+  background: var(--mushaf-blue);
+  color: #fff;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__scaffold .hifdh-session__word.is-blanked {
+  color: #6b7280;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__assess-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f3f4f6;
+}
+
+.hifdh-session--mushaf-only .hifdh-session__translation,
+.hifdh-session--mushaf-only .hifdh-session__keywords-list li,
+.hifdh-session--mushaf-only .hifdh-session__test-prompt {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Side dock sits on the light mushaf background — dark ink, not overlay whites */
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__copy,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__hint,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__assess-prompt,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__assess-feedback,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__record-hint,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-teacher-whisper .hifdh-session__hint,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-teacher-whisper .hifdh-session__assess-feedback {
+  color: #374151;
+}
+
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__ayah-label,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__round,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__status,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__ring-label,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__record-time,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__keywords-label,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__tafsir-label {
+  color: #4b5563;
+}
+
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__arabic,
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__scaffold .hifdh-session__word {
+  color: #111827;
+}
+
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__scaffold .hifdh-session__word.is-blanked {
+  color: #6b7280;
+}
+
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__assess-btn {
+  background: #fff;
+  border-color: rgba(19, 74, 130, 0.18);
+  color: #1f2937;
+}
+
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-session__test-prompt {
+  background: rgba(19, 74, 130, 0.06);
+  border-color: rgba(19, 74, 130, 0.12);
+  color: #374151;
+}
+
+.hifdh-session__range-quiz-arabic {
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  font-size: clamp(1.65rem, 5vw, 2.15rem);
+  line-height: 2;
+  direction: rtl;
+  text-align: center;
+  margin: 0.5rem 0 0;
+  padding: 0.75rem 0.5rem;
+  border-radius: 10px;
+  background: rgba(19, 74, 130, 0.05);
+  color: #1f2937;
+}
+
+.hifdh-session__range-quiz-arabic--snippet {
+  font-size: clamp(1.85rem, 5.5vw, 2.35rem);
+}
+
+.hifdh-session__range-quiz-english {
+  margin: 0.5rem 0 0;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  background: rgba(19, 74, 130, 0.05);
+  color: #374151;
+  font-size: clamp(1.05rem, 3vw, 1.2rem);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.hifdh-session__range-quiz-feedback-ar {
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  display: inline;
+}
+
+.hifdh-session__range-quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0.75rem 0 0;
+}
+
+.hifdh-session__range-quiz-option {
+  appearance: none;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(19, 74, 130, 0.18);
+  background: #fff;
+  color: #1f2937;
+  font-size: clamp(1.02rem, 2.8vw, 1.18rem);
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--hifdh-fade),
+    border-color var(--hifdh-fade);
+}
+
+.hifdh-session__range-quiz-option--arabic {
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.9;
+  text-align: right;
+}
+
+.hifdh-session__range-quiz-option:hover:not(:disabled),
+.hifdh-session__range-quiz-option:focus-visible {
+  border-color: rgba(19, 74, 130, 0.35);
+  background: rgba(19, 74, 130, 0.04);
+}
+
+.hifdh-session__range-quiz-option.is-correct {
+  border-color: rgba(26, 92, 62, 0.45);
+  background: rgba(26, 92, 62, 0.1);
+  color: #14532d;
+}
+
+.hifdh-session__range-quiz-option.is-wrong {
+  border-color: rgba(220, 38, 38, 0.4);
+  background: rgba(220, 38, 38, 0.08);
+  color: #991b1b;
+}
+
+.hifdh-session__range-quiz-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.hifdh-ayah-quiz__block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.hifdh-ayah-quiz__picked,
+.hifdh-ayah-quiz__pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.65rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+.hifdh-ayah-quiz__picked {
+  border-style: solid;
+  border-color: rgba(26, 92, 62, 0.28);
+  background: rgba(26, 92, 62, 0.06);
+}
+
+.hifdh-ayah-quiz__placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: clamp(0.95rem, 2.6vw, 1.05rem);
+}
+
+.hifdh-ayah-quiz__chip {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  font-size: clamp(1.25rem, 3.8vw, 1.55rem);
+  line-height: 1.5;
+  cursor: pointer;
+  transition:
+    background var(--hifdh-fade),
+    border-color var(--hifdh-fade),
+    transform 120ms ease;
+}
+
+.hifdh-ayah-quiz__chip:hover:not(:disabled),
+.hifdh-ayah-quiz__chip:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.hifdh-ayah-quiz__chip.is-picked {
+  border-color: rgba(26, 92, 62, 0.45);
+  background: rgba(26, 92, 62, 0.14);
+}
+
+.hifdh-ayah-quiz__chip:disabled {
+  cursor: default;
+  opacity: 0.92;
+}
+
+.hifdh-ayah-quiz__blank {
+  display: inline-block;
+  min-width: 4rem;
+  margin: 0 0.25rem;
+  padding: 0 0.2rem 0.12rem;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.55);
+  color: transparent;
+  vertical-align: baseline;
+  line-height: 1.5;
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+}
+
+.hifdh-ayah-quiz__blank.is-filled {
+  color: inherit;
+  border-bottom-style: solid;
+  font-weight: 600;
+}
+
+.hifdh-ayah-quiz__blank.is-correct {
+  border-bottom-color: rgba(26, 92, 62, 0.85);
+  color: #14532d;
+}
+
+.hifdh-ayah-quiz__blank.is-wrong {
+  border-bottom-color: rgba(220, 38, 38, 0.75);
+  color: #991b1b;
+}
+
+.hifdh-session--mushaf-only.hifdh-session--side-dock .hifdh-ayah-quiz__blank {
+  border-bottom-color: rgba(19, 74, 130, 0.5);
+}
+
+.hifdh-ayah-quiz__ayah,
+.hifdh-ayah-quiz__phrase,
+.hifdh-ayah-quiz__segments {
+  margin: 0.25rem 0 0.5rem;
+  line-height: 2.05;
+  font-size: clamp(1.85rem, 5.5vw, 2.35rem);
+}
+
+.hifdh-ayah-quiz__option--arabic {
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+  line-height: 1.85;
+}
+
+.hifdh-ayah-quiz .hifdh-session__copy,
+.hifdh-range-quiz .hifdh-session__copy {
+  font-size: clamp(1.1rem, 3.2vw, 1.28rem);
+  line-height: 1.7;
+}
+
+.hifdh-ayah-quiz .hifdh-session__round,
+.hifdh-range-quiz .hifdh-session__round {
+  font-size: clamp(0.92rem, 2.5vw, 1.02rem);
+}
+
+.hifdh-ayah-quiz .hifdh-session__hint,
+.hifdh-range-quiz .hifdh-session__hint {
+  font-size: clamp(1rem, 2.8vw, 1.12rem);
+  line-height: 1.65;
+}
+
+.hifdh-ayah-quiz .hifdh-session__range-quiz-feedback-ar,
+.hifdh-range-quiz .hifdh-session__range-quiz-feedback-ar {
+  font-size: clamp(1.2rem, 3.5vw, 1.45rem);
+}
+
+.hifdh-session--side-dock .hifdh-ayah-quiz .hifdh-session__arabic,
+.hifdh-session--side-dock .hifdh-ayah-quiz__ayah,
+.hifdh-session--side-dock .hifdh-ayah-quiz__phrase,
+.hifdh-session--side-dock .hifdh-ayah-quiz__segments {
+  font-size: clamp(1.85rem, 5.5vw, 2.35rem);
+  line-height: 2.05;
+}
+
+.hifdh-ayah-quiz__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: center;
+}
+
+.hifdh-session__panel--range-offer .hifdh-session__cta--ghost {
+  background: transparent;
+  color: #4b5563;
+  border: 1px solid rgba(19, 74, 130, 0.18);
+  box-shadow: none;
+}
+
+.hifdh-session.has-mushaf {
+  --hifdh-stage-bg: #22262d;
+  --hifdh-stage-bg-deep: #1a1d23;
+  --hifdh-stage-surface: #2c3139;
+  --hifdh-stage-border: rgba(255, 255, 255, 0.08);
+  --hifdh-stage-ink: #f3f4f6;
+  --hifdh-stage-muted: #9ca3af;
+  --hifdh-stage-muted-soft: #6b7280;
+  --hifdh-stage-accent: #7dd3a8;
+  --hifdh-stage-accent-soft: rgba(125, 211, 168, 0.14);
+  --hifdh-ring-track: rgba(255, 255, 255, 0.1);
+  --hifdh-ring-fill: var(--hifdh-stage-accent);
+
+  background: var(--mushaf-blue-pale);
+}
+
+.hifdh-session__main {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__main {
+  flex-direction: row;
+}
+
+.hifdh-session__mushaf {
+  flex: 1 1 58%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem 1rem;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 35%, rgba(255, 255, 255, 0.55), transparent),
+    linear-gradient(180deg, var(--mushaf-blue-pale) 0%, #dceef8 55%, #d4e8f5 100%);
+  border-inline-end: 1px solid rgba(24, 95, 165, 0.14);
+  overflow: auto;
+}
+
+.hifdh-session__mushaf-inner {
+  width: min(100%, 520px);
+  margin: 0 auto;
+}
+
+.hifdh-session__mushaf-spread {
+  display: flex;
+  justify-content: center;
+}
+
+.hifdh-session__mushaf .mushaf-img-page {
+  box-shadow:
+    0 10px 32px rgba(19, 74, 130, 0.18),
+    0 2px 8px rgba(19, 74, 130, 0.1);
+}
+
+.hifdh-session__stage {
+  flex: 1 1 42%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--hifdh-bg);
+  overflow: hidden;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__stage {
+  background:
+    radial-gradient(ellipse 120% 80% at 100% 0%, rgba(255, 255, 255, 0.03), transparent 55%),
+    linear-gradient(180deg, var(--hifdh-stage-bg) 0%, var(--hifdh-stage-bg-deep) 100%);
+  border-inline-start: 1px solid var(--hifdh-stage-border);
+  color: var(--hifdh-stage-ink);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__topbar {
+  background: var(--hifdh-stage-bg-deep);
+  border-bottom: 1px solid var(--hifdh-stage-border);
+  padding-block: 0.85rem;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__meta {
+  color: var(--hifdh-stage-muted);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__pause {
+  color: var(--hifdh-stage-muted);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__pause:hover,
+.hifdh-session.has-mushaf .hifdh-session__pause:focus-visible {
+  color: var(--hifdh-stage-ink);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__body {
+  justify-content: flex-start;
+  padding-top: 1.25rem;
+}
+
+.hifdh-session__panel--with-mushaf {
+  width: min(100%, 22rem);
+}
+
+.hifdh-session__word-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 0.5rem;
+  margin: 0 0 0.75rem;
+  padding: 0.65rem 0.5rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(24, 95, 165, 0.1);
+  border-radius: 10px;
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__word-strip {
+  background: var(--hifdh-stage-surface);
+  border-color: var(--hifdh-stage-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__word-strip-item {
+  color: #d1d5db;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__word-strip-item.is-active {
+  background: var(--hifdh-stage-accent-soft);
+  color: var(--hifdh-stage-accent);
+}
+
+.hifdh-session__word-strip-item {
+  padding: 0.08em 0.15em;
+  border-radius: 0.2em;
+  transition:
+    background var(--hifdh-fade),
+    color var(--hifdh-fade);
+}
+
+.hifdh-session__word-strip-item.is-active {
+  background: var(--hifdh-accent-soft);
+  color: var(--hifdh-accent);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__lead,
+.hifdh-session.has-mushaf .hifdh-session__title,
+.hifdh-session.has-mushaf .hifdh-session__hadith,
+.hifdh-session.has-mushaf .hifdh-session__bismillah {
+  color: var(--hifdh-stage-ink);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__copy,
+.hifdh-session.has-mushaf .hifdh-session__hint,
+.hifdh-session.has-mushaf .hifdh-session__round,
+.hifdh-session.has-mushaf .hifdh-session__status,
+.hifdh-session.has-mushaf .hifdh-session__ayah-label,
+.hifdh-session.has-mushaf .hifdh-session__ring-label {
+  color: var(--hifdh-stage-muted);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__cta {
+  background: var(--hifdh-stage-accent);
+  color: var(--hifdh-stage-bg-deep);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__cta:hover,
+.hifdh-session.has-mushaf .hifdh-session__cta:focus-visible {
+  background: #9ee4c0;
+}
+
+.hifdh-session.is-paused {
+  filter: saturate(0.92);
+}
+
+@keyframes hifdh-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hifdh-session__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem 0.25rem;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+}
+
+.hifdh-session__meta,
+.hifdh-session__pause {
+  color: #134a82;
+  text-shadow: none;
+}
+
+.hifdh-session__pause {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    color var(--hifdh-fade),
+    background var(--hifdh-fade),
+    border-color var(--hifdh-fade);
+}
+
+.hifdh-session__pause:hover,
+.hifdh-session__pause:focus-visible {
+  background: rgba(255, 255, 255, 0.55);
+  color: #0f3d6b;
+}
+
+.hifdh-session__topbar-actions {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.hifdh-session__scaffold .hifdh-session__word.is-blanked {
+  color: var(--hifdh-muted);
+  letter-spacing: 0.08em;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__scaffold .hifdh-session__word.is-blanked {
+  color: var(--hifdh-stage-muted-soft);
+}
+
+.hifdh-session__translation {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: var(--hifdh-stage-surface, #f3f4f6);
+  border-inline-start: 3px solid var(--hifdh-accent, #1a5c3e);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  text-align: start;
+  font-style: normal;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__translation {
+  background: var(--hifdh-stage-surface);
+  border-inline-start-color: var(--hifdh-stage-accent);
+  color: var(--hifdh-stage-ink);
+}
+
+.hifdh-session__keywords,
+.hifdh-session__tafsir {
+  width: 100%;
+  text-align: start;
+  margin-bottom: 1rem;
+}
+
+.hifdh-session__keywords-label,
+.hifdh-session__tafsir-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__keywords-label,
+.hifdh-session.has-mushaf .hifdh-session__tafsir-label {
+  color: var(--hifdh-stage-muted);
+}
+
+.hifdh-session__keywords-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.hifdh-session__keywords-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__keywords-list li {
+  border-bottom-color: var(--hifdh-stage-border);
+}
+
+.hifdh-session__keyword-ar {
+  font-family: "KFGQPC Uthman Taha Naskh", serif;
+  font-size: 1.15rem;
+}
+
+.hifdh-session__keyword-gloss {
+  font-size: 0.88rem;
+  color: var(--hifdh-muted);
+  text-align: end;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__keyword-gloss {
+  color: var(--hifdh-stage-muted);
+}
+
+.hifdh-session__tafsir-body {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__tafsir-body {
+  color: var(--hifdh-stage-muted);
+}
+
+.hifdh-session__assess {
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.hifdh-session__assess-prompt {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__assess-prompt {
+  color: var(--hifdh-stage-muted);
+}
+
+.hifdh-session__assess-feedback {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--hifdh-ink);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__assess-feedback {
+  color: var(--hifdh-stage-ink);
+}
+
+.hifdh-session__assess-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+.hifdh-session__assess-btn {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--hifdh-fade), border-color var(--hifdh-fade);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__assess-btn {
+  background: var(--hifdh-stage-surface);
+  border-color: var(--hifdh-stage-border);
+  color: var(--hifdh-stage-ink);
+}
+
+.hifdh-session__assess-btn:hover,
+.hifdh-session__assess-btn:focus-visible {
+  background: var(--fl-border-light, #f3f4f6);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__assess-btn:hover,
+.hifdh-session.has-mushaf .hifdh-session__assess-btn:focus-visible {
+  background: #343a44;
+}
+
+.hifdh-session__assess-emoji {
+  font-size: 1.15rem;
+}
+
+.hifdh-session__test-prompt {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--hifdh-stage-surface, #f3f4f6);
+  text-align: center;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__test-prompt {
+  background: var(--hifdh-stage-surface);
+}
+
+.hifdh-session__test-prompt-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session__test-ellipsis {
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session__record-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.hifdh-session__record-block {
+  margin-top: 0.65rem;
+}
+
+.hifdh-session__record-block--compact {
+  margin-top: 0.5rem;
+}
+
+.hifdh-session__record-block--compact .hifdh-session__record-bar {
+  margin-top: 0.35rem;
+  gap: 0.5rem;
+}
+
+.hifdh-session__record-block--compact .hifdh-session__record-time {
+  font-size: 1.05rem;
+}
+
+.hifdh-session__record-hint {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(243, 244, 246, 0.82);
+}
+
+.hifdh-session--side-dock .hifdh-session__record-hint {
+  color: #4b5563;
+}
+
+.hifdh-session__playback {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.hifdh-session__playback-clear {
+  width: 100%;
+  margin-top: 0;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.82rem;
+}
+
+.hifdh-session--side-dock .hifdh-session__recording {
+  width: 100%;
+  height: 2rem;
+  margin: 0;
+}
+
+.hifdh-session--side-dock .hifdh-session__record-block .hifdh-session__cta {
+  width: 100%;
+  margin-top: 0;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.82rem;
+}
+
+.hifdh-session--side-dock .hifdh-session__record-block .hifdh-session__error {
+  font-size: 0.78rem;
+  margin-top: 0.45rem;
+  padding: 0.5rem 0.65rem;
+}
+
+.hifdh-session__record-time {
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__record-time {
+  color: var(--hifdh-stage-muted);
+}
+
+.hifdh-session__cta--record {
+  background: #6366f1;
+  color: #fff;
+}
+
+.hifdh-session__cta--ghost {
+  background: transparent;
+  color: var(--hifdh-muted);
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hifdh-session.has-mushaf .hifdh-session__cta--ghost {
+  color: var(--hifdh-stage-muted);
+  border-color: var(--hifdh-stage-border);
+}
+
+.hifdh-session__recording {
+  width: 100%;
+  margin: 0.75rem 0 1rem;
+}
+
+.hifdh-session__error {
+  margin: 0.75rem 0 0;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+  font-size: 0.88rem;
+}
+
+.hifdh-session__summary {
+  margin: 1.25rem 0 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 0.88rem;
+}
+
+.hifdh-session.has-mushaf .hifdh-session__summary {
+  background: var(--hifdh-stage-surface);
+  color: var(--hifdh-stage-muted);
+}
+
+.hifdh-session__revision {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: var(--hifdh-muted);
+  font-style: italic;
+}
+
+.hifdh-session__revision-dates {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session__complete-praise {
+  margin-top: 0;
+}
+
+.hifdh-session__complete-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 18rem;
+  margin-inline: auto;
+}
+
+.hifdh-session__panel--complete {
+  width: min(100%, 28rem);
+}
+
+.hifdh-session__meta {
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.hifdh-session__duration {
+  opacity: 0.72;
+  font-weight: 500;
+}
+
+.hifdh-session__elapsed {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.92;
+}
+
+.hifdh-session__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1.25rem 2.5rem;
+  overflow-y: auto;
+}
+
+.hifdh-session__panel {
+  width: min(100%, 42rem);
+  text-align: center;
+  animation: hifdh-panel-in var(--hifdh-fade) forwards;
+}
+
+@keyframes hifdh-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hifdh-session__lead {
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  line-height: 1.45;
+  font-weight: 500;
+  margin: 0 0 1.25rem;
+}
+
+.hifdh-session__copy {
+  margin: 0 0 0.85rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session__bismillah {
+  margin: 1.75rem 0 2rem;
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  line-height: 1.8;
+  direction: rtl;
+  color: var(--hifdh-ink);
+}
+
+.hifdh-session__hadith {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--hifdh-ink);
+  margin: 0 0 1rem;
+}
+
+.hifdh-session__title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.hifdh-session__hint {
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--hifdh-muted);
+  font-style: italic;
+  min-height: 1.6em;
+  transition: opacity var(--hifdh-fade);
+}
+
+.hifdh-session__cta {
+  appearance: none;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.95rem 2rem;
+  min-width: 12rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--hifdh-accent);
+  color: #fff;
+  transition:
+    background var(--hifdh-fade),
+    transform var(--hifdh-fade),
+    box-shadow var(--hifdh-fade);
+  box-shadow: 0 8px 24px rgba(26, 92, 62, 0.18);
+}
+
+.hifdh-session__cta:hover,
+.hifdh-session__cta:focus-visible {
+  background: #154a32;
+}
+
+.hifdh-session__cta:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.hifdh-session__ring-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.75rem;
+}
+
+.hifdh-session__ring {
+  position: relative;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.hifdh-session__ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.hifdh-session__ring-track {
+  fill: none;
+  stroke: var(--hifdh-ring-track);
+  stroke-width: 3;
+}
+
+.hifdh-session__ring-fill {
+  fill: none;
+  stroke: var(--hifdh-ring-fill);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 400ms ease;
+}
+
+.hifdh-session__ring-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session__round {
+  font-size: 0.82rem;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session__ayah-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session__arabic {
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  font-size: clamp(2.25rem, 6vw, 2.75rem);
+  line-height: 2;
+  direction: rtl;
+  text-align: center;
+  margin: 0;
+  padding: 0 0.5rem;
+}
+
+.hifdh-session__word {
+  display: inline;
+  padding: 0.08em 0.12em;
+  border-radius: 0.2em;
+  transition:
+    background var(--hifdh-fade),
+    color var(--hifdh-fade);
+}
+
+.hifdh-session__word.is-active {
+  background: var(--hifdh-accent-soft);
+  color: var(--hifdh-accent);
+}
+
+.hifdh-session__marker {
+  display: inline-block;
+  margin-inline-start: 0.35em;
+  font-size: 0.72em;
+  color: var(--hifdh-muted);
+  vertical-align: super;
+}
+
+.hifdh-session__status {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(44, 36, 24, 0.42);
+  animation: hifdh-fade-in var(--hifdh-fade) forwards;
+}
+
+.hifdh-session__dialog {
+  width: min(100%, 24rem);
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+.hifdh-session__dialog h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.hifdh-session__dialog p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-session__dialog-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1.35rem;
+}
+
+.hifdh-session__dialog-btn {
+  appearance: none;
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--fl-border, #e5e7eb);
+  background: #fff;
+  color: var(--hifdh-ink);
+  transition: background var(--hifdh-fade);
+}
+
+.hifdh-session__dialog-btn--primary {
+  background: var(--hifdh-accent);
+  border-color: var(--hifdh-accent);
+  color: #fff;
+}
+
+.hifdh-session__dialog-btn:hover,
+.hifdh-session__dialog-btn:focus-visible {
+  background: var(--fl-border-light, #f3f4f6);
+}
+
+.hifdh-session__dialog-btn--primary:hover,
+.hifdh-session__dialog-btn--primary:focus-visible {
+  background: #154a32;
+}
+
+.hifdh-session__dialog-btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--fl-muted, #6b7280);
+  font-size: 0.9rem;
+  padding: 0.55rem 1rem;
+}
+
+.hifdh-session__dialog-btn--ghost:hover,
+.hifdh-session__dialog-btn--ghost:focus-visible {
+  background: var(--fl-border-light, #f3f4f6);
+  color: var(--fl-text, #111827);
+}
+
+.hifdh-session__dialog-btn--danger {
+  color: #b91c1c;
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.hifdh-session__dialog-btn--danger:hover,
+.hifdh-session__dialog-btn--danger:focus-visible {
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+/* ── Teacher voice prompts ── */
+
+.hifdh-teacher-prompt {
+  text-align: start;
+}
+
+.hifdh-teacher-prompt__header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hifdh-teacher-prompt__avatar {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, var(--mushaf-blue) 0%, var(--mushaf-blue-deep) 100%);
+  color: #e8f4fc;
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(19, 74, 130, 0.35);
+}
+
+.hifdh-teacher-prompt__identity {
+  min-width: 0;
+}
+
+.hifdh-teacher-prompt__name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: inherit;
+}
+
+.hifdh-teacher-prompt__role {
+  margin: 0.15rem 0 0;
+  font-size: 0.88rem;
+  color: var(--hifdh-muted);
+}
+
+.hifdh-teacher-prompt__bubble {
+  position: relative;
+  padding: 1.35rem 1.5rem 1.45rem;
+  border-radius: 6px 18px 18px 18px;
+  background: #f8fbff;
+  border: 1px solid rgba(24, 95, 165, 0.16);
+  box-shadow:
+    0 10px 32px rgba(19, 74, 130, 0.12),
+    0 2px 8px rgba(19, 74, 130, 0.06);
+}
+
+.hifdh-teacher-prompt__bubble::before {
+  content: "";
+  position: absolute;
+  top: -0.45rem;
+  left: 0.85rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  background: #f8fbff;
+  border-top: 1px solid rgba(24, 95, 165, 0.16);
+  border-left: 1px solid rgba(24, 95, 165, 0.16);
+  transform: rotate(45deg);
+}
+
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__bubble {
+  background: #f8fbff;
+}
+
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__name,
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__role {
+  color: var(--mushaf-blue-deep);
+  text-shadow: none;
+}
+
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__role {
+  color: rgba(19, 74, 130, 0.72);
+}
+
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__avatar {
+  width: 3.35rem;
+  height: 3.35rem;
+  font-size: 1.4rem;
+}
+
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__name {
+  font-size: 1.08rem;
+}
+
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__bubble {
+  padding: 1.55rem 1.7rem 1.65rem;
+}
+
+.hifdh-teacher-prompt__emphasis {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.25rem, 3.8vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--mushaf-blue-deep);
+}
+
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__emphasis {
+  font-size: clamp(1.45rem, 4.8vw, 1.95rem);
+  margin-bottom: 1.1rem;
+}
+
+.hifdh-teacher-prompt__quote {
+  margin: 0 0 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  border-inline-start: 3px solid var(--mushaf-blue);
+  background: rgba(24, 95, 165, 0.07);
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  line-height: 1.7;
+  font-style: italic;
+  color: #1f2937;
+}
+
+.hifdh-teacher-prompt__speech {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.hifdh-teacher-prompt__line {
+  margin: 0;
+  font-size: clamp(1.05rem, 3vw, 1.22rem);
+  line-height: 1.75;
+  color: #1f2937;
+  font-weight: 500;
+  opacity: 0;
+  animation: hifdh-speak-in 0.5s ease forwards;
+}
+
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__line {
+  font-size: clamp(1.15rem, 3.6vw, 1.35rem);
+  line-height: 1.8;
+  color: #111827;
+}
+
+.hifdh-teacher-prompt__bismillah {
+  margin: 1.15rem 0 0;
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  font-size: clamp(1.75rem, 5vw, 2.35rem);
+  line-height: 1.8;
+  direction: rtl;
+  text-align: center;
+  color: var(--mushaf-blue-deep);
+}
+
+.hifdh-teacher-prompt__reply {
+  appearance: none;
+  width: 100%;
+  margin-top: 1.15rem;
+  border: 2px solid var(--mushaf-blue);
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--mushaf-blue);
+  color: #fff;
+  transition:
+    background var(--hifdh-fade),
+    transform var(--hifdh-fade),
+    box-shadow var(--hifdh-fade);
+  box-shadow: 0 8px 22px rgba(24, 95, 165, 0.24);
+}
+
+.hifdh-teacher-prompt__reply:hover,
+.hifdh-teacher-prompt__reply:focus-visible {
+  background: var(--mushaf-blue-deep);
+  border-color: var(--mushaf-blue-deep);
+  transform: translateY(-1px);
+}
+
+.hifdh-teacher-prompt--standalone .hifdh-teacher-prompt__bubble {
+  max-width: 38rem;
+  margin-inline: auto;
+}
+
+.hifdh-teacher-prompt--standalone .hifdh-teacher-prompt__reply {
+  max-width: 22rem;
+  margin-inline: auto;
+  display: block;
+}
+
+.hifdh-teacher-prompt--overlay .hifdh-teacher-prompt__reply {
+  max-width: 22rem;
+  margin-inline: auto;
+  display: block;
+  font-size: 1.08rem;
+  padding: 1.05rem 1.6rem;
+}
+
+@keyframes hifdh-speak-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hifdh-teacher-whisper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.55rem 0.7rem;
+  align-items: start;
+  margin-top: 0.5rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(255, 253, 249, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: start;
+}
+
+.hifdh-teacher-whisper--dock {
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
+.hifdh-teacher-whisper--dock .hifdh-teacher-whisper__mark {
+  margin: 0 auto 0.35rem;
+}
+
+.hifdh-teacher-whisper__mark {
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--mushaf-blue);
+  color: #e8f4fc;
+  font-family: "KFGQPC Uthman Taha Naskh", serif;
+  font-size: 0.82rem;
+  line-height: 1;
+}
+
+.hifdh-teacher-whisper .hifdh-session__assess-feedback,
+.hifdh-teacher-whisper .hifdh-session__hint {
+  margin: 0;
+  grid-column: 2;
+  font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+  font-weight: 500;
+  font-style: normal;
+  text-align: start;
+  line-height: 1.7;
+  color: #1f2937;
+}
+
+.hifdh-teacher-whisper--dock .hifdh-session__hint {
+  grid-column: 1;
+  text-align: center;
+}
+
+.hifdh-teacher-whisper--dock .hifdh-session__cta {
+  grid-column: 1;
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+.hifdh-session--mushaf-only .hifdh-teacher-whisper {
+  background: rgba(255, 253, 249, 0.08);
+}
+
+.hifdh-session--mushaf-only .hifdh-teacher-whisper .hifdh-session__hint {
+  color: #e5e7eb;
+}
+
+@media (max-width: 520px) {
+  .hifdh-session--side-dock {
+    --hifdh-dock-h: 6.5rem;
+    --hifdh-side-dock-w: 0;
+  }
+
+  .hifdh-session--side-dock .hifdh-session__mushaf {
+    padding:
+      var(--hifdh-topbar-h)
+      0.35rem
+      var(--hifdh-dock-h)
+      0.35rem;
+  }
+
+  .hifdh-session--side-dock .hifdh-session__topbar {
+    padding-right: 1rem;
+  }
+
+  .hifdh-session--side-dock .hifdh-session__dock {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    padding: 0 0.5rem 0.65rem;
+    justify-content: center;
+  }
+
+  .hifdh-session--side-dock .mushaf-img-frame img {
+    max-height: calc(100dvh - var(--hifdh-topbar-h) - var(--hifdh-dock-h) - 0.75rem);
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hifdh-session--mushaf-only {
+    --hifdh-topbar-h: 2.65rem;
+    --hifdh-dock-h: 7rem;
+  }
+
+  .hifdh-session--mushaf-only .hifdh-session__mushaf {
+    padding-inline: 0.35rem;
+  }
+
+  .hifdh-session__dock {
+    padding-inline: 0.5rem;
+  }
+
+  .hifdh-session__dock--overlay {
+    padding-inline: 0.75rem;
+  }
+
+  .hifdh-session__dock .hifdh-session__panel {
+    width: 100%;
+    max-width: none;
+    border-radius: 12px 12px 0 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hifdh-session.has-mushaf .hifdh-session__main {
+    flex-direction: column;
+  }
+
+  .hifdh-session__mushaf {
+    flex: 0 0 auto;
+    max-height: 46vh;
+    padding: 0.5rem 0.75rem;
+    border-inline-end: none;
+    border-bottom: 1px solid rgba(24, 95, 165, 0.14);
+  }
+
+  .hifdh-session.has-mushaf .hifdh-session__stage {
+    border-inline-start: none;
+    border-top: 1px solid var(--hifdh-stage-border);
+  }
+
+  .hifdh-session__mushaf-inner {
+    width: min(100%, 320px);
+  }
+
+  .hifdh-session__stage {
+    flex: 1 1 auto;
+    overflow-y: auto;
+  }
+
+  .hifdh-session__body {
+    padding-inline: 1rem;
+  }
+
+  .hifdh-session__cta {
+    width: 100%;
+    max-width: 18rem;
+  }
+}
+
+/* Entry point button on page study guide */
+.baqarah-guide-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.baqarah-guide-memorize-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.baqarah-guide-session-duration {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--fl-text-muted, #6b7280);
+  text-align: right;
+}
+
+.baqarah-guide-memorize-btn {
+  appearance: none;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.15rem;
+  font-family: var(--edx-font, "DM Sans", system-ui, sans-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: var(--baqarah-guide-accent, #1a5c3e);
+  box-shadow: 0 6px 18px rgba(26, 92, 62, 0.16);
+  transition:
+    background 350ms ease,
+    transform 350ms ease;
+}
+
+.baqarah-guide-memorize-btn:hover,
+.baqarah-guide-memorize-btn:focus-visible {
+  background: #154a32;
+}
+
+@media (max-width: 640px) {
+  .baqarah-guide-memorize-btn {
+    width: 100%;
+  }
+}
+
+.hifdh-recitation-feedback {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(26, 92, 62, 0.06);
+  border: 1px solid rgba(26, 92, 62, 0.12);
+}
+
+.hifdh-recitation-feedback--error {
+  background: rgba(185, 28, 28, 0.06);
+  border-color: rgba(185, 28, 28, 0.18);
+}
+
+.hifdh-recitation-feedback--pass {
+  background: rgba(22, 101, 52, 0.08);
+  border-color: rgba(22, 101, 52, 0.2);
+}
+
+.hifdh-recitation-feedback--loading p,
+.hifdh-recitation-feedback__hint {
+  margin: 0.45rem 0 0;
+  font-size: 0.82rem;
+  color: var(--fl-text-muted, #6b7280);
+}
+
+.hifdh-recitation-feedback__summary {
+  margin-bottom: 0.65rem;
+}
+
+.hifdh-recitation-feedback__headline {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--fl-text, #1f2937);
+}
+
+.hifdh-recitation-feedback__stats {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  color: var(--fl-text-muted, #6b7280);
+}
+
+.hifdh-recitation-feedback__transcript {
+  margin: 0 0 0.75rem;
+  font-family: var(--mushaf-font, "Amiri Quran", "Scheherazade New", serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.hifdh-recitation-feedback__label {
+  font-family: var(--edx-font, "DM Sans", system-ui, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fl-text-muted, #6b7280);
+  margin-left: 0.35rem;
+}
+
+.hifdh-recitation-feedback__words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--mushaf-font, "Amiri Quran", "Scheherazade New", serif);
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+.hifdh-recitation-feedback__word {
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+}
+
+.hifdh-recitation-feedback__word--match {
+  background: rgba(22, 101, 52, 0.12);
+  color: #14532d;
+}
+
+.hifdh-recitation-feedback__word--missed {
+  background: rgba(185, 28, 28, 0.1);
+  color: #991b1b;
+  text-decoration: line-through;
+}
+
+.hifdh-recitation-feedback__word--wrong {
+  background: rgba(180, 83, 9, 0.12);
+  color: #92400e;
+  outline: 1px dashed rgba(180, 83, 9, 0.45);
+}
+
+.hifdh-recitation-feedback__word--extra {
+  background: rgba(107, 114, 128, 0.12);
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.hifdh-recitation-feedback__word--tajweed {
+  outline: 1px dashed rgba(180, 83, 9, 0.55);
+}
+
+.hifdh-recitation-feedback__tajweed {
+  margin: 0.75rem 0;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.hifdh-recitation-feedback__tajweed ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.hifdh-recitation-feedback__tajweed-item {
+  margin-bottom: 0.35rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: #1e3a8a;
+}
+
+.hifdh-recitation-feedback__tajweed-item--high {
+  color: #991b1b;
+}
+
+.hifdh-recitation-feedback__tajweed-item--medium {
+  color: #92400e;
+}
+
+/* Floating audio test popup — mushaf stays navigable behind it */
+.hifdh-audio-test {
+  --hat-accent: #185fa5;
+  --hat-accent-deep: #134a82;
+  --hat-ink: #111827;
+  --hat-muted: #4b5563;
+  --hat-border: rgba(24, 95, 165, 0.16);
+  --hat-card: #fff;
+
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 9000;
+  width: min(24rem, calc(100vw - 2rem));
+  max-height: min(85vh, 40rem);
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  border: 1px solid var(--hat-border);
+  background: linear-gradient(180deg, #f8fbff 0%, #e8f4fc 100%);
+  box-shadow:
+    0 16px 48px rgba(17, 24, 39, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+  color: var(--hat-ink);
+  font-family: var(--edx-font, "DM Sans", system-ui, sans-serif);
+  pointer-events: auto;
+  animation: hifdh-fade-in 250ms ease forwards;
+}
+
+.hifdh-audio-test--minimized {
+  max-height: none;
+}
+
+.hifdh-audio-test--minimized .hifdh-audio-test__body {
+  display: none;
+}
+
+.hifdh-audio-test__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem 0.75rem;
+  border-bottom: 1px solid var(--hat-border);
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 16px 16px 0 0;
+}
+
+.hifdh-audio-test__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--hat-accent-deep);
+}
+
+.hifdh-audio-test__subtitle {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: var(--hat-muted);
+}
+
+.hifdh-audio-test__header-actions {
+  display: flex;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.hifdh-audio-test__icon-btn {
+  width: 1.85rem;
+  height: 1.85rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(24, 95, 165, 0.08);
+  color: var(--hat-accent-deep);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.hifdh-audio-test__icon-btn:hover,
+.hifdh-audio-test__icon-btn:focus-visible {
+  background: rgba(24, 95, 165, 0.16);
+}
+
+.hifdh-audio-test__body {
+  overflow: auto;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.hifdh-audio-test__question {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.hifdh-audio-test__progress {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hifdh-audio-test__progress-track {
+  flex: 1;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgba(24, 95, 165, 0.12);
+  overflow: hidden;
+}
+
+.hifdh-audio-test__progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--hat-accent);
+  transition: width 300ms ease;
+}
+
+.hifdh-audio-test__progress-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--hat-muted);
+  white-space: nowrap;
+}
+
+.hifdh-audio-test__card {
+  background: var(--hat-card);
+  border: 1px solid var(--hat-border);
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hifdh-audio-test__step-label {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--hat-accent);
+}
+
+.hifdh-audio-test__card-copy,
+.hifdh-audio-test__intro {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.hifdh-audio-test__setup-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--hat-accent-deep);
+}
+
+.hifdh-audio-test__intro {
+  line-height: 1.55;
+}
+
+.hifdh-audio-test__target {
+  background: linear-gradient(135deg, rgba(24, 95, 165, 0.1) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border: 1px solid rgba(24, 95, 165, 0.22);
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hifdh-audio-test__target-label {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--hat-accent);
+}
+
+.hifdh-audio-test__target-headline {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--hat-accent-deep);
+}
+
+.hifdh-audio-test__target-subline {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.hifdh-audio-test__target-chunk {
+  align-self: flex-start;
+  margin-top: 0.15rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(24, 95, 165, 0.1);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--hat-accent-deep);
+}
+
+.hifdh-audio-test__target-ending {
+  margin-top: 0.35rem;
+  padding-top: 0.55rem;
+  border-top: 1px dashed rgba(24, 95, 165, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.hifdh-audio-test__target-ending-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--hat-muted);
+}
+
+.hifdh-audio-test__target-ending-text {
+  font-family: "KFGQPC Uthman Taha Naskh", "Amiri Quran", serif;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #111827;
+}
+
+.hifdh-audio-test__listen-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hifdh-audio-test__play-btn {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: none;
+  border-radius: 50%;
+  background: var(--hat-accent);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(24, 95, 165, 0.28);
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.hifdh-audio-test__play-btn:hover,
+.hifdh-audio-test__play-btn:focus-visible {
+  background: var(--hat-accent-deep);
+  transform: scale(1.04);
+}
+
+.hifdh-audio-test__play-btn.is-playing {
+  background: #6366f1;
+  animation: hat-pulse 1.2s ease infinite;
+}
+
+.hifdh-audio-test__play-btn.is-done {
+  background: #16a34a;
+}
+
+.hifdh-audio-test__play-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.hifdh-audio-test__listen-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.hifdh-audio-test__listen-status {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--hat-ink);
+}
+
+.hifdh-audio-test__text-btn {
+  appearance: none;
+  border: none;
+  padding: 0;
+  background: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--hat-accent);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hifdh-audio-test__text-btn:hover,
+.hifdh-audio-test__text-btn:focus-visible {
+  color: var(--hat-accent-deep);
+}
+
+.hifdh-audio-test__record-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.hifdh-audio-test__timer {
+  flex-shrink: 0;
+  min-width: 3.25rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  background: rgba(24, 95, 165, 0.08);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--hat-muted);
+}
+
+.hifdh-audio-test__timer.is-recording {
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+  animation: hat-pulse 1.2s ease infinite;
+}
+
+.hifdh-audio-test__btn {
+  appearance: none;
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--hat-accent);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(24, 95, 165, 0.2);
+  transition: background 150ms ease;
+}
+
+.hifdh-audio-test__btn:hover,
+.hifdh-audio-test__btn:focus-visible {
+  background: var(--hat-accent-deep);
+}
+
+.hifdh-audio-test__btn--ghost {
+  background: #fff;
+  color: var(--hat-accent-deep);
+  border: 1px solid rgba(19, 74, 130, 0.28);
+  box-shadow: none;
+}
+
+.hifdh-audio-test__btn--ghost:hover,
+.hifdh-audio-test__btn--ghost:focus-visible {
+  background: rgba(24, 95, 165, 0.06);
+}
+
+.hifdh-audio-test__btn--stop {
+  background: #dc2626;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.2);
+}
+
+.hifdh-audio-test__btn--stop:hover,
+.hifdh-audio-test__btn--stop:focus-visible {
+  background: #b91c1c;
+}
+
+.hifdh-audio-test__playback {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hifdh-audio-test__recording {
+  width: 100%;
+  height: 2rem;
+}
+
+.hifdh-audio-test__error {
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.08);
+  color: #b91c1c;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.hifdh-audio-test__check .hifdh-session__cta {
+  margin-top: 0;
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.82rem;
+  background: var(--hat-accent);
+  color: #fff;
+}
+
+.hifdh-audio-test__check .hifdh-recitation-feedback__hint,
+.hifdh-audio-test__check .hifdh-recitation-feedback__headline,
+.hifdh-audio-test__check .hifdh-recitation-feedback__stats {
+  color: #374151;
+  font-size: 0.82rem;
+}
+
+.hifdh-audio-test__card--assess .hifdh-session__assess {
+  margin-top: 0;
+}
+
+.hifdh-audio-test__card--assess .hifdh-session__assess-prompt {
+  margin: 0 0 0.55rem;
+  font-size: 0.84rem;
+  color: #374151;
+}
+
+.hifdh-audio-test__card--assess .hifdh-session__assess-grid {
+  gap: 0.45rem;
+}
+
+.hifdh-audio-test__card--assess .hifdh-session__assess-btn {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.82rem;
+  background: #fff;
+  border-color: rgba(19, 74, 130, 0.16);
+  color: #1f2937;
+}
+
+.hifdh-audio-test__card--assess .hifdh-session__assess-btn:hover,
+.hifdh-audio-test__card--assess .hifdh-session__assess-btn:focus-visible {
+  background: rgba(24, 95, 165, 0.06);
+}
+
+.hifdh-audio-test__setup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.hifdh-audio-test__range {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.hifdh-audio-test__range-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--hat-muted);
+}
+
+.hifdh-audio-test__range-field input {
+  border: 1px solid rgba(24, 95, 165, 0.25);
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--hat-ink);
+}
+
+.hifdh-audio-test__bullets {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--hat-muted);
+}
+
+.hifdh-audio-test__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.15rem;
+}
+
+.hifdh-audio-test__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.hifdh-audio-test__summary-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--hat-accent-deep);
+}
+
+.hifdh-audio-test__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+}
+
+.hifdh-audio-test__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.55rem 0.35rem;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--hat-border);
+}
+
+.hifdh-audio-test__stat-num {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hifdh-audio-test__stat-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--hat-muted);
+}
+
+.hifdh-audio-test__stat--firm .hifdh-audio-test__stat-num {
+  color: #16a34a;
+}
+
+.hifdh-audio-test__stat--shaky .hifdh-audio-test__stat-num {
+  color: #ca8a04;
+}
+
+.hifdh-audio-test__stat--need .hifdh-audio-test__stat-num {
+  color: #dc2626;
+}
+
+@keyframes hat-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+@media (max-width: 640px) {
+  .hifdh-audio-test {
+    right: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    bottom: 0.5rem;
+  }
+}

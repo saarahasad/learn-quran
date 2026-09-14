@@ -1,33 +1,21 @@
 import "../styles/mushaf.css";
+import MushafImageReader from "./MushafImageReader.jsx";
+import VerseMarker from "./mushaf/VerseMarker.jsx";
 import { highlightMushafText, toArabicNum } from "../utils/mushafText.js";
 
-export function VerseMarker({ n }) {
-  const num = toArabicNum(n);
-  return (
-    <span className="mushaf-verse-marker" aria-label={`ayah ${n}`}>
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <circle cx="16" cy="16" r="14" fill="#8b6914" />
-        <circle cx="16" cy="16" r="11" fill="#c9a227" />
-        <circle cx="16" cy="16" r="8.5" fill="#5c4020" />
-        {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
-          <polygon
-            key={deg}
-            points="16,2 17.2,6 16,10 14.8,6"
-            fill="#e8d4a0"
-            transform={`rotate(${deg} 16 16)`}
-          />
-        ))}
-      </svg>
-      <span className="mushaf-verse-num">{num}</span>
-    </span>
-  );
-}
+export { VerseMarker };
 
 export function SurahHeader({ nameAr, ayahCount, revelationOrder }) {
   const title = nameAr.startsWith("س") ? nameAr : `سُورَةُ ${nameAr}`;
   return (
     <header className="mushaf-header">
-      <div className="mushaf-header-frame" aria-hidden="true" />
+      <div className="mushaf-header-ornament mushaf-header-ornament--right" aria-hidden="true" />
+      <div className="mushaf-header-ornament mushaf-header-ornament--left" aria-hidden="true" />
+      <div className="mushaf-header-frame" aria-hidden="true">
+        <span className="mushaf-header-frame__line" />
+        <span className="mushaf-header-frame__diamond" />
+        <span className="mushaf-header-frame__line" />
+      </div>
       <div className="mushaf-meta mushaf-meta--right">
         <div className="mushaf-meta-badge">
           <span className="mushaf-meta-label">ترتيبها</span>
@@ -62,7 +50,7 @@ export function MushafText({ ayahs, showBasmala = false }) {
       {ayahs.map((a) => (
         <span key={a.n} className="mushaf-ayah">
           <span
-            dangerouslySetInnerHTML={{ __html: highlightMushafText(a.ar) + " " }}
+            dangerouslySetInnerHTML={{ __html: highlightMushafText(a.ar) + "\u00a0" }}
           />
           <VerseMarker n={a.n} />
         </span>
@@ -71,40 +59,39 @@ export function MushafText({ ayahs, showBasmala = false }) {
   );
 }
 
-export function MadaniMushafPage({ surah, ayahs, showBasmala }) {
-  const revelationOrder = surah.revelationOrder ?? 1;
-  const basmala =
-    showBasmala ?? (ayahs.length > 0 && ayahs[0].n === 1);
-
+export function MushafReaderViewport({ children, surahName }) {
   return (
-    <article className="mushaf-page">
-      <SurahHeader
-        nameAr={surah.nameAr}
-        ayahCount={surah.ayahCount}
-        revelationOrder={revelationOrder}
-      />
-      <MushafText ayahs={ayahs} showBasmala={basmala} />
-    </article>
+    <div className="mushaf-reader" role="region" aria-label={surahName ? `Mushaf: ${surahName}` : "Mushaf reader"}>
+      <div className="mushaf-reader__glow" aria-hidden="true" />
+      <div className="mushaf-reader__viewport">{children}</div>
+    </div>
   );
 }
 
-export function MushafViewToggle({ mode, onChange }) {
+export function MadaniMushafPage({
+  surah,
+  ayahs,
+  compact = false,
+  guidePage = null,
+  onGuidePageChange = null,
+  onSpreadChange = null,
+  markMistakeMode = null,
+  onMarkMistakeModeChange = null,
+  showMemorizationMistakes = null,
+  onShowMemorizationMistakesChange = null,
+}) {
   return (
-    <div className="mushaf-view-toggle">
-      <button
-        type="button"
-        className={mode === "mushaf" ? "active" : ""}
-        onClick={() => onChange("mushaf")}
-      >
-        Mushaf
-      </button>
-      <button
-        type="button"
-        className={mode === "study" ? "active" : ""}
-        onClick={() => onChange("study")}
-      >
-        Study
-      </button>
-    </div>
+    <MushafImageReader
+      surah={surah}
+      ayahs={ayahs ?? surah.ayahs}
+      compact={compact}
+      guidePage={guidePage}
+      onGuidePageChange={onGuidePageChange}
+      onSpreadChange={onSpreadChange}
+      markMistakeMode={markMistakeMode}
+      onMarkMistakeModeChange={onMarkMistakeModeChange}
+      showMemorizationMistakes={showMemorizationMistakes}
+      onShowMemorizationMistakesChange={onShowMemorizationMistakesChange}
+    />
   );
 }

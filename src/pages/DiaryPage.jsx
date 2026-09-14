@@ -1,10 +1,14 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import { DIARY_SURAHS } from "../data/diarySurahs.js";
+import CourseLayout from "../components/CourseLayout.jsx";
+import RecordingHistoryPanel from "../components/RecordingHistoryPanel.jsx";
+import { DIARY_ITEMS, DIARY_SCOPE } from "../data/diarySurahs.js";
 import { daysSince, todayString, useDiaryStore } from "../hooks/useDiaryStore.js";
+import { useRecordingHistory } from "../hooks/useRecordingHistory.js";
 import "./DiaryPage.css";
 
-const SURAHS = DIARY_SURAHS;
+const ITEMS = DIARY_ITEMS;
+const FATIHAH_ITEM = ITEMS.find((item) => item.kind === "surah");
+const BAQARAH_PAGES = ITEMS.filter((item) => item.kind === "page");
 
 const METRICS = [
   {
@@ -36,8 +40,8 @@ const EMPTY_RATINGS = {
   meaning: 0,
 };
 
-function getEntry(diary, num) {
-  return diary[String(num)] || { memorised: "", lastRevised: "", scores: [] };
+function getEntry(diary, id) {
+  return diary[String(id)] || { memorised: "", lastRevised: "", scores: [] };
 }
 
 function getOverallClass(score) {
@@ -47,8 +51,8 @@ function getOverallClass(score) {
   return "high";
 }
 
-function getSurah(num) {
-  return SURAHS.find((surah) => surah.revelationOrder === Number(num));
+function getItem(id) {
+  return ITEMS.find((item) => item.id === String(id)) ?? null;
 }
 
 function formatOverall(score) {
@@ -88,11 +92,12 @@ function StarRating({ value, onChange, label }) {
   );
 }
 
-function SurahName({ surah }) {
+function DiaryItemName({ item }) {
   return (
     <div className="diary-surah-name">
-      <span className="diary-surah-ar" dir="rtl">{surah.nameAr}</span>
-      <span>{surah.name}</span>
+      <span className="diary-surah-ar" dir="rtl">{item.nameAr}</span>
+      <span>{item.label}</span>
+      <span className="diary-item-detail">{item.detail}</span>
     </div>
   );
 }
@@ -106,6 +111,67 @@ function StatCard({ label, value }) {
   );
 }
 
+function DiaryItemRow({
+  item,
+  diary,
+  setMemorised,
+  setLastRevised,
+  stampToday,
+  isDue,
+  getLatestScore,
+}) {
+  const entry = getEntry(diary, item.id);
+  const latest = getLatestScore(item.id);
+  const due = isDue(item.id);
+  const statusText = entry.memorised
+    ? due ? "Revision due" : "Stamp revised today"
+    : "Mark memorised today";
+
+  return (
+    <article className={`diary-row${item.kind === "page" ? " diary-row--page" : ""}`}>
+      <div className="diary-row-title">
+        <span className="diary-surah-number">
+          {item.kind === "page" ? `Page ${item.page}` : "Sūrah 1"}
+        </span>
+        <DiaryItemName item={item} />
+        {item.headline && (
+          <span className="diary-page-headline">{item.headline}</span>
+        )}
+      </div>
+      <label>
+        Memorised on
+        <input
+          type="date"
+          value={entry.memorised}
+          onChange={(event) => setMemorised(item.id, event.target.value)}
+        />
+      </label>
+      <label>
+        Last revised
+        <input
+          type="date"
+          value={entry.lastRevised}
+          onChange={(event) => setLastRevised(item.id, event.target.value)}
+        />
+      </label>
+      <button
+        type="button"
+        className={`diary-status-button ${due ? "warning" : ""}`}
+        onClick={() => stampToday(item.id, entry.memorised ? "lastRevised" : "memorised")}
+      >
+        {statusText}
+      </button>
+      {latest ? (
+        <span className={`diary-score-badge ${getOverallClass(latest.overall)}`}>
+          ★ {formatOverall(latest.overall)}
+        </span>
+      ) : (
+        <span className="diary-score-badge neutral">No score</span>
+      )}
+    </article>
+  );
+}
+
 export default function DiaryPage() {
   const {
     diary,
@@ -115,47 +181,61 @@ export default function DiaryPage() {
     isDue,
     addScore,
     getLatestScore,
-    getRecommended,
   } = useDiaryStore();
+  const { stats: recordingStats } = useRecordingHistory();
   const [activeTab, setActiveTab] = useState("diary");
-  const [selectedSurah, setSelectedSurah] = useState("");
+  const [selectedItemId, setSelectedItemId] = useState("");
   const [ratings, setRatings] = useState(EMPTY_RATINGS);
   const [confirmation, setConfirmation] = useState("");
 
-  const memorisedSurahs = useMemo(
-    () => SURAHS.filter((surah) => getEntry(diary, surah.revelationOrder).memorised),
+  const memorisedItems = useMemo(
+    () => ITEMS.filter((item) => getEntry(diary, item.id).memorised),
     [diary],
   );
 
-  const recommended = getRecommended()
-    .map(getSurah)
-    .filter(Boolean);
+  const recommended = useMemo(
+    () => ITEMS
+      .map((item) => ({
+        item,
+        entry: getEntry(diary, item.id),
+        due: isDue(item.id),
+        latest: getLatestScore(item.id),
+      }))
+      .filter(({ entry }) => entry.memorised)
+      .sort((a, b) => (
+        Number(b.due) - Number(a.due)
+        || (a.latest?.overall ?? Number.POSITIVE_INFINITY) - (b.latest?.overall ?? Number.POSITIVE_INFINITY)
+        || daysSince(a.entry.lastRevised || a.entry.memorised) * -1
+        || a.item.page - b.item.page
+      ))
+      .slice(0, 3)
+      .map(({ item }) => item),
+    [diary, getLatestScore, isDue],
+  );
 
   const stats = useMemo(() => {
     const month = todayString().slice(0, 7);
 
     return {
-      memorised: memorisedSurahs.length,
-      revisedThisMonth: SURAHS.filter((surah) => (
-        getEntry(diary, surah.revelationOrder).lastRevised?.startsWith(month)
+      memorised: memorisedItems.length,
+      revisedThisMonth: ITEMS.filter((item) => (
+        getEntry(diary, item.id).lastRevised?.startsWith(month)
       )).length,
-      due: SURAHS.filter((surah) => isDue(surah.revelationOrder)).length,
+      due: ITEMS.filter((item) => isDue(item.id)).length,
     };
-  }, [diary, isDue, memorisedSurahs.length]);
+  }, [diary, isDue, memorisedItems.length]);
 
-  const selectedEntry = selectedSurah ? getEntry(diary, selectedSurah) : null;
-  const selectedSurahDetails = selectedSurah ? getSurah(selectedSurah) : null;
+  const selectedEntry = selectedItemId ? getEntry(diary, selectedItemId) : null;
+  const selectedItem = selectedItemId ? getItem(selectedItemId) : null;
   const scoreHistory = selectedEntry?.scores || [];
   const allRatingsSet = METRICS.every((metric) => ratings[metric.key] > 0);
   const overall = allRatingsSet
     ? METRICS.reduce((sum, metric) => sum + ratings[metric.key], 0) / METRICS.length
     : 0;
 
-  const dueSurahs = SURAHS.filter((surah) => isDue(surah.revelationOrder));
-  const scoredSessions = memorisedSurahs.flatMap((surah) => (
-    getEntry(diary, surah.revelationOrder).scores || []
-  ));
-  const completionPercent = Math.round((stats.memorised / SURAHS.length) * 100);
+  const dueItems = ITEMS.filter((item) => isDue(item.id));
+  const scoredSessions = memorisedItems.flatMap((item) => getEntry(diary, item.id).scores || []);
+  const completionPercent = Math.round((stats.memorised / ITEMS.length) * 100);
 
   const averages = METRICS.map((metric) => {
     const sessions = scoredSessions.filter((score) => Number.isFinite(score[metric.key]));
@@ -166,45 +246,55 @@ export default function DiaryPage() {
     return { ...metric, value: sessions.length ? average.toFixed(1) : "—" };
   });
 
-  function selectForTest(num) {
-    setSelectedSurah(String(num));
+  function selectForTest(id) {
+    setSelectedItemId(String(id));
     setActiveTab("test");
     setConfirmation("");
   }
 
   function saveSession() {
-    if (!selectedSurah || !allRatingsSet) return;
+    if (!selectedItemId || !allRatingsSet) return;
 
     const roundedOverall = Number(overall.toFixed(1));
-    addScore(selectedSurah, {
+    addScore(selectedItemId, {
       date: todayString(),
       ...ratings,
       overall: roundedOverall,
     });
-    setLastRevised(selectedSurah, todayString());
+    setLastRevised(selectedItemId, todayString());
     setRatings(EMPTY_RATINGS);
-    setConfirmation(`Saved ${selectedSurahDetails?.name || "session"} for today.`);
+    setConfirmation(`Saved ${selectedItem?.detail || "session"} for today.`);
   }
 
   return (
-    <main className="diary-page">
-      <header className="diary-header">
-        <div className="diary-header-copy">
-          <p>Memorisation Diary</p>
-          <h1>Track, test, and revise Juz 30</h1>
-          <div className="diary-header-progress" aria-label={`${completionPercent}% memorised`}>
-            <span style={{ width: `${completionPercent}%` }} />
-          </div>
-          <strong>{completionPercent}% memorised</strong>
+    <CourseLayout
+      activeTab="progress"
+      banner={{
+        code: "QURAN 301 · Juz 1 Progress",
+        title: "Juz 1 Memorisation",
+        subtitle: `${DIARY_SCOPE.range} — track by mushaf page (21 pages in Juz 1).`,
+        meta: [
+          { label: "Pages memorised", value: `${stats.memorised}/${ITEMS.length}` },
+          { label: "Due for review", value: stats.due },
+          { label: "Recordings", value: recordingStats.total },
+        ],
+      }}
+      breadcrumbs={[
+        { label: "Learn Islam", to: "/" },
+        { label: "Juz 1 Progress" },
+      ]}
+    >
+      <div className="diary-progress-bar-wrap">
+        <div className="diary-header-progress" aria-label={`${completionPercent}% memorised`}>
+          <span style={{ width: `${completionPercent}%` }} />
         </div>
-        <div className="diary-header-actions">
-          <Link to="/" className="diary-back-link">Home</Link>
-          <Link to="/surahs" className="diary-back-link primary">Surah library</Link>
-        </div>
-      </header>
+        <span className="diary-progress-label">
+          {completionPercent}% of Juz 1 memorised ({stats.memorised} of {ITEMS.length} pages)
+        </span>
+      </div>
 
-      <nav className="diary-tabs" aria-label="Diary sections">
-        {["diary", "test", "overview"].map((tab) => (
+      <nav className="diary-tabs" aria-label="Progress sections">
+        {["diary", "recordings", "test", "overview"].map((tab) => (
           <button
             type="button"
             key={tab}
@@ -214,7 +304,7 @@ export default function DiaryPage() {
               setConfirmation("");
             }}
           >
-            {tab[0].toUpperCase() + tab.slice(1)}
+            {tab === "recordings" ? "Recordings" : tab[0].toUpperCase() + tab.slice(1)}
           </button>
         ))}
       </nav>
@@ -222,7 +312,7 @@ export default function DiaryPage() {
       {activeTab === "diary" && (
         <section className="diary-panel">
           <div className="diary-stats-row">
-            <StatCard label="Total memorised" value={stats.memorised} />
+            <StatCard label="Pages memorised" value={`${stats.memorised}/${ITEMS.length}`} />
             <StatCard label="Revised this month" value={stats.revisedThisMonth} />
             <StatCard label="Due for revision" value={stats.due} />
           </div>
@@ -230,109 +320,100 @@ export default function DiaryPage() {
           <section className="diary-recommendation">
             <div>
               <p className="diary-kicker">Revise today</p>
-              <h2>Recommended sūrahs</h2>
+              <h2>Recommended pages</h2>
             </div>
             {recommended.length ? (
               <div className="diary-chip-row">
-                {recommended.map((surah) => (
-                  <div className="diary-recommendation-chip" key={surah.id}>
-                    <SurahName surah={surah} />
-                    <button type="button" onClick={() => selectForTest(surah.revelationOrder)}>
+                {recommended.map((item) => (
+                  <div className="diary-recommendation-chip" key={item.id}>
+                    <DiaryItemName item={item} />
+                    <button type="button" onClick={() => selectForTest(item.id)}>
                       Test now →
                     </button>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="diary-empty">Mark a sūrah as memorised to start getting recommendations.</p>
+              <p className="diary-empty">Mark a page as memorised to start getting recommendations.</p>
             )}
           </section>
 
-          <div className="diary-list">
-            {SURAHS.map((surah) => {
-              const entry = getEntry(diary, surah.revelationOrder);
-              const latest = getLatestScore(surah.revelationOrder);
-              const due = isDue(surah.revelationOrder);
-              const statusText = entry.memorised
-                ? due ? "Revision due" : "Stamp revised today"
-                : "Mark memorised today";
+          {FATIHAH_ITEM && (
+            <section className="diary-section-block">
+              <h2 className="diary-section-title">Al-Fātiḥah</h2>
+              <div className="diary-list">
+                <DiaryItemRow
+                  item={FATIHAH_ITEM}
+                  diary={diary}
+                  setMemorised={setMemorised}
+                  setLastRevised={setLastRevised}
+                  stampToday={stampToday}
+                  isDue={isDue}
+                  getLatestScore={getLatestScore}
+                />
+              </div>
+            </section>
+          )}
 
-              return (
-                <article className="diary-row" key={surah.id}>
-                  <div className="diary-row-title">
-                    <span className="diary-surah-number">Sūrah {surah.revelationOrder}</span>
-                    <SurahName surah={surah} />
-                  </div>
-                  <label>
-                    Memorised on
-                    <input
-                      type="date"
-                      value={entry.memorised}
-                      onChange={(event) => setMemorised(surah.revelationOrder, event.target.value)}
-                    />
-                  </label>
-                  <label>
-                    Last revised
-                    <input
-                      type="date"
-                      value={entry.lastRevised}
-                      onChange={(event) => setLastRevised(surah.revelationOrder, event.target.value)}
-                    />
-                  </label>
-                  <button
-                    type="button"
-                    className={`diary-status-button ${due ? "warning" : ""}`}
-                    onClick={() => stampToday(
-                      surah.revelationOrder,
-                      entry.memorised ? "lastRevised" : "memorised",
-                    )}
-                  >
-                    {statusText}
-                  </button>
-                  {latest ? (
-                    <span className={`diary-score-badge ${getOverallClass(latest.overall)}`}>
-                      ★ {formatOverall(latest.overall)}
-                    </span>
-                  ) : (
-                    <span className="diary-score-badge neutral">No score</span>
-                  )}
-                </article>
-              );
-            })}
-          </div>
+          <section className="diary-section-block">
+            <h2 className="diary-section-title">Al-Baqarah — mushaf pages</h2>
+            <p className="diary-section-note">
+              Juz 1 covers pages 2–21 (āyāt 1–141). Mark each page as you memorise it.
+            </p>
+            <div className="diary-list diary-list--pages">
+              {BAQARAH_PAGES.map((item) => (
+                <DiaryItemRow
+                  key={item.id}
+                  item={item}
+                  diary={diary}
+                  setMemorised={setMemorised}
+                  setLastRevised={setLastRevised}
+                  stampToday={stampToday}
+                  isDue={isDue}
+                  getLatestScore={getLatestScore}
+                />
+              ))}
+            </div>
+          </section>
+        </section>
+      )}
+
+      {activeTab === "recordings" && (
+        <section className="diary-panel">
+          <RecordingHistoryPanel />
         </section>
       )}
 
       {activeTab === "test" && (
         <section className="diary-panel diary-test-panel">
           <label className="diary-select-label">
-            Choose a memorised sūrah
+            Choose a memorised page
             <select
-              value={selectedSurah}
+              value={selectedItemId}
               onChange={(event) => {
-                setSelectedSurah(event.target.value);
+                setSelectedItemId(event.target.value);
                 setConfirmation("");
               }}
             >
-              <option value="">Select a sūrah</option>
-              {memorisedSurahs.map((surah) => (
-                <option key={surah.id} value={surah.revelationOrder}>
-                  {surah.revelationOrder}. {surah.name}
+              <option value="">Select a page</option>
+              {memorisedItems.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.detail}
                 </option>
               ))}
             </select>
           </label>
 
-          {!memorisedSurahs.length && (
-            <p className="diary-empty">Mark a sūrah as memorised in the Diary tab before testing.</p>
+          {!memorisedItems.length && (
+            <p className="diary-empty">Mark a page as memorised in the Diary tab before testing.</p>
           )}
 
-          {selectedSurahDetails && (
+          {selectedItem && (
             <>
               <section className="diary-assessment-card">
                 <div className="diary-card-heading">
-                  <SurahName surah={selectedSurahDetails} />
-                  <span>Sūrah {selectedSurahDetails.revelationOrder}</span>
+                  <DiaryItemName item={selectedItem} />
+                  <span>{selectedItem.detail}</span>
                 </div>
 
                 {METRICS.map((metric) => (
@@ -410,27 +491,27 @@ export default function DiaryPage() {
         <section className="diary-panel">
           <section className="diary-overview-section">
             <h2>Due for revision</h2>
-            {dueSurahs.length ? (
+            {dueItems.length ? (
               <div className="diary-chip-row">
-                {dueSurahs.map((surah) => {
-                  const entry = getEntry(diary, surah.revelationOrder);
+                {dueItems.map((item) => {
+                  const entry = getEntry(diary, item.id);
                   const days = daysSince(entry.lastRevised || entry.memorised);
 
                   return (
-                    <span className="diary-due-chip" key={surah.id}>
-                      {surah.name} · {Number.isFinite(days) ? `${days} days` : "never revised"}
+                    <span className="diary-due-chip" key={item.id}>
+                      {item.detail} · {Number.isFinite(days) ? `${days} days` : "never revised"}
                     </span>
                   );
                 })}
               </div>
             ) : (
-              <p className="diary-empty">No sūrahs due — well done!</p>
+              <p className="diary-empty">No pages due — well done!</p>
             )}
           </section>
 
           <section className="diary-overview-section">
             <div className="diary-section-heading">
-              <h2>Progress grid</h2>
+              <h2>Juz 1 page grid</h2>
               <div className="diary-legend">
                 <span><i className="strong" /> Strong</span>
                 <span><i className="needs-work" /> Needs work</span>
@@ -438,10 +519,10 @@ export default function DiaryPage() {
                 <span><i className="not-started" /> Not started</span>
               </div>
             </div>
-            <div className="diary-progress-grid">
-              {SURAHS.map((surah) => {
-                const entry = getEntry(diary, surah.revelationOrder);
-                const latest = getLatestScore(surah.revelationOrder);
+            <div className="diary-progress-grid diary-progress-grid--pages">
+              {ITEMS.map((item) => {
+                const entry = getEntry(diary, item.id);
+                const latest = getLatestScore(item.id);
                 let status = "not-started";
 
                 if (entry.memorised) {
@@ -450,9 +531,18 @@ export default function DiaryPage() {
                   status = "in-progress";
                 }
 
+                const title = item.headline
+                  ? `${item.detail} — ${item.headline}`
+                  : item.detail;
+
                 return (
-                  <div className={`diary-progress-box ${status}`} key={surah.id} title={surah.name}>
-                    <span>{surah.revelationOrder}</span>
+                  <div
+                    className={`diary-progress-box ${status}`}
+                    key={item.id}
+                    title={title}
+                  >
+                    <span>{item.page}</span>
+                    <small>āy {item.verseRange}</small>
                     {latest && <strong>{formatOverall(latest.overall)}</strong>}
                   </div>
                 );
@@ -474,6 +564,6 @@ export default function DiaryPage() {
           </section>
         </section>
       )}
-    </main>
+    </CourseLayout>
   );
 }

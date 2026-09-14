@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iʿrāb Quest — Gate Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2c2419;
+    --muted: #6a5c4a;
+    --display: "Cormorant Garamond", Georgia, serif;
+    --body: "Source Serif 4", Georgia, serif;
+    --arabic: "Amiri", serif;
+    --rafa: #2f6a4f;
+    --nasb: #3a6ea5;
+    --khafd: #c45c28;
+    --jazm: #5a4a86;
+    --cream: #f7f0e4;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; font-family: var(--body); color: var(--ink);
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(255,255,255,0.5), transparent 40%),
+      linear-gradient(165deg, #f8f1e4, #e8dcc4 50%, #ddd0b4);
+    -webkit-font-smoothing: antialiased;
+  }
+  .ar { font-family: var(--arabic); direction: rtl; unicode-bidi: isolate; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
+  header { text-align: center; margin-bottom: 1.6rem; }
+  .kicker {
+    font-family: var(--display); letter-spacing: 0.16em; text-transform: uppercase;
+    font-size: 0.72rem; color: var(--muted);
+  }
+  h1 {
+    font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 6vw, 2.8rem);
+    margin: 0.3rem 0 0.4rem;
+  }
+  .sub { color: var(--muted); margin: 0 auto; max-width: 32em; line-height: 1.5; }
+
+  .hud {
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    margin: 1.4rem 0 1rem; padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.55); border: 1px solid rgba(120,95,55,0.2);
+    border-radius: 12px;
+  }
+  .hud b { font-family: var(--display); font-size: 1.15rem; }
+  .hud span { color: var(--muted); font-size: 0.85rem; }
+
+  .card {
+    background: linear-gradient(165deg, #fffaf2, #f3e8d4);
+    border: 2px solid #b8923a;
+    box-shadow: 0 0 0 1px #7a5a28, 0 16px 40px rgba(74,64,48,0.18);
+    border-radius: 10px; padding: 1.4rem 1.3rem 1.5rem;
+  }
+  .q-num { font-family: var(--display); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.7rem; color: var(--muted); }
+  .prompt {
+    font-family: var(--display); font-size: clamp(1.25rem, 3.5vw, 1.55rem);
+    font-weight: 600; margin: 0.45rem 0 1.1rem; line-height: 1.35;
+  }
+  .choices { display: grid; gap: 0.55rem; }
+  .choice {
+    border: 1.5px solid rgba(120,95,55,0.25); background: rgba(255,255,255,0.7);
+    border-radius: 10px; padding: 0.85rem 1rem; cursor: pointer; text-align: left;
+    font-family: var(--display); font-size: 1.05rem; font-weight: 600; color: var(--ink);
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .choice:hover:not(:disabled) { transform: translateY(-2px); border-color: #b8923a; }
+  .choice:disabled { cursor: default; }
+  .choice.correct { background: color-mix(in srgb, var(--rafa) 18%, white); border-color: var(--rafa); }
+  .choice.wrong { background: color-mix(in srgb, #a33 12%, white); border-color: #a33; opacity: 0.85; }
+  .choice .ar { float: right; font-size: 1.15rem; }
+
+  .feedback {
+    margin-top: 1rem; padding: 0.85rem 1rem; border-radius: 10px;
+    background: rgba(255,255,255,0.65); border-left: 4px solid var(--rafa);
+    font-size: 0.95rem; line-height: 1.5; display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.bad { border-left-color: #a33; }
+
+  .actions { display: flex; gap: 0.6rem; margin-top: 1.1rem; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--display); font-weight: 700; border: none; border-radius: 999px;
+    padding: 0.65rem 1.2rem; cursor: pointer; font-size: 0.95rem;
+  }
+  .btn-primary { background: var(--ink); color: #fffaf0; }
+  .btn-ghost { background: transparent; border: 1px solid rgba(120,95,55,0.35); color: var(--ink); }
+  .btn[hidden] { display: none; }
+
+  .done { text-align: center; display: none; }
+  .done.show { display: block; }
+  .done h2 { font-family: var(--display); font-size: 2rem; margin: 0 0 0.5rem; }
+  .stars { font-size: 1.6rem; letter-spacing: 0.15em; color: #b8923a; margin: 0.4rem 0 1rem; }
+
+  .patterns {
+    margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid rgba(120,95,55,0.2);
+  }
+  .patterns h3 { font-family: var(--display); font-size: 1.1rem; margin: 0 0 0.7rem; }
+  .pat {
+    font-size: 0.88rem; color: #4a3f33; margin: 0 0 0.55rem; padding-left: 0.7rem;
+    border-left: 3px solid #b8923a; line-height: 1.45;
+  }
+  .pat b { font-family: var(--display); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p style="margin:0 0 0.6rem"><a href="index.html" style="font-family:var(--display);color:var(--muted);text-decoration:none;letter-spacing:0.06em">← Kingdom map</a></p>
+      <div class="kicker">Separate training ground</div>
+      <h1>Gate Quest</h1>
+      <p class="sub">Same traveler, new errand, new gate. Pick the castle — or the stamp — the kingdom would issue.</p>
+    </header>
+
+    <div class="hud">
+      <div><span>Score</span><br><b id="score">0</b></div>
+      <div><span>Streak</span><br><b id="streak">0</b></div>
+      <div><span>Progress</span><br><b id="progress">0 / 0</b></div>
+    </div>
+
+    <div class="card" id="playCard">
+      <div class="q-num" id="qNum">Question 1</div>
+      <p class="prompt" id="prompt"></p>
+      <div class="choices" id="choices"></div>
+      <div class="feedback" id="feedback"></div>
+      <div class="actions">
+        <button class="btn btn-primary" id="nextBtn" type="button" hidden>Next errand →</button>
+        <button class="btn btn-ghost" id="restartBtn" type="button" hidden>Train again</button>
+      </div>
+    </div>
+
+    <div class="card done" id="doneCard">
+      <h2>Gates cleared</h2>
+      <div class="stars" id="stars"></div>
+      <p id="doneMsg"></p>
+      <div class="actions" style="justify-content:center">
+        <button class="btn btn-primary" id="againBtn" type="button">Run the roads again</button>
+      </div>
+    </div>
+
+    <section class="patterns">
+      <h3>Patterns to circle on the mind map</h3>
+      <div id="patterns"></div>
+    </section>
+  </div>
+
+<script src="iraab-data.js"></script>
+<script>
+const QUESTS = [...IRAAB.quests];
+const CASTLES = IRAAB.castles;
+
+let order = [];
+let i = 0;
+let score = 0;
+let streak = 0;
+let answered = false;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let n = a.length - 1; n > 0; n--) {
+    const j = Math.floor(Math.random() * (n + 1));
+    [a[n], a[j]] = [a[j], a[n]];
+  }
+  return a;
+}
+
+function castleChoices() {
+  return Object.values(CASTLES).map(c => ({
+    value: c.id,
+    label: `${c.name}`,
+    ar: c.ar,
+    color: c.color
+  }));
+}
+
+function signChoices(castleId) {
+  const c = CASTLES[castleId];
+  const seen = new Set();
+  return c.doors.filter(d => {
+    if (seen.has(d.name)) return false;
+    seen.add(d.name);
+    return true;
+  }).map(d => ({ value: d.name, label: d.name, ar: d.badge, color: c.color }));
+}
+
+function countChoices() {
+  return [
+    { value: "1", label: "One seal", ar: "١" },
+    { value: "2", label: "Two seals", ar: "٢" },
+    { value: "3", label: "Three seals", ar: "٣" },
+    { value: "4", label: "Four seals", ar: "٤" }
+  ];
+}
+
+function optionsFor(q) {
+  if (q.pick === "castle") return castleChoices();
+  if (q.pick === "count") return countChoices();
+  return signChoices(q.castle);
+}
+
+function updateHud() {
+  document.getElementById("score").textContent = score;
+  document.getElementById("streak").textContent = streak;
+  document.getElementById("progress").textContent = `${Math.min(i + 1, order.length)} / ${order.length}`;
+}
+
+function showQuestion() {
+  answered = false;
+  document.getElementById("playCard").style.display = "block";
+  document.getElementById("doneCard").classList.remove("show");
+  document.getElementById("nextBtn").hidden = true;
+  document.getElementById("restartBtn").hidden = true;
+  const fb = document.getElementById("feedback");
+  fb.className = "feedback";
+  fb.textContent = "";
+
+  if (i >= order.length) {
+    finish();
+    return;
+  }
+
+  const q = order[i];
+  document.getElementById("qNum").textContent = `Errand ${i + 1} of ${order.length}`;
+  document.getElementById("prompt").textContent = q.prompt;
+  updateHud();
+
+  const choices = document.getElementById("choices");
+  choices.innerHTML = "";
+  shuffle(optionsFor(q)).forEach(opt => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "choice";
+    btn.innerHTML = `${opt.label}${opt.ar ? `<span class="ar">${opt.ar}</span>` : ""}`;
+    if (opt.color) btn.style.setProperty("--c", opt.color);
+    btn.addEventListener("click", () => pick(opt.value, btn));
+    choices.appendChild(btn);
+  });
+}
+
+function pick(value, btn) {
+  if (answered) return;
+  answered = true;
+  const q = order[i];
+  const ok = String(value) === String(q.answer);
+  const buttons = [...document.querySelectorAll(".choice")];
+  buttons.forEach(b => { b.disabled = true; });
+
+  if (ok) {
+    btn.classList.add("correct");
+    score += 10 + Math.min(streak, 5) * 2;
+    streak += 1;
+  } else {
+    btn.classList.add("wrong");
+    streak = 0;
+    buttons.forEach(b => {
+      const label = b.textContent;
+      // mark correct by matching answer in option values via data — re-check from options
+    });
+    // highlight correct
+    optionsFor(q).forEach((opt, idx) => {
+      if (String(opt.value) === String(q.answer)) {
+        buttons.forEach(b => {
+          if (b.textContent.includes(opt.label)) b.classList.add("correct");
+        });
+      }
+    });
+  }
+
+  const fb = document.getElementById("feedback");
+  fb.textContent = (ok ? "✓ " : "→ ") + q.explain;
+  fb.className = "feedback show" + (ok ? "" : " bad");
+  document.getElementById("nextBtn").hidden = false;
+  updateHud();
+}
+
+function next() {
+  i += 1;
+  showQuestion();
+}
+
+function finish() {
+  document.getElementById("playCard").style.display = "none";
+  const done = document.getElementById("doneCard");
+  done.classList.add("show");
+  const max = order.length * 20;
+  const ratio = score / Math.max(max, 1);
+  const stars = ratio >= 0.85 ? "★★★" : ratio >= 0.6 ? "★★☆" : "★☆☆";
+  document.getElementById("stars").textContent = stars;
+  document.getElementById("doneMsg").textContent =
+    `Score ${score}. The travelers remember who guided them well.`;
+}
+
+function start() {
+  order = shuffle(QUESTS);
+  i = 0;
+  score = 0;
+  streak = 0;
+  showQuestion();
+}
+
+document.getElementById("nextBtn").addEventListener("click", next);
+document.getElementById("againBtn").addEventListener("click", start);
+document.getElementById("patterns").innerHTML = IRAAB.patterns.map(p =>
+  `<p class="pat"><b>${p.title}.</b> ${p.text}</p>`
+).join("");
+
+start();
+</script>
+</body>
+</html>

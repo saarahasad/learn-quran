@@ -1,0 +1,63 @@
+/** Tuḥfat commentary — علامات الاسم (pp. 37–42) */
+
+function b(ar, en, label = null, footnote = null) {
+  return { label, ar, en, footnote };
+}
+
+export const ALAMAT_ISM_AFTER = {
+  2: [
+    b("[عَلَامَاتُ الِاسْمِ]", "[The Signs of the Noun]"),
+
+    b(
+      "قَالَ: فَالِاسْمُ يُعْرَفُ: بِالْخَفْضِ، وَالتَّنْوِينِ، وَدُخُولِ الْأَلِفِ وَاللَّامِ، وَحُرُوفِ الْخَفْضِ، وَهِيَ: مِنْ، وَإِلَى، وَعَنْ، وَعَلَى، وَفِي، وَرُبَّ، وَالْبَاءُ، وَالْكَافُ، وَاللَّامُ، وَحُرُوفِ الْقَسَمِ، وَهِيَ: الْوَاوُ، وَالْبَاءُ، وَالتَّاءُ.",
+      "He said: The noun is known by al-khaf\u1e0d (the acceptance of jarr), al-tanw\u012bn (a mark which indicates indefiniteness), the acceptance of alif and l\u0101m (the definite article \"al-\"), the particles of al-khaf\u1e0d\u2014which are: min, il\u0101, 'an, 'al\u0101, f\u012b, rubba, al-b\u0101, al-k\u0101f, al-l\u0101m, and the particles of al-qasam (particles of avowal)\u2014which are: al-w\u0101w, al-b\u0101 and al-t\u0101.",
+      "قَالَ",
+    ),
+
+    b(
+      "وَأَقُولُ: لِلِاسْمِ عَلَامَاتٌ يَتَمَيَّزُ عَنْ أَخَوَيْهِ الْفِعْلِ وَالْحَرْفِ بِوُجُودِ وَاحِدَةٍ مِنْهَا أَوْ قَبُولِهَا، وَقَدْ ذَكَرَ الْمُؤَلِّفُ \u2014 رَحِمَهُ اللَّهُ \u2014 مِنْ هَذِهِ الْعَلَامَاتِ أَرْبَعَ عَلَامَاتٍ، وَهِيَ: الْخَفْضُ، وَالتَّنْوِينُ، وَدُخُولُ الْأَلِفِ وَاللَّامِ، وَدُخُولُ حَرْفٍ مِنْ حُرُوفِ الْخَفْضِ.",
+      "I say: The noun has indicators that differentiate it from its two brothers (the verb and the particle) through the presence or the acceptance of one of them. The author mentioned here\u2014may Allah have mercy upon him\u2014four from these signs. They are: (i) al-khaf\u1e0d, (ii) al-tanw\u012bn, (iii) the use of alif and l\u0101m, (iv) the use of a particle from the particles of al-khaf\u1e0d.",
+      "وَأَقُولُ",
+    ),
+
+    b(
+      "أَمَّا الْخَفْضُ فَهُوَ فِي اللُّغَةِ: ضِدُّ الِارْتِفَاعِ.",
+      "As for al-khaf\u1e0d, linguistically it is the opposite of rising.",
+    ),
+
+    b(
+      "وَفِي اصْطِلَاحِ النُّحَاةِ: عِبَارَةٌ عَنِ الْكَسْرَةِ الَّتِي يُحْدِثُهَا الْعَامِلُ أَوْ مَا نَابَ عَنْهَا، وَذَلِكَ مِثْلُ كَسْرَةِ الرَّاءِ مِنْ (بَكْرٍ) وَ(عَمْرٍو) فِي نَحْوِ قَوْلِكَ: (مَرَرْتُ بِبَكْرٍ) وَقَوْلِكَ (هَذَا كِتَابُ عَمْرٍو) فَبَكْرٍ وَعَمْرٍو: اسْمَانِ لِوُجُودِ الْكَسْرَةِ فِي آخِرِ كُلِّ وَاحِدٍ مِنْهُمَا.",
+      "And in terms of the nomenclature of the grammarians it means: The state expressed by the diacritical mark al-kasrah that is brought about by an '\u0101mil (governor), or what takes the place of the kasrah. Examples of this are the kasrahs on the Arabic letter r\u0101 in \"Bakrin\" and \"Amrin\", when utilised in a statement such as, \"I passed by Bakr,\" and, \"This is the book of 'Amr.\" In both cases the two nouns Bakr and 'Amr have a kasrah present at their end.",
+    ),
+
+    b(
+      "وَأَمَّا التَّنْوِينُ، فَهُوَ فِي اللُّغَةِ التَّصْوِيتُ، تَقُولُ (نَوَّنَ الطَّائِرُ) أَيْ: صَوَّتَ.",
+      "As for al-tanw\u012bn, linguistically it means phonation i.e. if it is said \"The bird voiced a sound.\"",
+    ),
+
+    b(
+      "وَفِي اصْطِلَاحِ النُّحَاةِ هُوَ: نُونٌ سَاكِنَةٌ تَتْبَعُ آخِرَ الِاسْمِ لَفْظًا، وَتُفَارِقُهُ خَطًّا لِلِاسْتِغْنَاءِ عَنْهَا بِتِكْرَارِ الشَّكْلَةِ عِنْدَ الضَّبْطِ بِالْقَلَمِ، نَحْوُ: مُحَمَّدٍ، وَكِتَابٍ، وَإِيهٍ، وَصَهٍ، وَمُسْلِمَاتٍ، وَفَاطِمَاتٍ، وَحِينَئِذٍ، وَسَاعَتَئِذٍ، فَهَذِهِ الْكَلِمَاتُ كُلُّهَا أَسْمَاءٌ، بِدَلِيلِ وُجُودِ التَّنْوِينِ فِي آخِرِ كُلِّ كَلِمَةٍ مِنْهَا.",
+      "And in terms of the nomenclature of the grammarians it means: It is the vocalised nunation (i.e. the adding of the sound \"un\" to a word) that follows the end of a word, it is a verbalised n\u016bn although it is not written, however writing the diacritic serves against repetition in punctuating tanw\u012bn's written form. Examples of this are: Mu\u1e25ammad, a book, well, be quiet, Muslim women, F\u0101\u1e6dimahs, at that time and at that hour. All of these words are nouns, and the evidence for this is the presence of the tanw\u012bn at the end of each of them.",
+      null,
+      "\u2079 The tanw\u012bn is of ten types, see al-Kaw\u0101kib (1/31\u201334) and \u1e24\u0101shiyat al-F\u0101kih\u012b 'al\u0101 al-Qa\u1e6dr (1/22).",
+    ),
+
+    b(
+      "الْعَلَامَةُ الثَّالِثَةُ مِنْ عَلَامَاتِ الِاسْمِ: دُخُولُ (أَلْ) فِي أَوَّلِ الْكَلِمَةِ، نَحْوُ: الرَّجُلُ، وَالْغُلَامُ، وَالْفَرَسُ، وَالْكِتَابُ، وَالْبَيْتُ، وَالْمَدْرَسَةُ. فَهَذِهِ الْكَلِمَاتُ، كُلُّهَا أَسْمَاءٌ لِدُخُولِ الْأَلِفِ وَاللَّامِ فِي أَوَّلِهَا.",
+      "The third sign from the signs of the noun: the use of (alif-lam) at the start of a word, e.g.: the man, the boy, the horse, the book, the house, the school. All of these words are nouns because of the entry of alif and lam at their beginning.",
+    ),
+
+    b(
+      "الْعَلَامَةُ الرَّابِعَةُ: دُخُولُ حَرْفٍ مِنْ حُرُوفِ الْخَفْضِ، نَحْوُ (ذَهَبْتُ مِنَ الْبَيْتِ إِلَى الْمَدْرَسَةِ) فَكُلٌّ مِنْ (الْبَيْتِ) وَ(الْمَدْرَسَةِ) اسْمٌ، لِدُخُولِ حَرْفِ الْخَفْضِ عَلَيْهِمَا، وَلِوُجُودِ (أَلْ) فِي أَوَّلِهِمَا.",
+      "The fourth sign: The use of a particle from the particles of al-khaf\u1e0d e.g. \"I went from the house to the madrassah.\" Both al-bayt (the house) and al-madrasah here are nouns due to the use of a particle of khaf\u1e0d and the presence of \"al-\" at the start of both of them.",
+    ),
+
+    b(
+      "وَحُرُوفُ الْخَفْضِ هِيَ: (مِنْ) وَلَهَا مَعَانٍ: مِنْهَا الِابْتِدَاءُ، نَحْوُ (سَافَرْتُ مِنَ الْقَاهِرَةِ).",
+      "The particles of al-khaf\u1e0d\u00b9\u2070 are: Min, and it has a number of meanings. From them is beginning e.g. \"I travelled from Cairo.\"",
+      null,
+      "\u00b9\u2070 For investigation in the meaning of the particles, one should study Mughni al-Lab\u012bb by Ibn Hish\u0101m, in which he explains in detail in a concise manner, may Allah have mercy on him.",
+    ),
+
+    b(
+      "وَ(إِلَى) مِنْ مَعَانِيهَا الِانْتِhَاءُ، نَحْwُ (سَافَرْtُ إِlَى الْإِsْkَnْdَrِيَّةِ).",

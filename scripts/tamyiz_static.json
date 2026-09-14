@@ -1,0 +1,35 @@
+{
+  "after0": [
+    {
+      "ar": "[التَّمْيِيْزُ]",
+      "en": "[The Disambiguation]"
+    },
+    {
+      "ar": "PLACEHOLDER_QALA",
+      "en": "He said: The Chapter of the Disambiguation. The disambiguation is a manṣūb noun which gives description to an ambiguous object, as in the following statements: “Zayd poured out sweat”, “Bakr expanded with fat”, “Muḥammad made pleasant in his self”, “I purchased twenty books”, “I possessed ninety ewes”, “Zayd is nobler than you as a father” and, “More handsome than you facially.”",
+      "label": "قالَ",
+      "footnote": "²⁰² In English grammar, a disambiguation refers to the process of clarifying a word with multiple meanings due to its given context."
+    },
+    {
+      "ar": "وَأَقُولُ: لِلتَّمْيِيْزِ فِي اللُّغَةِ مَعْنَيَانِ؛ الْأَوَّلُ: التَّفْسِيرُ مُطْلَقًا؛ تَقُولُ: (مَيَّزْتُ كَذَا)؛ أَيْ فَسَّرْتُهُ. وَالثَّانِي: فَصْلُ بَعْضِ الْأُمُورِ عَنْ بَعْضٍ تَقُولُ: (مَيَّزْتُ الْقَوْمَ)، أَيْ فَصَلْتُ بَعْضَهمْ عَنْ بَعْضٍ.",
+      "en": "I say: The word al-tamyīz has two linguistic meanings: (i) Explanation in the general sense e.g. “I made it distinct (i.e. I explained it).” (ii) To separate part of something from another e.g. “I made the people distinct (i.e. I separated some of them from others).”",
+      "label": "وَأَقُولُ",
+      "footnote": "²⁰³ Al-Ḥāmidī said (p. 133), “Linguistically it means separating one thing from something else e.g. āyah fifty nine in Sūrah Yāsīn : {وَامْتَازُوا الْيَوْمَ أَيُّهَا الْمُجْرِمُونَ} {But stand apart today, you criminals}”."
+    },
+    {
+      "ar": "وَالتَّمْيِيْزُ فِي اصْطِلَاحِ النَّحَاةِ عِبَارَةٌ عَنْ: الِاسْمِ الصَّرِيحِ، الْمَنْصُوبِ، الْمُفَسِّرِ لِما انْبَهَمَ مِنَ الذَّوَاتِ أَوِ النِّسبِ.",
+      "en": "The definition of the word al-tamyīz according to the nomenclature of the grammarians is: an explicit noun, manṣūb, which gives clarification to an ambiguity in an entity or its relationship [to the context]."
+    }
+  ],
+  "after3": [],
+  "exercises": {
+    "titleAr": "تَمْرِينَاتٌ",
+    "titleEn": "Exercises",
+    "items": []
+  },
+  "end": {
+    "titleAr": "أَسْئِلَةٌ",
+    "titleEn": "Questions",
+    "items": []
+  }
+}

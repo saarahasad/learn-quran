@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { juzCoursePath } from '../data/courseUnits.js';
 import { TEXTBOOKS } from '../data/textbooks.js';
 import { enrichTextbookHtml } from '../utils/classifyTerms.js';
 import '../styles/textbook.css';
@@ -36,8 +38,25 @@ export default function TextbookStudy({ surah, onBack, onRevise, onQuiz }) {
   }
 
   return (
-    <div className="textbook-page">
+    <div className="textbook-page course-lesson-shell">
       <style>{TEXTBOOK_FONTS}</style>
+      <header className="course-header">
+        <Link to="/" className="course-header-brand" aria-label="Home">
+          <span className="course-header-brand-ar" dir="rtl">تعلّم الإسلام</span>
+        </Link>
+        <nav className="course-header-nav" aria-label="Course">
+          <Link to={juzCoursePath(surah.juz)}>Juz overview</Link>
+        </nav>
+      </header>
+      <nav className="course-breadcrumbs" aria-label="Breadcrumb">
+        <Link to="/">Learn Islam</Link>
+        <span aria-hidden>›</span>
+        <Link to={juzCoursePath(surah.juz)}>Juz {surah.juz}</Link>
+        <span aria-hidden>›</span>
+        <span>{surah.name}</span>
+        <span aria-hidden>›</span>
+        <span>Iʿrāb study</span>
+      </nav>
       <header className="textbook-page__header">
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <button

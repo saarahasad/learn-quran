@@ -7,12 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "workbooks:rafa": "node scripts/generate-rafa-workbooks.mjs",
+    "transcribe:dev": "node server/transcribe.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.113.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.15.1"
+    "react-router-dom": "^7.15.1",
+    "ws": "^8.21.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

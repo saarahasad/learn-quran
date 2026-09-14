@@ -1,32 +1,43 @@
-import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import {
-  MadaniMushafPage,
-  MushafViewToggle,
-} from "./src/components/MadaniMushaf.jsx";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
+import { MadaniMushafPage } from "./src/components/MadaniMushaf.jsx";
+import HifdhAudioTestPopup from "./src/components/hifdh/HifdhAudioTestPopup.jsx";
+import HifdhSessionMode from "./src/components/hifdh/HifdhSessionMode.jsx";
+import BaqarahPagesSidebar from "./src/components/BaqarahPagesSidebar.jsx";
+import Page10MemorizePopup from "./src/components/baqarah/Page10MemorizePopup.jsx";
+import CourseLayout, {
+  CourseSidebar,
+  CourseSidebarUnit,
+} from "./src/components/CourseLayout.jsx";
 import TextbookStudy from "./src/components/TextbookStudy.jsx";
+import { hasBaqarahPageGuides } from "./src/data/baqarahPageGuides.js";
 import { GENERATED_SURAHS } from "./src/data/generatedSurahs.js";
+import { JUZ1_GENERATED_SURAHS } from "./src/data/juz1GeneratedSurahs.js";
 import { JUZ30_GENERATED_SURAHS } from "./src/data/juz30GeneratedSurahs.js";
-import { highlightMushafText } from "./src/utils/mushafText.js";
+import {
+  getJuzCourse,
+  groupSurahsByUnit,
+  juzCoursePath,
+  juzCourseToUnit,
+} from "./src/data/courseUnits.js";
 import "./src/styles/mushaf.css";
 import "./src/styles/surah-home.css";
 
 const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap');`;
 
 const C = {
+  cream:"#ffffff",warm:"#f3f4f6",border:"#e5e7eb",
+  ink:"#111827",ink2:"#6b7280",ink3:"#9ca3af",
+  teal:"#ff6b4a",tealBg:"#fff4f0",tealDark:"#e85535",
+  green:"#6bcb77",greenBg:"#ecfdf0",greenDark:"#4a9e55",
+  amber:"#d97706",amberBg:"#fffbeb",amberDark:"#92400e",
+  red:"#dc2626",redBg:"#fef2f2",redDark:"#991b1b",
   s:[
-    {bg:"#e8f4f0",mid:"#2d7a6a",deep:"#1a4a3f",border:"#b8ddd6"},
-    {bg:"#f0eafa",mid:"#6b4fa8",deep:"#3d2878",border:"#cfc0e8"},
-    {bg:"#fef3e8",mid:"#c4781a",deep:"#7a4a0a",border:"#f0c98a"},
-    {bg:"#eaf0fa",mid:"#2a5fa8",deep:"#163878",border:"#a8c4e8"},
-    {bg:"#faeaea",mid:"#a83030",deep:"#6a1818",border:"#e8a8a8"},
-    {bg:"#eafaea",mid:"#2a8a3a",deep:"#165020",border:"#a8d8b0"},
+    {bg:"#fff4f0",mid:"#ff6b4a",deep:"#e85535",border:"#ffc9b8"},
+    {bg:"#ecfaf8",mid:"#3ecfbc",deep:"#2aab9b",border:"#a8ebe3"},
+    {bg:"#ecfdf0",mid:"#6bcb77",deep:"#4a9e55",border:"#b8e6c0"},
+    {bg:"#f5f0ff",mid:"#9b72f2",deep:"#7c52d4",border:"#d4c4f7"},
   ],
-  cream:"#fefcf8",warm:"#fff9f2",border:"#ede8e0",
-  ink:"#1a1814",ink2:"#4a4540",ink3:"#8a8278",
-  teal:"#2d7a6a",tealBg:"#e8f4f0",tealDark:"#1a4a3f",
-  amber:"#c4781a",amberBg:"#fef3e8",amberDark:"#7a4a0a",
-  red:"#a83030",redBg:"#faeaea",redDark:"#6a1818",
 };
 
 // ── Shared components
@@ -37,19 +48,34 @@ const Btn = ({children,onClick,variant="outline",style={},disabled=false}) => {
   const v = {
     dark:{background:C.ink,color:"#fff",border:"none"},
     outline:{background:"#fff",color:C.ink,border:`1px solid ${C.border}`},
-    teal:{background:C.tealBg,color:C.tealDark,border:"1px solid #b8ddd6"},
+    teal:{background:C.tealBg,color:C.tealDark,border:`1px solid ${C.border}`},
     ghost:{background:"transparent",color:C.ink3,border:`1px solid ${C.border}`},
   };
   return <button onClick={onClick} disabled={disabled} style={{fontFamily:"'Inter',sans-serif",fontSize:18,fontWeight:500,borderRadius:10,padding:"10px 18px",cursor:disabled?"default":"pointer",opacity:disabled?.5:1,transition:"all .15s",...v[variant],...style}}>{children}</button>;
 };
-const TopBar = ({left,right}) => (
-  <div style={{background:"#fff",borderBottom:`1px solid ${C.border}`,padding:"10px 1.5rem",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12}}>
-    <div style={{display:"flex",alignItems:"center",gap:8}}>{left}</div>
-    <div style={{display:"flex",gap:8}}>{right}</div>
+const CourseLessonHeader = ({ juz }) => (
+  <header className="course-header">
+    <Link to="/" className="course-header-brand" aria-label="Home">
+      <span className="course-header-brand-ar" dir="rtl">تعلّم الإسلام</span>
+    </Link>
+    {juz && (
+      <nav className="course-header-nav" aria-label="Course">
+        <Link to={`/juz/${juz}`}>Juz overview</Link>
+      </nav>
+    )}
+  </header>
+);
+const LessonBar = ({left,right,onBack}) => (
+  <div className="course-lesson-topbar">
+    <div className="course-lesson-topbar-left">
+      {onBack&&<button type="button" className="course-lesson-back" onClick={onBack} aria-label="Back to course">←</button>}
+      {left}
+    </div>
+    <div className="course-lesson-actions">{right}</div>
   </div>
 );
 const BackBtn = ({onClick}) => (
-  <button onClick={onClick} style={{background:"none",border:"none",cursor:"pointer",fontSize:28,color:C.ink2,padding:"0 4px"}}>←</button>
+  <button type="button" className="course-lesson-back" onClick={onClick} aria-label="Back">←</button>
 );
 const AyahPair = ({ar,en,arHtml}) => (
   <div className="quiz-ayah-pair">
@@ -291,6 +317,7 @@ const ADIYAT = {
 };
 
 const DEFAULT_SURAHS = [
+  ...Object.values(JUZ1_GENERATED_SURAHS),
   ...Object.values(JUZ30_GENERATED_SURAHS),
   BUROOJ,
   TARIQ,
@@ -315,7 +342,7 @@ const ORDERED_DEFAULT_SURAHS = sortSurahs(DEFAULT_SURAHS);
 const SHOW_TEACHER = false;
 
 const SK = "muraja3a_v4";
-function load() {
+export function loadRevisionSurahs() {
   try {
     const r = localStorage.getItem(SK);
     if (r) {
@@ -328,6 +355,9 @@ function load() {
     // Ignore malformed localStorage and fall back to bundled content.
   }
   return ORDERED_DEFAULT_SURAHS;
+}
+function load() {
+  return loadRevisionSurahs();
 }
 function save(s) {
   try {
@@ -345,21 +375,17 @@ const moveInArray = (arr, from, to) => {
   next.splice(to, 0, item);
   return next;
 };
-const formatDuration = seconds => {
-  const safe = Math.max(0, seconds || 0);
-  const mins = Math.floor(safe / 60);
-  const secs = safe % 60;
-  return `${mins}:${String(secs).padStart(2, "0")}`;
-};
-const ROUTE_VIEWS = new Set(["home","revise","iraab","quiz","recitation","teacher"]);
+const ROUTE_VIEWS = new Set(["revise","iraab","quiz","teacher"]);
 const defaultSurahId = surahs => surahs[0]?.id ?? "burooj";
 const clampScene = (scene,max) => Math.min(Math.max(scene,0),Math.max(max,0));
 
 function normalizeRoute(route,surahs) {
   const fallbackSid = defaultSurahId(surahs);
   const surah = surahs.find(s=>s.id===route.sid)||surahs[0];
-  let view = ROUTE_VIEWS.has(route.view) ? route.view : "home";
-  if(view==="teacher"&&!SHOW_TEACHER) view = "home";
+  let view = route.view === "surah" || route.view === "home" ? "revise" : route.view;
+  view = ROUTE_VIEWS.has(view) ? view : "revise";
+  if(view==="teacher"&&!SHOW_TEACHER) view = "revise";
+  if(view==="quiz"&&surah?.id==="baqarah") view = "revise";
   const rawScene = Number(route.scene);
   const scene = view==="revise"&&Number.isFinite(rawScene)
     ? clampScene(rawScene,(surah?.scenes?.length??1)-1)
@@ -369,299 +395,241 @@ function normalizeRoute(route,surahs) {
 }
 
 function routeFromUrl(surahs) {
-  if(typeof window==="undefined") return normalizeRoute({sid:defaultSurahId(surahs),view:"home",scene:0},surahs);
+  if(typeof window==="undefined") return normalizeRoute({sid:defaultSurahId(surahs),view:"revise",scene:0},surahs);
   const params = new URLSearchParams(window.location.search);
   return normalizeRoute({
     sid:params.get("surah")||defaultSurahId(surahs),
-    view:params.get("view")||"home",
+    view:params.get("view")||"revise",
     scene:params.get("scene")||0,
   },surahs);
 }
 
-function routeUrl(route) {
+function routeUrl(route,juz) {
   const params = new URLSearchParams();
-  if(route.view!=="home") {
-    params.set("surah",route.sid);
-    params.set("view",route.view);
-    if(route.view==="revise"&&route.scene>0) params.set("scene",String(route.scene));
-  }
+  params.set("surah",route.sid);
+  if(route.view!=="revise") params.set("view",route.view);
+  if(route.view==="revise"&&route.scene>0) params.set("scene",String(route.scene));
   const query = params.toString();
-  return `${window.location.pathname}${query?`?${query}`:""}${window.location.hash}`;
+  return `/juz/${juz}/study${query?`?${query}`:""}`;
 }
 
 // ════════════════════════════════════════════════
 // ROOT
 // ════════════════════════════════════════════════
-export default function App() {
-  const [surahs] = useState(load);
+export default function QuranRevisionApp() {
+  const { juzNum } = useParams();
+  const juz = Number(juzNum);
+  const juzCourse = getJuzCourse(juz);
+  const [allSurahs] = useState(load);
+  const surahs = useMemo(
+    () => (juzCourse?.available ? allSurahs.filter((s) => s.juz === juz) : []),
+    [allSurahs, juz, juzCourse],
+  );
   const [route,setRoute] = useState(()=>routeFromUrl(surahs));
-  const [open,setOpen] = useState({});
-  const [displayMode,setDisplayMode] = useState("mushaf");
+  const [guidePage, setGuidePage] = useState(null);
+  const [mushafQuizScope, setMushafQuizScope] = useState(null);
+  const [testOpen, setTestOpen] = useState(false);
+  const [memorizeOpen, setMemorizeOpen] = useState(false);
+  const [page10DrillOpen, setPage10DrillOpen] = useState(false);
 
-  useEffect(()=>save(surahs),[surahs]);
+  const handleSpreadChange = useCallback((scope) => {
+    setMushafQuizScope(scope);
+  }, []);
+
+  useEffect(()=>save(allSurahs),[allSurahs]);
+  useEffect(() => {
+    setGuidePage(null);
+    setMushafQuizScope(null);
+    setTestOpen(false);
+    setMemorizeOpen(false);
+    setPage10DrillOpen(false);
+  }, [route.sid]);
   useEffect(()=>{
     const current = routeFromUrl(surahs);
-    window.history.replaceState(current,"",routeUrl(current));
+    window.history.replaceState(current,"",routeUrl(current,juz));
     const onPopState = () => {
       setRoute(routeFromUrl(surahs));
-      setOpen({});
     };
     window.addEventListener("popstate",onPopState);
     return () => window.removeEventListener("popstate",onPopState);
-  },[surahs]);
+  },[surahs,juz]);
 
-  const {sid,view,scene} = route;
+  if (!juzCourse?.available || surahs.length === 0) {
+    return <Navigate to="/" replace />;
+  }
+
+  const { sid,view,scene } = route;
   const surah = surahs.find(s=>s.id===sid)||surahs[0];
+  const showSurahQuiz = surah.id !== "baqarah";
 
   function navigate(next,{replace=false}={}) {
     const normalized = normalizeRoute(typeof next==="function"?next(route):next,surahs);
-    const nextUrl = routeUrl(normalized);
+    const nextUrl = routeUrl(normalized,juz);
     const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
     setRoute(normalized);
-    setOpen({});
     window.history[replace||nextUrl===currentUrl?"replaceState":"pushState"](normalized,"",nextUrl);
   }
   function go(id,v){ navigate({sid:id,view:v,scene:0}); }
-  function goHome(){ navigate({sid,view:"home",scene:0},{replace:true}); }
+  function goRevise(){ navigate({sid,view:"revise",scene:0},{replace:true}); }
   function goView(v){ navigate({sid,view:v,scene:v==="revise"?scene:0}); }
   function goScene(nextScene){ navigate({sid,view:"revise",scene:nextScene},{replace:true}); }
 
-  if(view==="home") return <Home surahs={surahs} go={go} />;
   if(view==="iraab") return (
     <TextbookStudy
       surah={surah}
-      onBack={goHome}
+      onBack={goRevise}
       onRevise={()=>goView("revise")}
-      onQuiz={()=>goView("quiz")}
+      onQuiz={showSurahQuiz ? () => goView("quiz") : undefined}
     />
   );
   if(view==="teacher") {
-    if(!SHOW_TEACHER) return <Home surahs={surahs} go={go} />;
-    return <Teacher surah={surah} onBack={goHome} onQuiz={()=>goView("quiz")} onRevise={()=>goView("revise")} onIraab={surah.hasTextbook?()=>goView("iraab"):undefined} />;
+    if(!SHOW_TEACHER) return <Navigate to={routeUrl({ sid, view: "revise", scene: 0 }, juz)} replace />;
+    return <Teacher surah={surah} onBack={goRevise} onQuiz={showSurahQuiz ? () => goView("quiz") : undefined} onRevise={()=>goView("revise")} onIraab={surah.hasTextbook?()=>goView("iraab"):undefined} />;
   }
-  if(view==="quiz") return <Quiz surah={surah} onBack={goHome} onTeacher={()=>goView("teacher")} onIraab={surah.hasTextbook?()=>goView("iraab"):undefined} />;
-  if(view==="recitation") return <RecitationQuiz surah={surah} onBack={goHome} />;
+  if(view==="quiz" && showSurahQuiz) return (
+    <Quiz
+      surah={surah}
+      mushafScope={mushafQuizScope}
+      onBack={goRevise}
+      onTeacher={()=>goView("teacher")}
+      onIraab={surah.hasTextbook?()=>goView("iraab"):undefined}
+    />
+  );
+
+  const unit = juzCourseToUnit(juzCourse, juzCourse.juz);
+  const unitGroups = groupSurahsByUnit(surahs, [unit]);
+
+  const studySidebar = (
+    <div className="course-sidebar-stack">
+      <CourseSidebar title="Course outline">
+        {unitGroups.map(({ unit: contentUnit, surahs: unitSurahs }) => (
+          <CourseSidebarUnit key={contentUnit.id} title={contentUnit.sidebarTitle}>
+            {unitSurahs.map((s) => (
+              <li key={s.id}>
+                <button
+                  type="button"
+                  className={s.id === sid ? "active" : ""}
+                  onClick={() => go(s.id, "revise")}
+                >
+                  <span className="course-sidebar-lesson-num">{s.revelationOrder}</span>
+                  <span className="course-sidebar-lesson-ar" dir="rtl">{s.nameAr}</span>
+                  <span>{s.name}</span>
+                </button>
+              </li>
+            ))}
+          </CourseSidebarUnit>
+        ))}
+      </CourseSidebar>
+      {hasBaqarahPageGuides(surah.id) && (
+        <BaqarahPagesSidebar
+          activeMushafPage={guidePage}
+          onPageSelect={setGuidePage}
+        />
+      )}
+    </div>
+  );
 
   // REVISE
-  const sc = surah.scenes[scene];
-  const col = C.s[scene%C.s.length];
-  const ayahs = surah.ayahs.filter(a=>a.scene===scene);
-
   return (
-    <div style={{minHeight:"100vh",background:C.cream,fontFamily:"'Inter',sans-serif"}}>
+    <CourseLayout
+      wide
+      courseId={`juz-${juzCourse.juz}`}
+      breadcrumbs={[
+        { label: "Learn Islam", to: "/" },
+        { label: juzCourse.title, to: juzCoursePath(juzCourse.juz) },
+        { label: surah.name },
+      ]}
+      sidebar={studySidebar}
+    >
       <style>{FONTS}</style>
-      <TopBar
-        left={<><BackBtn onClick={goHome}/><Ar size={26}>{surah.nameAr}</Ar><span style={{fontFamily:"'Lora',serif",fontSize:14,color:C.ink3,fontStyle:"italic",marginLeft:8}}>{surah.name}</span></>}
-        right={<>
-          {surah.hasTextbook&&<Btn variant="teal" onClick={()=>goView("iraab")} style={{fontSize:13,padding:"7px 14px"}}>📐 Iʿrāb</Btn>}
-          <Btn variant="outline" onClick={()=>goView("quiz")} style={{fontSize:13,padding:"7px 14px"}}>✏️ Quiz</Btn>
-          {SHOW_TEACHER&&<Btn variant="dark" onClick={()=>goView("teacher")} style={{fontSize:13,padding:"7px 14px"}}>🎓 Teach</Btn>}
-        </>}
-      />
-      <div style={{background:C.warm,borderBottom:`1px solid ${C.border}`,padding:"5px 1.5rem",textAlign:"center",fontFamily:"'Lora',serif",fontSize:13,color:C.ink3,fontStyle:"italic"}}>
-        {surah.scenes.map(s=>s.title).join(" · ")}
-      </div>
-      {/* Scene tabs */}
-      <div style={{display:"flex",background:"#fff",borderBottom:`1px solid ${C.border}`,overflowX:"auto"}}>
-        {surah.scenes.map((s,i)=>{
-          const c=C.s[i%C.s.length],act=i===scene;
-          return <button key={i} onClick={()=>goScene(i)} style={{flex:1,minWidth:68,padding:"10px 4px 8px",background:act?c.bg:"transparent",border:"none",borderBottom:`3px solid ${act?c.mid:"transparent"}`,cursor:"pointer",transition:"all .2s"}}>
-            <div style={{width:7,height:7,borderRadius:"50%",background:act?c.mid:"#d8d0c4",margin:"0 auto 4px"}}/>
-            <div style={{fontSize:12,fontWeight:600,color:act?c.deep:C.ink3}}>Scene {i+1}</div>
-            <div style={{fontSize:11,color:act?c.mid:"#b0a898"}}>{s.range}</div>
-          </button>;
-        })}
-      </div>
-      {/* Header */}
-      <div style={{padding:"1.25rem 1.5rem 0.75rem"}}>
-        <div style={{display:"inline-flex",alignItems:"center",gap:6,background:col.bg,color:col.deep,border:`1px solid ${col.border}`,borderRadius:20,padding:"3px 12px",fontSize:12,fontWeight:700,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:8}}>Scene {scene+1} · āyāt {sc.range}</div>
-        <div style={{fontFamily:"'Lora',serif",fontSize:24,fontWeight:500,color:C.ink,marginBottom:5,marginTop:4}}>{sc.title}</div>
-        <div style={{fontSize:16,color:C.ink2,lineHeight:1.65}}>{sc.hook}</div>
-      </div>
-      {/* Memory */}
-      <div style={{margin:"0 1.5rem 1rem",background:col.bg,borderRadius:10,padding:"10px 14px",display:"flex",gap:10,border:`1px solid ${col.border}`}}>
-        <span style={{color:col.mid,fontSize:19,flexShrink:0}}>◈</span>
-        <div>
-          <div style={{fontSize:11,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",color:col.mid,marginBottom:3}}>Memory Anchor</div>
-          <div style={{fontSize:16,fontFamily:"'Lora',serif",fontStyle:"italic",color:col.deep,lineHeight:1.6}}>{sc.memory}</div>
+      <div className="juz-study-toolbar course-card">
+        <div className="juz-study-toolbar-title">
+          <span className="course-lesson-title-ar"><Ar size={22}>{surah.nameAr}</Ar></span>
+          <span className="course-lesson-title">{surah.name}</span>
+        </div>
+        <div className="juz-study-toolbar-actions">
+          {surah.hasTextbook && (
+            <button type="button" className="course-btn ghost" onClick={() => goView("iraab")}>
+              Iʿrāb
+            </button>
+          )}
+          {showSurahQuiz && (
+            <button type="button" className="course-btn secondary" onClick={() => goView("quiz")}>
+              Quiz
+            </button>
+          )}
+          <button
+            type="button"
+            className="course-btn secondary"
+            disabled={!mushafQuizScope?.ayahNumbers?.length}
+            onClick={() => setMemorizeOpen(true)}
+          >
+            Memorize This Page
+          </button>
+          {surah.id === "baqarah" && (
+            <button
+              type="button"
+              className="course-btn primary"
+              onClick={() => {
+                setGuidePage(10);
+                setPage10DrillOpen(true);
+              }}
+            >
+              Page 10 drill
+            </button>
+          )}
+          <button type="button" className="course-btn secondary" onClick={() => setTestOpen(true)}>
+            Test
+          </button>
+          {SHOW_TEACHER && (
+            <button type="button" className="course-btn primary" onClick={() => goView("teacher")}>
+              Teach
+            </button>
+          )}
         </div>
       </div>
-      <MushafViewToggle mode={displayMode} onChange={setDisplayMode} />
-      {displayMode==="mushaf" && (
+      <div className="mushaf-lesson-wrap">
         <MadaniMushafPage
           surah={surah}
           ayahs={surah.ayahs}
-          showBasmala={surah.ayahs[0]?.n===1}
+          guidePage={guidePage}
+          onGuidePageChange={setGuidePage}
+          onSpreadChange={handleSpreadChange}
         />
-      )}
-      {/* Ayahs — study mode */}
-      {displayMode==="study" && <div className="mushaf-study-section">
-        {ayahs.map((a,idx)=>{
-          const k=`${scene}-${idx}`,isOpen=open[k];
-          return <div key={idx} style={{marginBottom:8}}>
-            <div style={{background:"#fff",border:`1px solid ${col.border}`,borderRadius:12,overflow:"hidden"}}>
-              <div className="study-ayah-card" onClick={()=>setOpen(p=>({...p,[k]:!p[k]}))}>
-                <span className="study-ayah-num" style={{background:col.bg,color:col.deep,borderColor:col.border}}>{a.n}</span>
-                <div className="study-ayah-text">
-                  <div
-                    className="study-ayah-ar"
-                    dangerouslySetInnerHTML={{__html:highlightMushafText(a.ar)}}
-                  />
-                  <div className="study-ayah-en">{a.en}</div>
-                </div>
-              </div>
-              <div className="study-ayah-actions">
-                <button onClick={()=>setOpen(p=>({...p,[k]:!p[k]}))} style={{fontSize:13,fontWeight:500,padding:"4px 12px",borderRadius:10,border:`1px solid ${isOpen?"transparent":C.border}`,background:isOpen?col.bg:"transparent",color:isOpen?col.deep:C.ink3,cursor:"pointer"}}>
-                  {isOpen?"↑ hide":"↓ words · meaning"}
-                </button>
-              </div>
-              {isOpen && <div className="study-ayah-details" style={{borderTopColor:col.border}}>
-                <div style={{fontSize:11,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",color:col.mid,marginBottom:8}}>Word by word</div>
-                <div style={{display:"flex",flexWrap:"wrap",gap:6,flexDirection:"row-reverse",marginBottom:12}}>
-                  {a.words.map((w,wi)=><div key={wi} style={{background:"#fff",border:`1px solid ${col.border}`,borderRadius:8,padding:"6px 14px",textAlign:"center"}}>
-                    <div style={{fontFamily:"'Scheherazade New',serif",fontSize:24,color:col.deep,direction:"rtl",lineHeight:1.8}}>{w.ar}</div>
-                    <div style={{fontSize:13,color:C.ink3,marginTop:3}}>{w.en}</div>
-                  </div>)}
-                </div>
-                <div style={{display:"flex",alignItems:"center",gap:8,paddingTop:8,borderTop:`1px dashed ${col.border}`}}>
-                  <div style={{width:16,height:1,background:col.border}}/>
-                  <span style={{fontSize:13,fontStyle:"italic",color:col.mid}}>{a.connects}</span>
-                </div>
-              </div>}
-            </div>
-          </div>;
-        })}
-      </div>}
-      {/* Tafsir */}
-      <div style={{margin:"0.75rem 1.5rem 1rem",borderLeft:`3px solid ${col.mid}`,padding:"10px 14px",background:"#fff",borderRadius:"0 8px 8px 0"}}>
-        <div style={{fontSize:11,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",color:C.ink3,marginBottom:4}}>Tafsir note</div>
-        <div style={{fontSize:16,fontFamily:"'Lora',serif",fontStyle:"italic",color:C.ink2,lineHeight:1.65,marginBottom:4}}>{sc.tafsir}</div>
-        <div style={{fontSize:12,color:C.ink3}}>— {sc.tafsirAttr}</div>
-      </div>
-      {/* Nav */}
-      <div style={{display:"grid",gridTemplateColumns:SHOW_TEACHER?"1fr 1fr 1fr":"1fr 1fr",gap:10,padding:"1rem 1.5rem 1.5rem",borderTop:`1px solid ${C.border}`,background:C.warm}}>
-        <Btn variant="outline" onClick={()=>goScene(Math.max(0,scene-1))} disabled={scene===0}>← prev</Btn>
-        {SHOW_TEACHER&&<Btn variant="dark" onClick={()=>goView("teacher")} style={{fontSize:13}}>🎓 Teach me</Btn>}
-        <Btn variant="outline" onClick={()=>goScene(Math.min(surah.scenes.length-1,scene+1))} disabled={scene===surah.scenes.length-1}>next →</Btn>
-      </div>
-    </div>
-  );
-}
-
-// ════════════════════════════════════════════════
-// HOME
-// ════════════════════════════════════════════════
-function Home({surahs,go}) {
-  const totalAyahs = surahs.reduce((sum,s)=>sum+s.ayahCount,0);
-  const textbookCount = surahs.filter(s=>s.hasTextbook).length;
-  const firstSurah = surahs[0];
-  const featuredSurahs = [
-    ...surahs.filter(s=>s.hasTextbook),
-    ...surahs.filter(s=>!s.hasTextbook),
-  ].slice(0,3);
-
-  return (
-    <div className="surah-home">
-      <style>{FONTS}</style>
-      <section className="surah-home-hero" aria-labelledby="surah-home-title">
-        <nav className="surah-home-nav" aria-label="Surah library">
-          <Link to="/" className="surah-home-brand">
-            <span className="surah-home-brand-ar" dir="rtl">مُراجَعة</span>
-            <span>Qur'an Revision</span>
-          </Link>
-          <div className="surah-home-links">
-            <Link to="/">Landing</Link>
-            <Link to="/diary">Diary</Link>
-          </div>
-        </nav>
-
-        <div className="surah-home-hero-grid">
-          <div className="surah-home-copy">
-            <p className="surah-home-kicker">Juz 30 workspace</p>
-            <h1 id="surah-home-title">Choose a surah and keep the session moving.</h1>
-            <p>
-              Revision, quizzes, recitation practice, and i'rab study now sit behind a calmer
-              library view with clearer entry points for the next thing to do.
-            </p>
-            {firstSurah&&(
-              <div className="surah-home-actions">
-                <button type="button" className="surah-home-button primary" onClick={()=>go(firstSurah.id,"revise")}>
-                  Start revision
-                </button>
-                <button type="button" className="surah-home-button secondary" onClick={()=>go(firstSurah.id,"quiz")}>
-                  Open quiz mode
-                </button>
-              </div>
+        {testOpen && (
+          <HifdhAudioTestPopup
+            key={`test-${surah.id}`}
+            surahNumber={surah.revelationOrder}
+            ayahCount={surah.ayahCount ?? surah.ayahs.length}
+            localAyahs={surah.ayahs}
+            mushafPage={guidePage ?? mushafQuizScope?.pages?.[0] ?? null}
+            initialFromAyah={mushafQuizScope?.ayahNumbers?.[0] ?? 1}
+            initialToAyah={
+              mushafQuizScope?.ayahNumbers?.[mushafQuizScope.ayahNumbers.length - 1] ??
+              surah.ayahCount ??
+              surah.ayahs.length
+            }
+            scopeLabel={mushafQuizScope?.pagesLabel}
+            onClose={() => setTestOpen(false)}
+          />
+        )}
+        {memorizeOpen && mushafQuizScope?.ayahNumbers?.length > 0 && (
+          <HifdhSessionMode
+            key={`memorize-${surah.id}-${mushafQuizScope.pages?.join("-") ?? "page"}`}
+            selectedAyat={mushafQuizScope.ayahNumbers}
+            surahNumber={surah.revelationOrder}
+            mushafPage={guidePage ?? mushafQuizScope.pages?.[0] ?? null}
+            localAyahs={surah.ayahs.filter((ayah) =>
+              mushafQuizScope.ayahNumbers.includes(ayah.n),
             )}
-          </div>
-
-          <aside className="surah-home-summary" aria-label="Library summary">
-            <div className="surah-home-summary-card" dir="rtl">
-              <span>وَلَقَدْ يَسَّرْنَا ٱلْقُرْءَانَ لِلذِّكْرِ</span>
-            </div>
-            <div className="surah-home-stats">
-              <div><strong>{surahs.length}</strong><span>Sūrahs</span></div>
-              <div><strong>{totalAyahs}</strong><span>Āyāt</span></div>
-              <div><strong>{textbookCount}</strong><span>I'rab guides</span></div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section className="surah-home-routes" aria-label="Featured study routes">
-        {featuredSurahs.map((surah,i)=>{
-          const c=C.s[i%C.s.length];
-          return (
-            <article className="surah-route-card" key={surah.id} style={{"--route-bg":c.bg,"--route-mid":c.mid,"--route-deep":c.deep,"--route-border":c.border}}>
-              <span className="surah-route-number">Sūrah {surah.revelationOrder}</span>
-              <div className="surah-route-ar" dir="rtl">{surah.nameAr}</div>
-              <h2>{surah.name}</h2>
-              <p>{surah.ayahCount} āyāt across {surah.scenes.length} memory scenes.</p>
-              <button type="button" onClick={()=>go(surah.id,surah.hasTextbook?"iraab":"revise")}>
-                {surah.hasTextbook?"Study with I'rab":"Start revising"}
-              </button>
-            </article>
-          );
-        })}
-      </section>
-
-      <section className="surah-library" aria-label="All Juz 30 surahs">
-        <div className="surah-library-heading">
-          <div>
-            <p className="surah-home-kicker">Complete library</p>
-            <h2>All Juz 30 sūrahs</h2>
-          </div>
-          <Link to="/diary">Track memorisation</Link>
-        </div>
-
-        <div className="surah-card-grid">
-          {surahs.map((s,i)=>{
-            const c=C.s[i%C.s.length];
-            return <article key={s.id} className="surah-card" style={{"--surah-bg":c.bg,"--surah-mid":c.mid,"--surah-deep":c.deep,"--surah-border":c.border}}>
-              <div className="surah-card-top">
-                <span>Sūrah {s.revelationOrder}</span>
-                <div className="surah-card-ar" dir="rtl">{s.nameAr}</div>
-                <h3>{s.name}</h3>
-              </div>
-              <div className="surah-card-body">
-                <div className="surah-card-meta">{s.ayahCount} āyāt · {s.scenes.length} scenes</div>
-                {s.hasTextbook&&(
-                  <button type="button" className="surah-card-primary" onClick={()=>go(s.id,"iraab")}>
-                    Study with Iʿrāb
-                  </button>
-                )}
-                <div className="surah-card-actions">
-                  <button type="button" onClick={()=>go(s.id,"revise")}>Revise</button>
-                  <button type="button" onClick={()=>go(s.id,"quiz")}>Quiz</button>
-                  <button type="button" onClick={()=>go(s.id,"recitation")}>Recite</button>
-                  {SHOW_TEACHER&&<button type="button" onClick={()=>go(s.id,"teacher")}>Teach</button>}
-                </div>
-              </div>
-            </article>;
-          })}
-        </div>
-      </section>
-    </div>
+            onClose={() => setMemorizeOpen(false)}
+          />
+        )}
+        {page10DrillOpen && (
+          <Page10MemorizePopup onClose={() => setPage10DrillOpen(false)} />
+        )}
+      </div>
+    </CourseLayout>
   );
 }
 
@@ -765,15 +733,17 @@ YOUR STYLE:
   );
 
   if(!started) return (
-    <div style={{minHeight:"100vh",background:C.cream,fontFamily:"'Inter',sans-serif"}}>
+    <div className="course-lesson-shell">
       <style>{FONTS}</style>
-      <TopBar
-        left={<><BackBtn onClick={onBack}/><span style={{fontFamily:"'Lora',serif",fontSize:18,color:C.ink}}>Virtual Teacher</span></>}
-        right={<><Btn variant="ghost" onClick={onRevise} style={{fontSize:13,padding:"7px 14px"}}>📖 Revise</Btn>{onIraab&&<Btn variant="teal" onClick={onIraab} style={{fontSize:13,padding:"7px 14px"}}>📐 Iʿrāb</Btn>}<Btn variant="ghost" onClick={onQuiz} style={{fontSize:13,padding:"7px 14px"}}>✏️ Quiz</Btn></>}
+      <CourseLessonHeader juz={surah.juz} />
+      <LessonBar
+        onBack={onBack}
+        left={<span className="course-lesson-title">Virtual Teacher</span>}
+        right={<><Btn variant="ghost" onClick={onRevise} style={{fontSize:13,padding:"7px 14px"}}>Revise</Btn>{onIraab&&<Btn variant="teal" onClick={onIraab} style={{fontSize:13,padding:"7px 14px"}}>Iʿrāb</Btn>}{onQuiz&&<Btn variant="ghost" onClick={onQuiz} style={{fontSize:13,padding:"7px 14px"}}>Quiz</Btn>}</>}
       />
       <div style={{padding:"2rem 1.5rem",maxWidth:480,margin:"0 auto"}}>
         <div style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:16,padding:"1.75rem",marginBottom:16,textAlign:"center"}}>
-          <div style={{width:64,height:64,borderRadius:"50%",background:C.tealBg,border:`2px solid #b8ddd6`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 12px",fontSize:28}}>🎓</div>
+          <div style={{width:64,height:64,borderRadius:"50%",background:C.tealBg,border:`2px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 12px",fontSize:28}}>🎓</div>
           <div style={{fontFamily:"'Lora',serif",fontSize:22,fontWeight:500,color:C.ink,marginBottom:4}}>Ustādh Murājaʿah</div>
           <div style={{fontSize:14,color:C.ink3,marginBottom:16}}>Your personal Qur'an revision teacher</div>
           <div style={{background:C.tealBg,borderRadius:10,padding:"10px 14px",marginBottom:16,textAlign:"right"}}>
@@ -796,20 +766,20 @@ YOUR STYLE:
   );
 
   return (
-    <div style={{minHeight:"100vh",background:C.cream,fontFamily:"'Inter',sans-serif",display:"flex",flexDirection:"column"}}>
+    <div className="course-lesson-shell" style={{display:"flex",flexDirection:"column"}}>
       <style>{FONTS}</style>
-      {/* Header */}
+      <CourseLessonHeader juz={surah.juz} />
       <div style={{background:"#fff",borderBottom:`1px solid ${C.border}`,padding:"10px 16px",display:"flex",alignItems:"center",gap:10,flexShrink:0}}>
         <BackBtn onClick={onBack}/>
-        <div style={{width:36,height:36,borderRadius:"50%",background:C.tealBg,border:`1.5px solid #b8ddd6`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:22}}>🎓</div>
+        <div style={{width:36,height:36,borderRadius:"50%",background:C.tealBg,border:`1.5px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:22}}>🎓</div>
         <div style={{flex:1}}>
           <div style={{fontSize:16,fontWeight:600,color:C.ink}}>Ustādh Murājaʿah</div>
           <div style={{fontSize:12,color:C.teal}}><Ar size={17}>{surah.nameAr}</Ar> · Session active</div>
         </div>
         <div style={{display:"flex",gap:6,alignItems:"center"}}>
-          {pct!==null&&<span style={{fontSize:13,fontWeight:600,padding:"3px 9px",borderRadius:20,background:pct>=75?C.tealBg:pct>=50?C.amberBg:C.redBg,color:pct>=75?C.tealDark:pct>=50?C.amberDark:C.redDark}}>{score.r}/{score.t}</span>}
+          {pct!==null&&<span style={{fontSize:13,fontWeight:600,padding:"3px 9px",borderRadius:20,background:pct>=75?C.greenBg:pct>=50?C.amberBg:C.redBg,color:pct>=75?C.greenDark:pct>=50?C.amberDark:C.redDark}}>{score.r}/{score.t}</span>}
           {score.streak>1&&<span style={{fontSize:13,fontWeight:600,padding:"3px 9px",borderRadius:20,background:C.amberBg,color:C.amberDark}}>🔥{score.streak}</span>}
-          <Btn variant="ghost" onClick={onQuiz} style={{fontSize:12,padding:"5px 10px"}}>✏️ Quiz</Btn>
+          {onQuiz && <Btn variant="ghost" onClick={onQuiz} style={{fontSize:12,padding:"5px 10px"}}>✏️ Quiz</Btn>}
         </div>
       </div>
       {/* Weak bar */}
@@ -823,7 +793,7 @@ YOUR STYLE:
       <div style={{flex:1,overflowY:"auto",padding:"16px",display:"flex",flexDirection:"column",gap:10}}>
         {msgs.map(m=>(
           <div key={m.id} style={{display:"flex",gap:8,alignItems:"flex-start",flexDirection:m.role==="user"?"row-reverse":"row"}}>
-            <div style={{width:32,height:32,borderRadius:"50%",background:m.role==="teacher"?C.tealBg:"#eaf0fa",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:18,border:`1px solid ${m.role==="teacher"?"#b8ddd6":C.border}`}}>
+            <div style={{width:32,height:32,borderRadius:"50%",background:m.role==="teacher"?C.tealBg:"#E6F1FB",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:18,border:`1px solid ${m.role==="teacher"?C.border:C.border}`}}>
               {m.role==="teacher"?"🎓":"🙋"}
             </div>
             <div style={{maxWidth:"83%",background:m.role==="teacher"?"#fff":C.ink,color:m.role==="teacher"?C.ink:"#fff",border:m.role==="teacher"?`1px solid ${C.border}`:"none",borderRadius:m.role==="teacher"?"4px 14px 14px 14px":"14px 4px 14px 14px",padding:"11px 15px",fontSize:16,lineHeight:1.75,fontFamily:"'Lora',serif"}}
@@ -832,7 +802,7 @@ YOUR STYLE:
           </div>
         ))}
         {loading&&<div style={{display:"flex",gap:8,alignItems:"flex-start"}}>
-          <div style={{width:32,height:32,borderRadius:"50%",background:C.tealBg,border:`1px solid #b8ddd6`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>🎓</div>
+          <div style={{width:32,height:32,borderRadius:"50%",background:C.tealBg,border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>🎓</div>
           <div style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:"4px 14px 14px 14px",padding:"14px 18px",display:"flex",gap:5}}>
             {[0,1,2].map(i=><div key={i} style={{width:7,height:7,borderRadius:"50%",background:"#c8c0b8",animation:"b .9s infinite",animationDelay:`${i*.15}s`}}/>)}
           </div>
@@ -870,13 +840,12 @@ const MODES = [
   {id:"flashcard",label:"Flashcard",icon:"◈",desc:"See Arabic → pick the translation"},
   {id:"word",label:"Word Match",icon:"⟷",desc:"Match each Arabic word to its meaning"},
   {id:"arrange",label:"Arrange Āyāt",icon:"⇅",desc:"Drag the āyāt into the correct order"},
-  {id:"recitation",label:"Recite & Listen",icon:"🎙",desc:"Record yourself, play it back, and display the full surah"},
   {id:"fill",label:"Fill the Gap",icon:"___",desc:"One word blanked — type its meaning"},
   {id:"prevnext",label:"Before & After",icon:"↔",desc:"What comes before or after this āyah?"},
   {id:"scene",label:"Which Scene?",icon:"◻",desc:"Which scene does this āyah belong to?"},
 ];
 
-function Quiz({surah,onBack,onTeacher,onIraab}) {
+function Quiz({surah, mushafScope = null, onBack, onTeacher, onIraab}) {
   const [mode,setMode] = useState(null);
   const [qs,setQs] = useState([]);
   const [qi,setQi] = useState(0);
@@ -895,10 +864,18 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
   const [wpicked,setWpicked] = useState(null);
   const [wdone,setWdone] = useState(false);
 
-  const ayahs = surah.ayahs;
+  const scopeAyahNumbers = mushafScope?.ayahNumbers ?? null;
+  const ayahs = scopeAyahNumbers?.length
+    ? surah.ayahs.filter((a) => scopeAyahNumbers.includes(a.n))
+    : surah.ayahs;
+
+  const scopeLabel = mushafScope?.pagesLabel || mushafScope?.ayahLabel || "";
+  const quizScopeTitle = scopeLabel
+    ? `${scopeLabel}${mushafScope?.ayahLabel ? ` · ${mushafScope.ayahLabel}` : ""}`
+    : null;
 
   function startMode(m) {
-    const q = buildQs(m,ayahs,surah);
+    const q = buildQs(m, ayahs, surah);
     setMode(m);setQs(q);setQi(0);
     setScore({r:0,t:0,streak:0});setWeak([]);
     resetQ(q[0],m);
@@ -939,18 +916,35 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
   const col = qs[qi]?C.s[qi%C.s.length]:C.s[0];
 
   if(!mode) return (
-    <div style={{minHeight:"100vh",background:C.cream,fontFamily:"'Inter',sans-serif"}}>
+    <div className="course-lesson-shell">
       <style>{FONTS}</style>
-      <TopBar
-        left={<><BackBtn onClick={onBack}/><span style={{fontFamily:"'Lora',serif",fontSize:18,color:C.ink}}>Quiz Mode</span><Ar size={22} style={{color:C.ink3,marginLeft:8}}>{surah.nameAr}</Ar></>}
-        right={<>{onIraab&&<Btn variant="teal" onClick={onIraab} style={{fontSize:13,padding:"7px 14px"}}>📐 Iʿrāb</Btn>}{SHOW_TEACHER&&<Btn variant="dark" onClick={onTeacher} style={{fontSize:13,padding:"7px 14px"}}>🎓 Teach</Btn>}</>}
+      <CourseLessonHeader juz={surah.juz} />
+      <LessonBar
+        onBack={onBack}
+        left={
+          <>
+            <span className="course-lesson-title">Quiz · {surah.name}</span>
+            <span className="course-lesson-title-ar"><Ar size={20}>{surah.nameAr}</Ar></span>
+          </>
+        }
+        right={<>{onIraab&&<button type="button" className="course-btn ghost" onClick={onIraab} style={{fontSize:"0.8rem",padding:"0.4rem 0.7rem"}}>Iʿrāb</button>}{SHOW_TEACHER&&<button type="button" className="course-btn primary" onClick={onTeacher} style={{fontSize:"0.8rem",padding:"0.4rem 0.7rem"}}>Teach</button>}</>}
       />
       <div style={{padding:"1.5rem"}}>
+        {quizScopeTitle && (
+          <p style={{margin:"0 0 1rem",fontSize:14,color:C.ink3,lineHeight:1.5}}>
+            Questions are from the mushaf spread in view: <strong style={{color:C.ink}}>{quizScopeTitle}</strong>
+          </p>
+        )}
+        {!ayahs.length && (
+          <p style={{margin:"0 0 1rem",fontSize:14,color:C.amberDark,background:C.amberBg,borderRadius:10,padding:"10px 12px"}}>
+            No āyāt found for this spread yet. Go back, turn a mushaf page, then open Quiz again.
+          </p>
+        )}
         <div style={{fontSize:12,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",color:C.ink3,marginBottom:12}}>Choose a mode</div>
         <div style={{display:"flex",flexDirection:"column",gap:8}}>
           {MODES.map((m,i)=>{
             const c=C.s[i%C.s.length];
-            return <button key={m.id} onClick={()=>startMode(m.id)}
+            return <button key={m.id} onClick={()=>startMode(m.id)} disabled={!ayahs.length}
               style={{background:"#fff",border:`1px solid ${c.border}`,borderRadius:14,padding:"1rem 1.25rem",cursor:"pointer",display:"flex",alignItems:"center",gap:14,textAlign:"left"}}
               onMouseEnter={e=>e.currentTarget.style.background=c.bg}
               onMouseLeave={e=>e.currentTarget.style.background="#fff"}>
@@ -964,10 +958,8 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
     </div>
   );
 
-  if(mode==="recitation") return <RecitationQuiz surah={surah} onBack={()=>setMode(null)} />;
-
   if(qi===-1) return (
-    <div style={{minHeight:"100vh",background:C.cream,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"2rem",fontFamily:"'Inter',sans-serif",gap:10}}>
+    <div className="course-lesson-shell" style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"2rem",gap:10}}>
       <style>{FONTS}</style>
       <div style={{fontSize:58}}>✓</div>
       <div style={{fontFamily:"'Lora',serif",fontSize:26,fontWeight:500,color:C.ink}}>Session complete</div>
@@ -988,14 +980,15 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
   const modeLabel=MODES.find(m=>m.id===mode)?.label;
 
   return (
-    <div style={{minHeight:"100vh",background:C.cream,fontFamily:"'Inter',sans-serif"}}>
+    <div className="course-lesson-shell">
       <style>{FONTS}</style>
+      <CourseLessonHeader juz={surah.juz} />
       <div style={{background:"#fff",borderBottom:`1px solid ${C.border}`,padding:"10px 16px"}}>
         <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}>
           <BackBtn onClick={()=>setMode(null)}/>
           <div style={{flex:1,fontSize:16,fontWeight:600,color:C.ink}}>{modeLabel}</div>
           <span style={{fontSize:14,color:C.ink3}}>{qi+1}/{qs.length}</span>
-          {pct!==null&&<span style={{fontSize:13,fontWeight:600,padding:"3px 9px",borderRadius:20,background:pct>=75?C.tealBg:C.amberBg,color:pct>=75?C.tealDark:C.amberDark}}>{score.r} ✓</span>}
+          {pct!==null&&<span style={{fontSize:13,fontWeight:600,padding:"3px 9px",borderRadius:20,background:pct>=75?C.greenBg:C.amberBg,color:pct>=75?C.greenDark:C.amberDark}}>{score.r} ✓</span>}
         </div>
         <div style={{height:3,background:C.border,borderRadius:2}}>
           <div style={{height:"100%",background:C.teal,width:`${progress}%`,transition:"width .3s",borderRadius:2}}/>
@@ -1016,7 +1009,7 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
             {q.opts.map((opt,i)=>{
               let bg="#fff",border=`1px solid ${C.border}`,color=C.ink;
               if(answered){
-                if(opt.correct){bg=C.tealBg;border="1px solid #b8ddd6";color=C.tealDark;}
+                if(opt.correct){bg=C.greenBg;border=`1px solid ${C.green}`;color=C.greenDark;}
                 else if(opt.label===selected){bg=C.redBg;border="1px solid #e8a8a8";color=C.redDark;}
               }
               return <button key={i} onClick={()=>pick(opt)} disabled={!!answered}
@@ -1033,9 +1026,9 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
           <input value={fillVal} onChange={e=>setFillVal(e.target.value)} disabled={fillDone}
             placeholder="Type the meaning of the highlighted word..."
             className="quiz-fill-input"
-            style={{border:`1px solid ${fillDone?(fillVal.trim().toLowerCase()===q.ans.toLowerCase()?C.teal:C.red):C.border}`,background:fillDone?(fillVal.trim().toLowerCase()===q.ans.toLowerCase()?C.tealBg:C.redBg):"#fff"}}
+            style={{border:`1px solid ${fillDone?(fillVal.trim().toLowerCase()===q.ans.toLowerCase()?C.green:C.red):C.border}`,background:fillDone?(fillVal.trim().toLowerCase()===q.ans.toLowerCase()?C.greenBg:C.redBg):"#fff"}}
           />
-          {fillDone&&<div style={{padding:"9px 12px",borderRadius:8,background:fillVal.trim().toLowerCase()===q.ans.toLowerCase()?C.tealBg:C.redBg,color:fillVal.trim().toLowerCase()===q.ans.toLowerCase()?C.tealDark:C.redDark,fontSize:14,marginBottom:8}}>
+          {fillDone&&<div style={{padding:"9px 12px",borderRadius:8,background:fillVal.trim().toLowerCase()===q.ans.toLowerCase()?C.greenBg:C.redBg,color:fillVal.trim().toLowerCase()===q.ans.toLowerCase()?C.greenDark:C.redDark,fontSize:14,marginBottom:8}}>
             {fillVal.trim().toLowerCase()===q.ans.toLowerCase()?"✓ Correct!":`Answer: "${q.ans}"`}
           </div>}
           {!fillDone?<Btn variant="dark" onClick={()=>{setFillDone(true);record(fillVal.trim().toLowerCase()===q.ans.toLowerCase(),q.n);}} style={{width:"100%"}}>Check</Btn>
@@ -1049,7 +1042,7 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
               {wpairs.ar.map((ar,i)=>{
                 const isM=wmatched.includes(ar),isP=wpicked===ar;
                 return <button key={i} onClick={()=>pickAr(ar)} className="quiz-word-btn-ar"
-                  style={{background:isM?C.tealBg:isP?C.amberBg:"#fff",border:`1px solid ${isM?"#b8ddd6":isP?"#f0c98a":C.border}`,color:isM?C.tealDark:C.ink,cursor:isM?"default":"pointer",opacity:isM?.55:1}}>
+                  style={{background:isM?C.greenBg:isP?C.amberBg:"#fff",border:`1px solid ${isM?C.green:isP?C.amber:C.border}`,color:isM?C.greenDark:C.ink,cursor:isM?"default":"pointer",opacity:isM?.55:1}}>
                   {ar}
                 </button>;
               })}
@@ -1058,13 +1051,13 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
               {wpairs.en.map((en,i)=>{
                 const ar=q.words.find(w=>w.en===en)?.ar,isM=wmatched.includes(ar);
                 return <button key={i} onClick={()=>pickEn(en)} className="quiz-word-btn-en"
-                  style={{background:isM?C.tealBg:"#fff",border:`1px solid ${isM?"#b8ddd6":C.border}`,color:isM?C.tealDark:C.ink2,cursor:isM?"default":"pointer",opacity:isM?.55:1}}>
+                  style={{background:isM?C.greenBg:"#fff",border:`1px solid ${isM?C.green:C.border}`,color:isM?C.greenDark:C.ink2,cursor:isM?"default":"pointer",opacity:isM?.55:1}}>
                   {en}
                 </button>;
               })}
             </div>
           </div>
-          {wdone&&<div><div style={{background:C.tealBg,borderRadius:8,padding:"9px",textAlign:"center",color:C.tealDark,fontSize:14,fontWeight:600,marginBottom:8}}>All matched! ✓</div><Btn variant="dark" onClick={next} style={{width:"100%"}}>Next →</Btn></div>}
+          {wdone&&<div><div style={{background:C.greenBg,borderRadius:8,padding:"9px",textAlign:"center",color:C.greenDark,fontSize:14,fontWeight:600,marginBottom:8}}>All matched! ✓</div><Btn variant="dark" onClick={next} style={{width:"100%"}}>Next →</Btn></div>}
         </div>}
 
         {/* Arrange */}
@@ -1077,7 +1070,7 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
               return <div
                 key={a.n}
                 className={`quiz-arrange-row${dragging?" quiz-arrange-row--dragging":""}${over?" quiz-arrange-row--over":""}`}
-                style={{background:ok?C.tealBg:bad?C.redBg:over?C.amberBg:"#fff",border:`1px solid ${ok?"#b8ddd6":bad?"#e8a8a8":over?"#f0c98a":C.border}`}}
+                style={{background:ok?C.greenBg:bad?C.redBg:over?C.amberBg:"#fff",border:`1px solid ${ok?C.green:bad?C.red:over?C.amberBg:C.border}`}}
                 onDragOver={e=>{
                   if(arrangeDone) return;
                   e.preventDefault();
@@ -1124,209 +1117,15 @@ function Quiz({surah,onBack,onTeacher,onIraab}) {
 
         {/* Feedback for MCQ */}
         {answered&&(mode==="flashcard"||mode==="prevnext"||mode==="scene")&&<div style={{marginTop:10}}>
-          <div style={{background:answered==="correct"?C.tealBg:C.redBg,borderRadius:10,padding:"10px 14px",marginBottom:10,display:"flex",gap:10,alignItems:"flex-start"}}>
+          <div style={{background:answered==="correct"?C.greenBg:C.redBg,borderRadius:10,padding:"10px 14px",marginBottom:10,display:"flex",gap:10,alignItems:"flex-start"}}>
             <span style={{fontSize:19,flexShrink:0}}>{answered==="correct"?"✓":"✗"}</span>
             <div>
-              <div style={{fontSize:14,fontWeight:600,color:answered==="correct"?C.tealDark:C.redDark,marginBottom:3}}>{answered==="correct"?"Correct!":"Not quite —"}</div>
-              <div style={{fontSize:14,color:answered==="correct"?C.tealDark:C.redDark,fontFamily:"'Lora',serif",fontStyle:"italic",lineHeight:1.55}}>{q.exp}</div>
+              <div style={{fontSize:14,fontWeight:600,color:answered==="correct"?C.greenDark:C.redDark,marginBottom:3}}>{answered==="correct"?"Correct!":"Not quite —"}</div>
+              <div style={{fontSize:14,color:answered==="correct"?C.greenDark:C.redDark,fontFamily:"'Lora',serif",fontStyle:"italic",lineHeight:1.55}}>{q.exp}</div>
             </div>
           </div>
           <Btn variant="dark" onClick={next} style={{width:"100%"}}>Next →</Btn>
         </div>}
-      </div>
-    </div>
-  );
-}
-
-function RecitationQuiz({surah,onBack}) {
-  const [isRecording,setIsRecording] = useState(false);
-  const [elapsed,setElapsed] = useState(0);
-  const [attempts,setAttempts] = useState([]);
-  const [activeAttemptId,setActiveAttemptId] = useState(null);
-  const [error,setError] = useState("");
-  const [showSurah,setShowSurah] = useState(false);
-  const recorderRef = useRef(null);
-  const streamRef = useRef(null);
-  const chunksRef = useRef([]);
-  const startedAtRef = useRef(null);
-  const timerRef = useRef(null);
-  const attemptsRef = useRef([]);
-
-  useEffect(()=>{ attemptsRef.current = attempts; },[attempts]);
-
-  useEffect(()=>()=> {
-    clearInterval(timerRef.current);
-    const recorder = recorderRef.current;
-    if(recorder&&recorder.state==="recording") {
-      recorder.ondataavailable = null;
-      recorder.onstop = null;
-      recorder.stop();
-    }
-    stopStream();
-    attemptsRef.current.forEach(a=>URL.revokeObjectURL(a.url));
-  },[]);
-
-  function stopStream() {
-    streamRef.current?.getTracks().forEach(track=>track.stop());
-    streamRef.current = null;
-  }
-
-  async function startRecording() {
-    setError("");
-    if(!navigator.mediaDevices?.getUserMedia||typeof MediaRecorder==="undefined") {
-      setError("Recording is not supported in this browser. Try Chrome, Edge, or Safari 14.1+.");
-      return;
-    }
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({audio:true});
-      const mimeType = [
-        "audio/webm;codecs=opus",
-        "audio/webm",
-        "audio/mp4",
-      ].find(type=>MediaRecorder.isTypeSupported(type));
-      const recorder = new MediaRecorder(stream, mimeType?{mimeType}:undefined);
-      streamRef.current = stream;
-      recorderRef.current = recorder;
-      chunksRef.current = [];
-
-      recorder.ondataavailable = event => {
-        if(event.data?.size) chunksRef.current.push(event.data);
-      };
-      recorder.onstop = () => {
-        clearInterval(timerRef.current);
-        const seconds = startedAtRef.current ? Math.max(1, Math.round((Date.now()-startedAtRef.current)/1000)) : elapsed;
-        const blob = new Blob(chunksRef.current, {type:recorder.mimeType||"audio/webm"});
-        if(blob.size) {
-          const url = URL.createObjectURL(blob);
-          const attempt = {
-            id:Date.now(),
-            url,
-            createdAt:new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}),
-            duration:formatDuration(seconds),
-          };
-          setAttempts(prev=>[attempt,...prev]);
-          setActiveAttemptId(attempt.id);
-        }
-        chunksRef.current = [];
-        startedAtRef.current = null;
-        setElapsed(seconds);
-        setIsRecording(false);
-        stopStream();
-      };
-
-      recorder.start();
-      startedAtRef.current = Date.now();
-      setElapsed(0);
-      setIsRecording(true);
-      timerRef.current = setInterval(()=>{
-        if(startedAtRef.current) setElapsed(Math.floor((Date.now()-startedAtRef.current)/1000));
-      },250);
-    } catch {
-      setError("I could not access your microphone. Please allow microphone permission and try again.");
-      stopStream();
-      setIsRecording(false);
-    }
-  }
-
-  function stopRecording() {
-    const recorder = recorderRef.current;
-    if(recorder&&recorder.state==="recording") recorder.stop();
-  }
-
-  function deleteAttempt(id) {
-    const attempt = attempts.find(a=>a.id===id);
-    if(attempt) URL.revokeObjectURL(attempt.url);
-    const next = attempts.filter(a=>a.id!==id);
-    setAttempts(next);
-    if(activeAttemptId===id) setActiveAttemptId(next[0]?.id??null);
-  }
-
-  const activeAttempt = attempts.find(a=>a.id===activeAttemptId)||attempts[0];
-
-  return (
-    <div style={{minHeight:"100vh",background:C.cream,fontFamily:"'Inter',sans-serif"}}>
-      <style>{FONTS}</style>
-      <TopBar
-        left={<><BackBtn onClick={onBack}/><span style={{fontFamily:"'Lora',serif",fontSize:18,color:C.ink}}>Recite & Listen</span><Ar size={22} style={{color:C.ink3,marginLeft:8}}>{surah.nameAr}</Ar></>}
-        right={<Btn variant="teal" onClick={()=>setShowSurah(v=>!v)} style={{fontSize:13,padding:"7px 14px"}}>{showSurah?"Hide Surah":"Display Surah"}</Btn>}
-      />
-
-      <div style={{padding:"1.25rem 1.5rem",maxWidth:780,margin:"0 auto"}}>
-        <div style={{position:"sticky",top:0,zIndex:2,background:C.cream,paddingBottom:12}}>
-          <div style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:16,padding:"1rem",boxShadow:"0 8px 24px -18px rgba(26,24,20,.35)"}}>
-            <div style={{display:"flex",alignItems:"flex-start",gap:14,marginBottom:12}}>
-              <div style={{width:46,height:46,borderRadius:14,background:isRecording?C.redBg:C.tealBg,color:isRecording?C.redDark:C.tealDark,display:"flex",alignItems:"center",justifyContent:"center",fontSize:24,flexShrink:0}}>🎙</div>
-              <div style={{flex:1}}>
-                <div style={{fontSize:12,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",color:C.ink3,marginBottom:4}}>Self-recitation quiz</div>
-                <div style={{fontFamily:"'Lora',serif",fontSize:20,fontWeight:500,color:C.ink}}>Recite {surah.name}, then listen back</div>
-                <div style={{fontSize:14,color:C.ink3,marginTop:4}}>Use Display Surah while the recording plays to check your recitation against the text.</div>
-              </div>
-              <div style={{fontSize:18,fontWeight:700,color:isRecording?C.redDark:C.ink3,minWidth:54,textAlign:"right"}}>{formatDuration(elapsed)}</div>
-            </div>
-
-            <div style={{display:"grid",gridTemplateColumns:isRecording?"1fr":"1fr 1fr",gap:8,marginBottom:attempts.length?12:0}}>
-              {isRecording
-                ? <Btn variant="dark" onClick={stopRecording} style={{width:"100%",background:C.redDark}}>Stop Recording</Btn>
-                : <Btn variant="dark" onClick={startRecording} style={{width:"100%"}}>Start Recording</Btn>}
-              {!isRecording&&<Btn variant="outline" onClick={()=>setShowSurah(v=>!v)} style={{width:"100%"}}>{showSurah?"Hide Surah":"Display Surah"}</Btn>}
-            </div>
-
-            {error&&<div style={{background:C.redBg,color:C.redDark,border:"1px solid #e8a8a8",borderRadius:10,padding:"9px 12px",fontSize:14,marginTop:12}}>{error}</div>}
-
-            {activeAttempt&&(
-              <div style={{borderTop:`1px solid ${C.border}`,paddingTop:12}}>
-                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:10,marginBottom:8}}>
-                  <div style={{fontSize:13,color:C.ink3}}>Listening to attempt from {activeAttempt.createdAt} · {activeAttempt.duration}</div>
-                  <button onClick={()=>deleteAttempt(activeAttempt.id)} style={{background:"transparent",border:"none",color:C.redDark,fontSize:13,cursor:"pointer",padding:4}}>Delete</button>
-                </div>
-                <audio controls src={activeAttempt.url} style={{width:"100%"}} />
-              </div>
-            )}
-          </div>
-        </div>
-
-        {attempts.length>1&&(
-          <div style={{display:"flex",gap:8,overflowX:"auto",paddingBottom:12,marginBottom:4}}>
-            {attempts.map((attempt,index)=>(
-              <button key={attempt.id} onClick={()=>setActiveAttemptId(attempt.id)}
-                style={{flexShrink:0,background:activeAttempt?.id===attempt.id?C.tealBg:"#fff",border:`1px solid ${activeAttempt?.id===attempt.id?"#b8ddd6":C.border}`,color:activeAttempt?.id===attempt.id?C.tealDark:C.ink2,borderRadius:20,padding:"6px 12px",fontSize:13,cursor:"pointer"}}>
-                Attempt {attempts.length-index} · {attempt.duration}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {showSurah&&(
-          <div style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:16,overflow:"hidden"}}>
-            <div style={{background:C.tealBg,borderBottom:"1px solid #b8ddd6",padding:"12px 16px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:12}}>
-              <div>
-                <div style={{fontFamily:"'Scheherazade New',serif",fontSize:32,color:C.tealDark,direction:"rtl",lineHeight:1.2}}>{surah.nameAr}</div>
-                <div style={{fontFamily:"'Lora',serif",fontSize:14,color:C.teal,fontStyle:"italic"}}>{surah.name} · {surah.ayahCount} āyāt</div>
-              </div>
-              <div style={{fontSize:12,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",color:C.tealDark}}>Display Surah</div>
-            </div>
-            <div style={{padding:"14px 16px"}}>
-              {surah.scenes.map((scene,si)=>{
-                const col = C.s[si%C.s.length];
-                const ayahs = surah.ayahs.filter(a=>a.scene===si);
-                return <section key={scene.title} style={{marginBottom:si===surah.scenes.length-1?0:18}}>
-                  <div style={{display:"inline-flex",alignItems:"center",gap:6,background:col.bg,color:col.deep,border:`1px solid ${col.border}`,borderRadius:20,padding:"3px 10px",fontSize:11,fontWeight:700,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:8}}>Scene {si+1} · āyāt {scene.range}</div>
-                  <div style={{fontFamily:"'Lora',serif",fontSize:17,fontWeight:500,color:C.ink,marginBottom:8}}>{scene.title}</div>
-                  <div style={{display:"flex",flexDirection:"column",gap:8}}>
-                    {ayahs.map(a=>(
-                      <div key={a.n} style={{border:`1px solid ${col.border}`,borderRadius:12,padding:"9px 12px",background:C.cream}}>
-                        <div style={{fontFamily:"'Scheherazade New',serif",fontSize:31,color:col.deep,direction:"rtl",lineHeight:1.9,textAlign:"right"}}>
-                          {a.ar} <span style={{fontSize:17,color:col.mid,border:`1px solid ${col.border}`,borderRadius:"50%",padding:"0 8px",marginRight:6}}>{a.n}</span>
-                        </div>
-                        <div style={{fontSize:14,color:C.ink3,fontFamily:"'Lora',serif",lineHeight:1.55}}>{a.en}</div>
-                      </div>
-                    ))}
-                  </div>
-                </section>;
-              })}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -1348,7 +1147,7 @@ function buildQs(mode,ayahs,surah) {
   if(mode==="arrange") return surah.scenes.map((sc,si)=>({
     label:`Scene ${si+1}: "${sc.title}" — arrange in order`, n:null,
     ayahs:ayahs.filter(a=>a.scene===si).map(a=>({n:a.n,ar:a.ar,en:a.en}))
-  }));
+  })).filter((q) => q.ayahs.length >= 2);
 
   if(mode==="fill") return shuffle(ayahs.filter(a=>a.words?.length>0)).slice(0,10).map(a=>{
     const w=rand(a.words);

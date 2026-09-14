@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kingdom of Iʿrāb — Travelers’ Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2c2419;
+    --muted: #6a5c4a;
+    --display: "Cormorant Garamond", Georgia, serif;
+    --body: "Source Serif 4", Georgia, serif;
+    --arabic: "Amiri", "Traditional Arabic", serif;
+    --rafa: #2f6a4f;
+    --nasb: #3a6ea5;
+    --khafd: #c45c28;
+    --jazm: #5a4a86;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: var(--body);
+    color: var(--ink);
+    background: #1a2430;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .ar { font-family: var(--arabic); direction: rtl; unicode-bidi: isolate; }
+
+  .screen {
+    position: fixed; inset: 0; opacity: 0; pointer-events: none;
+    transition: opacity 0.55s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: scale(1.04);
+  }
+  .screen.active { opacity: 1; pointer-events: auto; transform: scale(1); z-index: 2; }
+  .screen.leaving { opacity: 0; transform: scale(1.12); z-index: 1; }
+
+  #map { background: #6b8f7a; }
+  .map-stage { position: absolute; inset: 0; overflow: hidden; }
+  .map-img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 45%;
+    display: block; transform-origin: center;
+    transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), filter 0.85s ease;
+  }
+  #map.zooming .map-img { filter: blur(2px) brightness(0.85); }
+  .map-veil {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(20,28,36,0.5) 0%, transparent 26%, transparent 55%, rgba(20,28,36,0.62) 100%);
+  }
+
+  .brand {
+    position: absolute; top: clamp(0.9rem, 2.5vw, 1.6rem); left: 50%;
+    transform: translateX(-50%); text-align: center; z-index: 5;
+    width: min(92vw, 34rem); pointer-events: none;
+  }
+  .brand-ar {
+    font-family: var(--arabic); font-size: clamp(2.1rem, 6.5vw, 3.4rem); font-weight: 700;
+    color: #fffaf0; text-shadow: 0 2px 22px rgba(0,0,0,0.45); line-height: 1;
+  }
+  .brand-en {
+    font-family: var(--display); font-weight: 600; font-size: clamp(0.95rem, 2.4vw, 1.25rem);
+    color: rgba(255,248,235,0.92); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 0.25rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .brand-line {
+    font-size: clamp(0.8rem, 1.6vw, 0.95rem); color: rgba(255,248,235,0.82);
+    margin-top: 0.4rem; text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+  }
+
+  .hotspot {
+    position: absolute; z-index: 4; border: none; background: transparent; cursor: pointer;
+    padding: 0; display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
+  }
+  .hotspot:hover, .hotspot:focus-visible { transform: translateY(-4px) scale(1.03); outline: none; }
+  .hotspot.dim { opacity: 0.28; filter: grayscale(0.4); }
+  .hotspot.lit {
+    opacity: 1; filter: none; z-index: 6;
+    transform: translateY(-6px) scale(1.06);
+  }
+  .hotspot[data-id="rafa"]  { left: 18%; top: 18%; width: 22%; --c: var(--rafa); }
+  .hotspot[data-id="nasb"]  { left: 8%;  top: 52%; width: 20%; --c: var(--nasb); }
+  .hotspot[data-id="khafd"] { left: 38%; top: 34%; width: 20%; --c: var(--khafd); }
+  .hotspot[data-id="jazm"]  { left: 62%; top: 42%; width: 28%; --c: var(--jazm); }
+  .hot-ring {
+    width: min(100%, 9rem); aspect-ratio: 1; border-radius: 50%;
+    border: 2px solid color-mix(in srgb, var(--c) 70%, white);
+    background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--c) 28%, transparent), transparent 68%);
+    animation: pulse 2.8s ease-in-out infinite; opacity: 0.85;
+  }
+  .hotspot.lit .hot-ring {
+    animation: none; opacity: 1;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 45%, transparent), 0 0 32px color-mix(in srgb, var(--c) 55%, transparent);
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c) 35%, transparent); }
+    50% { box-shadow: 0 0 0 14px transparent; }
+  }
+  .hot-label {
+    font-family: var(--display); font-weight: 700; font-size: clamp(0.9rem, 2vw, 1.2rem);
+    letter-spacing: 0.06em; color: #fffaf2;
+    background: color-mix(in srgb, var(--c) 82%, #1a1208);
+    padding: 0.32rem 0.8rem 0.38rem; border-radius: 4px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.28); white-space: nowrap;
+  }
+  .hot-label .ar { display: block; font-size: 0.92em; letter-spacing: 0; margin-top: 0.05rem; }
+  .hot-stamp {
+    display: none; margin-top: 0.15rem; padding: 0.25rem 0.55rem;
+    background: rgba(255,250,240,0.95); color: var(--ink); border-radius: 999px;
+    font-family: var(--display); font-size: 0.78rem; font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+  .hotspot.lit .hot-stamp { display: inline-flex; align-items: center; gap: 0.3rem; }
+  .hot-stamp .ar { font-size: 1rem; color: var(--c); }
+
+  /* ——— Atlas (word kinds → castles) ——— */
+  .atlas {
+    position: absolute; left: 0.85rem; bottom: 0.85rem; z-index: 7;
+    width: min(380px, calc(100vw - 1.7rem));
+    max-height: min(58vh, 520px);
+    display: flex; flex-direction: column;
+    background: linear-gradient(165deg, rgba(255,250,241,0.94), rgba(243,232,212,0.92));
+    border: 2px solid #b8923a; border-radius: 14px;
+    box-shadow: 0 0 0 1px #7a5a28, 0 18px 40px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+  .atlas-head {
+    padding: 0.75rem 0.9rem 0.55rem; border-bottom: 1px solid rgba(120,95,55,0.2);
+    flex: none;
+  }
+  .atlas-kicker {
+    font-family: var(--display); letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 0.65rem; color: var(--muted);
+  }
+  .atlas-title {
+    font-family: var(--display); font-weight: 700; font-size: 1.2rem; margin: 0.1rem 0 0; color: var(--ink);
+  }
+  .atlas-sub { font-size: 0.78rem; color: var(--muted); margin: 0.2rem 0 0; line-height: 1.35; }
+  .atlas-list {
+    overflow: auto; padding: 0.45rem; display: flex; flex-direction: column; gap: 0.3rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .traveler-btn {
+    border: 1px solid rgba(120,95,55,0.18); background: rgba(255,255,255,0.55);
+    border-radius: 10px; padding: 0.55rem 0.65rem; text-align: left; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s; color: var(--ink);
+  }
+  .traveler-btn:hover { background: #fff; transform: translateX(2px); }
+  .traveler-btn.active {
+    background: #fff; border-color: #b8923a;
+    box-shadow: 0 0 0 2px color-mix(in srgb, #b8923a 35%, transparent);
+  }
+  .traveler-btn .en { font-family: var(--display); font-weight: 700; font-size: 0.92rem; }
+  .traveler-btn .ar-line { font-size: 0.95rem; color: #5a4630; margin-top: 0.05rem; }
+  .traveler-btn .kind-tag {
+    display: inline-block; margin-top: 0.25rem; font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  .passport {
+    flex: none; border-top: 1px solid rgba(120,95,55,0.2);
+    padding: 0.65rem 0.75rem 0.75rem; background: rgba(255,255,255,0.4);
+    display: none;
+  }
+  .passport.open { display: block; }
+  .passport-tip { font-size: 0.8rem; color: #5a4630; font-style: italic; margin: 0 0 0.55rem; line-height: 1.4; }
+  .route {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 0.45rem; align-items: center;
+    padding: 0.4rem 0.45rem; margin-bottom: 0.3rem;
+    background: rgba(255,255,255,0.7); border-radius: 8px;
+    border-left: 3px solid var(--rc, var(--rafa));
+  }
+  .route-castle {
+    font-family: var(--display); font-weight: 700; font-size: 0.78rem;
+    color: #fffaf0; background: var(--rc); padding: 0.15rem 0.45rem; border-radius: 4px;
+  }
+  .route-cause { font-size: 0.72rem; color: var(--muted); line-height: 1.25; }
+  .route-sign {
+    font-family: var(--display); font-weight: 700; font-size: 0.8rem; text-align: right;
+    white-space: nowrap;
+  }
+  .route-sign .ar { color: var(--rc); font-size: 1.05rem; margin-left: 0.2rem; }
+  .route-seal {
+    font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); display: block;
+  }
+  .go-castle-btn {
+    width: 100%; margin-top: 0.45rem; border: none; cursor: pointer;
+    font-family: var(--display); font-weight: 700; letter-spacing: 0.04em;
+    padding: 0.55rem 0.75rem; border-radius: 8px; color: #fffaf0;
+    background: var(--ink); transition: opacity 0.2s;
+  }
+  .go-castle-btn:hover { opacity: 0.9; }
+  .go-castle-btn[hidden] { display: none; }
+
+  .top-actions {
+    position: absolute; top: 1rem; right: 1rem; z-index: 6;
+    display: flex; gap: 0.45rem; flex-wrap: wrap; justify-content: flex-end;
+  }
+  .top-actions .lore-btn { position: static; }
+  .quest-link { text-decoration: none; display: inline-flex; align-items: center; }
+  .lore-btn {
+    position: absolute; top: 1rem; right: 1rem; z-index: 6;
+    border: 1px solid rgba(255,248,235,0.4); background: rgba(20,18,28,0.5);
+    backdrop-filter: blur(8px); color: #fff8eb; font-family: var(--display);
+    font-size: 0.85rem; letter-spacing: 0.06em; padding: 0.45rem 0.85rem;
+    border-radius: 999px; cursor: pointer;
+  }
+  .lore-btn:hover { background: rgba(20,18,28,0.75); }
+  .map-hint {
+    position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+    z-index: 5; font-family: var(--display); font-size: 0.85rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,248,235,0.8);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); pointer-events: none;
+  }
+
+  /* ——— Castle ——— */
+  #castle { background: #1e2430; }
+  .castle-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; transform: scale(1.06); opacity: 0.92;
+    transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  #castle.active .castle-bg { transform: scale(1); }
+  .castle-veil {
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(16,18,28,0.55) 0%, rgba(16,18,28,0.15) 35%, rgba(16,18,28,0.25) 55%, rgba(16,18,28,0.8) 100%);
+  }
+  .back-btn {
+    position: absolute; top: 1rem; left: 1rem; z-index: 6;
+    border: 1px solid rgba(255,248,235,0.35); background: rgba(20,18,28,0.45);
+    backdrop-filter: blur(8px); color: #fff8eb; font-family: var(--display);
+    font-size: 0.9rem; padding: 0.45rem 0.85rem; border-radius: 999px; cursor: pointer;
+  }
+  .castle-head {
+    position: absolute; top: 0.7rem; left: 50%; transform: translateX(-50%);
+    z-index: 5; text-align: center; width: min(94vw, 40rem); pointer-events: none;
+  }
+  .castle-name {
+    font-family: var(--display); font-weight: 700; font-size: clamp(1.7rem, 5vw, 2.5rem);
+    color: #fffaf0; margin: 0; text-shadow: 0 3px 22px rgba(0,0,0,0.45);
+  }
+  .castle-name .ar { display: inline; margin-left: 0.35rem; font-size: 0.72em; color: color-mix(in srgb, var(--accent) 45%, #fffaf0); }
+  .castle-ali { margin: 0.2rem 0 0; font-size: 0.9rem; color: rgba(255,248,235,0.88); }
+  .castle-ali b { color: #fff; }
+  .castle-note { margin: 0.1rem 0 0; font-size: 0.78rem; color: rgba(255,248,235,0.7); font-style: italic; }
+
+  #castle.dimmed .castle-bg,
+  #castle.dimmed .castle-veil,
+  #castle.dimmed .castle-head,
+  #castle.dimmed .doors-panel,
+  #castle.dimmed .back-btn { filter: blur(3px) brightness(0.45); }
+  #castle .castle-bg, #castle .castle-veil, #castle .castle-head, #castle .doors-panel, #castle .back-btn {
+    transition: filter 0.45s ease;
+  }
+
+  .doors-panel {
+    position: absolute; top: clamp(4.8rem, 11vh, 6.4rem); left: 0; right: 0; bottom: 0;
+    z-index: 5; padding: 0.2rem 0.75rem 0.85rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+  }
+  .causes {
+    flex: none; width: min(980px, 96%); display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 0.4rem 0.5rem;
+  }
+  .causes-label {
+    width: 100%; text-align: center; font-family: var(--display);
+    letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.66rem;
+    color: rgba(255,248,235,0.75); text-shadow: 0 1px 6px rgba(0,0,0,0.45);
+  }
+  .cause-sign {
+    display: inline-flex; flex-direction: column; align-items: center; gap: 0.1rem;
+    min-width: 6.8rem; padding: 0.4rem 0.65rem 0.45rem;
+    background: linear-gradient(165deg, #f3e4c4, #e2c98a 55%, #d4b46a);
+    border: 2px solid #7a5a28; border-radius: 4px;
+    box-shadow: 0 0 0 1px rgba(255,248,235,0.35) inset, 0 6px 14px rgba(0,0,0,0.35);
+    color: #2c2419; transform: rotate(-1deg);
+  }
+  .cause-sign:nth-child(2n) { transform: rotate(1.2deg); }
+  .cause-sign .ar { font-size: 1rem; font-weight: 700; }
+  .cause-sign .en { font-family: var(--display); font-size: 0.7rem; color: #5a4630; }
+  .cause-sign .why { font-size: 0.62rem; color: #7a5a2e; font-style: italic; text-align: center; max-width: 9rem; }
+
+  .doors-caption {
+    font-family: var(--display); letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 0.75rem; color: rgba(255,248,235,0.88); text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  }
+  .doors-row {
+    flex: 1; width: min(1280px, 100%); display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 46vw), 1fr));
+    gap: clamp(0.85rem, 2.2vw, 1.5rem); align-content: center; justify-items: center; min-height: 0;
+  }
+  .doors-row[data-count="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 980px; }
+  .doors-row[data-count="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1180px; }
+  .doors-row[data-count="5"] { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .doors-row[data-count="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 980px; }
+
+  .door-btn {
+    width: 100%; max-width: 280px; border: none; background: transparent; padding: 0;
+    cursor: pointer; display: flex; flex-direction: column; align-items: center;
+    transition: transform 0.28s ease, filter 0.28s ease;
+  }
+  .door-btn:hover, .door-btn:focus-visible {
+    transform: translateY(-10px) scale(1.03); outline: none;
+    filter: drop-shadow(0 16px 22px color-mix(in srgb, var(--accent) 50%, transparent));
+  }
+  .door-art { width: 100%; max-width: 300px; height: min(50vh, 400px); display: block; }
+  .css-door { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 12px 18px rgba(0,0,0,0.45)); }
+  .css-top { position: relative; display: flex; flex-direction: column; align-items: center; width: 100%; z-index: 2; }
+  .css-flagpole { width: 3px; height: 14px; background: linear-gradient(180deg, #e8c76a, #8a6a2f); }
+  .css-flag {
+    position: absolute; top: 2px; left: calc(50% + 2px); width: 22px; height: 14px;
+    background: var(--accent); clip-path: polygon(0 0, 100% 18%, 78% 50%, 100% 82%, 0 100%);
+  }
+  .css-roof {
+    width: 0; height: 0; border-left: 22px solid transparent; border-right: 22px solid transparent;
+    border-bottom: 20px solid var(--accent);
+  }
+  .css-plaque {
+    margin-top: -3px; background: linear-gradient(180deg, #f7ebc4, #e0c57a 55%, #c9a84e);
+    border: 2px solid #8a6a2f; border-radius: 5px; padding: 0.12rem 0.55rem;
+    font-family: var(--arabic); font-size: clamp(0.72rem, 1.6vw, 0.9rem); color: #3a2a10;
+    box-shadow: 0 2px 0 #6a5020; z-index: 3;
+  }
+  .css-body { position: relative; width: 92%; flex: 1; margin-top: -2px; display: flex; justify-content: center; min-height: 0; }
+  .css-banner {
+    position: absolute; top: 12%; width: 14%; height: 58%;
+    background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #000));
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+  .css-banner::after {
+    content: ""; position: absolute; left: 18%; right: 18%; top: 28%; height: 22%;
+    background: rgba(255,248,235,0.85); clip-path: polygon(50% 0, 100% 35%, 82% 100%, 18% 100%, 0 35%);
+  }
+  .css-banner.left { left: 0; border-radius: 2px 2px 40% 40%; }
+  .css-banner.right { right: 0; border-radius: 2px 2px 40% 40%; }
+  .css-arch {
+    position: relative; z-index: 1; width: 72%;
+    background: linear-gradient(180deg, #efe0c0, #d8c49a 40%, #c9b48a);
+    border-radius: 48% 48% 8px 8px / 36% 36% 8px 8px; padding: 8px;
+    box-shadow: inset 0 0 0 2px rgba(120,95,55,0.35), 0 8px 16px rgba(0,0,0,0.3);
+  }
+  .css-wood {
+    width: 100%; height: 100%; border-radius: 42% 42% 5px 5px / 32% 32% 5px 5px;
+    background: repeating-linear-gradient(90deg, #7a4d28 0 10px, #6a4020 10px 12px, #5c371c 12px 22px);
+    display: flex; align-items: center; justify-content: center; position: relative;
+    box-shadow: inset 0 0 0 2.5px #2b1a0c; min-height: 110px;
+  }
+  .css-band {
+    position: absolute; left: 7%; right: 7%; height: 9px;
+    background: linear-gradient(180deg, #3a3532, #1a1614); border-radius: 2px;
+    box-shadow: 0 0 0 1px #c9a227 inset;
+  }
+  .css-band.t { top: 18%; } .css-band.m { top: 50%; transform: translateY(-50%); } .css-band.b { bottom: 18%; }
+  .css-badge {
+    width: min(48%, 64px); aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, color-mix(in srgb, var(--accent) 70%, white), var(--accent) 55%, color-mix(in srgb, var(--accent) 65%, #000));
+    border: 3px solid #d4af37; color: #fffaf0; display: flex; align-items: center; justify-content: center;
+    font-family: var(--arabic); font-size: clamp(1.25rem, 3.2vw, 1.85rem); font-weight: 700; z-index: 2;
+  }
+  .css-knocker {
+    position: absolute; bottom: 12%; width: 16%; aspect-ratio: 1;
+    border: 3px solid #d4af37; border-radius: 50%; z-index: 2;
+  }
+  .css-step {
+    width: 76%; height: 8px; margin-top: -2px;
+    background: linear-gradient(180deg, #d8c49a, #b8a078); border-radius: 0 0 4px 4px;
+  }
+  .door-name {
+    margin-top: 0.5rem; font-family: var(--display); font-weight: 700;
+    font-size: clamp(0.95rem, 2vw, 1.15rem); color: #fff8eb; text-shadow: 0 1px 8px rgba(0,0,0,0.55); text-align: center;
+  }
+  .door-kind {
+    font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,248,235,0.72); margin-top: 0.1rem; text-align: center;
+  }
+  .door-btn.is-ali .door-kind { color: #f0d78a; }
+
+  /* Modal */
+  .modal {
+    position: fixed; inset: 0; z-index: 30; display: grid; place-items: center;
+    padding: 1.1rem; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+  }
+  .modal.open { opacity: 1; pointer-events: auto; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(10,12,18,0.78); backdrop-filter: blur(6px); }
+  .modal-card {
+    --frame: #b8923a; position: relative; width: min(620px, 100%); max-height: min(86vh, 760px);
+    overflow: auto;
+    background: radial-gradient(ellipse at 20% 0%, rgba(255,255,255,0.55), transparent 45%),
+      linear-gradient(165deg, #fffaf2 0%, #f6ebda 48%, #efe2cb 100%);
+    padding: 1.7rem 1.5rem 1.6rem; border-radius: 6px;
+    box-shadow: 0 0 0 2px #f3e6c8, 0 0 0 5px var(--frame), 0 0 0 7px #7a5a28,
+      0 0 0 10px color-mix(in srgb, var(--accent, var(--rafa)) 55%, #d4af37),
+      0 28px 70px -16px rgba(0,0,0,0.65);
+    transform: translateY(18px) scale(0.96);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .modal.open .modal-card { transform: none; }
+  .modal-ornament { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.7rem; color: var(--frame); }
+  .modal-ornament::before, .modal-ornament::after {
+    content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--frame), transparent);
+  }
+  .modal-ornament span { font-family: var(--arabic); font-size: 1.05rem; color: var(--accent, var(--rafa)); }
+  .modal-close {
+    position: absolute; top: 0.8rem; right: 0.8rem; width: 36px; height: 36px;
+    border: 1px solid rgba(120,95,55,0.35); border-radius: 50%; background: rgba(255,255,255,0.45);
+    cursor: pointer; font-size: 1.2rem;
+  }
+  .modal-kicker { font-family: var(--display); letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.7rem; color: var(--muted); }
+  .modal-title {
+    font-family: var(--display); font-weight: 700; font-size: clamp(1.6rem, 4vw, 2.05rem);
+    margin: 0.15rem 0 0; display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;
+  }
+  .badge-chip {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--accent, var(--rafa));
+    color: #fffaf0; font-family: var(--arabic); font-size: 1.2rem; border: 2px solid #d4af37;
+  }
+  .modal-sub { margin: 0.4rem 0 1rem; color: var(--muted); font-size: 0.98rem; line-height: 1.55; }
+  .worn-label { font-family: var(--display); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.55rem; }
+  .worn-list { display: grid; gap: 0.55rem; margin: 0; padding: 0; list-style: none; }
+  .worn-item {
+    background: rgba(255,255,255,0.62); border: 1px solid rgba(120,95,55,0.18);
+    border-left: 4px solid var(--accent, var(--rafa)); border-radius: 0 12px 12px 0; padding: 0.75rem 0.9rem;
+  }
+  .worn-item .ar-name { font-family: var(--arabic); font-size: 1.25rem; }
+  .worn-item .en-name { font-size: 0.9rem; color: var(--muted); margin-top: 0.1rem; }
+  .worn-item .note { font-size: 0.84rem; color: #7a5a2e; margin-top: 0.25rem; font-style: italic; }
+  .lore-quote { font-family: var(--display); font-size: 1.2rem; font-style: italic; text-align: center; margin: 0 0 0.9rem; }
+  .lore-body { font-size: 0.95rem; line-height: 1.65; color: #4a3f33; margin: 0 0 0.8rem; }
+  .errand-grid { display: grid; gap: 0.45rem; margin: 0.8rem 0; }
+  .errand {
+    display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: start;
+    background: rgba(255,255,255,0.55); border: 1px solid rgba(120,95,55,0.16);
+    border-radius: 10px; padding: 0.55rem 0.7rem;
+  }
+  .errand-castle { font-family: var(--display); font-weight: 700; font-size: 0.8rem; padding: 0.15rem 0.45rem; border-radius: 4px; color: #fffaf0; }
+  .errand-castle.rafa { background: var(--rafa); }
+  .errand-castle.nasb { background: var(--nasb); }
+  .errand-castle.khafd { background: var(--khafd); }
+  .errand-castle.jazm { background: var(--jazm); }
+  .errand p { margin: 0; font-size: 0.88rem; color: #4a3f33; }
+
+  @media (max-width: 900px) {
+    .atlas { max-height: 42vh; width: min(100% - 1.2rem, 360px); }
+    .map-hint { display: none; }
+    .doors-row[data-count="4"], .doors-row[data-count="5"], .doors-row[data-count="6"] {
+      grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; overflow-y: auto;
+    }
+  }
+  @media (max-width: 700px) {
+    .hotspot[data-id="rafa"]  { left: 12%; top: 16%; width: 30%; }
+    .hotspot[data-id="nasb"]  { left: 4%;  top: 55%; width: 28%; }
+    .hotspot[data-id="khafd"] { left: 34%; top: 36%; width: 28%; }
+    .hotspot[data-id="jazm"]  { left: 58%; top: 48%; width: 36%; }
+    .brand-line { display: none; }
+    .door-art { height: min(36vh, 280px); max-width: 210px; }
+    .atlas { left: 0.5rem; right: 0.5rem; width: auto; bottom: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<section id="map" class="screen active" aria-label="Kingdom map">
+  <div class="map-stage">
+    <img class="map-img" id="mapImg" src="assets/map-four-castles.png" alt="Four castles of Iʿrāb">
+    <div class="map-veil"></div>
+
+    <div class="brand">
+      <div class="brand-ar">إعراب</div>
+      <div class="brand-en">Kingdom of Iʿrāb</div>
+      <div class="brand-line">Pick a traveler’s family — see which castle and which stamp the errand sends them to.</div>
+    </div>
+
+    <button class="hotspot" data-id="rafa" style="--zoom-x:22%; --zoom-y:22%;" aria-label="Enter Rafʿ">
+      <span class="hot-ring"></span>
+      <span class="hot-label">Rafʿ <span class="ar">رفع</span></span>
+      <span class="hot-stamp" data-stamp></span>
+    </button>
+    <button class="hotspot" data-id="nasb" style="--zoom-x:14%; --zoom-y:68%;" aria-label="Enter Naṣb">
+      <span class="hot-ring"></span>
+      <span class="hot-label">Naṣb <span class="ar">نصب</span></span>
+      <span class="hot-stamp" data-stamp></span>
+    </button>
+    <button class="hotspot" data-id="khafd" style="--zoom-x:46%; --zoom-y:42%;" aria-label="Enter Khafḍ">
+      <span class="hot-ring"></span>
+      <span class="hot-label">Khafḍ <span class="ar">خفض</span></span>
+      <span class="hot-stamp" data-stamp></span>
+    </button>
+    <button class="hotspot" data-id="jazm" style="--zoom-x:78%; --zoom-y:58%;" aria-label="Enter Jazm">
+      <span class="hot-ring"></span>
+      <span class="hot-label">Jazm <span class="ar">جزم</span></span>
+      <span class="hot-stamp" data-stamp></span>
+    </button>
+
+    <aside class="atlas" aria-label="Travelers atlas">
+      <div class="atlas-head">
+        <div class="atlas-kicker">Word shapes · family names</div>
+        <h2 class="atlas-title">Travelers’ atlas</h2>
+        <p class="atlas-sub">Shape never changes. Errand chooses the castle. Castle issues the stamp.</p>
+      </div>
+      <div class="atlas-list" id="atlasList"></div>
+      <div class="passport" id="passport">
+        <p class="passport-tip" id="passportTip"></p>
+        <div id="passportRoutes"></div>
+        <button class="go-castle-btn" id="goCastleBtn" type="button" hidden>Enter highlighted castle</button>
+      </div>
+    </aside>
+
+    <div class="top-actions">
+    <a class="lore-btn quest-link" href="quest.html">Gate Quest</a>
+    <button class="lore-btn" id="loreBtn" type="button">The travelers’ law</button>
+  </div>
+    <div class="map-hint">Atlas · or tap a castle</div>
+  </div>
+</section>
+
+<section id="castle" class="screen" aria-label="Castle hall" hidden>
+  <img class="castle-bg" id="castleBg" alt="">
+  <div class="castle-veil"></div>
+  <button class="back-btn" id="backBtn" type="button">← Kingdom</button>
+  <header class="castle-head">
+    <h1 class="castle-name" id="castleName"></h1>
+    <p class="castle-ali" id="castleAli"></p>
+    <p class="castle-note" id="castleNote"></p>
+  </header>
+  <div class="doors-panel">
+    <div class="causes" id="causesRow"></div>
+    <div class="doors-caption">Open a door · today’s stamp</div>
+    <div class="doors-row" id="doorsRow"></div>
+  </div>
+</section>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-ornament"><span id="modalOrnament">أصلية</span></div>
+    <div class="modal-kicker" id="modalKicker"></div>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-sub" id="modalSub"></p>
+    <div class="worn-label">Groups that wear this badge</div>
+    <ul class="worn-list" id="wornList"></ul>
+  </div>
+</div>
+
+<div class="modal" id="loreModal" role="dialog" aria-modal="true" hidden>
+  <div class="modal-backdrop" id="loreBackdrop"></div>
+  <div class="modal-card">
+    <button class="modal-close" id="loreClose" aria-label="Close">×</button>
+    <div class="modal-ornament"><span>قانون المملكة</span></div>
+    <div class="modal-kicker">How the kingdom works</div>
+    <h2 class="modal-title">Travelers, not citizens</h2>
+    <p class="lore-quote">“The same traveler, a new errand, a new gate.”</p>
+    <p class="lore-body">Townsfolk are travelers. Their <b>shape</b> (Ism Mufrad, Al-Muthannā…) is a family name — fixed. Which castle they enter depends on today’s <b>errand</b> (the ʿāmil / road sign):</p>
+    <div class="errand-grid">
+      <div class="errand"><span class="errand-castle rafa">Rafʿ</span><p>Doing the action / starting the sentence</p></div>
+      <div class="errand"><span class="errand-castle nasb">Naṣb</span><p>Receiving the action</p></div>
+      <div class="errand"><span class="errand-castle khafd">Khafḍ</span><p>Preposition or possession</p></div>
+      <div class="errand"><span class="errand-castle jazm">Jazm</span><p>Verbs only — jazm particle</p></div>
+    </div>
+    <p class="lore-body">The castle stamps them <b>Aṣliyyah</b> or <b>Farʿiyyah</b> for the visit. The seal isn’t kept — issued fresh at each gate. So <span class="ar">كِتَابٌ</span> isn’t a resident of Rafʿ; it’s Ism Mufrad visiting Rafʿ, Naṣb, or Khafḍ depending on the day’s errand.</p>
+  </div>
+</div>
+
+<script src="iraab-data.js"></script>
+<script>
+const CASTLES = IRAAB.castles;
+const TRAVELERS = IRAAB.travelers;
+
+const mapEl = document.getElementById("map");
+const mapImg = document.getElementById("mapImg");
+const castleEl = document.getElementById("castle");
+const castleBg = document.getElementById("castleBg");
+const castleName = document.getElementById("castleName");
+const castleAli = document.getElementById("castleAli");
+const castleNote = document.getElementById("castleNote");
+const doorsRow = document.getElementById("doorsRow");
+const causesRow = document.getElementById("causesRow");
+const atlasList = document.getElementById("atlasList");
+const passport = document.getElementById("passport");
+const passportTip = document.getElementById("passportTip");
+const passportRoutes = document.getElementById("passportRoutes");
+const goCastleBtn = document.getElementById("goCastleBtn");
+const modal = document.getElementById("modal");
+const loreModal = document.getElementById("loreModal");
+
+let currentCastle = null;
+let selectedTraveler = null;
+let focusCastleId = null;
+
+function displayBadge(badge) {
+  if (/^[\u064B-\u0652]$/.test(badge)) return "ـ" + badge;
+  return badge;
+}
+
+function setAccent(color) {
+  document.documentElement.style.setProperty("--accent", color);
+  castleEl.style.setProperty("--accent", color);
+  modal.querySelector(".modal-card").style.setProperty("--accent", color);
+}
+
+function renderAtlas() {
+  atlasList.innerHTML = TRAVELERS.map(t => `
+    <button class="traveler-btn" type="button" data-id="${t.id}">
+      <div class="en">${t.en}</div>
+      <div class="ar-line ar">${t.ar}</div>
+      <span class="kind-tag">${t.kind}</span>
+    </button>
+  `).join("");
+  atlasList.querySelectorAll(".traveler-btn").forEach(btn => {
+    btn.addEventListener("click", () => selectTraveler(btn.dataset.id));
+  });
+}
+
+function selectTraveler(id) {
+  const t = TRAVELERS.find(x => x.id === id);
+  if (!t) return;
+  selectedTraveler = t;
+  focusCastleId = t.routes[0]?.castle || null;
+
+  atlasList.querySelectorAll(".traveler-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.id === id);
+  });
+
+  const colorOf = id => CASTLES[id]?.color || "#333";
+  passportTip.textContent = t.tip;
+  passportRoutes.innerHTML = t.routes.map(r => `
+    <div class="route" style="--rc:${colorOf(r.castle)}">
+      <span class="route-castle">${CASTLES[r.castle].name}</span>
+      <span class="route-cause">${r.cause}${r.note ? " · " + r.note : ""}</span>
+      <span class="route-sign">
+        <span class="route-seal">${r.seal === "ali" ? "Aṣliyyah" : "Farʿiyyah"}</span>
+        ${r.sign}<span class="ar">${displayBadge(r.badge)}</span>
+      </span>
+    </div>
+  `).join("");
+  passport.classList.add("open");
+
+  const routeCastles = new Set(t.routes.map(r => r.castle));
+  document.querySelectorAll(".hotspot").forEach(h => {
+    const cid = h.dataset.id;
+    const route = t.routes.find(r => r.castle === cid);
+    h.classList.toggle("lit", routeCastles.has(cid));
+    h.classList.toggle("dim", !routeCastles.has(cid));
+    const stamp = h.querySelector("[data-stamp]");
+    if (route) {
+      stamp.innerHTML = `<span class="ar">${displayBadge(route.badge)}</span> ${route.sign}`;
+      stamp.style.setProperty("--c", colorOf(cid));
+    } else {
+      stamp.textContent = "";
+    }
+  });
+
+  goCastleBtn.hidden = !focusCastleId;
+  if (focusCastleId) {
+    goCastleBtn.textContent = `Enter ${CASTLES[focusCastleId].name}`;
+    goCastleBtn.style.background = colorOf(focusCastleId);
+  }
+}
+
+function clearTravelerHighlight() {
+  selectedTraveler = null;
+  focusCastleId = null;
+  passport.classList.remove("open");
+  atlasList.querySelectorAll(".traveler-btn").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".hotspot").forEach(h => {
+    h.classList.remove("lit", "dim");
+    h.querySelector("[data-stamp]").textContent = "";
+  });
+  goCastleBtn.hidden = true;
+}
+
+function doorMarkup(door, accent) {
+  const isAli = door.kind === "ali";
+  return `
+    <button class="door-btn ${isAli ? "is-ali" : ""}" data-door="${door.id}" style="--accent:${accent}" type="button">
+      <span class="door-art">
+        <span class="css-door" style="--accent:${accent}">
+          <span class="css-top">
+            <span class="css-flagpole"></span><span class="css-flag"></span>
+            <span class="css-roof"></span>
+            <span class="css-plaque ar">${door.plaque}</span>
+          </span>
+          <span class="css-body">
+            <span class="css-banner left"></span><span class="css-banner right"></span>
+            <span class="css-arch">
+              <span class="css-wood">
+                <span class="css-band t"></span><span class="css-band m"></span><span class="css-band b"></span>
+                <span class="css-badge ar">${displayBadge(door.badge)}</span>
+                <span class="css-knocker"></span>
+              </span>
+            </span>
+          </span>
+          <span class="css-step"></span>
+        </span>
+      </span>
+      <div class="door-name">${door.name}</div>
+      <div class="door-kind">${isAli ? "Ali · Aṣliyyah" : "Farʿūn · Farʿiyyah"}</div>
+    </button>`;
+}
+
+function causesMarkup(causes) {
+  return `
+    <div class="causes-label">Road signs · what sent the traveler here (ʿāmil)</div>
+    ${causes.map(c => `
+      <div class="cause-sign">
+        <span class="ar">${c.ar}</span>
+        <span class="en">${c.en}</span>
+        <span class="why">${c.why}</span>
+      </div>`).join("")}`;
+}
+
+function enterCastle(id, fromHotspot) {
+  const data = CASTLES[id];
+  if (!data) return;
+  currentCastle = data;
+
+  if (fromHotspot) {
+    const zx = fromHotspot.style.getPropertyValue("--zoom-x") || "50%";
+    const zy = fromHotspot.style.getPropertyValue("--zoom-y") || "50%";
+    mapEl.classList.add("zooming");
+    mapImg.style.transformOrigin = `${zx} ${zy}`;
+    mapImg.style.transform = "scale(2.4)";
+  }
+
+  castleBg.src = data.bg;
+  castleBg.alt = `${data.name} castle`;
+  castleName.innerHTML = `${data.name} <span class="ar">${data.ar}</span>`;
+  castleAli.innerHTML = `Ali is <b>${data.aliName}</b> <span class="ar">(${data.aliAr})</span>`;
+  castleNote.textContent = data.note || data.errand;
+  setAccent(data.color);
+  causesRow.innerHTML = causesMarkup(data.causes);
+  doorsRow.dataset.count = String(data.doors.length);
+  doorsRow.innerHTML = data.doors.map(d => doorMarkup(d, data.color)).join("");
+  doorsRow.querySelectorAll(".door-btn").forEach(btn => {
+    btn.addEventListener("click", () => openDoor(btn.dataset.door));
+  });
+
+  window.setTimeout(() => {
+    castleEl.hidden = false;
+    mapEl.classList.remove("active");
+    mapEl.classList.add("leaving");
+    castleEl.classList.add("active");
+    window.setTimeout(() => {
+      mapEl.classList.remove("leaving", "zooming");
+      mapImg.style.transform = "";
+      mapImg.style.transformOrigin = "";
+      mapEl.hidden = true;
+    }, 550);
+  }, fromHotspot ? 520 : 0);
+}
+
+function backToMap() {
+  closeModal();
+  mapEl.hidden = false;
+  castleEl.classList.remove("active");
+  castleEl.classList.add("leaving");
+  mapEl.classList.add("active");
+  window.setTimeout(() => {
+    castleEl.classList.remove("leaving");
+    castleEl.hidden = true;
+    currentCastle = null;
+  }, 550);
+}
+
+function openDoor(doorId) {
+  const door = currentCastle.doors.find(d => d.id === doorId);
+  if (!door) return;
+  document.getElementById("modalOrnament").textContent = door.plaque;
+  document.getElementById("modalKicker").textContent =
+    `${currentCastle.name} · ${door.kind === "ali" ? "Ali · Aṣliyyah" : "Farʿūn · Farʿiyyah"}`;
+  document.getElementById("modalTitle").innerHTML =
+    `<span class="badge-chip ar">${displayBadge(door.badge)}</span><span>${door.name}</span>`;
+  document.getElementById("modalSub").textContent = door.blurb;
+  document.getElementById("wornList").innerHTML = door.worn.map(w => `
+    <li class="worn-item">
+      <div class="ar-name ar">${w.ar}</div>
+      <div class="en-name">${w.en}</div>
+      ${w.note ? `<div class="note">${w.note}</div>` : ""}
+    </li>`).join("");
+  castleEl.classList.add("dimmed");
+  modal.hidden = false;
+  requestAnimationFrame(() => modal.classList.add("open"));
+}
+
+function closeModal() {
+  modal.classList.remove("open");
+  castleEl.classList.remove("dimmed");
+  window.setTimeout(() => { modal.hidden = true; }, 320);
+}
+
+function openLore() {
+  loreModal.hidden = false;
+  requestAnimationFrame(() => loreModal.classList.add("open"));
+}
+function closeLore() {
+  loreModal.classList.remove("open");
+  window.setTimeout(() => { loreModal.hidden = true; }, 320);
+}
+
+renderAtlas();
+
+document.querySelectorAll(".hotspot").forEach(btn => {
+  btn.addEventListener("click", () => enterCastle(btn.dataset.id, btn));
+});
+goCastleBtn.addEventListener("click", () => {
+  if (!focusCastleId) return;
+  const hot = document.querySelector(`.hotspot[data-id="${focusCastleId}"]`);
+  enterCastle(focusCastleId, hot);
+});
+document.getElementById("backBtn").addEventListener("click", backToMap);
+document.getElementById("modalClose").addEventListener("click", closeModal);
+document.getElementById("modalBackdrop").addEventListener("click", closeModal);
+document.getElementById("loreBtn").addEventListener("click", openLore);
+document.getElementById("loreClose").addEventListener("click", closeLore);
+document.getElementById("loreBackdrop").addEventListener("click", closeLore);
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    if (loreModal.classList.contains("open")) closeLore();
+    else if (modal.classList.contains("open")) closeModal();
+    else if (castleEl.classList.contains("active")) backToMap();
+    else clearTravelerHighlight();
+  }
+});
+</script>
+</body>
+</html>

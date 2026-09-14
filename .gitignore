@@ -15,6 +15,7 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+.claude/
 .idea
 .DS_Store
 *.suo
@@ -22,3 +23,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Scratch/intermediate data-generation output
+scripts/_unicode_test.js
+scripts/_unicode_test.json
+scripts/_unicode_test2.json
+scripts/tamyiz_payload_partial.json
+scripts/tamyiz_rest.json
+scripts/dammah-insert.txt
+scripts/ocr-awamil-tmp/

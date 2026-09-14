@@ -1,0 +1,497 @@
+/* Tarbiyah course — content styles (layout uses course-theme.css) */
+
+.tarbiyah-content .tarbiyah-chapter-kicker,
+.tarbiyah-flashcards .tarbiyah-chapter-kicker,
+.tarbiyah-quiz .tarbiyah-chapter-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--edx-text-muted);
+  margin: 0 0 0.35rem;
+}
+
+.tarbiyah-chapter-body {
+  line-height: 1.75;
+}
+
+.tarbiyah-chapter-body .topic {
+  padding: 0 0 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--edx-border-light);
+}
+
+.tarbiyah-chapter-body .topic:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.tarbiyah-chapter-body .topic h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--edx-text);
+  margin: 0 0 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tarbiyah-chapter-body .topic h3::before {
+  content: "";
+  width: 4px;
+  height: 1.1rem;
+  border-radius: 2px;
+  background: var(--fl-orange);
+  flex-shrink: 0;
+}
+
+.tarbiyah-chapter-body .intro-text {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin-bottom: 0.85rem;
+  color: var(--edx-text);
+}
+
+.tarbiyah-chapter-body .note-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem;
+  margin: 0.65rem 0;
+}
+
+.tarbiyah-chapter-body .note-card {
+  background: var(--edx-border-light);
+  border-radius: var(--edx-radius-sm);
+  padding: 0.85rem 1rem;
+  border-left: 4px solid var(--fl-orange);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.tarbiyah-chapter-body .note-card strong {
+  color: var(--edx-text);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.tarbiyah-chapter-body .ayah-box {
+  background: #f0ebfa;
+  border-left: 5px solid var(--fl-purple);
+  border-radius: var(--edx-radius-sm);
+  padding: 0.85rem 1rem;
+  margin: 0.65rem 0;
+  font-style: italic;
+  font-size: 0.89rem;
+  line-height: 1.7;
+}
+
+.tarbiyah-chapter-body .ayah-box .ref {
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--fl-purple);
+  margin-top: 0.35rem;
+  font-weight: 700;
+}
+
+.tarbiyah-chapter-body .hadith-box {
+  background: #eaf5f0;
+  border-left: 5px solid var(--fl-green);
+  border-radius: var(--edx-radius-sm);
+  padding: 0.85rem 1rem;
+  margin: 0.65rem 0;
+  font-size: 0.89rem;
+  line-height: 1.7;
+}
+
+.tarbiyah-chapter-body .hadith-box .src {
+  font-size: 0.75rem;
+  color: var(--fl-green);
+  margin-top: 0.35rem;
+  font-weight: 700;
+}
+
+.tarbiyah-chapter-body .warning-box {
+  background: #fff4e6;
+  border-left: 5px solid #d4600a;
+  border-radius: var(--edx-radius-sm);
+  padding: 0.85rem 1rem;
+  margin: 0.65rem 0;
+  font-size: 0.87rem;
+  line-height: 1.65;
+}
+
+.tarbiyah-chapter-body .warning-box strong {
+  color: #d4600a;
+}
+
+.tarbiyah-chapter-body .benefit-box {
+  background: #eaf5ea;
+  border-left: 5px solid var(--fl-green);
+  border-radius: var(--edx-radius-sm);
+  padding: 0.85rem 1rem;
+  margin: 0.65rem 0;
+  font-size: 0.87rem;
+  line-height: 1.65;
+}
+
+.tarbiyah-chapter-body .benefit-box strong {
+  color: var(--edx-success);
+}
+
+.tarbiyah-chapter-body .key-list {
+  list-style: none;
+  margin: 0.65rem 0;
+  padding: 0;
+}
+
+.tarbiyah-chapter-body .key-list li {
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  border-bottom: 1px solid var(--edx-border-light);
+  font-size: 0.87rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.tarbiyah-chapter-body .key-list li:last-child {
+  border-bottom: none;
+}
+
+.tarbiyah-chapter-body .key-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--fl-orange);
+  top: 0.55rem;
+  font-size: 0.75rem;
+}
+
+.tarbiyah-chapter-body .two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 0.65rem 0;
+}
+
+.tarbiyah-chapter-body .mini-card {
+  background: var(--edx-border-light);
+  border-radius: var(--edx-radius-sm);
+  padding: 0.85rem;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  border-top: 3px solid var(--fl-green);
+}
+
+.tarbiyah-chapter-body .mini-card h4 {
+  color: var(--edx-text);
+  margin: 0 0 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.tarbiyah-chapter-body .num-list {
+  counter-reset: nl;
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.tarbiyah-chapter-body .num-list li {
+  counter-increment: nl;
+  padding: 0.5rem 0 0.5rem 2rem;
+  position: relative;
+  font-size: 0.87rem;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--edx-border-light);
+}
+
+.tarbiyah-chapter-body .num-list li:last-child {
+  border-bottom: none;
+}
+
+.tarbiyah-chapter-body .num-list li::before {
+  content: counter(nl);
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: var(--fl-green);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tarbiyah-flashcards .tarbiyah-fc-btns,
+.tarbiyah-quiz .tarbiyah-lesson-nav {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+/* removed duplicate tarbiyah-lesson-nav - use course-lesson-nav from course-theme */
+
+/* Flashcards */
+.tarbiyah-select {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--edx-radius-sm);
+  border: 1px solid var(--edx-border);
+  font-family: var(--edx-font);
+  font-size: 0.85rem;
+  background: var(--edx-surface);
+  color: var(--edx-text);
+}
+
+.tarbiyah-fc-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.tarbiyah-fc-counter {
+  font-weight: 600;
+  color: var(--edx-text);
+  font-size: 0.88rem;
+  background: var(--edx-border-light);
+  padding: 0.35rem 0.85rem;
+  border-radius: 99px;
+}
+
+.tarbiyah-card-scene {
+  perspective: 1200px;
+  height: 280px;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+}
+
+.tarbiyah-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tarbiyah-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.tarbiyah-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--edx-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--edx-shadow);
+}
+
+.tarbiyah-card-front {
+  background: linear-gradient(140deg, #1d4e35, #2a6446);
+}
+
+.tarbiyah-card-back {
+  background: var(--edx-surface);
+  border: 1px solid var(--edx-border-light);
+  transform: rotateY(180deg);
+}
+
+.tarbiyah-card-tag {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1rem;
+}
+
+.tarbiyah-card-front .tarbiyah-card-tag {
+  color: #ffd480;
+}
+
+.tarbiyah-card-back .tarbiyah-card-tag {
+  color: var(--fl-orange);
+}
+
+.tarbiyah-card-q {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: #fff;
+  line-height: 1.55;
+  margin: 0;
+  font-weight: 600;
+}
+
+.tarbiyah-card-a {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--edx-text);
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.tarbiyah-flip-hint {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--edx-text-muted);
+  margin-bottom: 1rem;
+}
+
+.tarbiyah-fc-btns {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+/* Quiz */
+.tarbiyah-quiz-setup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.tarbiyah-progress-bar {
+  background: var(--edx-border-light);
+  border-radius: 99px;
+  height: 7px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.tarbiyah-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--fl-green), var(--fl-orange));
+  border-radius: 99px;
+  transition: width 0.4s;
+}
+
+.tarbiyah-q-meta {
+  font-size: 0.75rem;
+  color: var(--edx-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.65rem;
+}
+
+.tarbiyah-q-text {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+}
+
+.tarbiyah-options {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.tarbiyah-opt {
+  padding: 0.75rem 1rem;
+  border-radius: var(--edx-radius-sm);
+  border: 1px solid var(--edx-border);
+  background: var(--edx-border-light);
+  cursor: pointer;
+  font-family: var(--edx-font);
+  font-size: 0.88rem;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tarbiyah-opt:hover:not(.locked) {
+  border-color: var(--fl-green);
+  background: var(--edx-success-bg);
+}
+
+.tarbiyah-opt-ltr {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--fl-green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.tarbiyah-opt.correct {
+  border-color: var(--edx-success);
+  background: var(--edx-success-bg);
+}
+
+.tarbiyah-opt.correct .tarbiyah-opt-ltr {
+  background: var(--edx-success);
+}
+
+.tarbiyah-opt.wrong {
+  border-color: #c62828;
+  background: #ffebee;
+}
+
+.tarbiyah-opt.wrong .tarbiyah-opt-ltr {
+  background: #c62828;
+}
+
+.tarbiyah-opt.locked {
+  cursor: default;
+}
+
+.tarbiyah-fb {
+  border-radius: var(--edx-radius-sm);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.87rem;
+  line-height: 1.65;
+}
+
+.tarbiyah-fb.correct {
+  background: var(--edx-success-bg);
+  border-left: 4px solid var(--edx-success);
+}
+
+.tarbiyah-fb.wrong {
+  background: #ffebee;
+  border-left: 4px solid #c62828;
+}
+
+.tarbiyah-quiz-results {
+  text-align: center;
+}
+
+.tarbiyah-score-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1d4e35, var(--fl-green));
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem auto;
+  box-shadow: 0 6px 24px rgba(30, 78, 53, 0.25);
+}
+
+@media (max-width: 600px) {
+  .tarbiyah-chapter-body .two-col,
+  .tarbiyah-chapter-body .note-grid {
+    grid-template-columns: 1fr;
+  }
+}

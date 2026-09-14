@@ -1,4 +1,6 @@
 import { GENERATED_SURAHS } from "./generatedSurahs.js";
+import { JUZ1_DIARY_ITEMS, JUZ1_DIARY_SCOPE } from "./juz1DiaryItems.js";
+import { JUZ1_GENERATED_SURAHS } from "./juz1GeneratedSurahs.js";
 import { JUZ30_GENERATED_SURAHS } from "./juz30GeneratedSurahs.js";
 
 const HAND_AUTHORED_DIARY_SURAHS = [
@@ -25,6 +27,7 @@ const GENERATED_DIARY_SURAHS = [
 const surahsByNumber = new Map();
 
 [
+  ...Object.values(JUZ1_GENERATED_SURAHS),
   ...Object.values(JUZ30_GENERATED_SURAHS),
   ...HAND_AUTHORED_DIARY_SURAHS,
   ...GENERATED_DIARY_SURAHS,
@@ -35,3 +38,28 @@ const surahsByNumber = new Map();
 export const DIARY_SURAHS = [...surahsByNumber.values()].sort(
   (a, b) => a.revelationOrder - b.revelationOrder,
 );
+
+/** Active diary scope — Juz 1 uses mushaf pages; other juz use sūrah list when added. */
+export const DIARY_ITEMS = JUZ1_DIARY_ITEMS;
+export const DIARY_SCOPE = JUZ1_DIARY_SCOPE;
+
+export function getDiarySurahsForJuz(juz) {
+  if (Number(juz) === 1) return [];
+  return DIARY_SURAHS.filter((surah) => surah.juz === Number(juz));
+}
+
+export function getDiaryItemsForJuz(juz) {
+  if (Number(juz) === 1) return JUZ1_DIARY_ITEMS;
+  return getDiarySurahsForJuz(juz).map((surah) => ({
+    id: String(surah.revelationOrder),
+    juz: surah.juz,
+    page: null,
+    surahNumber: surah.revelationOrder,
+    label: surah.name,
+    nameAr: surah.nameAr,
+    verseRange: String(surah.ayahCount),
+    headline: null,
+    detail: `${surah.ayahCount} āyāt`,
+    kind: "surah",
+  }));
+}

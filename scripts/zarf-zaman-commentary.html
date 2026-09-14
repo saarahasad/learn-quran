@@ -1,0 +1,449 @@
+<div class="damma-commentary">
+  <style>
+    .damma-commentary {
+      --dcm-blue: #2b6ca3;
+      --dcm-blue-bg: #eaf4fc;
+      --dcm-blue-line: #bfe0f5;
+      --dcm-yellow: #9a7c1f;
+      --dcm-yellow-bg: #fdf6e0;
+      --dcm-yellow-line: #f3e4a8;
+      --dcm-pink: #b34f5c;
+      --dcm-pink-bg: #fdeef0;
+      --dcm-pink-line: #f6c9ce;
+      --dcm-green: #2f8a56;
+      --dcm-green-bg: #eaf7ee;
+      --dcm-green-line: #bfe6cc;
+      --dcm-purple: #6a4c93;
+      --dcm-purple-bg: #f1ecf9;
+      --dcm-purple-line: #dccdf0;
+      --dcm-ink: #2c2c2c;
+      --dcm-sub: #6b6b6b;
+      --dcm-line: #d8dee2;
+
+      box-sizing: border-box;
+      max-width: 830px;
+      margin: 0 auto;
+      padding: 8px 16px 40px;
+      background: #ffffff;
+      color: var(--dcm-ink);
+      font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .damma-commentary *, .damma-commentary *::before, .damma-commentary *::after {
+      box-sizing: border-box;
+    }
+    .damma-commentary .dcm-ar {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      unicode-bidi: embed;
+    }
+
+    .damma-commentary h2.dcm-h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 40px 0 6px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--dcm-blue-line);
+      color: var(--dcm-ink);
+    }
+    .damma-commentary h2.dcm-h2:first-of-type { margin-top: 8px; }
+    .damma-commentary h2.dcm-h2 .dcm-num {
+      display: inline-block;
+      width: 26px; height: 26px;
+      line-height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      background: var(--dcm-blue-bg);
+      color: var(--dcm-blue);
+      font-size: 0.85rem;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .damma-commentary h2.dcm-h2 .dcm-ar {
+      font-size: 1.3rem;
+      color: var(--dcm-blue);
+      margin-left: 6px;
+    }
+    .damma-commentary h3.dcm-h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--dcm-sub);
+      text-align: center;
+      margin: 24px 0 14px;
+    }
+
+    .damma-commentary p { margin: 0 0 14px; }
+
+    .damma-commentary .dcm-lead {
+      font-size: 1.05rem;
+      color: var(--dcm-ink);
+      background: var(--dcm-blue-bg);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 0 0 8px;
+    }
+
+    .damma-commentary .dcm-example {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 6px;
+      background: var(--dcm-blue-bg);
+      color: var(--dcm-blue);
+      font-size: 1.15rem;
+      margin: 0 2px;
+    }
+
+    .damma-commentary .dcm-callout {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 4px 0 18px;
+      font-size: 0.92rem;
+      color: var(--dcm-sub);
+    }
+    .damma-commentary .dcm-callout.dcm-yellow { background: var(--dcm-yellow-bg); color: var(--dcm-yellow); }
+    .damma-commentary .dcm-callout.dcm-pink { background: var(--dcm-pink-bg); color: var(--dcm-pink); }
+    .damma-commentary .dcm-callout.dcm-green { background: var(--dcm-green-bg); color: var(--dcm-green); }
+    .damma-commentary .dcm-callout.dcm-purple { background: var(--dcm-purple-bg); color: var(--dcm-purple); }
+    .damma-commentary .dcm-callout strong { color: inherit; }
+
+    .damma-commentary table.dcm-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 20px;
+      font-size: 0.85rem;
+    }
+    .damma-commentary table.dcm-table th,
+    .damma-commentary table.dcm-table td {
+      text-align: left;
+      padding: 8px 9px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    .damma-commentary table.dcm-table th {
+      color: var(--dcm-sub);
+      font-weight: 600;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .damma-commentary table.dcm-table td.dcm-td-ar {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      font-size: 1.05rem;
+      color: var(--dcm-blue);
+    }
+
+    .damma-commentary .dcm-divider {
+      height: 1px;
+      background: #eee;
+      margin: 32px 0;
+      border: none;
+    }
+
+    /* sentence cards */
+    .damma-commentary .dcm-sentence {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 0 0 12px;
+    }
+    .damma-commentary .dcm-sentence .dcm-ar {
+      font-size: 1.22rem;
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1.9;
+    }
+    .damma-commentary .dcm-sentence .dcm-gloss {
+      font-size: 0.85rem;
+      color: var(--dcm-sub);
+      font-style: italic;
+    }
+    .damma-commentary .dcm-hl {
+      border-bottom: 2px dotted currentColor;
+      padding-bottom: 1px;
+    }
+
+    /* contrast pair */
+    .damma-commentary .dcm-contrast {
+      display: flex; gap: 14px; flex-wrap: wrap; margin: 10px 0 8px;
+    }
+    .damma-commentary .dcm-contrast > div { flex: 1 1 260px; }
+
+    /* ---------- chart / diagram elements ---------- */
+    .damma-commentary .dcm-chart {
+      margin: 18px 0 34px;
+      padding: 18px 6px 4px;
+      background: #fbfcfd;
+      border-radius: 18px;
+    }
+    .damma-commentary .dcm-chart-row {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 16px 12px; max-width: 680px; margin: 0 auto;
+    }
+    .damma-commentary .dcm-chart-branch {
+      display: flex; flex-direction: column; align-items: center;
+      flex: 1 1 220px; max-width: 300px;
+    }
+    .damma-commentary .dcm-chart-node {
+      border-radius: 12px; padding: 10px 12px; text-align: center; width: 100%;
+    }
+    .damma-commentary .dcm-chart-node .dcm-ar { font-size: 1.02rem; display: block; }
+    .damma-commentary .dcm-chart-node .dcm-en { font-size: 0.62rem; color: #777; margin-top: 3px; display: block; }
+    .damma-commentary .dcm-chart-node .dcm-ex {
+      display: block; margin-top: 6px; padding-top: 6px; border-top: 1px dashed rgba(0,0,0,.1); font-size: 0.88rem;
+    }
+
+    .damma-commentary .dcm-c1 { background: var(--dcm-blue-bg); }
+    .damma-commentary .dcm-c1 .dcm-ar, .damma-commentary .dcm-c1 .dcm-ex { color: var(--dcm-blue); }
+    .damma-commentary .dcm-c2 { background: var(--dcm-yellow-bg); }
+    .damma-commentary .dcm-c2 .dcm-ar, .damma-commentary .dcm-c2 .dcm-ex { color: var(--dcm-yellow); }
+    .damma-commentary .dcm-c3 { background: var(--dcm-pink-bg); }
+    .damma-commentary .dcm-c3 .dcm-ar, .damma-commentary .dcm-c3 .dcm-ex { color: var(--dcm-pink); }
+    .damma-commentary .dcm-c4 { background: var(--dcm-green-bg); }
+    .damma-commentary .dcm-c4 .dcm-ar, .damma-commentary .dcm-c4 .dcm-ex { color: var(--dcm-green); }
+    .damma-commentary .dcm-c5 { background: var(--dcm-purple-bg); }
+    .damma-commentary .dcm-c5 .dcm-ar, .damma-commentary .dcm-c5 .dcm-ex { color: var(--dcm-purple); }
+
+    /* 24h schematic timeline */
+    .damma-commentary .dcm-timeline-wrap { margin: 14px 0 8px; }
+    .damma-commentary .dcm-anchors {
+      display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--dcm-sub);
+      padding: 0 2px; margin-bottom: 4px;
+    }
+    .damma-commentary .dcm-anchors .dcm-ar { font-size: 0.85rem; color: var(--dcm-ink); display: block; }
+    .damma-commentary .dcm-track {
+      display: flex; height: 4px; border-radius: 3px; overflow: hidden; background: var(--dcm-line);
+    }
+    .damma-commentary .dcm-track > div { flex: 1; }
+    .damma-commentary .dcm-period-row {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; justify-content: center;
+    }
+    .damma-commentary .dcm-period-pill {
+      border-radius: 999px; padding: 5px 12px; font-size: 0.78rem;
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif; direction: rtl;
+    }
+
+    /* named-word entry */
+    .damma-commentary .dcm-word-entry {
+      border-radius: 12px; padding: 12px 16px; margin: 0 0 12px;
+    }
+    .damma-commentary .dcm-word-entry .dcm-word-head {
+      display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px;
+    }
+    .damma-commentary .dcm-word-entry .dcm-word-ar { font-size: 1.2rem; font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif; direction: rtl; }
+    .damma-commentary .dcm-word-entry .dcm-word-num {
+      font-size: 0.68rem; color: #fff; background: var(--dcm-blue); border-radius: 50%;
+      width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .damma-commentary .dcm-word-entry .dcm-word-def { font-size: 0.85rem; color: var(--dcm-sub); margin-bottom: 6px; }
+    .damma-commentary .dcm-word-entry .dcm-word-ex { font-size: 1rem; font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif; direction: rtl; color: var(--dcm-blue); display: block; margin: 2px 0; }
+
+    @media (max-width: 560px) {
+      .damma-commentary .dcm-chart-row { flex-direction: column; align-items: center; }
+      .damma-commentary .dcm-chart-branch { max-width: 260px; }
+      .damma-commentary .dcm-contrast { flex-direction: column; }
+      .damma-commentary .dcm-anchors { font-size: 0.6rem; }
+      table.dcm-table { font-size: 0.75rem; }
+    }
+  </style>
+
+  <p class="dcm-lead">
+    The third of the fifteen manṣūb positions — and the first of a pair (time and place) covered together "due to their similarities in ruling," as the commentary's own footnote explains, even though each gets its own precise definition so the two don't blur together for a beginner.
+  </p>
+
+  <h2 class="dcm-h2"><span class="dcm-num">1</span>What "ẓarf" means <span class="dcm-ar">مَعْنَى الظَّرْف</span></h2>
+  <p>
+    Linguistically, <span class="dcm-ar">ظَرْف</span> just means "container." In grammatical use it's the technical name for <span class="dcm-ar">الْمَفْعُولُ فِيهِ</span> — literally "that which the action occurs in/at" — and it comes in two kinds: <span class="dcm-ar">ظَرْفُ الزَّمَان</span> (time) and <span class="dcm-ar">ظَرْفُ الْمَكَان</span> (place). This chapter covers the time half in full.
+  </p>
+
+  <h2 class="dcm-h2"><span class="dcm-num">2</span>The test: does "فِي" fit? <span class="dcm-ar">مُلَاحَظَةُ مَعْنَى «فِي»</span></h2>
+  <p>
+    A time-word is only a true ẓarf when the action is understood to happen <em>within</em> it — i.e. "فِي" (in/during) could be inserted before it without changing the meaning. The same word can fail this test in a different sentence:
+  </p>
+  <div class="dcm-contrast">
+    <div class="dcm-sentence dcm-c1">
+      <span class="dcm-tag" style="font-size:0.68rem; color:var(--dcm-sub);">ظرف — passes the test</span>
+      <span class="dcm-ar">صُمْتُ <span class="dcm-hl">يَوْمَ الِاثْنَيْنِ</span></span>
+      <span class="dcm-gloss">"I fasted [in/on] Monday." — the fasting happened <em>within</em> that day</span>
+    </div>
+    <div class="dcm-sentence dcm-c3">
+      <span class="dcm-tag" style="font-size:0.68rem; color:var(--dcm-sub);">NOT ظرف — fails the test</span>
+      <span class="dcm-ar">يَخَافُ الْكَسُولُ <span class="dcm-hl">يَوْمَ الِامْتِحَانِ</span></span>
+      <span class="dcm-gloss">"The lazy student fears exam day." — he fears the day <em>itself</em>, not something happening in it</span>
+    </div>
+  </div>
+  <p class="dcm-callout dcm-yellow">
+    Same phrase-shape (يَوْمَ + noun), same case (both manṣūb) — but only the first is functioning as a true ẓarf zamān. The second is a manṣūb noun for a different reason (the object of "fears"), and the "فِي" test is exactly how you tell them apart.
+  </p>
+
+  <h2 class="dcm-h2"><span class="dcm-num">3</span>Specified vs. unspecified <span class="dcm-ar">الْمُخْتَصُّ وَالْمُبْهَم</span></h2>
+  <div class="dcm-chart">
+    <div class="dcm-chart-row">
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c1">
+          <span class="dcm-ar">مُخْتَصّ</span>
+          <span class="dcm-en">a definite, bounded measure of time</span>
+          <span class="dcm-ex dcm-ar">الشَّهْر، السَّنَة، الْيَوْم، الْعَام، الْأُسْبُوع</span>
+        </div>
+      </div>
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c2">
+          <span class="dcm-ar">مُبْهَم</span>
+          <span class="dcm-en">an indefinite, unbounded measure</span>
+          <span class="dcm-ex dcm-ar">اللَّحْظَة، الْوَقْت، الزَّمَان، الْحِين</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>
+    Both kinds are equally valid as manṣūb ẓarf zamān — the distinction is about the word's own precision, not its grammatical eligibility.
+  </p>
+
+  <hr class="dcm-divider">
+
+  <h2 class="dcm-h2"><span class="dcm-num">4</span>The twelve named time-words, on a schematic day <span class="dcm-ar">الْأَلْفَاظُ الِاثْنَا عَشَرَ</span></h2>
+  <p>
+    Seven of the twelve sit on the daily cycle of dawn, sunrise, midday, sunset, and midnight. Laid out in order (not to scale):
+  </p>
+
+  <div class="dcm-timeline-wrap">
+    <div class="dcm-anchors">
+      <span><span class="dcm-ar">طُلُوعُ الْفَجْرِ</span>dawn</span>
+      <span><span class="dcm-ar">طُلُوعُ الشَّمْسِ</span>sunrise</span>
+      <span><span class="dcm-ar">الزَّوَال</span>midday</span>
+      <span><span class="dcm-ar">غُرُوبُ الشَّمْسِ</span>sunset</span>
+      <span><span class="dcm-ar">نِصْفُ اللَّيْلِ</span>midnight</span>
+    </div>
+    <div class="dcm-track">
+      <div style="background:var(--dcm-purple-bg);"></div>
+      <div style="background:var(--dcm-yellow-bg);"></div>
+      <div style="background:var(--dcm-blue-bg);"></div>
+      <div style="background:var(--dcm-pink-bg);"></div>
+    </div>
+    <div class="dcm-period-row">
+      <span class="dcm-period-pill dcm-c5">سَحَرًا — end of night, just before dawn</span>
+      <span class="dcm-period-pill dcm-c2">غَدْوَةً — fajr prayer to sunrise</span>
+      <span class="dcm-period-pill dcm-c2">بُكْرَةً — start of daytime</span>
+      <span class="dcm-period-pill dcm-c1">صَبَاحًا — mid-night to midday</span>
+      <span class="dcm-period-pill dcm-c3">مَسَاءً — midday to midnight</span>
+      <span class="dcm-period-pill dcm-c5">عَتَمَةً — first third of the night</span>
+    </div>
+  </div>
+  <div class="dcm-period-row" style="margin-top:14px;">
+    <span class="dcm-period-pill dcm-c4">الْيَوْمُ — all of dawn-to-sunset</span>
+    <span class="dcm-period-pill dcm-c5">اللَّيْلَةُ — all of sunset-to-dawn</span>
+  </div>
+  <p class="dcm-callout">
+    Schematic, not to scale — the point is the <em>order</em> of these anchors and which named period sits between which two. اليوم and الليلة are the two large halves; the other five are narrower windows nested within them.
+  </p>
+
+  <h3 class="dcm-h3">and three that aren't clock-based at all</h3>
+  <div class="dcm-chart-row" style="max-width:600px; margin:0 auto;">
+    <div class="dcm-chart-branch"><div class="dcm-chart-node dcm-c4"><span class="dcm-ar">غَدًا</span><span class="dcm-en">tomorrow — a relative day, not a time-of-day</span></div></div>
+    <div class="dcm-chart-branch"><div class="dcm-chart-node dcm-c4"><span class="dcm-ar">أَبَدًا / أَمَدًا</span><span class="dcm-en">unending future</span></div></div>
+    <div class="dcm-chart-branch"><div class="dcm-chart-node dcm-c4"><span class="dcm-ar">حِينًا</span><span class="dcm-en">a vague stretch, start/end unknown</span></div></div>
+  </div>
+
+  <h2 class="dcm-h2"><span class="dcm-num">5</span>All twelve, in full — definitions and examples</h2>
+
+  <div class="dcm-word-entry dcm-c4">
+    <div class="dcm-word-head"><span class="dcm-word-num">1</span><span class="dcm-word-ar">الْيَوْمُ</span></div>
+    <div class="dcm-word-def">dawn to sunset</div>
+    <span class="dcm-word-ex">صُمْتُ الْيَوْمَ</span>
+    <span class="dcm-word-ex">صُمْتُ يَوْمَ الْخَمِيسِ</span>
+    <span class="dcm-word-ex">صُمْتُ يَوْمًا طَوِيلًا</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c5">
+    <div class="dcm-word-head"><span class="dcm-word-num">2</span><span class="dcm-word-ar">اللَّيْلَةُ</span></div>
+    <div class="dcm-word-def">sunset to dawn</div>
+    <span class="dcm-word-ex">اعْتَكَفْتُ اللَّيْلَةَ الْبَارِحَةَ</span>
+    <span class="dcm-word-ex">اعْتَكَفْتُ لَيْلَةً</span>
+    <span class="dcm-word-ex">اعْتَكَفْتُ لَيْلَةَ الْجُمُعَةِ</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c2">
+    <div class="dcm-word-head"><span class="dcm-word-num">3</span><span class="dcm-word-ar">غَدْوَةً</span></div>
+    <div class="dcm-word-def">between the fajr prayer and sunrise</div>
+    <span class="dcm-word-ex">زَارَنِي صَدِيقِي غَدْوَةَ الْأَحَدِ</span>
+    <span class="dcm-word-ex">زَارَنِي غَدْوَةً</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c2">
+    <div class="dcm-word-head"><span class="dcm-word-num">4</span><span class="dcm-word-ar">بُكْرَةً</span></div>
+    <div class="dcm-word-def">the very start of the daytime</div>
+    <span class="dcm-word-ex">أَزُورُكَ بُكْرَةَ السَّبْتِ</span>
+    <span class="dcm-word-ex">أَزُورُكَ بُكْرَةً</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c5">
+    <div class="dcm-word-head"><span class="dcm-word-num">5</span><span class="dcm-word-ar">سَحَرًا</span></div>
+    <div class="dcm-word-def">the end of the night, just before dawn</div>
+    <span class="dcm-word-ex">ذَاكَرْتُ دَرْسِي سَحَرًا</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c4">
+    <div class="dcm-word-head"><span class="dcm-word-num">6</span><span class="dcm-word-ar">غَدًا</span></div>
+    <div class="dcm-word-def">the day after today</div>
+    <span class="dcm-word-ex">إِذَا جِئْتَنِي غَدًا أَكْرَمْتُكَ</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c5">
+    <div class="dcm-word-head"><span class="dcm-word-num">7</span><span class="dcm-word-ar">عَتَمَةً</span></div>
+    <div class="dcm-word-def">the first third of the night</div>
+    <span class="dcm-word-ex">سَأَزُورُكَ عَتَمَةً</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c1">
+    <div class="dcm-word-head"><span class="dcm-word-num">8</span><span class="dcm-word-ar">صَبَاحًا</span></div>
+    <div class="dcm-word-def">from the start of the night's second half to midday (al-zawāl)</div>
+    <span class="dcm-word-ex">سَافَرَ أَخِي صَبَاحًا</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c3">
+    <div class="dcm-word-head"><span class="dcm-word-num">9</span><span class="dcm-word-ar">مَسَاءً</span></div>
+    <div class="dcm-word-def">from midday (al-zawāl) to midnight</div>
+    <span class="dcm-word-ex">وَصَلَ الْقِطَارُ بِنَا مَسَاءً</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c4">
+    <div class="dcm-word-head"><span class="dcm-word-num">10</span><span class="dcm-word-ar">أَبَدًا</span></div>
+    <div class="dcm-word-def">unending future time</div>
+    <span class="dcm-word-ex">لَا أُصَاحِبُ الْأَشْرَارَ أَبَدًا</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c4">
+    <div class="dcm-word-head"><span class="dcm-word-num">11</span><span class="dcm-word-ar">أَمَدًا</span></div>
+    <div class="dcm-word-def">unending future time (same sense as أبدا)</div>
+    <span class="dcm-word-ex">لَا أَقْتَرِفُ الشَّرَّ أَمَدًا</span>
+  </div>
+
+  <div class="dcm-word-entry dcm-c4">
+    <div class="dcm-word-head"><span class="dcm-word-num">12</span><span class="dcm-word-ar">حِينًا</span></div>
+    <div class="dcm-word-def">a vague stretch of time, start and end unknown</div>
+    <span class="dcm-word-ex">صَاحَبْتُ عَلِيًّا حِينًا مِنَ الدَّهْرِ</span>
+  </div>
+
+  <p class="dcm-callout dcm-yellow">
+    A quirk worth flagging: أَبَدًا and its synonym أَمَدًا can mean "always/forever," but in a negated sentence — as in both examples above — they flip to meaning "never," precisely because they describe an unbounded stretch and the negation particle (لا) applies across that entire stretch.
+  </p>
+
+  <h2 class="dcm-h2"><span class="dcm-num">6</span>Beyond the twelve — anything alike joins the list</h2>
+  <p>
+    The named twelve aren't exhaustive — any noun indicating time, specified or unspecified, can be made manṣūb as ẓarf zamān the same way:
+  </p>
+  <table class="dcm-table">
+    <tr><th>Category</th><th>Further examples</th></tr>
+    <tr><td>مختص (specified)</td><td class="dcm-td-ar">ضَحْوَةً، ضُحًى</td></tr>
+    <tr><td>مبهم (unspecified)</td><td class="dcm-td-ar">وَقْت، سَاعَة، لَحْظَة، زَمَان، بُرْهَة</td></tr>
+  </table>
+
+  <hr class="dcm-divider">
+  <p class="dcm-callout dcm-green" style="margin-bottom:0;">
+    <strong>In short:</strong> a ẓarf zamān is a manṣūb time-noun where the action can be understood as happening "فِي" it — the same word can fail this test in a different sentence (يوم الامتحان). Every valid ẓarf zamān is either مختص (a bounded, named measure like الشهر) or مُبهم (an unbounded, vague one like الوقت), and the author's twelve named examples — most of them anchored to specific points in the daily cycle — are just the most common instances of a category that any time-word can join.
+  </p>
+</div>

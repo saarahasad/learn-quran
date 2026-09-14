@@ -1,0 +1,358 @@
+/* Beginner iʿrāb guide — matches al-kahf-1-beginner-english.html */
+
+.iraab-guide-page {
+  display: grid;
+  gap: 0;
+  background: #faf7f0;
+  margin: -1rem -1.25rem -2.5rem;
+  padding: 0 0 3rem;
+  min-height: calc(100vh - 4.5rem);
+}
+
+.iraab-guide-page .iraab-guide {
+  padding-top: 1.25rem;
+}
+
+.ajr-ikb-beginner-page {
+  grid-column: 1 / -1;
+  background: #faf7f0;
+  border: 1px solid #e3e0d5;
+  border-radius: 16px;
+  margin-top: 0.35rem;
+}
+
+.ajr-ikb-beginner-page__tools {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem 0;
+}
+
+.ajr-ikb-beginner__empty {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.iraab-guide-bar {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 1.1rem;
+}
+
+.iraab-guide-bar__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.55rem 0.7rem;
+}
+
+.iraab-guide-bar__field {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: #5f5e5a;
+}
+
+.iraab-guide-bar__field select,
+.iraab-guide-bar__field input,
+.iraab-guide-bar textarea {
+  font: inherit;
+  font-weight: 500;
+  color: #2c2c2a;
+  border: 1px solid #d8d4c8;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.4rem 0.55rem;
+}
+
+.iraab-guide-bar__field--ayah input {
+  width: 4.5rem;
+}
+
+.iraab-guide-bar textarea {
+  width: 100%;
+  min-height: 5.5rem;
+  resize: vertical;
+  direction: rtl;
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+.iraab-guide-bar__daas summary {
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: #5f5e5a;
+}
+
+.iraab-guide-bar__daas textarea {
+  margin-top: 0.45rem;
+}
+
+.iraab-guide-bar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.iraab-guide-bar button,
+.iraab-guide-bar .iraab-guide-bar__status {
+  appearance: none;
+  border-radius: 999px;
+  border: 1px solid #afa9ec;
+  background: #eeedfe;
+  color: #3c3489;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.38rem 0.85rem;
+  cursor: pointer;
+}
+
+.iraab-guide-bar button[data-accent] {
+  background: #3c3489;
+  border-color: #3c3489;
+  color: #fff;
+}
+
+.iraab-guide-bar button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.iraab-guide-bar__status {
+  border-color: #e3e0d5;
+  background: #f1efe8;
+  color: #5f5e5a;
+  cursor: default;
+}
+
+.iraab-guide-bar__error {
+  margin: 0;
+  color: #9f1239;
+  font-size: 0.88rem;
+}
+
+.iraab-guide-saved {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.iraab-guide-saved button {
+  background: #fff;
+  border-color: #e3e0d5;
+  color: #2c2c2a;
+}
+
+.iraab-guide-saved button.is-active {
+  background: #eeedfe;
+  border-color: #7f77dd;
+  color: #3c3489;
+}
+
+.iraab-guide {
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  background: #faf7f0;
+  color: #2c2c2a;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  line-height: 1.7;
+  box-sizing: border-box;
+}
+
+.iraab-guide h1 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #3c3489;
+  margin: 0 0 0.2rem;
+}
+
+.iraab-guide .subtitle {
+  text-align: center;
+  color: #5f5e5a;
+  margin: 0 0 1.5rem;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.iraab-guide .ayah-box {
+  background: #eeedfe;
+  border: 1px solid #afa9ec;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  font-size: 22px;
+  text-align: center;
+  direction: rtl;
+  margin: 1.5rem 0 1rem;
+  color: #26215c;
+  line-height: 1.85;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.iraab-guide .ayah-line {
+  display: block;
+}
+
+.iraab-guide .ayah-line__start,
+.iraab-guide .ayah-line__end,
+.iraab-guide .ayah-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  font-weight: 800;
+  color: #3c3489;
+  background: #fff;
+  border: 1.5px solid #7f77dd;
+  direction: ltr;
+}
+
+.iraab-guide .ayah-line__start,
+.iraab-guide .ayah-line__end {
+  width: 1.55em;
+  height: 1.55em;
+  border-radius: 50%;
+  font-size: 0.72em;
+  margin: 0 0.28em;
+  vertical-align: middle;
+}
+
+.iraab-guide .ayah-line__start {
+  background: #3c3489;
+  color: #fff;
+  border-color: #3c3489;
+}
+
+.iraab-guide .word-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 2px;
+}
+
+.iraab-guide .word-meta .tag {
+  margin-bottom: 0;
+}
+
+.iraab-guide .ayah-chip {
+  border-radius: 999px;
+  font-size: 11px;
+  padding: 2px 8px;
+  letter-spacing: 0.02em;
+}
+
+.iraab-guide .ayah-break {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #3c3489;
+  margin: 1.35rem 0 0.55rem;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed #afa9ec;
+}
+
+.iraab-guide .key-box {
+  background: #f1efe8;
+  border-radius: 10px;
+  padding: 1rem 1.3rem;
+  margin-bottom: 2rem;
+  font-size: 14px;
+}
+
+.iraab-guide .key-box b {
+  color: #3c3489;
+}
+
+.iraab-guide .word-card {
+  background: #ffffff;
+  border: 1px solid #e3e0d5;
+  border-right: 5px solid #7f77dd;
+  border-radius: 10px;
+  padding: 1rem 1.3rem;
+  margin-bottom: 14px;
+}
+
+.iraab-guide .word-arabic {
+  font-size: 22px;
+  direction: rtl;
+  color: #26215c;
+  margin-bottom: 2px;
+}
+
+.iraab-guide .word-meaning {
+  font-size: 14px;
+  color: #5f5e5a;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.iraab-guide .tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.iraab-guide .tag-u {
+  background: #eaf3de;
+  color: #173404;
+}
+
+.iraab-guide .tag-a {
+  background: #faece7;
+  color: #4a1b0c;
+}
+
+.iraab-guide .tag-i {
+  background: #e6f1fb;
+  color: #042c53;
+}
+
+.iraab-guide .tag-none {
+  background: #f1efe8;
+  color: #2c2c2a;
+}
+
+.iraab-guide .term {
+  color: #3c3489;
+  font-weight: bold;
+  direction: rtl;
+  display: inline-block;
+}
+
+.iraab-guide .word-explain {
+  font-size: 15px;
+  margin-top: 6px;
+}
+
+.iraab-guide .word-note {
+  font-size: 13px;
+  color: #5f5e5a;
+  margin-top: 6px;
+}
+
+.iraab-guide .section-title {
+  font-size: 19px;
+  color: #3c3489;
+  border-bottom: 2px solid #afa9ec;
+  padding-bottom: 6px;
+  margin: 2.5rem 0 1rem;
+  font-weight: 700;
+}

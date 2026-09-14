@@ -1,0 +1,309 @@
+<div class="damma-commentary">
+  <style>
+    .damma-commentary {
+      --dcm-blue: #2b6ca3;
+      --dcm-blue-bg: #eaf4fc;
+      --dcm-blue-line: #bfe0f5;
+      --dcm-yellow: #9a7c1f;
+      --dcm-yellow-bg: #fdf6e0;
+      --dcm-yellow-line: #f3e4a8;
+      --dcm-pink: #b34f5c;
+      --dcm-pink-bg: #fdeef0;
+      --dcm-pink-line: #f6c9ce;
+      --dcm-green: #2f8a56;
+      --dcm-green-bg: #eaf7ee;
+      --dcm-green-line: #bfe6cc;
+      --dcm-ink: #2c2c2c;
+      --dcm-sub: #6b6b6b;
+      --dcm-line: #d8dee2;
+
+      box-sizing: border-box;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 8px 16px 40px;
+      background: #ffffff;
+      color: var(--dcm-ink);
+      font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .damma-commentary *, .damma-commentary *::before, .damma-commentary *::after {
+      box-sizing: border-box;
+    }
+    .damma-commentary .dcm-ar {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      unicode-bidi: embed;
+    }
+
+    .damma-commentary h2.dcm-h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 40px 0 6px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--dcm-blue-line);
+      color: var(--dcm-ink);
+    }
+    .damma-commentary h2.dcm-h2:first-of-type { margin-top: 8px; }
+    .damma-commentary h2.dcm-h2 .dcm-num {
+      display: inline-block;
+      width: 26px; height: 26px;
+      line-height: 26px;
+      text-align: center;
+      border-radius: 50%;
+      background: var(--dcm-blue-bg);
+      color: var(--dcm-blue);
+      font-size: 0.85rem;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .damma-commentary h2.dcm-h2 .dcm-ar {
+      font-size: 1.3rem;
+      color: var(--dcm-blue);
+      margin-left: 6px;
+    }
+    .damma-commentary h3.dcm-h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--dcm-sub);
+      text-align: center;
+      margin: 24px 0 14px;
+    }
+
+    .damma-commentary p { margin: 0 0 14px; }
+
+    .damma-commentary .dcm-lead {
+      font-size: 1.05rem;
+      color: var(--dcm-ink);
+      background: var(--dcm-blue-bg);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 0 0 8px;
+    }
+
+    .damma-commentary .dcm-example {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 6px;
+      background: var(--dcm-blue-bg);
+      color: var(--dcm-blue);
+      font-size: 1.15rem;
+      margin: 0 2px;
+    }
+
+    .damma-commentary .dcm-callout {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 4px 0 18px;
+      font-size: 0.92rem;
+      color: var(--dcm-sub);
+    }
+    .damma-commentary .dcm-callout.dcm-yellow { background: var(--dcm-yellow-bg); color: var(--dcm-yellow); }
+    .damma-commentary .dcm-callout.dcm-pink { background: var(--dcm-pink-bg); color: var(--dcm-pink); }
+    .damma-commentary .dcm-callout.dcm-green { background: var(--dcm-green-bg); color: var(--dcm-green); }
+    .damma-commentary .dcm-callout strong { color: inherit; }
+
+    .damma-commentary table.dcm-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 20px;
+      font-size: 0.85rem;
+    }
+    .damma-commentary table.dcm-table th,
+    .damma-commentary table.dcm-table td {
+      text-align: left;
+      padding: 8px 9px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    .damma-commentary table.dcm-table th {
+      color: var(--dcm-sub);
+      font-weight: 600;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .damma-commentary table.dcm-table td.dcm-td-ar {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif;
+      direction: rtl;
+      font-size: 1.05rem;
+      color: var(--dcm-blue);
+    }
+    .damma-commentary table.dcm-table td.dcm-td-center { text-align: center; }
+
+    .damma-commentary .dcm-divider {
+      height: 1px;
+      background: #eee;
+      margin: 32px 0;
+      border: none;
+    }
+
+    /* sentence cards */
+    .damma-commentary .dcm-sentence {
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 0 0 12px;
+    }
+    .damma-commentary .dcm-sentence .dcm-ar {
+      font-size: 1.25rem;
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1.9;
+    }
+    .damma-commentary .dcm-sentence .dcm-gloss {
+      font-size: 0.85rem;
+      color: var(--dcm-sub);
+      font-style: italic;
+    }
+    .damma-commentary .dcm-hl {
+      border-bottom: 2px dotted currentColor;
+      padding-bottom: 1px;
+    }
+
+    /* match diagram */
+    .damma-commentary .dcm-match {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 10px; margin: 10px 0 6px;
+    }
+    .damma-commentary .dcm-match-box {
+      border-radius: 12px; padding: 12px 18px; text-align: center; min-width: 110px;
+    }
+    .damma-commentary .dcm-match-box .dcm-ar { font-size: 1.25rem; display: block; }
+    .damma-commentary .dcm-match-box .dcm-en { font-size: 0.62rem; color: #777; margin-top: 4px; display: block; }
+    .damma-commentary .dcm-match-sign { font-size: 1.3rem; color: #b7c2ca; }
+
+    /* ---------- chart / diagram elements ---------- */
+    .damma-commentary .dcm-chart {
+      margin: 18px 0 34px;
+      padding: 18px 6px 4px;
+      background: #fbfcfd;
+      border-radius: 18px;
+    }
+    .damma-commentary .dcm-chart-row {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 16px 12px; max-width: 680px; margin: 0 auto;
+    }
+    .damma-commentary .dcm-chart-branch {
+      display: flex; flex-direction: column; align-items: center;
+      flex: 1 1 220px; max-width: 300px;
+    }
+    .damma-commentary .dcm-chart-node {
+      border-radius: 12px; padding: 12px 14px; text-align: center; width: 100%;
+    }
+    .damma-commentary .dcm-chart-node .dcm-ar { font-size: 1.05rem; display: block; }
+    .damma-commentary .dcm-chart-node .dcm-en { font-size: 0.65rem; color: #777; margin-top: 4px; display: block; }
+    .damma-commentary .dcm-chart-node .dcm-ex {
+      display: block; margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(0,0,0,.1); font-size: 0.92rem;
+    }
+
+    .damma-commentary .dcm-c1 { background: var(--dcm-blue-bg); }
+    .damma-commentary .dcm-c1 .dcm-ar, .damma-commentary .dcm-c1 .dcm-ex { color: var(--dcm-blue); }
+    .damma-commentary .dcm-c2 { background: var(--dcm-yellow-bg); }
+    .damma-commentary .dcm-c2 .dcm-ar, .damma-commentary .dcm-c2 .dcm-ex { color: var(--dcm-yellow); }
+    .damma-commentary .dcm-c3 { background: var(--dcm-pink-bg); }
+    .damma-commentary .dcm-c3 .dcm-ar, .damma-commentary .dcm-c3 .dcm-ex { color: var(--dcm-pink); }
+    .damma-commentary .dcm-c4 { background: var(--dcm-green-bg); }
+    .damma-commentary .dcm-c4 .dcm-ar, .damma-commentary .dcm-c4 .dcm-ex { color: var(--dcm-green); }
+
+    /* matrix table */
+    table.dcm-matrix {
+      width: 100%; border-collapse: collapse; margin: 8px 0 20px; font-size: 0.82rem; border: 1px solid #dfe3e6;
+    }
+    table.dcm-matrix th, table.dcm-matrix td { border: 1px solid #dfe3e6; padding: 8px 9px; text-align: center; }
+    table.dcm-matrix th { background: #f7f9fa; font-size: 0.65rem; text-transform: uppercase; color: var(--dcm-sub); }
+    table.dcm-matrix td.dcm-matrix-ar {
+      font-family: "Traditional Arabic", "Scheherazade New", "Amiri", serif; direction: rtl; font-size: 1rem; color: var(--dcm-blue);
+    }
+
+    @media (max-width: 560px) {
+      .damma-commentary .dcm-chart-row { flex-direction: column; align-items: center; }
+      .damma-commentary .dcm-chart-branch { max-width: 260px; }
+      .damma-commentary .dcm-match { flex-direction: column; }
+      table.dcm-table, table.dcm-matrix { font-size: 0.75rem; }
+    }
+  </style>
+
+  <p class="dcm-lead">
+    This chapter directly resolves something flagged in the previous one: why <span class="dcm-example">جَذْلًا</span> could stand in for a "matching" maṣdar despite sharing no letters with <span class="dcm-example">فَرِحْتُ</span>. The answer turns out to be a whole second classification, orthogonal to the emphasis/manner/number split — the مفعول مطلق is also either <span class="dcm-ar">لَفْظِيّ</span> (verbal) or <span class="dcm-ar">مَعْنَوِيّ</span> (abstract).
+  </p>
+
+  <h2 class="dcm-h2"><span class="dcm-num">1</span>The two types, at a glance</h2>
+  <div class="dcm-chart">
+    <div class="dcm-chart-row">
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c1">
+          <span class="dcm-ar">لَفْظِيّ</span>
+          <span class="dcm-en">matches the verb in both letters and meaning</span>
+        </div>
+      </div>
+      <div class="dcm-chart-branch">
+        <div class="dcm-chart-node dcm-c3">
+          <span class="dcm-ar">مَعْنَوِيّ</span>
+          <span class="dcm-en">matches the verb in meaning only — different letters</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="dcm-callout">
+    The commentary notes the لفظي type is listed first specifically because it's the more common of the two.
+  </p>
+
+  <h2 class="dcm-h2"><span class="dcm-num">2</span>لَفْظِيّ — matching in letters and meaning</h2>
+  <p>
+    The maṣdar shares the verb's own root letters, and naturally its meaning too:
+  </p>
+  <div class="dcm-match">
+    <div class="dcm-match-box dcm-c1"><span class="dcm-ar">قَتَلْتُ</span><span class="dcm-en">ق ت ل</span></div>
+    <div class="dcm-match-sign">=</div>
+    <div class="dcm-match-box dcm-c1"><span class="dcm-ar">قَتْلًا</span><span class="dcm-en">ق ت ل</span></div>
+  </div>
+  <div class="dcm-sentence dcm-c1"><span class="dcm-ar">قَتَلْتُهُ <span class="dcm-hl">قَتْلًا</span></span><span class="dcm-gloss">"I fought/killed him — a [real] fight/killing."</span></div>
+  <div class="dcm-sentence dcm-c1"><span class="dcm-ar">قَعَدْتُ <span class="dcm-hl">قُعُودًا</span></span><span class="dcm-gloss">"I sat — a sitting."</span></div>
+  <div class="dcm-sentence dcm-c1"><span class="dcm-ar">ضَرَبْتُهُ <span class="dcm-hl">ضَرْبًا</span></span><span class="dcm-gloss">"I hit him — a hitting."</span></div>
+  <div class="dcm-sentence dcm-c1"><span class="dcm-ar">ذَهَبْتُ <span class="dcm-hl">ذِهَابًا</span></span><span class="dcm-gloss">"I went — a going."</span></div>
+
+  <h2 class="dcm-h2"><span class="dcm-num">3</span>مَعْنَوِيّ — matching in meaning only</h2>
+  <p>
+    The maṣdar's letters are entirely unrelated to the verb's own root — the connection is purely semantic:
+  </p>
+  <div class="dcm-match">
+    <div class="dcm-match-box dcm-c3"><span class="dcm-ar">جَلَسْتُ</span><span class="dcm-en">ج ل س</span></div>
+    <div class="dcm-match-sign">≠</div>
+    <div class="dcm-match-box dcm-c3"><span class="dcm-ar">قُعُودًا</span><span class="dcm-en">ق ع د — same meaning, different root</span></div>
+  </div>
+  <div class="dcm-sentence dcm-c3"><span class="dcm-ar">جَلَسْتُ <span class="dcm-hl">قُعُودًا</span></span><span class="dcm-gloss">"I sat — a sitting." (جلس means the same as قعد)</span></div>
+  <div class="dcm-sentence dcm-c3"><span class="dcm-ar">فَرِحْتُ <span class="dcm-hl">جَذْلًا</span></span><span class="dcm-gloss">"I rejoiced — a jubilation."</span></div>
+  <div class="dcm-sentence dcm-c3"><span class="dcm-ar">ضَرَبْتُهُ <span class="dcm-hl">لَكْمًا</span></span><span class="dcm-gloss">"I hit him — a punch." (لكم = a specific kind of striking)</span></div>
+  <div class="dcm-sentence dcm-c3"><span class="dcm-ar">أَهَنْتُهُ <span class="dcm-hl">احْتِقَارًا</span></span><span class="dcm-gloss">"I demeaned him — a belittling."</span></div>
+  <div class="dcm-sentence dcm-c3"><span class="dcm-ar">قُمْتُ <span class="dcm-hl">وُقُوفًا</span></span><span class="dcm-gloss">"I stood up — a standing."</span></div>
+
+  <p class="dcm-callout dcm-yellow">
+    This is exactly what was happening with <span class="dcm-example">فَرِحْتُ بِقُدُومِكَ جَذْلًا</span> from the previous chapter: جَذْلًا was never meant to share فَرِحْتُ's root — it's a straightforward مَعْنَوِيّ مفعول مطلق, the second of these two types, doing precisely what the definition says it should.
+  </p>
+
+  <hr class="dcm-divider">
+
+  <h2 class="dcm-h2"><span class="dcm-num">4</span>Two dimensions at once <span class="dcm-ar">تَقَاطُعُ التَّصْنِيفَيْنِ</span></h2>
+  <p>
+    This لفظي/معنوي split doesn't replace the earlier emphasis/manner/number classification — it sits alongside it. Every مفعول مطلق can be placed on both dimensions simultaneously:
+  </p>
+  <table class="dcm-matrix">
+    <tr><th>Example</th><th>لفظي or معنوي؟</th><th>Function (from the previous chapter)</th></tr>
+    <tr><td class="dcm-matrix-ar">حَفِظْتُ الدَّرْسَ حِفْظًا</td><td>لفظي</td><td>emphasis</td></tr>
+    <tr><td class="dcm-matrix-ar">فَرِحْتُ بِقُدُومِكَ جَذْلًا</td><td>معنوي</td><td>emphasis</td></tr>
+    <tr><td class="dcm-matrix-ar">وَقَفْتُ لِلْأُسْتَاذِ وُقُوفَ الْمُؤَدَّبِ</td><td>لفظي</td><td>manner</td></tr>
+    <tr><td class="dcm-matrix-ar">ضَرَبْتُ الْكَسُولَ ضَرْبَتَيْنِ</td><td>لفظي</td><td>number</td></tr>
+  </table>
+  <p class="dcm-callout">
+    In other words, "emphasis/manner/number" answers <em>what job</em> the مفعول مطلق is doing in the sentence; "لفظي/معنوي" answers <em>how closely its wording tracks the verb</em>. The two questions are independent — knowing one doesn't tell you the other.
+  </p>
+
+  <hr class="dcm-divider">
+  <p class="dcm-callout dcm-green" style="margin-bottom:0;">
+    <strong>In short:</strong> a مفعول مطلق is لفظي when its letters match the verb's own root (قَتَلْتُ قَتْلًا), and مَعْنَوِيّ when only the meaning matches, drawing on an entirely different root (جَلَسْتُ قُعُودًا، فَرِحْتُ جَذْلًا). This is a separate axis from the earlier three-way functional split, and the two combine freely — resolving, in passing, exactly why جَذْلًا was a legitimate example even without sharing a single letter with فَرِحْتُ.
+  </p>
+</div>

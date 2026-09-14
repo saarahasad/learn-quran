@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iʿrāb · Sūrat al-Baqarah · Āyāt 17–24</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#f8f5ef; --white:#fffdf9;
+    --green-dark:#1e4d38; --green-mid:#2d6a4f; --green-light:#eaf4ee;
+    --gold-light:#f5e9c4; --ink:#1a1a18; --ink-soft:#3d3b36;
+    --muted:#7a7267; --border:#e0d8c8; --row-alt:#f3efe6;
+    --badge-harf-bg:#fef0dc; --badge-harf-fg:#7a3d0a;
+    --badge-ism-bg:#dff0e6;  --badge-ism-fg:#174d28;
+    --badge-fil-bg:#daeef5;  --badge-fil-fg:#0a4a5e;
+    --badge-jumlah-bg:#ede8f7; --badge-jumlah-fg:#3d1f7a;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--cream);font-family:'Inter',sans-serif;color:var(--ink);padding:2.5rem 1.25rem 3rem;-webkit-font-smoothing:antialiased;}
+  .container{max-width:1020px;margin:0 auto;}
+  .ayah-card{background:linear-gradient(135deg,var(--green-dark) 0%,var(--green-mid) 100%);border-radius:12px;padding:1.8rem 2.5rem 1.5rem;margin-bottom:1rem;text-align:center;position:relative;overflow:hidden;}
+  .ayah-card::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+  .ayah-label{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.75rem;opacity:.85;}
+  .ayah-text{font-family:'Amiri',serif;font-size:1.7rem;line-height:2.4;color:#fff;direction:rtl;}
+  .ayah-ref{font-size:.72rem;color:var(--gold-light);margin-top:.5rem;opacity:.75;font-style:italic;}
+  .ayah-section{margin-bottom:2.5rem;}
+  .table-wrap{border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);}
+  table{width:100%;border-collapse:collapse;background:var(--white);}
+  thead tr{background:var(--green-dark);}
+  thead th{padding:.75rem 1.1rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.88);text-align:left;border:none;}
+  thead th.col-word,thead th.col-type{text-align:center;}
+  col.col-word{width:11%;} col.col-type{width:14%;} col.col-ar{width:35%;} col.col-en{width:40%;}
+  tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+  tbody tr:nth-child(even){background:var(--row-alt);}
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:hover{background:var(--green-light);}
+  td{padding:.9rem 1.1rem;vertical-align:top;}
+  .word{font-family:'Amiri',serif;font-size:1.5rem;font-weight:700;color:var(--green-mid);text-align:center;direction:rtl;line-height:1.6;}
+  .type{text-align:center;padding-top:1rem;}
+  .badge{display:inline-block;font-family:'Amiri',serif;font-size:.8rem;font-weight:700;padding:.2rem .6rem;border-radius:5px;direction:rtl;white-space:nowrap;}
+  .badge-harf{background:var(--badge-harf-bg);color:var(--badge-harf-fg);}
+  .badge-ism{background:var(--badge-ism-bg);color:var(--badge-ism-fg);}
+  .badge-fil{background:var(--badge-fil-bg);color:var(--badge-fil-fg);}
+  .badge-jumlah{background:var(--badge-jumlah-bg);color:var(--badge-jumlah-fg);}
+  .ar-exp{font-family:'Amiri',serif;font-size:1rem;line-height:2;color:var(--ink);direction:rtl;text-align:right;}
+  .ar-exp .term{color:var(--green-dark);font-weight:700;}
+  .en-exp{font-size:.84rem;line-height:1.8;color:var(--ink-soft);direction:ltr;text-align:left;}
+  .en-exp .ar{font-family:'Amiri',serif;font-size:1rem;color:var(--green-dark);font-weight:700;padding:0 .1em;}
+  .en-exp .note{display:block;margin-top:.35rem;font-size:.78rem;color:var(--muted);font-style:italic;}
+  .en-exp strong{color:var(--ink);font-weight:600;}
+  .footer{margin-top:1.5rem;font-size:.72rem;color:var(--muted);direction:ltr;border-top:1px solid var(--border);padding-top:.85rem;}
+  @media(max-width:700px){
+    table,thead,tbody,th,td,tr{display:block;} thead{display:none;}
+    tbody tr{margin-bottom:1rem;border:1px solid var(--border);border-radius:8px;padding:.9rem;background:var(--white);}
+    tbody tr:nth-child(even){background:var(--white);}
+    td{padding:.3rem .1rem;border:none;}
+    .word{text-align:right;font-size:1.6rem;} .type{text-align:right;padding-top:.3rem;}
+    .ar-exp{margin-top:.5rem;} .en-exp{margin-top:.5rem;border-top:1px dashed var(--border);padding-top:.5rem;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ══ 17 ══ -->
+<div class="ayah-section">
+<div class="ayah-card">
+  <div class="ayah-label">Sūrat al-Baqarah · Āyah 17</div>
+  <div class="ayah-text">مَثَلُهُمْ كَمَثَلِ الَّذِي اسْتَوْقَدَ نَارًا فَلَمَّا أَضَاءَتْ مَا حَوْلَهُ ذَهَبَ اللَّهُ بِنُورِهِمْ وَتَرَكَهُمْ فِي ظُلُمَاتٍ لَّا يُبْصِرُونَ</div>
+  <div class="ayah-ref">Their example is like one who kindled a fire; but when it illuminated what was around him, Allah took away their light and left them in darknesses — they cannot see.</div>
+</div>
+<div class="table-wrap"><table>
+<colgroup><col class="col-word"><col class="col-type"><col class="col-ar"><col class="col-en"></colgroup>
+<thead><tr><th class="col-word">الكلمة</th><th class="col-type">النوع</th><th class="col-ar">الإعراب</th><th class="col-en">Grammatical Analysis</th></tr></thead>
+<tbody>
+<tr>
+  <td class="word">مَثَلُهُمْ</td>
+  <td class="type"><span class="badge badge-ism">مبتدأ</span></td>
+  <td class="ar-exp"><span class="term">مُبْتَدَأٌ مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ. هَاءُ الْغَائِبِ: ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp"><strong>مَثَل</strong> (likeness/parable) is the subject (<span class="ar">مُبْتَدَأ</span>) of the sentence, in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>. The pronoun <span class="ar">هَاء الغَائِب</span> is in place of <span class="ar">جَرّ</span> as the genitive annexe (<span class="ar">مُضَاف إِلَيْه</span>): "their likeness."</td>
+</tr>
+<tr>
+  <td class="word">كَمَثَلِ</td>
+  <td class="type"><span class="badge badge-harf">كاف التشبيه + مجرور</span></td>
+  <td class="ar-exp">الْكَافُ: حَرْفُ جَرٍّ <span class="term">لِلتَّشْبِيهِ</span> مَبْنِيٌّ عَلَى الْفَتْحِ. مَثَلِ: اسْمٌ <span class="term">مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ. شِبْهُ الْجُمْلَةِ فِي مَحَلِّ رَفْعٍ <span class="term">خَبَرٌ</span>.</td>
+  <td class="en-exp">The <span class="ar">كَاف</span> is the preposition of comparison (<span class="ar">كَاف التَّشْبِيه</span>), indeclinable on <span class="ar">فَتْح</span>. <strong>مَثَل</strong> is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>. The prepositional phrase is in place of <span class="ar">رَفْع</span> as the predicate (<span class="ar">خَبَر</span>) of <span class="ar">مَثَلُهُمْ</span>.</td>
+</tr>
+<tr>
+  <td class="word">الَّذِي</td>
+  <td class="type"><span class="badge badge-ism">مضاف إليه · موصول</span></td>
+  <td class="ar-exp">اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp"><strong>الَّذِي</strong> is a relative pronoun (<span class="ar">اسم مَوْصُول</span>), indeclinable on <span class="ar">سُكُون</span>, in place of <span class="ar">جَرّ</span> as the genitive annexe of <span class="ar">مَثَل</span>. Its content is supplied by the relative clause that follows.</td>
+</tr>
+<tr>
+  <td class="word">اسْتَوْقَدَ</td>
+  <td class="type"><span class="badge badge-fil">فعل ماضٍ · صلة</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ <span class="term">هُوَ</span>. الْجُمْلَةُ: <span class="term">صِلَةُ الْمَوْصُولِ</span> لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.</td>
+  <td class="en-exp"><strong>اسْتَوْقَدَ</strong> (he kindled/sought fire) is a past-tense Form X verb built on <span class="ar">فَتْح</span>. Hidden subject <span class="ar">هُوَ</span>. The clause is the <span class="ar">صِلَة المَوْصُول</span> of <span class="ar">الَّذِي</span> and has no independent place in <span class="ar">إعراب</span>.
+    <span class="note">Form X (اسْتَفْعَلَ) carries a sense of seeking/exerting effort — he worked to kindle the fire, mirroring the hypocrites' deliberate effort in their hypocrisy.</span></td>
+</tr>
+<tr>
+  <td class="word">نَارًا</td>
+  <td class="type"><span class="badge badge-ism">مفعول به</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ مَنْصُوبٌ</span> وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>نَارًا</strong> (a fire) is the direct object of <span class="ar">اسْتَوْقَدَ</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">فَلَمَّا</td>
+  <td class="type"><span class="badge badge-harf">فاء + ظرف شرطي</span></td>
+  <td class="ar-exp">الْفَاءُ: حَرْفُ <span class="term">عَطْفٍ</span> مَبْنِيٌّ عَلَى الْفَتْحِ. لَمَّا: <span class="term">ظَرْفُ زَمَانٍ شَرْطِيٌّ</span> مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ.</td>
+  <td class="en-exp">The <span class="ar">فَاء</span> is a conjunction. <span class="ar">لَمَّا</span> is a conditional temporal adverb (<span class="ar">ظَرْف زَمَان شَرْطِيّ</span>) meaning "when / at the moment that," indeclinable on <span class="ar">سُكُون</span>, in place of <span class="ar">نَصْب</span>.</td>
+</tr>
+<tr>
+  <td class="word">أَضَاءَتْ</td>
+  <td class="type"><span class="badge badge-fil">فعل الشرط</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ <span class="term">فِعْلُ الشَّرْطِ</span> مَبْنِيٌّ عَلَى الْفَتْحِ. التَّاءُ: حَرْفُ <span class="term">تَأْنِيثٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ <span class="term">هِيَ</span>.</td>
+  <td class="en-exp"><strong>أَضَاءَتْ</strong> (it illuminated) is the conditional verb (<span class="ar">فِعْل الشَّرْط</span>) built on <span class="ar">فَتْح</span>. The <span class="ar">تَاء</span> is the feminine marker agreeing with <span class="ar">نَار</span>. Hidden subject <span class="ar">هِيَ</span>.</td>
+</tr>
+<tr>
+  <td class="word">مَا</td>
+  <td class="type"><span class="badge badge-ism">موصول · مفعول به</span></td>
+  <td class="ar-exp">اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ <span class="term">مَفْعُولٌ بِهِ</span>.</td>
+  <td class="en-exp"><strong>مَا</strong> is a relative pronoun in place of <span class="ar">نَصْب</span> as the object of <span class="ar">أَضَاءَتْ</span>. Its content is completed by the adverb phrase that follows.</td>
+</tr>
+<tr>
+  <td class="word">حَوْلَهُ</td>
+  <td class="type"><span class="badge badge-ism">ظرف مكان · صلة</span></td>
+  <td class="ar-exp"><span class="term">ظَرْفُ مَكَانٍ مَنْصُوبٌ</span> وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>. شِبْهُ الْجُمْلَةِ: <span class="term">صِلَةُ الْمَوْصُولِ</span> لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.</td>
+  <td class="en-exp"><strong>حَوْل</strong> (around/surroundings) is an adverb of place (<span class="ar">ظَرْف مَكَان</span>) in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>. The pronoun <span class="ar">هَاء</span> is in place of <span class="ar">جَرّ</span> as the genitive annexe. The adverb phrase serves as the <span class="ar">صِلَة</span> of <span class="ar">مَا</span>.</td>
+</tr>
+<tr>
+  <td class="word">ذَهَبَ</td>
+  <td class="type"><span class="badge badge-fil">جواب الشرط</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ <span class="term">جَوَابُ الشَّرْطِ</span>.</td>
+  <td class="en-exp"><strong>ذَهَبَ</strong> (He took away) is the answer clause (<span class="ar">جَوَاب الشَّرْط</span>) of <span class="ar">لَمَّا</span>, built on <span class="ar">فَتْح</span>.
+    <span class="note">ذَهَبَ بِـ = "took away / caused to vanish" — the بَاء here is بَاء الإِزَالَة (removal), not simple accompaniment.</span></td>
+</tr>
+<tr>
+  <td class="word">اللَّهُ</td>
+  <td class="type"><span class="badge badge-ism">فاعل</span></td>
+  <td class="ar-exp">اسْمُ الْجَلَالَةِ <span class="term">فَاعِلٌ مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>اللَّه</strong> is the <span class="ar">فَاعِل</span> (subject) of <span class="ar">ذَهَبَ</span>, in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>.</td>
+</tr>
+<tr>
+  <td class="word">بِنُورِهِمْ</td>
+  <td class="type"><span class="badge badge-harf">باء الإزالة + مجرور</span></td>
+  <td class="ar-exp">الْبَاءُ: حَرْفُ جَرٍّ <span class="term">لِلْإِزَالَةِ</span> مَبْنِيٌّ عَلَى الْكَسْرِ. نُورِ: اسْمٌ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp">The <span class="ar">بَاء</span> is the preposition of removal (<span class="ar">بَاء الإِزَالَة</span>): <span class="ar">ذَهَبَ بِـ</span> means "took away." <strong>نُور</strong> is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>; the pronoun <span class="ar">هَاء</span> is the genitive annexe.
+    <span class="note">The pronoun shifts from singular (حَوْلَهُ — the man's fire) to plural (بِنُورِهِمْ — their light). The simile snaps shut: the fire-lighter = the hypocrites as a group.</span></td>
+</tr>
+<tr>
+  <td class="word">وَتَرَكَهُمْ</td>
+  <td class="type"><span class="badge badge-fil">عطف + فعل ماضٍ + مفعول به</span></td>
+  <td class="ar-exp">الْوَاوُ: حَرْفُ <span class="term">عَطْفٍ</span>. تَرَكَ: فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ نَصْبٍ <span class="term">مَفْعُولٌ بِهِ</span>. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ <span class="term">هُوَ</span>.</td>
+  <td class="en-exp">The <span class="ar">وَاو</span> is a conjunction joining <span class="ar">تَرَكَ</span> to <span class="ar">ذَهَبَ</span>. <strong>تَرَكَ</strong> (He left/abandoned) is a past-tense verb built on <span class="ar">فَتْح</span>. The pronoun <span class="ar">هَاء</span> is in place of <span class="ar">نَصْب</span> as the object. Hidden subject <span class="ar">هُوَ</span>.</td>
+</tr>
+<tr>
+  <td class="word">فِي</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">فِي</span> is a preposition, indeclinable on <span class="ar">سُكُون</span>, meaning "in/within."</td>
+</tr>
+<tr>
+  <td class="word">ظُلُمَاتٍ</td>
+  <td class="type"><span class="badge badge-ism">مجرور · حال</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ. شِبْهُ الْجُمْلَةِ فِي مَحَلِّ نَصْبٍ <span class="term">حَالٌ</span> لِضَمِيرِ الْمَفْعُولِ فِي تَرَكَهُمْ.</td>
+  <td class="en-exp"><strong>ظُلُمَات</strong> (darknesses) is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>. The prepositional phrase is in place of <span class="ar">نَصْب</span> as a <span class="ar">حَال</span> — describing the state of "them" (the object) when abandoned.
+    <span class="note">ظُلُمَات is the plural of ظُلْمَة — layered darknesses, not a single dark. The plural intensifies: no light from any direction.</span></td>
+</tr>
+<tr>
+  <td class="word">لَا</td>
+  <td class="type"><span class="badge badge-harf">حرف نفي</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">نَفْيٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">لَا</span> is a particle of negation, indeclinable on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">يُبْصِرُونَ</td>
+  <td class="type"><span class="badge badge-fil">فعل مضارع</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ <span class="term">مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ <span class="term">ثُبُوتُ النُّونِ</span> لِأَنَّهُ مِنَ الْأَفْعَالِ الْخَمْسَةِ. وَاوُ الْجَمَاعَةِ: فِي مَحَلِّ رَفْعٍ فَاعِلٌ.</td>
+  <td class="en-exp"><strong>يُبْصِرُون</strong> is a present-tense verb in <span class="ar">رَفْع</span>; its sign is retention of <span class="ar">نُون</span> (one of the <span class="ar">أَفْعَال الخَمْسَة</span>). The <span class="ar">وَاو</span> is in place of <span class="ar">رَفْع</span> as the <span class="ar">فَاعِل</span>. The clause trails the description as a vivid ongoing state.</td>
+</tr>
+</tbody></table></div>
+</div>
+
+<!-- ══ 18 ══ -->
+<div class="ayah-section">
+<div class="ayah-card">
+  <div class="ayah-label">Sūrat al-Baqarah · Āyah 18</div>
+  <div class="ayah-text">صُمٌّ بُكْمٌ عُمْيٌ فَهُمْ لَا يَرْجِعُونَ</div>
+  <div class="ayah-ref">Deaf, dumb, and blind — so they will not return.</div>
+</div>
+<div class="table-wrap"><table>
+<colgroup><col class="col-word"><col class="col-type"><col class="col-ar"><col class="col-en"></colgroup>
+<thead><tr><th class="col-word">الكلمة</th><th class="col-type">النوع</th><th class="col-ar">الإعراب</th><th class="col-en">Grammatical Analysis</th></tr></thead>
+<tbody>
+<tr>
+  <td class="word">صُمٌّ</td>
+  <td class="type"><span class="badge badge-ism">خبر أوّل</span></td>
+  <td class="ar-exp"><span class="term">خَبَرٌ أَوَّلٌ</span> لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ <span class="term">هُمْ</span>، مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>صُمّ</strong> (deaf — plural of أَصَمّ) is the first predicate (<span class="ar">خَبَر أَوَّل</span>) of an omitted subject (<span class="ar">مُبْتَدَأ مَحْذُوف</span>) understood as <span class="ar">هُمْ</span>. In <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>. This describes spiritual deafness — closed to the truth.</td>
+</tr>
+<tr>
+  <td class="word">بُكْمٌ</td>
+  <td class="type"><span class="badge badge-ism">خبر ثانٍ</span></td>
+  <td class="ar-exp"><span class="term">خَبَرٌ ثَانٍ</span> لِلْمُبْتَدَإِ الْمَحْذُوفِ، مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>بُكْم</strong> (mute/dumb — plural of أَبْكَم) is the second predicate in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>. Spiritual muteness: unable to speak the truth.</td>
+</tr>
+<tr>
+  <td class="word">عُمْيٌ</td>
+  <td class="type"><span class="badge badge-ism">خبر ثالث</span></td>
+  <td class="ar-exp"><span class="term">خَبَرٌ ثَالِثٌ</span> لِلْمُبْتَدَإِ الْمَحْذُوفِ، مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>عُمْي</strong> (blind — plural of أَعْمَى) is the third predicate in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>. Spiritual blindness: unable to see the signs.
+    <span class="note">All three are جَمْع تَكْسِير (broken plurals): صُمّ ← أَصَمّ · بُكْم ← أَبْكَم · عُمْي ← أَعْمَى. These describe inner spiritual faculties, not physical senses.</span></td>
+</tr>
+<tr>
+  <td class="word">فَهُمْ</td>
+  <td class="type"><span class="badge badge-harf">فاء السببية + مبتدأ</span></td>
+  <td class="ar-exp">الْفَاءُ: حَرْفُ عَطْفٍ <span class="term">سَبَبِيٌّ</span> مَبْنِيٌّ عَلَى الْفَتْحِ. هُمْ: ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ <span class="term">مُبْتَدَأٌ</span>.</td>
+  <td class="en-exp">The <span class="ar">فَاء</span> is a causal conjunction (<span class="ar">فَاء السَّبَبِيَّة</span>) — "and so / as a result of that." <strong>هُمْ</strong> is an independent pronoun in place of <span class="ar">رَفْع</span> as the subject (<span class="ar">مُبْتَدَأ</span>) of the new clause.
+    <span class="note">The فَاء establishes that spiritual deafness/blindness is the cause of their not returning — not punishment after refusal, but the very reason return is impossible.</span></td>
+</tr>
+<tr>
+  <td class="word">لَا</td>
+  <td class="type"><span class="badge badge-harf">حرف نفي</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">نَفْيٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">لَا</span> is a particle of negation, indeclinable on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">يَرْجِعُونَ</td>
+  <td class="type"><span class="badge badge-fil">فعل مضارع · خبر</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ <span class="term">مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ <span class="term">ثُبُوتُ النُّونِ</span> لِأَنَّهُ مِنَ الْأَفْعَالِ الْخَمْسَةِ. وَاوُ الْجَمَاعَةِ: فَاعِلٌ. الْجُمْلَةُ فِي مَحَلِّ رَفْعٍ <span class="term">خَبَرُ الْمُبْتَدَإِ هُمْ</span>.</td>
+  <td class="en-exp"><strong>يَرْجِعُون</strong> is a present-tense verb in <span class="ar">رَفْع</span>; its sign is retention of <span class="ar">نُون</span>. The <span class="ar">وَاو</span> is the <span class="ar">فَاعِل</span>. The verbal clause is in place of <span class="ar">رَفْع</span> as the predicate (<span class="ar">خَبَر</span>) of <span class="ar">هُمْ</span>.</td>
+</tr>
+</tbody></table></div>
+</div>
+
+<!-- ══ 19 ══ -->
+<div class="ayah-section">
+<div class="ayah-card">
+  <div class="ayah-label">Sūrat al-Baqarah · Āyah 19</div>
+  <div class="ayah-text">أَوْ كَصَيِّبٍ مِّنَ السَّمَاءِ فِيهِ ظُلُمَاتٌ وَرَعْدٌ وَبَرْقٌ يَجْعَلُونَ أَصَابِعَهُمْ فِي آذَانِهِم مِّنَ الصَّوَاعِقِ حَذَرَ الْمَوْتِ ۚ وَاللَّهُ مُحِيطٌ بِالْكَافِرِينَ</div>
+  <div class="ayah-ref">Or like a rainstorm from the sky in which there is darkness, thunder, and lightning. They put their fingers in their ears against the thunderbolts in fear of death. And Allah encompasses the disbelievers.</div>
+</div>
+<div class="table-wrap"><table>
+<colgroup><col class="col-word"><col class="col-type"><col class="col-ar"><col class="col-en"></colgroup>
+<thead><tr><th class="col-word">الكلمة</th><th class="col-type">النوع</th><th class="col-ar">الإعراب</th><th class="col-en">Grammatical Analysis</th></tr></thead>
+<tbody>
+<tr>
+  <td class="word">أَوْ</td>
+  <td class="type"><span class="badge badge-harf">حرف عطف</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">عَطْفٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">أَوْ</span> is a conjunction introducing a second simile alongside the first (Āyah 17), indeclinable on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">كَصَيِّبٍ</td>
+  <td class="type"><span class="badge badge-harf">كاف + مجرور · معطوف</span></td>
+  <td class="ar-exp">الْكَافُ: حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى الْفَتْحِ. صَيِّبٍ: اسْمٌ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ الظَّاهِرَةِ. شِبْهُ الْجُمْلَةِ <span class="term">مَعْطُوفٌ</span> عَلَى كَمَثَلِ فِي الْآيَةِ ١٧.</td>
+  <td class="en-exp">The <span class="ar">كَاف</span> is the preposition of comparison. <strong>صَيِّب</strong> (a heavy downpour) is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>. The prepositional phrase is conjoined to <span class="ar">كَمَثَلِ</span> from Āyah 17 — a parallel comparison.</td>
+</tr>
+<tr>
+  <td class="word">مِنَ</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ الْمُقَدَّرِ لِالْتِقَاءِ السَّاكِنَيْنِ.</td>
+  <td class="en-exp"><span class="ar">مِنَ</span> is a preposition with an estimated <span class="ar">سُكُون</span>; a <span class="ar">فَتْحَة</span> is supplied to prevent <span class="ar">الْتِقَاء السَّاكِنَيْن</span> (two consecutive silent consonants).</td>
+</tr>
+<tr>
+  <td class="word">السَّمَاءِ</td>
+  <td class="type"><span class="badge badge-ism">مجرور · صفة</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ. الْجَارُّ وَالْمَجْرُورُ <span class="term">صِفَةٌ</span> لِصَيِّبٍ.</td>
+  <td class="en-exp"><strong>السَّمَاء</strong> is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>. The prepositional phrase <span class="ar">مِنَ السَّمَاءِ</span> functions as an adjective (<span class="ar">صِفَة</span>) modifying <span class="ar">صَيِّب</span>: "a rainstorm from the sky."</td>
+</tr>
+<tr>
+  <td class="word">فِيهِ</td>
+  <td class="type"><span class="badge badge-harf">خبر مقدم</span></td>
+  <td class="ar-exp">فِي: حَرْفُ جَرٍّ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ بِالْحَرْفِ. شِبْهُ الْجُمْلَةِ فِي مَحَلِّ رَفْعٍ <span class="term">خَبَرٌ مُقَدَّمٌ</span>.</td>
+  <td class="en-exp"><span class="ar">فِي</span> is a preposition; <span class="ar">هَاء الغَائِب</span> is in place of <span class="ar">جَرّ</span> governed by it, referring to <span class="ar">صَيِّب</span>. The prepositional phrase is in place of <span class="ar">رَفْع</span> as the fronted predicate (<span class="ar">خَبَر مُقَدَّم</span>) of the nominal sentence that follows.</td>
+</tr>
+<tr>
+  <td class="word">ظُلُمَاتٌ</td>
+  <td class="type"><span class="badge badge-ism">مبتدأ مؤخر</span></td>
+  <td class="ar-exp"><span class="term">مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>ظُلُمَات</strong> (darknesses) is the delayed subject (<span class="ar">مُبْتَدَأ مُؤَخَّر</span>) in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>. The nominal sentence <span class="ar">فِيهِ ظُلُمَاتٌ</span> is a descriptive clause for <span class="ar">صَيِّب</span>.</td>
+</tr>
+<tr>
+  <td class="word">وَرَعْدٌ</td>
+  <td class="type"><span class="badge badge-ism">معطوف</span></td>
+  <td class="ar-exp">الْوَاوُ: عَطْفٌ. رَعْدٌ: <span class="term">مَعْطُوفٌ مَرْفُوعٌ</span> بِالضَّمَّةِ.</td>
+  <td class="en-exp"><strong>رَعْد</strong> (thunder) is conjoined to <span class="ar">ظُلُمَات</span> in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>.</td>
+</tr>
+<tr>
+  <td class="word">وَبَرْقٌ</td>
+  <td class="type"><span class="badge badge-ism">معطوف</span></td>
+  <td class="ar-exp">الْوَاوُ: عَطْفٌ. بَرْقٌ: <span class="term">مَعْطُوفٌ مَرْفُوعٌ</span> بِالضَّمَّةِ.</td>
+  <td class="en-exp"><strong>بَرْق</strong> (lightning) is conjoined to <span class="ar">رَعْد</span> in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>. The three elements — darkness, thunder, lightning — build a scene of overwhelming sensory assault.</td>
+</tr>
+<tr>
+  <td class="word">يَجْعَلُونَ</td>
+  <td class="type"><span class="badge badge-fil">فعل مضارع</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ <span class="term">مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ <span class="term">ثُبُوتُ النُّونِ</span> لِأَنَّهُ مِنَ الْأَفْعَالِ الْخَمْسَةِ. وَاوُ الْجَمَاعَةِ: فَاعِلٌ.</td>
+  <td class="en-exp"><strong>يَجْعَلُون</strong> is a present-tense verb in <span class="ar">رَفْع</span>; its sign is retention of <span class="ar">نُون</span>. The <span class="ar">وَاو</span> is the <span class="ar">فَاعِل</span>.</td>
+</tr>
+<tr>
+  <td class="word">أَصَابِعَهُمْ</td>
+  <td class="type"><span class="badge badge-ism">مفعول به + مضاف إليه</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ مَنْصُوبٌ</span> بِالْفَتْحَةِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp"><strong>أَصَابِع</strong> (fingers) is the object of <span class="ar">يَجْعَلُون</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>. The pronoun <span class="ar">هَاء</span> is the genitive annexe: "their fingers."</td>
+</tr>
+<tr>
+  <td class="word">فِي</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">فِي</span> is a preposition on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">آذَانِهِمْ</td>
+  <td class="type"><span class="badge badge-ism">مجرور + حال</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>. شِبْهُ الْجُمْلَةِ فِي مَحَلِّ نَصْبٍ <span class="term">حَالٌ</span> لِأَصَابِعَهُمْ.</td>
+  <td class="en-exp"><strong>آذَان</strong> (ears) is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>; the pronoun <span class="ar">هَاء</span> is the genitive annexe. The prepositional phrase is in place of <span class="ar">نَصْب</span> as a <span class="ar">حَال</span> — describing the state/position of the fingers (the object of <span class="ar">يَجْعَلُون</span>).</td>
+</tr>
+<tr>
+  <td class="word">مِنَ</td>
+  <td class="type"><span class="badge badge-harf">مِن السببية</span></td>
+  <td class="ar-exp">حَرْفُ جَرٍّ <span class="term">سَبَبِيٌّ</span> مَبْنِيٌّ عَلَى السُّكُونِ الْمُقَدَّرِ لِالْتِقَاءِ السَّاكِنَيْنِ.</td>
+  <td class="en-exp"><span class="ar">مِنَ</span> here is the causal preposition (<span class="ar">مِن السَّبَبِيَّة</span>) meaning "because of / out of," with estimated <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">الصَّوَاعِقِ</td>
+  <td class="type"><span class="badge badge-ism">مجرور</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>الصَّوَاعِق</strong> (thunderbolts) is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>, governed by <span class="ar">مِنَ</span>.</td>
+</tr>
+<tr>
+  <td class="word">حَذَرَ</td>
+  <td class="type"><span class="badge badge-ism">مفعول لأجله</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ لِأَجْلِهِ</span> مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>حَذَر</strong> (fear, caution) is the object of purpose (<span class="ar">مَفْعُول لِأَجْلِه</span>) — it expresses the reason for the action: "out of fear of death," in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>.
+    <span class="note">مَفْعُول لِأَجْلِه answers "why?" It must share its subject with the main verb — the same people who cover their ears are those who fear death. The condition is met.</span></td>
+</tr>
+<tr>
+  <td class="word">الْمَوْتِ</td>
+  <td class="type"><span class="badge badge-ism">مضاف إليه</span></td>
+  <td class="ar-exp"><span class="term">مُضَافٌ إِلَيْهِ مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>الْمَوْت</strong> (death) is the genitive annexe of <span class="ar">حَذَر</span>, in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>: "fear of death."</td>
+</tr>
+<tr>
+  <td class="word">وَاللَّهُ</td>
+  <td class="type"><span class="badge badge-harf">استئناف + مبتدأ</span></td>
+  <td class="ar-exp">الْوَاوُ: حَرْفُ <span class="term">اسْتِئْنَافٍ</span>. اللَّهُ: <span class="term">مُبْتَدَأٌ مَرْفُوعٌ</span> بِالضَّمَّةِ.</td>
+  <td class="en-exp">The <span class="ar">وَاو</span> opens a new declarative sentence (<span class="ar">حَرْف اسْتِئْنَاف</span>). <strong>اللَّه</strong> is the subject in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>.</td>
+</tr>
+<tr>
+  <td class="word">مُحِيطٌ</td>
+  <td class="type"><span class="badge badge-ism">خبر</span></td>
+  <td class="ar-exp"><span class="term">خَبَرٌ مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>مُحِيط</strong> (encompassing, surrounding) is the predicate (<span class="ar">خَبَر</span>) in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>.
+    <span class="note">The closing statement is a divine counter to their terror: they fear the thunderbolts and try to block them out — but Allah encompasses them from every side. No evasion is possible.</span></td>
+</tr>
+<tr>
+  <td class="word">بِالْكَافِرِينَ</td>
+  <td class="type"><span class="badge badge-harf">باء + مجرور</span></td>
+  <td class="ar-exp">الْبَاءُ: حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى الْكَسْرِ. الْكَافِرِينَ: اسْمٌ <span class="term">مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ <span class="term">الْيَاءُ</span> لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ.</td>
+  <td class="en-exp">The <span class="ar">بَاء</span> is a preposition connected to <span class="ar">مُحِيط</span>. <strong>الْكَافِرِين</strong> is in <span class="ar">جَرّ</span>, its sign the <span class="ar">يَاء</span> as a sound masculine plural (<span class="ar">جَمْع مُذَكَّر سَالِم</span>).</td>
+</tr>
+</tbody></table></div>
+</div>
+
+<!-- ══ 20 ══ -->
+<div class="ayah-section">
+<div class="ayah-card">
+  <div class="ayah-label">Sūrat al-Baqarah · Āyah 20</div>
+  <div class="ayah-text">يَكَادُ الْبَرْقُ يَخْطَفُ أَبْصَارَهُمْ ۖ كُلَّمَا أَضَاءَ لَهُم مَّشَوْا فِيهِ وَإِذَا أَظْلَمَ عَلَيْهِمْ قَامُوا ۚ وَلَوْ شَاءَ اللَّهُ لَذَهَبَ بِسَمْعِهِمْ وَأَبْصَارِهِمْ ۚ إِنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
+  <div class="ayah-ref">The lightning almost snatches away their sight. Whenever it flashes for them, they walk in it; and when darkness covers them, they stand still. Had Allah willed, He could have taken away their hearing and their sight. Indeed Allah is over all things competent.</div>
+</div>
+<div class="table-wrap"><table>
+<colgroup><col class="col-word"><col class="col-type"><col class="col-ar"><col class="col-en"></colgroup>
+<thead><tr><th class="col-word">الكلمة</th><th class="col-type">النوع</th><th class="col-ar">الإعراب</th><th class="col-en">Grammatical Analysis</th></tr></thead>
+<tbody>
+<tr>
+  <td class="word">يَكَادُ</td>
+  <td class="type"><span class="badge badge-fil">فعل مضارع ناسخ</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ <span class="term">نَاسِخٌ</span> مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>يَكَادُ</strong> is a present-tense copular verb (<span class="ar">فِعْل مُضَارِع نَاسِخ</span>) from the <span class="ar">أَفْعَال المُقَارَبَة</span> (verbs of approximation), meaning "almost / is on the verge of." In <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>.
+    <span class="note">يَكَادُ takes its predicate as a bare مُضَارِع without أَنْ — unlike most of the أَفْعَال المُقَارَبَة which require أَنْ. This is a well-known grammatical distinction.</span></td>
+</tr>
+<tr>
+  <td class="word">الْبَرْقُ</td>
+  <td class="type"><span class="badge badge-ism">اسم يكاد</span></td>
+  <td class="ar-exp"><span class="term">اسْمُ يَكَادُ مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>الْبَرْق</strong> (lightning) is the subject (<span class="ar">اسم يَكَادُ</span>) in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>.</td>
+</tr>
+<tr>
+  <td class="word">يَخْطَفُ</td>
+  <td class="type"><span class="badge badge-fil">خبر يكاد</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ <span class="term">هُوَ</span>. الْجُمْلَةُ فِي مَحَلِّ نَصْبٍ <span class="term">خَبَرُ يَكَادُ</span>.</td>
+  <td class="en-exp"><strong>يَخْطَفُ</strong> (it snatches) is a present-tense verb in <span class="ar">رَفْع</span>; hidden subject <span class="ar">هُوَ</span>. The verbal clause is in place of <span class="ar">نَصْب</span> as the predicate (<span class="ar">خَبَر</span>) of <span class="ar">يَكَادُ</span>.</td>
+</tr>
+<tr>
+  <td class="word">أَبْصَارَهُمْ</td>
+  <td class="type"><span class="badge badge-ism">مفعول به + مضاف إليه</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ مَنْصُوبٌ</span> بِالْفَتْحَةِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp"><strong>أَبْصَار</strong> (sight/eyes) is the object of <span class="ar">يَخْطَفُ</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>. The pronoun <span class="ar">هَاء</span> is the genitive annexe: "their sight."</td>
+</tr>
+<tr>
+  <td class="word">كُلَّمَا</td>
+  <td class="type"><span class="badge badge-harf">ظرف تكراري</span></td>
+  <td class="ar-exp"><span class="term">ظَرْفُ زَمَانٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ الظَّاهِرِ فِي مَحَلِّ نَصْبٍ.</td>
+  <td class="en-exp"><span class="ar">كُلَّمَا</span> is a temporal adverb of repetition meaning "every time / whenever," in place of <span class="ar">نَصْب</span>. It triggers a conditional structure that repeats — unlike <span class="ar">إِذَا</span> which is one-off.
+    <span class="note">The repetitive كُلَّمَا paints a pattern: every single flash → they walk; every darkness → they freeze. A vivid image of total spiritual dependence and paralysis.</span></td>
+</tr>
+<tr>
+  <td class="word">أَضَاءَ</td>
+  <td class="type"><span class="badge badge-fil">فعل الشرط</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ <span class="term">فِعْلُ الشَّرْطِ</span> مَبْنِيٌّ عَلَى الْفَتْحِ. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ <span class="term">هُوَ</span>.</td>
+  <td class="en-exp"><strong>أَضَاءَ</strong> (it flashed/lit up) is the conditional verb, built on <span class="ar">فَتْح</span>. Hidden subject <span class="ar">هُوَ</span> referring to the lightning.</td>
+</tr>
+<tr>
+  <td class="word">لَهُمْ</td>
+  <td class="type"><span class="badge badge-harf">لام + ضمير</span></td>
+  <td class="ar-exp">اللَّامُ: حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى الْفَتْحِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ <span class="term">بِالْحَرْفِ</span>.</td>
+  <td class="en-exp">The <span class="ar">لَام</span> is a preposition on <span class="ar">فَتْح</span>. The pronoun <span class="ar">هَاء</span> is in place of <span class="ar">جَرّ</span> governed by it. The phrase connects to <span class="ar">أَضَاءَ</span>: "whenever it flashes for them."</td>
+</tr>
+<tr>
+  <td class="word">مَشَوْا</td>
+  <td class="type"><span class="badge badge-fil">جواب الشرط</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ <span class="term">جَوَابُ الشَّرْطِ</span> مَبْنِيٌّ عَلَى الضَّمِّ الْمُقَدَّرِ عَلَى الْأَلِفِ الْمَحْذُوفَةِ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ. وَاوُ الْجَمَاعَةِ: فِي مَحَلِّ رَفْعٍ <span class="term">فَاعِلٌ</span>.</td>
+  <td class="en-exp"><strong>مَشَوْا</strong> (they walked) is the answer clause (<span class="ar">جَوَاب الشَّرْط</span>). From the defective root <span class="ar">مَشَى</span>, the <span class="ar">أَلِف</span> drops when <span class="ar">وَاو الجَمَاعَة</span> is suffixed, and <span class="ar">ضَمّ</span> is estimated on the deleted <span class="ar">أَلِف</span>. The <span class="ar">وَاو</span> is in place of <span class="ar">رَفْع</span> as the <span class="ar">فَاعِل</span>.</td>
+</tr>
+<tr>
+  <td class="word">فِيهِ</td>
+  <td class="type"><span class="badge badge-harf">جار ومجرور</span></td>
+  <td class="ar-exp">فِي: حَرْفُ جَرٍّ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ بِالْحَرْفِ.</td>
+  <td class="en-exp"><span class="ar">فِي</span> is a preposition; <span class="ar">هَاء الغَائِب</span> is in place of <span class="ar">جَرّ</span> governed by it — referring to the light (the flash). "They walk in it [the light]."</td>
+</tr>
+<tr>
+  <td class="word">وَإِذَا</td>
+  <td class="type"><span class="badge badge-harf">عطف + ظرف شرطي</span></td>
+  <td class="ar-exp">الْوَاوُ: حَرْفُ <span class="term">عَطْفٍ</span>. إِذَا: <span class="term">ظَرْفُ زَمَانٍ شَرْطِيٌّ</span> فِي مَحَلِّ نَصْبٍ.</td>
+  <td class="en-exp">The <span class="ar">وَاو</span> is a conjunction. <span class="ar">إِذَا</span> is the conditional temporal adverb in place of <span class="ar">نَصْب</span>, introducing a contrasting condition.</td>
+</tr>
+<tr>
+  <td class="word">أَظْلَمَ</td>
+  <td class="type"><span class="badge badge-fil">فعل الشرط</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ <span class="term">فِعْلُ الشَّرْطِ</span> مَبْنِيٌّ عَلَى الْفَتْحِ. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ <span class="term">هُوَ</span>.</td>
+  <td class="en-exp"><strong>أَظْلَمَ</strong> (it became dark/darkness descended) is the conditional verb, built on <span class="ar">فَتْح</span>. Hidden subject <span class="ar">هُوَ</span>.</td>
+</tr>
+<tr>
+  <td class="word">عَلَيْهِمْ</td>
+  <td class="type"><span class="badge badge-harf">جار ومجرور</span></td>
+  <td class="ar-exp">عَلَى: حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى السُّكُونِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ <span class="term">بِالْحَرْفِ</span>.</td>
+  <td class="en-exp"><span class="ar">عَلَى</span> is a preposition on <span class="ar">سُكُون</span>; <span class="ar">هَاء الغَائِب</span> is in place of <span class="ar">جَرّ</span> governed by it. "When it darkens over them."</td>
+</tr>
+<tr>
+  <td class="word">قَامُوا</td>
+  <td class="type"><span class="badge badge-fil">جواب الشرط</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ <span class="term">جَوَابُ الشَّرْطِ</span> مَبْنِيٌّ عَلَى الضَّمِّ. وَاوُ الْجَمَاعَةِ: فِي مَحَلِّ رَفْعٍ <span class="term">فَاعِلٌ</span>.</td>
+  <td class="en-exp"><strong>قَامُوا</strong> (they stood still/halted) is the answer of the condition, built on <span class="ar">ضَمّ</span>. The <span class="ar">وَاو</span> is in place of <span class="ar">رَفْع</span> as the <span class="ar">فَاعِل</span>.
+    <span class="note">قَامُوا here means "they stood in place / froze" — the opposite of مَشَوْا. Movement in light, paralysis in darkness.</span></td>
+</tr>
+<tr>
+  <td class="word">وَلَوْ</td>
+  <td class="type"><span class="badge badge-harf">عطف + شرط امتناعي</span></td>
+  <td class="ar-exp">الْوَاوُ: حَرْفُ <span class="term">عَطْفٍ</span>. لَوْ: حَرْفُ <span class="term">شَرْطٍ امْتِنَاعِيٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp">The <span class="ar">وَاو</span> is a conjunction. <span class="ar">لَوْ</span> is the particle of contrary-to-fact condition (<span class="ar">حَرْف شَرْط امْتِنَاعِيّ</span>): it signals that the condition did not actually occur.</td>
+</tr>
+<tr>
+  <td class="word">شَاءَ</td>
+  <td class="type"><span class="badge badge-fil">فعل الشرط</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ <span class="term">فِعْلُ الشَّرْطِ</span> مَبْنِيٌّ عَلَى الْفَتْحِ.</td>
+  <td class="en-exp"><strong>شَاءَ</strong> (He willed) is the conditional verb of <span class="ar">لَوْ</span>, built on <span class="ar">فَتْح</span>.</td>
+</tr>
+<tr>
+  <td class="word">اللَّهُ</td>
+  <td class="type"><span class="badge badge-ism">فاعل</span></td>
+  <td class="ar-exp">اسْمُ الْجَلَالَةِ <span class="term">فَاعِلٌ مَرْفُوعٌ</span> بِالضَّمَّةِ.</td>
+  <td class="en-exp"><strong>اللَّه</strong> is the <span class="ar">فَاعِل</span> of <span class="ar">شَاءَ</span>, in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>.</td>
+</tr>
+<tr>
+  <td class="word">لَذَهَبَ</td>
+  <td class="type"><span class="badge badge-fil">لام الجواب + جواب الشرط</span></td>
+  <td class="ar-exp">اللَّامُ: حَرْفٌ وَاقِعٌ فِي <span class="term">جَوَابِ لَوْ</span> مَبْنِيٌّ عَلَى الْفَتْحِ. ذَهَبَ: فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ <span class="term">هُوَ</span>.</td>
+  <td class="en-exp">The <span class="ar">لَام</span> is the answer-lam (<span class="ar">لَام جَوَاب لَوْ</span>), obligatorily prefixed to the answer of <span class="ar">لَوْ</span>. <strong>ذَهَبَ</strong> is the answer clause, built on <span class="ar">فَتْح</span>; hidden subject <span class="ar">هُوَ</span>.
+    <span class="note">لَوْ implies: He did not will it — yet. The āyah reminds: total deprivation of their senses is entirely within divine power at any moment.</span></td>
+</tr>
+<tr>
+  <td class="word">بِسَمْعِهِمْ</td>
+  <td class="type"><span class="badge badge-harf">باء الإزالة + مجرور</span></td>
+  <td class="ar-exp">الْبَاءُ: حَرْفُ جَرٍّ <span class="term">لِلْإِزَالَةِ</span>. سَمْعِ: اسْمٌ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ. هَاءُ الْغَائِبِ: <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp">The <span class="ar">بَاء</span> is again the <span class="ar">بَاء الإِزَالَة</span> (as in Āyah 17). <strong>سَمْع</strong> is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>; the pronoun <span class="ar">هَاء</span> is the genitive annexe: "their hearing."</td>
+</tr>
+<tr>
+  <td class="word">وَأَبْصَارِهِمْ</td>
+  <td class="type"><span class="badge badge-ism">معطوف</span></td>
+  <td class="ar-exp">الْوَاوُ: عَطْفٌ. أَبْصَارِهِمْ: <span class="term">مَعْطُوفٌ مَجْرُورٌ</span> بِالْكَسْرَةِ. هَاءُ الْغَائِبِ: <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp"><strong>أَبْصَار</strong> (sight) is conjoined to <span class="ar">سَمْع</span> in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>; the pronoun <span class="ar">هَاء</span> is the genitive annexe. Both senses — hearing and sight — are named as what could be taken.</td>
+</tr>
+<tr>
+  <td class="word">إِنَّ</td>
+  <td class="type"><span class="badge badge-harf">حرف توكيد</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">تَوْكِيدٍ وَنَصْبٍ</span> مَبْنِيٌّ عَلَى الْفَتْحِ.</td>
+  <td class="en-exp"><span class="ar">إِنَّ</span> is the particle of emphasis and <span class="ar">نَصْب</span>, fixed on <span class="ar">فَتْح</span>.</td>
+</tr>
+<tr>
+  <td class="word">اللَّهَ</td>
+  <td class="type"><span class="badge badge-ism">اسم إنّ</span></td>
+  <td class="ar-exp">اسْمُ الْجَلَالَةِ <span class="term">اسْمُ إِنَّ مَنْصُوبٌ</span> وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>اللَّه</strong> is the subject (<span class="ar">اسم إِنَّ</span>) in place of <span class="ar">نَصْب</span>, marked by the visible <span class="ar">فَتْحَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">عَلَى</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">عَلَى</span> is a preposition on <span class="ar">سُكُون</span>, connected to <span class="ar">قَدِير</span>.</td>
+</tr>
+<tr>
+  <td class="word">كُلِّ</td>
+  <td class="type"><span class="badge badge-ism">مجرور</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>كُلّ</strong> is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>, governed by <span class="ar">عَلَى</span>. It is the <span class="ar">مُضَاف</span>.</td>
+</tr>
+<tr>
+  <td class="word">شَيْءٍ</td>
+  <td class="type"><span class="badge badge-ism">مضاف إليه</span></td>
+  <td class="ar-exp"><span class="term">مُضَافٌ إِلَيْهِ مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>شَيْء</strong> (thing) is the genitive annexe of <span class="ar">كُلّ</span>, in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>: "every thing."</td>
+</tr>
+<tr>
+  <td class="word">قَدِيرٌ</td>
+  <td class="type"><span class="badge badge-ism">خبر إنّ</span></td>
+  <td class="ar-exp"><span class="term">خَبَرُ إِنَّ مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>قَدِير</strong> (fully capable, omnipotent) is the predicate (<span class="ar">خَبَر إِنَّ</span>) in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>. The āyah closes by grounding everything in absolute divine power.</td>
+</tr>
+</tbody></table></div>
+</div>
+
+<!-- ══ 21 ══ -->
+<div class="ayah-section">
+<div class="ayah-card">
+  <div class="ayah-label">Sūrat al-Baqarah · Āyah 21</div>
+  <div class="ayah-text">يَا أَيُّهَا النَّاسُ اعْبُدُوا رَبَّكُمُ الَّذِي خَلَقَكُمْ وَالَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ</div>
+  <div class="ayah-ref">O people, worship your Lord who created you and those before you, that you may become righteous.</div>
+</div>
+<div class="table-wrap"><table>
+<colgroup><col class="col-word"><col class="col-type"><col class="col-ar"><col class="col-en"></colgroup>
+<thead><tr><th class="col-word">الكلمة</th><th class="col-type">النوع</th><th class="col-ar">الإعراب</th><th class="col-en">Grammatical Analysis</th></tr></thead>
+<tbody>
+<tr>
+  <td class="word">يَا</td>
+  <td class="type"><span class="badge badge-harf">حرف نداء</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">نِدَاءٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">يَا</span> is the vocative particle (<span class="ar">حَرْف نِدَاء</span>), indeclinable on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">أَيُّهَا</td>
+  <td class="type"><span class="badge badge-ism">منادى + تنبيه</span></td>
+  <td class="ar-exp">أَيُّ: <span class="term">مُنَادًى</span> مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ. هَا: حَرْفُ <span class="term">تَنْبِيهٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><strong>أَيُّ</strong> is the called-upon (<span class="ar">مُنَادَى</span>), indeclinable on <span class="ar">ضَمّ</span>, in place of <span class="ar">نَصْب</span>. <span class="ar">هَا</span> is the particle of alerting (<span class="ar">حَرْف تَنْبِيه</span>), obligatorily attached to <span class="ar">أَيُّ</span> in this vocative formula.
+    <span class="note">يَا أَيُّهَا + a definite noun is the standard Quranic structure for addressing a category of people. النَّاس as عَطْف بَيَان then specifies who أَيُّ refers to.</span></td>
+</tr>
+<tr>
+  <td class="word">النَّاسُ</td>
+  <td class="type"><span class="badge badge-ism">عطف بيان</span></td>
+  <td class="ar-exp"><span class="term">عَطْفُ بَيَانٍ مَرْفُوعٌ</span> وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>النَّاس</strong> is an explanatory appositive (<span class="ar">عَطْف بَيَان</span>) specifying who <span class="ar">أَيُّ</span> refers to, in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>.</td>
+</tr>
+<tr>
+  <td class="word">اعْبُدُوا</td>
+  <td class="type"><span class="badge badge-fil">فعل أمر</span></td>
+  <td class="ar-exp">فِعْلُ <span class="term">أَمْرٍ</span> مَبْنِيٌّ عَلَى حَذْفِ النُّونِ. وَاوُ الْجَمَاعَةِ: فِي مَحَلِّ رَفْعٍ فَاعِلٌ.</td>
+  <td class="en-exp"><strong>اعْبُدُوا</strong> (worship) is a command verb built by deletion of <span class="ar">نُون</span>. The <span class="ar">وَاو</span> is in place of <span class="ar">رَفْع</span> as the <span class="ar">فَاعِل</span>.</td>
+</tr>
+<tr>
+  <td class="word">رَبَّكُمُ</td>
+  <td class="type"><span class="badge badge-ism">مفعول به + مضاف إليه</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ مَنْصُوبٌ</span> بِالْفَتْحَةِ الظَّاهِرَةِ. كَافُ الْمُخَاطَبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>، مَبْنِيٌّ عَلَى السُّكُونِ الْمُقَدَّرِ لِالْتِقَاءِ السَّاكِنَيْنِ.</td>
+  <td class="en-exp"><strong>رَبّ</strong> is the object of <span class="ar">اعْبُدُوا</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>. <span class="ar">كَاف المُخَاطَب</span> is the genitive annexe with an estimated <span class="ar">سُكُون</span> (a <span class="ar">ضَمَّة</span> supplied to prevent <span class="ar">الْتِقَاء السَّاكِنَيْن</span>).</td>
+</tr>
+<tr>
+  <td class="word">الَّذِي</td>
+  <td class="type"><span class="badge badge-ism">نعت · موصول</span></td>
+  <td class="ar-exp">اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ <span class="term">نَعْتٌ</span> لِرَبَّكُمُ.</td>
+  <td class="en-exp"><strong>الَّذِي</strong> is a relative pronoun in place of <span class="ar">نَصْب</span> as an adjective (<span class="ar">نَعْت</span>) modifying <span class="ar">رَبَّكُم</span>. Its content is supplied by the relative clause <span class="ar">خَلَقَكُمْ</span>.</td>
+</tr>
+<tr>
+  <td class="word">خَلَقَكُمْ</td>
+  <td class="type"><span class="badge badge-fil">فعل ماضٍ · صلة</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ. كَافُ الْمُخَاطَبِ: فِي مَحَلِّ نَصْبٍ <span class="term">مَفْعُولٌ بِهِ</span>. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ <span class="term">هُوَ</span>. الْجُمْلَةُ: <span class="term">صِلَةُ الْمَوْصُولِ</span> لَا مَحَلَّ لَهَا.</td>
+  <td class="en-exp"><strong>خَلَقَ</strong> (He created) is a past-tense verb on <span class="ar">فَتْح</span>. <span class="ar">كَاف المُخَاطَب</span> is in place of <span class="ar">نَصْب</span> as the object. Hidden subject <span class="ar">هُوَ</span>. The clause is the <span class="ar">صِلَة</span> of <span class="ar">الَّذِي</span> with no independent place in <span class="ar">إعراب</span>.</td>
+</tr>
+<tr>
+  <td class="word">وَالَّذِينَ</td>
+  <td class="type"><span class="badge badge-ism">معطوف · موصول</span></td>
+  <td class="ar-exp">الْوَاوُ: حَرْفُ <span class="term">عَطْفٍ</span>. الَّذِينَ: اسْمٌ مَوْصُولٌ فِي مَحَلِّ نَصْبٍ <span class="term">مَعْطُوفٌ</span> عَلَى ضَمِيرِ الْمَفْعُولِ فِي خَلَقَكُمْ.</td>
+  <td class="en-exp">The <span class="ar">وَاو</span> is a conjunction. <strong>الَّذِين</strong> is a relative pronoun conjoined to the object pronoun <span class="ar">كُمْ</span> in <span class="ar">خَلَقَكُم</span>, in place of <span class="ar">نَصْب</span>: "He created you and those [who came before you]."</td>
+</tr>
+<tr>
+  <td class="word">مِنْ</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">مِنْ</span> is a preposition on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">قَبْلِكُمْ</td>
+  <td class="type"><span class="badge badge-ism">ظرفي مجرور + مضاف إليه · صلة</span></td>
+  <td class="ar-exp">اسْمٌ ظَرْفِيٌّ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ. كَافُ الْمُخَاطَبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>. شِبْهُ الْجُمْلَةِ <span class="term">صِلَةُ الَّذِينَ</span> لَا مَحَلَّ لَهَا.</td>
+  <td class="en-exp"><strong>قَبْل</strong> is a temporal-adverbial noun (<span class="ar">اسم ظَرْفِيّ</span>) in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>; <span class="ar">كَاف المُخَاطَب</span> is the genitive annexe. The prepositional phrase is the <span class="ar">صِلَة</span> of <span class="ar">الَّذِين</span>: "those who [came] before you."</td>
+</tr>
+<tr>
+  <td class="word">لَعَلَّكُمْ</td>
+  <td class="type"><span class="badge badge-harf">لعلّ + اسمها</span></td>
+  <td class="ar-exp">لَعَلَّ: حَرْفُ <span class="term">تَرَجٍّ وَنَصْبٍ</span> مَبْنِيٌّ عَلَى الْفَتْحِ. كَافُ الْمُخَاطَبِ: فِي مَحَلِّ نَصْبٍ <span class="term">اسْمُ لَعَلَّ</span>.</td>
+  <td class="en-exp"><strong>لَعَلَّ</strong> is a particle of hope/expectation (<span class="ar">حَرْف تَرَجٍّ</span>) that takes a subject in <span class="ar">نَصْب</span> and a predicate in <span class="ar">رَفْع</span>. <span class="ar">كَاف المُخَاطَب</span> is the subject in place of <span class="ar">نَصْب</span>.
+    <span class="note">لَعَلَّ expresses hope from the speaker's perspective — here, the divine hope/intent that worship leads to تَقْوَى. The purpose of worship is inner God-consciousness, not merely ritual.</span></td>
+</tr>
+<tr>
+  <td class="word">تَتَّقُونَ</td>
+  <td class="type"><span class="badge badge-fil">خبر لعلّ</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ <span class="term">مَرْفُوعٌ</span> بِثُبُوتِ النُّونِ. وَاوُ الْجَمَاعَةِ: فَاعِلٌ. الْجُمْلَةُ فِي مَحَلِّ رَفْعٍ <span class="term">خَبَرُ لَعَلَّ</span>.</td>
+  <td class="en-exp"><strong>تَتَّقُون</strong> is a present-tense verb in <span class="ar">رَفْع</span>; its sign is retention of <span class="ar">نُون</span>. The <span class="ar">وَاو</span> is the <span class="ar">فَاعِل</span>. The verbal clause is in place of <span class="ar">رَفْع</span> as the predicate (<span class="ar">خَبَر</span>) of <span class="ar">لَعَلَّ</span>.</td>
+</tr>
+</tbody></table></div>
+</div>
+
+<!-- ══ 22 ══ -->
+<div class="ayah-section">
+<div class="ayah-card">
+  <div class="ayah-label">Sūrat al-Baqarah · Āyah 22</div>
+  <div class="ayah-text">الَّذِي جَعَلَ لَكُمُ الْأَرْضَ فِرَاشًا وَالسَّمَاءَ بِنَاءً وَأَنزَلَ مِنَ السَّمَاءِ مَاءً فَأَخْرَجَ بِهِ مِنَ الثَّمَرَاتِ رِزْقًا لَّكُمْ ۖ فَلَا تَجْعَلُوا لِلَّهِ أَندَادًا وَأَنتُمْ تَعْلَمُونَ</div>
+  <div class="ayah-ref">Who made for you the earth a bed and the sky a ceiling, and sent down from the sky rain and brought forth thereby fruits as provision for you. So do not attribute to Allah equals while you know.</div>
+</div>
+<div class="table-wrap"><table>
+<colgroup><col class="col-word"><col class="col-type"><col class="col-ar"><col class="col-en"></colgroup>
+<thead><tr><th class="col-word">الكلمة</th><th class="col-type">النوع</th><th class="col-ar">الإعراب</th><th class="col-en">Grammatical Analysis</th></tr></thead>
+<tbody>
+<tr>
+  <td class="word">الَّذِي</td>
+  <td class="type"><span class="badge badge-ism">بدل</span></td>
+  <td class="ar-exp">اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ <span class="term">بَدَلٌ</span> مِنَ الَّذِي فِي الْآيَةِ ٢١.</td>
+  <td class="en-exp"><strong>الَّذِي</strong> is a relative pronoun in place of <span class="ar">نَصْب</span> as a substitutive appositive (<span class="ar">بَدَل</span>) from <span class="ar">الَّذِي</span> in Āyah 21.
+    <span class="note">بَدَل differs from نَعْت: a نَعْت modifies; a بَدَل substitutes independently. This second الَّذِي continues describing رَبَّكُم with new divine attributes.</span></td>
+</tr>
+<tr>
+  <td class="word">جَعَلَ</td>
+  <td class="type"><span class="badge badge-fil">فعل ماضٍ · صلة</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ <span class="term">هُوَ</span>. الْجُمْلَةُ: <span class="term">صِلَةُ الْمَوْصُولِ</span> لَا مَحَلَّ لَهَا.</td>
+  <td class="en-exp"><strong>جَعَلَ</strong> (He made/rendered) is a past-tense verb on <span class="ar">فَتْح</span>; hidden subject <span class="ar">هُوَ</span>. The clause is the <span class="ar">صِلَة</span> of <span class="ar">الَّذِي</span> with no independent place in <span class="ar">إعراب</span>. It takes two objects here.</td>
+</tr>
+<tr>
+  <td class="word">لَكُمُ</td>
+  <td class="type"><span class="badge badge-harf">لام + ضمير</span></td>
+  <td class="ar-exp">اللَّامُ: حَرْفُ جَرٍّ. كَافُ الْمُخَاطَبِ: فِي مَحَلِّ جَرٍّ بِالْحَرْفِ، مَبْنِيٌّ عَلَى السُّكُونِ الْمُقَدَّرِ لِالْتِقَاءِ السَّاكِنَيْنِ.</td>
+  <td class="en-exp">The <span class="ar">لَام</span> is a preposition (beneficiary — "for you"). <span class="ar">كَاف المُخَاطَب</span> is in place of <span class="ar">جَرّ</span>, with an estimated <span class="ar">سُكُون</span> (a <span class="ar">ضَمَّة</span> supplied to prevent <span class="ar">الْتِقَاء السَّاكِنَيْن</span>).</td>
+</tr>
+<tr>
+  <td class="word">الْأَرْضَ</td>
+  <td class="type"><span class="badge badge-ism">مفعول به أوّل</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ أَوَّلٌ مَنْصُوبٌ</span> بِالْفَتْحَةِ الظَّاهِرَةِ.</td>
+  <td class="en-exp"><strong>الْأَرْض</strong> (the earth) is the first object of <span class="ar">جَعَلَ</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">فِرَاشًا</td>
+  <td class="type"><span class="badge badge-ism">مفعول به ثانٍ</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ ثَانٍ مَنْصُوبٌ</span> بِالْفَتْحَةِ الظَّاهِرَةِ.</td>
+  <td class="en-exp"><strong>فِرَاش</strong> (a bed/spread) is the second object of <span class="ar">جَعَلَ</span> in <span class="ar">نَصْب</span> — what the earth was made into.</td>
+</tr>
+<tr>
+  <td class="word">وَالسَّمَاءَ</td>
+  <td class="type"><span class="badge badge-ism">معطوف على المفعول الأوّل</span></td>
+  <td class="ar-exp">الْوَاوُ: عَطْفٌ. السَّمَاءَ: <span class="term">مَعْطُوفٌ مَنْصُوبٌ</span> عَلَى الْأَرْضَ بِالْفَتْحَةِ.</td>
+  <td class="en-exp"><strong>السَّمَاء</strong> (the sky) is conjoined to <span class="ar">الْأَرْض</span> (first object) in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">بِنَاءً</td>
+  <td class="type"><span class="badge badge-ism">معطوف على المفعول الثاني</span></td>
+  <td class="ar-exp"><span class="term">مَعْطُوفٌ مَنْصُوبٌ</span> عَلَى فِرَاشًا بِالْفَتْحَةِ الظَّاهِرَةِ.</td>
+  <td class="en-exp"><strong>بِنَاء</strong> (a canopy/ceiling/structure) is conjoined to <span class="ar">فِرَاشًا</span> (second object) in <span class="ar">نَصْب</span>. The parallel — earth as bed, sky as roof — frames the world as a divinely prepared dwelling.</td>
+</tr>
+<tr>
+  <td class="word">وَأَنزَلَ</td>
+  <td class="type"><span class="badge badge-fil">عطف + فعل ماضٍ</span></td>
+  <td class="ar-exp">الْوَاوُ: عَطْفٌ. أَنزَلَ: فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ <span class="term">هُوَ</span>.</td>
+  <td class="en-exp"><strong>أَنزَلَ</strong> (He sent down) is a past-tense Form IV verb conjoined to <span class="ar">جَعَلَ</span>; hidden subject <span class="ar">هُوَ</span>.</td>
+</tr>
+<tr>
+  <td class="word">مِنَ</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ الْمُقَدَّرِ لِالْتِقَاءِ السَّاكِنَيْنِ.</td>
+  <td class="en-exp"><span class="ar">مِنَ</span> is a preposition with estimated <span class="ar">سُكُون</span> and supplied <span class="ar">فَتْحَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">السَّمَاءِ</td>
+  <td class="type"><span class="badge badge-ism">مجرور</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>السَّمَاء</strong> is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>, governed by <span class="ar">مِنَ</span>.</td>
+</tr>
+<tr>
+  <td class="word">مَاءً</td>
+  <td class="type"><span class="badge badge-ism">مفعول به</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ مَنْصُوبٌ</span> بِالْفَتْحَةِ الظَّاهِرَةِ.</td>
+  <td class="en-exp"><strong>مَاء</strong> (water/rain) is the object of <span class="ar">أَنزَلَ</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">فَأَخْرَجَ</td>
+  <td class="type"><span class="badge badge-fil">فاء + فعل ماضٍ</span></td>
+  <td class="ar-exp">الْفَاءُ: حَرْفُ <span class="term">عَطْفٍ</span>. أَخْرَجَ: فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ. الْفَاعِلُ: ضَمِيرٌ مُسْتَتِرٌ <span class="term">هُوَ</span>.</td>
+  <td class="en-exp">The <span class="ar">فَاء</span> is a conjunction with a sequential sense ("and then / as a result"). <strong>أَخْرَجَ</strong> (He brought forth) is a past-tense Form IV verb; hidden subject <span class="ar">هُوَ</span>.</td>
+</tr>
+<tr>
+  <td class="word">بِهِ</td>
+  <td class="type"><span class="badge badge-harf">باء الاستعانة + ضمير</span></td>
+  <td class="ar-exp">الْبَاءُ: حَرْفُ جَرٍّ <span class="term">لِلاسْتِعَانَةِ</span> مَبْنِيٌّ عَلَى الْكَسْرِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ بِالْحَرْفِ.</td>
+  <td class="en-exp">The <span class="ar">بَاء</span> is the instrumental preposition (<span class="ar">بَاء الاسْتِعَانَة</span>) meaning "by means of it." The pronoun <span class="ar">هَاء</span> refers to the water (<span class="ar">مَاء</span>).</td>
+</tr>
+<tr>
+  <td class="word">مِنَ</td>
+  <td class="type"><span class="badge badge-harf">مِن التبعيضية</span></td>
+  <td class="ar-exp">حَرْفُ جَرٍّ <span class="term">تَبْعِيضِيٌّ</span> مَبْنِيٌّ عَلَى السُّكُونِ الْمُقَدَّرِ لِالْتِقَاءِ السَّاكِنَيْنِ.</td>
+  <td class="en-exp"><span class="ar">مِنَ</span> here is partitive (<span class="ar">مِن التَّبْعِيضِيَّة</span>) — "some of / from among," indicating a portion of the fruits.</td>
+</tr>
+<tr>
+  <td class="word">الثَّمَرَاتِ</td>
+  <td class="type"><span class="badge badge-ism">مجرور</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ.</td>
+  <td class="en-exp"><strong>الثَّمَرَات</strong> (the fruits) is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">رِزْقًا</td>
+  <td class="type"><span class="badge badge-ism">مفعول به</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ مَنْصُوبٌ</span> بِالْفَتْحَةِ الظَّاهِرَةِ.</td>
+  <td class="en-exp"><strong>رِزْق</strong> (provision/sustenance) is the object of <span class="ar">أَخْرَجَ</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">لَكُمْ</td>
+  <td class="type"><span class="badge badge-harf">لام + ضمير</span></td>
+  <td class="ar-exp">اللَّامُ: حَرْفُ جَرٍّ. كَافُ الْمُخَاطَبِ: فِي مَحَلِّ جَرٍّ بِالْحَرْفِ.</td>
+  <td class="en-exp">The <span class="ar">لَام</span> is a preposition of benefit — "for you." <span class="ar">كَاف المُخَاطَب</span> is in place of <span class="ar">جَرّ</span> governed by it.</td>
+</tr>
+<tr>
+  <td class="word">فَلَا</td>
+  <td class="type"><span class="badge badge-harf">فاء الاستئناف + نهي</span></td>
+  <td class="ar-exp">الْفَاءُ: حَرْفُ <span class="term">اسْتِئْنَافٍ</span>. لَا: حَرْفُ <span class="term">نَهْيٍ وَجَزْمٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp">The <span class="ar">فَاء</span> opens a new command sentence (<span class="ar">حَرْف اسْتِئْنَاف</span>). <span class="ar">لَا</span> is the particle of prohibition and <span class="ar">جَزْم</span>.
+    <span class="note">After listing divine bounties, the فَاء draws the logical conclusion: given all this, how can you set up rivals to Him?</span></td>
+</tr>
+<tr>
+  <td class="word">تَجْعَلُوا</td>
+  <td class="type"><span class="badge badge-fil">فعل مضارع مجزوم</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ <span class="term">مَجْزُومٌ</span> وَعَلَامَةُ جَزْمِهِ <span class="term">حَذْفُ النُّونِ</span> لِأَنَّهُ مِنَ الْأَفْعَالِ الْخَمْسَةِ. وَاوُ الْجَمَاعَةِ: فَاعِلٌ.</td>
+  <td class="en-exp"><strong>تَجْعَلُوا</strong> is a present-tense verb put into <span class="ar">جَزْم</span> by <span class="ar">لَا</span>; its sign is deletion of <span class="ar">نُون</span> (one of the <span class="ar">أَفْعَال الخَمْسَة</span>). The <span class="ar">وَاو</span> is the <span class="ar">فَاعِل</span>.</td>
+</tr>
+<tr>
+  <td class="word">لِلَّهِ</td>
+  <td class="type"><span class="badge badge-harf">لام + مجرور</span></td>
+  <td class="ar-exp">اللَّامُ: حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى الْكَسْرِ. اللَّهِ: اسْمٌ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ.</td>
+  <td class="en-exp">The <span class="ar">لَام</span> is a preposition on <span class="ar">كَسْر</span>. <strong>اللَّه</strong> is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span> — "for/to Allah" specifying to whom the rivals are falsely attributed.</td>
+</tr>
+<tr>
+  <td class="word">أَندَادًا</td>
+  <td class="type"><span class="badge badge-ism">مفعول به</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ مَنْصُوبٌ</span> بِالْفَتْحَةِ الظَّاهِرَةِ.</td>
+  <td class="en-exp"><strong>أَنْدَاد</strong> (rivals/equals/partners — plural of نِدّ) is the object of <span class="ar">تَجْعَلُوا</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">وَأَنتُمْ</td>
+  <td class="type"><span class="badge badge-harf">واو الحال + مبتدأ</span></td>
+  <td class="ar-exp">الْوَاوُ: حَرْفُ <span class="term">حَالٍ</span>. أَنتُمْ: ضَمِيرٌ مُنْفَصِلٌ فِي مَحَلِّ رَفْعٍ <span class="term">مُبْتَدَأٌ</span>.</td>
+  <td class="en-exp">The <span class="ar">وَاو</span> is the <span class="ar">وَاو الحَال</span>, introducing a circumstantial clause. <strong>أَنتُم</strong> is an independent pronoun in place of <span class="ar">رَفْع</span> as the subject (<span class="ar">مُبْتَدَأ</span>).</td>
+</tr>
+<tr>
+  <td class="word">تَعْلَمُونَ</td>
+  <td class="type"><span class="badge badge-fil">خبر · الجملة حال</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ <span class="term">مَرْفُوعٌ</span> بِثُبُوتِ النُّونِ. وَاوُ الْجَمَاعَةِ: فَاعِلٌ. الْجُمْلَةُ فِي مَحَلِّ رَفْعٍ <span class="term">خَبَرُ الْمُبْتَدَإِ</span>. جُمْلَةُ أَنتُمْ تَعْلَمُونَ: فِي مَحَلِّ نَصْبٍ <span class="term">حَالٌ</span>.</td>
+  <td class="en-exp"><strong>تَعْلَمُون</strong> is a present-tense verb in <span class="ar">رَفْع</span>; the <span class="ar">وَاو</span> is the <span class="ar">فَاعِل</span>. Its clause is the predicate of <span class="ar">أَنتُم</span>. The whole sentence <span class="ar">أَنتُمْ تَعْلَمُون</span> is in place of <span class="ar">نَصْب</span> as a <span class="ar">حَال</span>.
+    <span class="note">The حَال is devastating: shirk is not done in ignorance — it is done while knowing. This makes the prohibition land as a moral indictment, not just a command.</span></td>
+</tr>
+</tbody></table></div>
+</div>
+
+<!-- ══ 23 ══ -->
+<div class="ayah-section">
+<div class="ayah-card">
+  <div class="ayah-label">Sūrat al-Baqarah · Āyah 23</div>
+  <div class="ayah-text">وَإِن كُنتُمْ فِي رَيْبٍ مِّمَّا نَزَّلْنَا عَلَىٰ عَبْدِنَا فَأْتُوا بِسُورَةٍ مِّن مِّثْلِهِ وَادْعُوا شُهَدَاءَكُم مِّن دُونِ اللَّهِ إِن كُنتُمْ صَادِقِينَ</div>
+  <div class="ayah-ref">And if you are in doubt about what We have revealed to Our servant, then produce a surah the like thereof and call your witnesses other than Allah, if you should be truthful.</div>
+</div>
+<div class="table-wrap"><table>
+<colgroup><col class="col-word"><col class="col-type"><col class="col-ar"><col class="col-en"></colgroup>
+<thead><tr><th class="col-word">الكلمة</th><th class="col-type">النوع</th><th class="col-ar">الإعراب</th><th class="col-en">Grammatical Analysis</th></tr></thead>
+<tbody>
+<tr>
+  <td class="word">وَإِنْ</td>
+  <td class="type"><span class="badge badge-harf">عطف + شرط وجزم</span></td>
+  <td class="ar-exp">الْوَاوُ: حَرْفُ <span class="term">عَطْفٍ</span>. إِنْ: حَرْفُ <span class="term">شَرْطٍ وَجَزْمٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp">The <span class="ar">وَاو</span> is a conjunction. <span class="ar">إِنْ</span> is the particle of condition and <span class="ar">جَزْم</span>, indeclinable on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">كُنتُمْ</td>
+  <td class="type"><span class="badge badge-fil">فعل الشرط · كان الناسخة</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ <span class="term">نَاسِخٌ</span> مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَزْمٍ <span class="term">فِعْلُ الشَّرْطِ</span>. تَاءُ الْفَاعِلِ: فِي مَحَلِّ رَفْعٍ <span class="term">اسْمُ كَانَ</span>.</td>
+  <td class="en-exp"><strong>كُنتُمْ</strong> is a past copular verb (<span class="ar">فِعْل مَاضٍ نَاسِخ</span>) put in place of <span class="ar">جَزْم</span> as the conditional verb. <span class="ar">تَاء الفَاعِل</span> is in place of <span class="ar">رَفْع</span> as its subject (<span class="ar">اسم كَانَ</span>).</td>
+</tr>
+<tr>
+  <td class="word">فِي</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">فِي</span> is a preposition on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">رَيْبٍ</td>
+  <td class="type"><span class="badge badge-ism">مجرور · خبر كان</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ. شِبْهُ الْجُمْلَةِ فِي مَحَلِّ نَصْبٍ <span class="term">خَبَرُ كَانَ</span>.</td>
+  <td class="en-exp"><strong>رَيْب</strong> (doubt) is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>. The prepositional phrase <span class="ar">فِي رَيْبٍ</span> is in place of <span class="ar">نَصْب</span> as the predicate (<span class="ar">خَبَر كَانَ</span>).</td>
+</tr>
+<tr>
+  <td class="word">مِمَّا</td>
+  <td class="type"><span class="badge badge-harf">مِن + موصول</span></td>
+  <td class="ar-exp">مِنْ: حَرْفُ جَرٍّ. مَا: اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ <span class="term">بِالْحَرْفِ</span>.</td>
+  <td class="en-exp"><span class="ar">مِنْ</span> is a preposition (concerning/about). <strong>مَا</strong> is a relative pronoun in place of <span class="ar">جَرّ</span> governed by it. Its content is supplied by <span class="ar">نَزَّلْنَا</span>.</td>
+</tr>
+<tr>
+  <td class="word">نَزَّلْنَا</td>
+  <td class="type"><span class="badge badge-fil">فعل ماضٍ · صلة</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ. نَا: فِي مَحَلِّ رَفْعٍ <span class="term">فَاعِلٌ</span>. الْجُمْلَةُ: <span class="term">صِلَةُ الْمَوْصُولِ</span> لَا مَحَلَّ لَهَا.</td>
+  <td class="en-exp"><strong>نَزَّلْنَا</strong> (We revealed/sent down — Form II) is built on <span class="ar">سُكُون</span>; the <span class="ar">نَا</span> is the subject pronoun in place of <span class="ar">رَفْع</span>. The clause is the <span class="ar">صِلَة</span> of <span class="ar">مَا</span>.
+    <span class="note">Form II نَزَّلَ (with shaddah) implies gradual, sustained revelation — different from Form IV أَنزَلَ which implies a single act.</span></td>
+</tr>
+<tr>
+  <td class="word">عَلَى</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">عَلَى</span> is a preposition on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">عَبْدِنَا</td>
+  <td class="type"><span class="badge badge-ism">مجرور + مضاف إليه</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ. نَا: ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp"><strong>عَبْد</strong> is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>. The <span class="ar">نَا</span> pronoun is the genitive annexe: "Our servant" — referring to the Prophet ﷺ.</td>
+</tr>
+<tr>
+  <td class="word">فَأْتُوا</td>
+  <td class="type"><span class="badge badge-fil">جواب الشرط + أمر</span></td>
+  <td class="ar-exp">الْفَاءُ: حَرْفٌ وَاقِعٌ فِي <span class="term">جَوَابِ الشَّرْطِ</span>. ائْتُوا: فِعْلُ <span class="term">أَمْرٍ</span> مَبْنِيٌّ عَلَى حَذْفِ النُّونِ. وَاوُ الْجَمَاعَةِ: فَاعِلٌ. الْجُمْلَةُ فِي مَحَلِّ <span class="term">جَزْمٍ جَوَابُ الشَّرْطِ</span>.</td>
+  <td class="en-exp">The <span class="ar">فَاء</span> introduces the answer of the condition. <strong>ائْتُوا</strong> (bring / come) is a command verb built by deletion of <span class="ar">نُون</span>; <span class="ar">وَاو الجَمَاعَة</span> is the <span class="ar">فَاعِل</span>. The clause is in place of <span class="ar">جَزْم</span> as the answer of <span class="ar">إِنْ</span>.</td>
+</tr>
+<tr>
+  <td class="word">بِسُورَةٍ</td>
+  <td class="type"><span class="badge badge-harf">باء المصاحبة + مجرور</span></td>
+  <td class="ar-exp">الْبَاءُ: حَرْفُ جَرٍّ. سُورَةٍ: اسْمٌ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ الظَّاهِرَةِ.</td>
+  <td class="en-exp">The <span class="ar">بَاء</span> is a preposition of accompaniment — "come with a surah." <strong>سُورَة</strong> is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>.</td>
+</tr>
+<tr>
+  <td class="word">مِنْ</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">مِنْ</span> is a preposition meaning "from among / of the like of."</td>
+</tr>
+<tr>
+  <td class="word">مِثْلِهِ</td>
+  <td class="type"><span class="badge badge-ism">مجرور + مضاف إليه</span></td>
+  <td class="ar-exp">اسْمٌ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp"><strong>مِثْل</strong> (likeness/equivalent) is in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>. The pronoun <span class="ar">هَاء</span> refers to the Quran: "from the like of it" — a surah comparable to it in quality.
+    <span class="note">This is the آية التَّحَدِّي — the verse of challenge. The conditional structure (if you doubt → then produce) is a logical argument: proof of doubt is the ability to produce something comparable.</span></td>
+</tr>
+<tr>
+  <td class="word">وَادْعُوا</td>
+  <td class="type"><span class="badge badge-fil">عطف + أمر</span></td>
+  <td class="ar-exp">الْوَاوُ: عَطْفٌ. ادْعُوا: فِعْلُ <span class="term">أَمْرٍ</span> مَبْنِيٌّ عَلَى حَذْفِ النُّونِ. وَاوُ الْجَمَاعَةِ: فَاعِلٌ.</td>
+  <td class="en-exp"><strong>ادْعُوا</strong> (call upon / summon) is a second command verb conjoined to <span class="ar">ائْتُوا</span>, built by deletion of <span class="ar">نُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">شُهَدَاءَكُمْ</td>
+  <td class="type"><span class="badge badge-ism">مفعول به + مضاف إليه</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ مَنْصُوبٌ</span> بِالْفَتْحَةِ. كَافُ الْمُخَاطَبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp"><strong>شُهَدَاء</strong> (witnesses/supporters) is the object of <span class="ar">ادْعُوا</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>. <span class="ar">كَاف المُخَاطَب</span> is the genitive annexe: "your witnesses."</td>
+</tr>
+<tr>
+  <td class="word">مِنْ</td>
+  <td class="type"><span class="badge badge-harf">حرف جر</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">جَرٍّ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">مِنْ</span> is a preposition on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">دُونِ</td>
+  <td class="type"><span class="badge badge-ism">ظرفي مجرور</span></td>
+  <td class="ar-exp">اسْمٌ ظَرْفِيٌّ <span class="term">مَجْرُورٌ</span> بِالْكَسْرَةِ الظَّاهِرَةِ.</td>
+  <td class="en-exp"><strong>دُون</strong> is a semi-adverbial noun (<span class="ar">اسم ظَرْفِيّ</span>) in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>, meaning "other than / besides."</td>
+</tr>
+<tr>
+  <td class="word">اللَّهِ</td>
+  <td class="type"><span class="badge badge-ism">مضاف إليه</span></td>
+  <td class="ar-exp">اسْمُ الْجَلَالَةِ <span class="term">مُضَافٌ إِلَيْهِ مَجْرُورٌ</span> بِالْكَسْرَةِ.</td>
+  <td class="en-exp"><strong>اللَّه</strong> is the genitive annexe of <span class="ar">دُون</span>, in <span class="ar">جَرّ</span> by the visible <span class="ar">كَسْرَة</span>: "other than Allah."</td>
+</tr>
+<tr>
+  <td class="word">إِنْ</td>
+  <td class="type"><span class="badge badge-harf">شرط وجزم</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">شَرْطٍ وَجَزْمٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">إِنْ</span> is the conditional particle and <span class="ar">جَزْم</span>, indeclinable on <span class="ar">سُكُون</span>. A second conditional structure.</td>
+</tr>
+<tr>
+  <td class="word">كُنتُمْ</td>
+  <td class="type"><span class="badge badge-fil">فعل الشرط · كان الناسخة</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ <span class="term">نَاسِخٌ</span> فِي مَحَلِّ جَزْمٍ فِعْلُ الشَّرْطِ. تَاءُ الْفَاعِلِ: فِي مَحَلِّ رَفْعٍ <span class="term">اسْمُ كَانَ</span>.</td>
+  <td class="en-exp"><strong>كُنتُمْ</strong> is the conditional verb in place of <span class="ar">جَزْم</span>. <span class="ar">تَاء الفَاعِل</span> is in place of <span class="ar">رَفْع</span> as its subject (<span class="ar">اسم كَانَ</span>).</td>
+</tr>
+<tr>
+  <td class="word">صَادِقِينَ</td>
+  <td class="type"><span class="badge badge-ism">خبر كان · جوابه محذوف</span></td>
+  <td class="ar-exp"><span class="term">خَبَرُ كَانَ مَنْصُوبٌ</span> وَعَلَامَةُ نَصْبِهِ الْيَاءُ لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ. جَوَابُ الشَّرْطِ <span class="term">مَحْذُوفٌ</span> يُفَسِّرُهُ مَا قَبْلَهُ.</td>
+  <td class="en-exp"><strong>صَادِقِين</strong> (truthful) is the predicate (<span class="ar">خَبَر كَانَ</span>) in <span class="ar">نَصْب</span>, its sign the <span class="ar">يَاء</span> as a sound masculine plural. The answer clause is omitted (<span class="ar">مَحْذُوف</span>) — understood from what precedes.
+    <span class="note">The omitted جواب is itself rhetorical: the silence implies the answer is obvious — if you were truthful, you would already have produced it.</span></td>
+</tr>
+</tbody></table></div>
+</div>
+
+<!-- ══ 24 ══ -->
+<div class="ayah-section">
+<div class="ayah-card">
+  <div class="ayah-label">Sūrat al-Baqarah · Āyah 24</div>
+  <div class="ayah-text">فَإِن لَّمْ تَفْعَلُوا وَلَن تَفْعَلُوا فَاتَّقُوا النَّارَ الَّتِي وَقُودُهَا النَّاسُ وَالْحِجَارَةُ ۖ أُعِدَّتْ لِلْكَافِرِينَ</div>
+  <div class="ayah-ref">But if you do not — and you will never be able to — then fear the Fire whose fuel is people and stones, prepared for the disbelievers.</div>
+</div>
+<div class="table-wrap"><table>
+<colgroup><col class="col-word"><col class="col-type"><col class="col-ar"><col class="col-en"></colgroup>
+<thead><tr><th class="col-word">الكلمة</th><th class="col-type">النوع</th><th class="col-ar">الإعراب</th><th class="col-en">Grammatical Analysis</th></tr></thead>
+<tbody>
+<tr>
+  <td class="word">فَإِنْ</td>
+  <td class="type"><span class="badge badge-harf">فاء الاستئناف + شرط</span></td>
+  <td class="ar-exp">الْفَاءُ: حَرْفُ <span class="term">اسْتِئْنَافٍ</span>. إِنْ: حَرْفُ <span class="term">شَرْطٍ وَجَزْمٍ</span>.</td>
+  <td class="en-exp">The <span class="ar">فَاء</span> opens a new sentence (<span class="ar">حَرْف اسْتِئْنَاف</span>). <span class="ar">إِنْ</span> is the conditional particle and <span class="ar">جَزْم</span>.</td>
+</tr>
+<tr>
+  <td class="word">لَمْ</td>
+  <td class="type"><span class="badge badge-harf">نفي وجزم</span></td>
+  <td class="ar-exp">حَرْفُ <span class="term">نَفْيٍ وَجَزْمٍ</span> مَبْنِيٌّ عَلَى السُّكُونِ.</td>
+  <td class="en-exp"><span class="ar">لَمْ</span> is the particle of negation and <span class="ar">جَزْم</span>, indeclinable on <span class="ar">سُكُون</span>.</td>
+</tr>
+<tr>
+  <td class="word">تَفْعَلُوا</td>
+  <td class="type"><span class="badge badge-fil">فعل مضارع مجزوم · فعل الشرط</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ <span class="term">مَجْزُومٌ</span> بِحَذْفِ النُّونِ فِي مَحَلِّ جَزْمٍ <span class="term">فِعْلُ الشَّرْطِ</span>. وَاوُ الْجَمَاعَةِ: فَاعِلٌ.</td>
+  <td class="en-exp"><strong>تَفْعَلُوا</strong> is a present-tense verb put into <span class="ar">جَزْم</span> by <span class="ar">لَمْ</span>, its sign being deletion of <span class="ar">نُون</span>. It is also in place of <span class="ar">جَزْم</span> as the conditional verb of <span class="ar">إِنْ</span>. The <span class="ar">وَاو</span> is the <span class="ar">فَاعِل</span>.</td>
+</tr>
+<tr>
+  <td class="word">وَلَنْ</td>
+  <td class="type"><span class="badge badge-harf">واو الاعتراض + لن</span></td>
+  <td class="ar-exp">الْوَاوُ: حَرْفُ <span class="term">اعْتِرَاضٍ</span>. لَنْ: حَرْفُ <span class="term">نَصْبٍ وَنَفْيٍ</span> لِلِاسْتِقْبَالِ.</td>
+  <td class="en-exp">The <span class="ar">وَاو</span> is a parenthetical particle (<span class="ar">وَاو الاعْتِرَاض</span>) — it inserts a declaration mid-sentence. <strong>لَنْ</strong> is the particle of absolute future negation (<span class="ar">حَرْف نَصْب وَنَفْي لِلاسْتِقْبَال</span>).
+    <span class="note">وَلَنْ تَفْعَلُوا is one of the Quran's boldest rhetorical moves: while issuing the challenge (if you don't), it simultaneously declares the permanent outcome (and you never will). لَنْ carries a sense of absolute, unoverridable impossibility.</span></td>
+</tr>
+<tr>
+  <td class="word">تَفْعَلُوا</td>
+  <td class="type"><span class="badge badge-fil">فعل مضارع منصوب</span></td>
+  <td class="ar-exp">فِعْلٌ مُضَارِعٌ <span class="term">مَنْصُوبٌ</span> بِلَنْ، وَعَلَامَةُ نَصْبِهِ <span class="term">حَذْفُ النُّونِ</span> لِأَنَّهُ مِنَ الْأَفْعَالِ الْخَمْسَةِ. وَاوُ الْجَمَاعَةِ: فَاعِلٌ.</td>
+  <td class="en-exp"><strong>تَفْعَلُوا</strong> is a present-tense verb put into <span class="ar">نَصْب</span> by <span class="ar">لَنْ</span>; its sign is deletion of <span class="ar">نُون</span>. The <span class="ar">وَاو</span> is the <span class="ar">فَاعِل</span>.</td>
+</tr>
+<tr>
+  <td class="word">فَاتَّقُوا</td>
+  <td class="type"><span class="badge badge-fil">جواب الشرط + أمر</span></td>
+  <td class="ar-exp">الْفَاءُ: حَرْفٌ وَاقِعٌ فِي <span class="term">جَوَابِ الشَّرْطِ</span>. اتَّقُوا: فِعْلُ <span class="term">أَمْرٍ</span> مَبْنِيٌّ عَلَى حَذْفِ النُّونِ. وَاوُ الْجَمَاعَةِ: فَاعِلٌ.</td>
+  <td class="en-exp">The <span class="ar">فَاء</span> introduces the answer of the condition. <strong>اتَّقُوا</strong> (fear/guard against) is a command verb built by deletion of <span class="ar">نُون</span>; <span class="ar">وَاو الجَمَاعَة</span> is the <span class="ar">فَاعِل</span>.</td>
+</tr>
+<tr>
+  <td class="word">النَّارَ</td>
+  <td class="type"><span class="badge badge-ism">مفعول به</span></td>
+  <td class="ar-exp"><span class="term">مَفْعُولٌ بِهِ مَنْصُوبٌ</span> بِالْفَتْحَةِ الظَّاهِرَةِ. الْجُمْلَةُ فِي مَحَلِّ جَزْمٍ <span class="term">جَوَابُ الشَّرْطِ</span>.</td>
+  <td class="en-exp"><strong>النَّار</strong> (the Fire) is the object of <span class="ar">اتَّقُوا</span>, in <span class="ar">نَصْب</span> by the visible <span class="ar">فَتْحَة</span>. The clause is in place of <span class="ar">جَزْم</span> as the answer of <span class="ar">إِنْ</span>.</td>
+</tr>
+<tr>
+  <td class="word">الَّتِي</td>
+  <td class="type"><span class="badge badge-ism">نعت · موصول</span></td>
+  <td class="ar-exp">اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ <span class="term">نَعْتٌ</span> لِلنَّارِ.</td>
+  <td class="en-exp"><strong>الَّتِي</strong> is a relative pronoun in place of <span class="ar">نَصْب</span> as an adjective (<span class="ar">نَعْت</span>) modifying <span class="ar">النَّار</span>. Its content is supplied by the nominal clause that follows.</td>
+</tr>
+<tr>
+  <td class="word">وَقُودُهَا</td>
+  <td class="type"><span class="badge badge-ism">مبتدأ + مضاف إليه</span></td>
+  <td class="ar-exp"><span class="term">مُبْتَدَأٌ مَرْفُوعٌ</span> بِالضَّمَّةِ. هَاءُ الْغَائِبِ: فِي مَحَلِّ جَرٍّ <span class="term">مُضَافٌ إِلَيْهِ</span>.</td>
+  <td class="en-exp"><strong>وَقُود</strong> (fuel) is the subject (<span class="ar">مُبْتَدَأ</span>) of the nominal clause, in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>. The pronoun <span class="ar">هَاء</span> refers to the Fire: "its fuel."</td>
+</tr>
+<tr>
+  <td class="word">النَّاسُ</td>
+  <td class="type"><span class="badge badge-ism">خبر</span></td>
+  <td class="ar-exp"><span class="term">خَبَرٌ مَرْفُوعٌ</span> بِالضَّمَّةِ. الْجُمْلَةُ: <span class="term">صِلَةُ الْمَوْصُولِ</span> لَا مَحَلَّ لَهَا.</td>
+  <td class="en-exp"><strong>النَّاس</strong> (people) is the predicate (<span class="ar">خَبَر</span>) in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>. The entire nominal sentence is the <span class="ar">صِلَة</span> of <span class="ar">الَّتِي</span>.
+    <span class="note">وَقُود (fuel) rather than حَطَب (firewood) emphasises what sustains the fire. People and stones are its material — a stark contrast to the rain, fruit, and provision of Āyah 22.</span></td>
+</tr>
+<tr>
+  <td class="word">وَالْحِجَارَةُ</td>
+  <td class="type"><span class="badge badge-ism">معطوف</span></td>
+  <td class="ar-exp">الْوَاوُ: عَطْفٌ. الْحِجَارَةُ: <span class="term">مَعْطُوفٌ مَرْفُوعٌ</span> بِالضَّمَّةِ.</td>
+  <td class="en-exp"><strong>الْحِجَارَة</strong> (stones) is conjoined to <span class="ar">النَّاس</span> in <span class="ar">رَفْع</span> by the visible <span class="ar">ضَمَّة</span>.</td>
+</tr>
+<tr>
+  <td class="word">أُعِدَّتْ</td>
+  <td class="type"><span class="badge badge-fil">فعل مبني للمجهول</span></td>
+  <td class="ar-exp">فِعْلٌ مَاضٍ <span class="term">مَبْنِيٌّ لِلْمَجْهُولِ</span> مَبْنِيٌّ عَلَى الْفَتْحِ. التَّاءُ: حَرْفُ <span class="term">تَأْنِيثٍ</span>. نَائِبُ الْفَاعِلِ: ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ <span class="term">هِيَ</span>.</td>
+  <td class="en-exp"><strong>أُعِدَّتْ</strong> (it was prepared) is a past-tense passive verb (<span class="ar">مَبْنِيّ لِلْمَجْهُول</span>) built on <span class="ar">فَتْح</span>. The <span class="ar">تَاء</span> is the feminine marker agreeing with <span class="ar">النَّار</span>. The substitute subject (<span class="ar">نَائِب الفَاعِل</span>) is a hidden pronoun <span class="ar">هِيَ</span>.
+    <span class="note">The passive أُعِدَّتْ shifts focus from the agent to the completed fact: the Fire is already prepared and waiting. The past tense implies a settled divine act.</span></td>
+</tr>
+<tr>
+  <td class="word">لِلْكَافِرِينَ</td>
+  <td class="type"><span class="badge badge-harf">لام + مجرور</span></td>
+  <td class="ar-exp">اللَّامُ: حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى الْكَسْرِ. الْكَافِرِينَ: اسْمٌ <span class="term">مَجْرُورٌ</span> وَعَلَامَةُ جَرِّهِ <span class="term">الْيَاءُ</span> لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ.</td>
+  <td class="en-exp">The <span class="ar">لَام</span> is a preposition on <span class="ar">كَسْر</span>. <strong>الْكَافِرِين</strong> is in <span class="ar">جَرّ</span>, its sign the <span class="ar">يَاء</span> as a sound masculine plural (<span class="ar">جَمْع مُذَكَّر سَالِم</span>): "for the disbelievers."</td>
+</tr>
+</tbody></table></div>
+</div>
+
+<p class="footer">Sūrat al-Baqarah 2:17–24 · Iʿrāb tables · One word per row · All grammatical terms in Arabic script</p>
+</div>
+</body>
+</html>
