@@ -45,6 +45,12 @@ function normalizeCourseIds(ids) {
   return [...new Set(ids.filter((id) => typeof id === "string" && id.length > 0))];
 }
 
+function sameIds(a, b) {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  return a.every((id, i) => id === b[i]);
+}
+
 function readCourseDone(courseId) {
   const store = readStore();
   const saved = normalizeCourseIds(store[courseId]);
@@ -71,7 +77,10 @@ export function useCourseProgress(courseId) {
   const [doneIds, setDoneIds] = useState(() => readCourseDone(courseId));
 
   useEffect(() => {
-    setDoneIds(readCourseDone(courseId));
+    setDoneIds((current) => {
+      const next = readCourseDone(courseId);
+      return sameIds(current, next) ? current : next;
+    });
   }, [courseId]);
 
   useEffect(() => {
@@ -83,7 +92,10 @@ export function useCourseProgress(courseId) {
   useEffect(() => {
     const onUpdate = (event) => {
       if (event?.detail?.courseId && event.detail.courseId !== courseId) return;
-      setDoneIds(readCourseDone(courseId));
+      setDoneIds((current) => {
+        const next = readCourseDone(courseId);
+        return sameIds(current, next) ? current : next;
+      });
     };
     window.addEventListener("course-progress-updated", onUpdate);
     window.addEventListener("storage", onUpdate);
