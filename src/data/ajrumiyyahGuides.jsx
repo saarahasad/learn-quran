@@ -55,6 +55,23 @@ import MudmarMunfasilMafoolGuide from "../components/ajrumiyyah/MudmarMunfasilMa
 import MasdarMafoolMutlaqGuide from "../components/ajrumiyyah/MasdarMafoolMutlaqGuide.jsx";
 import AnwaMafoolMutlaqGuide from "../components/ajrumiyyah/AnwaMafoolMutlaqGuide.jsx";
 import ZarfZamanGuide from "../components/ajrumiyyah/ZarfZamanGuide.jsx";
+import ZarfMakanGuide from "../components/ajrumiyyah/ZarfMakanGuide.jsx";
+import MajruratOverviewGuide from "../components/ajrumiyyah/MajruratOverviewGuide.jsx";
+import MajruratParticlesGuide from "../components/ajrumiyyah/MajruratParticlesGuide.jsx";
+import MajruratIdafaGuide from "../components/ajrumiyyah/MajruratIdafaGuide.jsx";
+import MajruratFollowerGuide from "../components/ajrumiyyah/MajruratFollowerGuide.jsx";
+import MafoolMaahGuide from "../components/ajrumiyyah/MafoolMaahGuide.jsx";
+import MafoolMaahChoiceGuide from "../components/ajrumiyyah/MafoolMaahChoiceGuide.jsx";
+import MafoolMaahRequiredGuide from "../components/ajrumiyyah/MafoolMaahRequiredGuide.jsx";
+import MafoolAjliGuide from "../components/ajrumiyyah/MafoolAjliGuide.jsx";
+import MafoolAjliStatesGuide from "../components/ajrumiyyah/MafoolAjliStatesGuide.jsx";
+import MunadaTypesGuide from "../components/ajrumiyyah/MunadaTypesGuide.jsx";
+import MunadaRulingGuide from "../components/ajrumiyyah/MunadaRulingGuide.jsx";
+import LaNafiyaConditionsGuide from "../components/ajrumiyyah/LaNafiyaConditionsGuide.jsx";
+import LaNafiyaCancelledGuide from "../components/ajrumiyyah/LaNafiyaCancelledGuide.jsx";
+import LaNafiyaRepeatedGuide from "../components/ajrumiyyah/LaNafiyaRepeatedGuide.jsx";
+import TamyizDefinitionGuide from "../components/ajrumiyyah/TamyizDefinitionGuide.jsx";
+import TamyizConditionsGuide from "../components/ajrumiyyah/TamyizConditionsGuide.jsx";
 import HalDefinitionGuide from "../components/ajrumiyyah/HalDefinitionGuide.jsx";
 import HalConditionsGuide from "../components/ajrumiyyah/HalConditionsGuide.jsx";
 import HalExerciseVocabGuide from "../components/ajrumiyyah/HalExerciseVocabGuide.jsx";
@@ -456,6 +473,125 @@ export function guideAfterLine(chapterId, lineIdx) {
       key: "zarf-zaman",
       noHead: true,
       body: <ZarfZamanGuide />,
+    };
+  }
+  if (chapterId === "zarf" && lineIdx === 2) {
+    return {
+      key: "zarf-makan",
+      noHead: true,
+      body: <ZarfMakanGuide />,
+    };
+  }
+  if (chapterId === "majrurat" && lineIdx === 0) {
+    return {
+      key: "majrurat-overview",
+      noHead: true,
+      body: <MajruratOverviewGuide />,
+    };
+  }
+  if (chapterId === "majrurat" && lineIdx === 1) {
+    return {
+      key: "majrurat-particles",
+      noHead: true,
+      body: <MajruratParticlesGuide />,
+    };
+  }
+  if (chapterId === "majrurat" && lineIdx === 2) {
+    return {
+      key: "majrurat-idafa",
+      noHead: true,
+      body: <MajruratIdafaGuide />,
+    };
+  }
+  if (chapterId === "majrurat" && lineIdx === 5) {
+    return {
+      key: "majrurat-follower",
+      noHead: true,
+      body: <MajruratFollowerGuide />,
+    };
+  }
+  if (chapterId === "mafool-maah" && lineIdx === 0) {
+    return {
+      key: "mafool-maah-definition",
+      noHead: true,
+      body: <MafoolMaahGuide />,
+    };
+  }
+  if (chapterId === "mafool-maah" && lineIdx === 1) {
+    return {
+      key: "mafool-maah-choice",
+      noHead: true,
+      body: <MafoolMaahChoiceGuide />,
+    };
+  }
+  if (chapterId === "mafool-maah" && lineIdx === 2) {
+    return {
+      key: "mafool-maah-required",
+      noHead: true,
+      body: <MafoolMaahRequiredGuide />,
+    };
+  }
+  if (chapterId === "mafool-ajli" && lineIdx === 0) {
+    return {
+      key: "mafool-ajli-definition",
+      noHead: true,
+      body: <MafoolAjliGuide />,
+    };
+  }
+  if (chapterId === "mafool-ajli" && lineIdx === 1) {
+    return {
+      key: "mafool-ajli-states",
+      noHead: true,
+      body: <MafoolAjliStatesGuide />,
+    };
+  }
+  if (chapterId === "munada" && lineIdx === 0) {
+    return {
+      key: "munada-types",
+      noHead: true,
+      body: <MunadaTypesGuide />,
+    };
+  }
+  if (chapterId === "munada" && lineIdx === 1) {
+    return {
+      key: "munada-ruling",
+      noHead: true,
+      body: <MunadaRulingGuide />,
+    };
+  }
+  if (chapterId === "la-nafiya" && lineIdx === 0) {
+    return {
+      key: "la-nafiya-conditions",
+      noHead: true,
+      body: <LaNafiyaConditionsGuide />,
+    };
+  }
+  if (chapterId === "la-nafiya" && lineIdx === 2) {
+    return {
+      key: "la-nafiya-cancelled",
+      noHead: true,
+      body: <LaNafiyaCancelledGuide />,
+    };
+  }
+  if (chapterId === "la-nafiya" && lineIdx === 4) {
+    return {
+      key: "la-nafiya-repeated",
+      noHead: true,
+      body: <LaNafiyaRepeatedGuide />,
+    };
+  }
+  if (chapterId === "tamyiz" && lineIdx === 0) {
+    return {
+      key: "tamyiz-definition",
+      noHead: true,
+      body: <TamyizDefinitionGuide />,
+    };
+  }
+  if (chapterId === "tamyiz" && lineIdx === 3) {
+    return {
+      key: "tamyiz-conditions",
+      noHead: true,
+      body: <TamyizConditionsGuide />,
     };
   }
   if (chapterId === "hal" && lineIdx === 0) {

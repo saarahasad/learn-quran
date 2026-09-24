@@ -14,8 +14,9 @@ export function CourseHeader() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <Link to="/" className="site-header-brand" aria-label="Home">
+        <Link to="/" className="site-header-brand" aria-label={LEARN_ISLAM.name}>
           <span className="site-header-brand-ar" dir="rtl">{LEARN_ISLAM.nameAr}</span>
+          <span className="site-header-brand-en">{LEARN_ISLAM.name}</span>
         </Link>
         <nav className="site-header-nav" aria-label="Main">
           {pathname !== "/" && NAV_ITEMS.map((item) => {
@@ -109,11 +110,25 @@ export function CourseSidebar({ title = "Course outline", className = "", childr
   );
 }
 
-export function CourseSidebarUnit({ title, children }) {
+export function CourseSidebarUnit({ title, titleAr, kicker, children }) {
   return (
     <div className="course-sidebar-unit">
       <div className="course-sidebar-unit-title" aria-hidden>
-        {title}
+        {kicker || titleAr ? (
+          <>
+            <div className="course-sidebar-unit-copy">
+              {kicker && <p className="course-sidebar-unit-kicker">{kicker}</p>}
+              <span className="course-sidebar-unit-name">{title}</span>
+            </div>
+            {titleAr ? (
+              <span className="course-sidebar-unit-title-ar" dir="rtl" lang="ar">
+                {titleAr}
+              </span>
+            ) : null}
+          </>
+        ) : (
+          title
+        )}
       </div>
       <ul className="course-sidebar-lessons">{children}</ul>
     </div>

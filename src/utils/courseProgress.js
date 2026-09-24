@@ -88,7 +88,7 @@ export function getQuranJuzProgress(juz, diary, surahs = DIARY_SURAHS) {
 export const LESSON_XP = 10;
 export const UNIT_COMPLETE_BONUS = 25;
 
-export function buildGamifiedUnits(units = [], { sequentialUnlock = true } = {}) {
+export function buildGamifiedUnits(units = [], { sequentialUnlock = false } = {}) {
   const flatTrackable = [];
 
   units.forEach((unit, unitIndex) => {

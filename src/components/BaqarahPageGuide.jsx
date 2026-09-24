@@ -12,6 +12,11 @@ import {
   getBaqarahIraabForPage,
   hasBaqarahIraabForPage,
 } from "../data/baqarahIraab.js";
+import {
+  getAlHudaLessonForPage,
+  hasAlHudaLessonForPage,
+} from "../data/baqarahAlHudaLessons.js";
+import BaqarahAlHudaStudy from "./baqarah/BaqarahAlHudaStudy.jsx";
 import { toArabicNum } from "../utils/mushafText.js";
 import HifdhSessionMode from "./hifdh/HifdhSessionMode.jsx";
 import { estimateSessionDurationLabel } from "../utils/hifdhSession.js";
@@ -824,11 +829,36 @@ function GuideSection({ section, guideTopics = [] }) {
   }
 }
 
-function StudyModeToggle({ mode, onChange, hasIraab }) {
-  if (!hasIraab) return null;
+function StudyModeToggle({ mode, onChange, hasIraab, hasAlHuda }) {
+  if (!hasIraab && !hasAlHuda) return null;
 
   return (
-    <div className="baqarah-guide-mode-toggle" role="tablist" aria-label="Study mode">
+    <div
+      className={[
+        "baqarah-guide-mode-toggle",
+        hasAlHuda && hasIraab && "baqarah-guide-mode-toggle--three",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      role="tablist"
+      aria-label="Study mode"
+    >
+      {hasAlHuda && (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={mode === "alhuda"}
+          className={[
+            "baqarah-guide-mode-toggle__btn",
+            mode === "alhuda" && "is-active",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          onClick={() => onChange("alhuda")}
+        >
+          Al Huda
+        </button>
+      )}
       <button
         type="button"
         role="tab"
@@ -843,27 +873,29 @@ function StudyModeToggle({ mode, onChange, hasIraab }) {
       >
         Meaning study
       </button>
-      <button
-        type="button"
-        role="tab"
-        aria-selected={mode === "iraab"}
-        className={[
-          "baqarah-guide-mode-toggle__btn",
-          mode === "iraab" && "is-active",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-        onClick={() => onChange("iraab")}
-      >
-        Iʿrāb study
-      </button>
+      {hasIraab && (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={mode === "iraab"}
+          className={[
+            "baqarah-guide-mode-toggle__btn",
+            mode === "iraab" && "is-active",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          onClick={() => onChange("iraab")}
+        >
+          Iʿrāb study
+        </button>
+      )}
     </div>
   );
 }
 
 const MEMORIZE_QUIZ_SECTION_TYPES = new Set(["ayah61MemorizeQuiz", "page10MemorizeQuiz"]);
 
-function PageGuideContent({ guide, onMemorize, sessionDurationLabel, studyMode }) {
+function PageGuideContent({ guide, onMemorize, sessionDurationLabel, studyMode, alHudaLesson }) {
   const hasTopicsMap = guide.sections?.some(
     (s) =>
       s.type === "mushafTopicsMap" ||
@@ -888,6 +920,14 @@ function PageGuideContent({ guide, onMemorize, sessionDurationLabel, studyMode }
       s.type !== "pageTopicsMap",
   );
   const iraabAyahs = getBaqarahIraabForPage(guide.mushafPage);
+
+  if (studyMode === "alhuda" && alHudaLesson) {
+    return (
+      <div className="baqarah-guide-content">
+        <BaqarahAlHudaStudy lesson={alHudaLesson} />
+      </div>
+    );
+  }
 
   if (studyMode === "iraab" && iraabAyahs) {
     return (
@@ -980,17 +1020,21 @@ const BAQARAH_SURAH_NUMBER = 2;
 export default function BaqarahPageGuide({ activeMushafPage = null }) {
   const selectedPage = activeMushafPage ?? 2;
   const [sessionOpen, setSessionOpen] = useState(false);
-  const [studyMode, setStudyMode] = useState("meaning");
+  const [studyMode, setStudyMode] = useState(() =>
+    hasAlHudaLessonForPage(activeMushafPage ?? 2) ? "alhuda" : "meaning",
+  );
 
   const guide = getBaqarahGuideByMushafPage(selectedPage);
   const hasIraab = hasBaqarahIraabForPage(selectedPage);
+  const hasAlHuda = hasAlHudaLessonForPage(selectedPage);
+  const alHudaLesson = getAlHudaLessonForPage(selectedPage);
   const sessionAyat = guide ? parseVerseRange(guide.verseRange) : [];
   const sessionDurationLabel = sessionAyat.length
     ? estimateSessionDurationLabel(sessionAyat)
     : "";
 
   useEffect(() => {
-    setStudyMode("meaning");
+    setStudyMode(hasAlHudaLessonForPage(selectedPage) ? "alhuda" : "meaning");
   }, [selectedPage]);
 
   return (
@@ -998,12 +1042,13 @@ export default function BaqarahPageGuide({ activeMushafPage = null }) {
       <div className="baqarah-page-guide__main">
         {guide ? (
           <>
-            {hasIraab && (
+            {(hasIraab || hasAlHuda) && (
               <div className="baqarah-guide-toolbar">
                 <StudyModeToggle
                   mode={studyMode}
                   onChange={setStudyMode}
                   hasIraab={hasIraab}
+                  hasAlHuda={hasAlHuda}
                 />
               </div>
             )}
@@ -1012,6 +1057,7 @@ export default function BaqarahPageGuide({ activeMushafPage = null }) {
               onMemorize={() => setSessionOpen(true)}
               sessionDurationLabel={sessionDurationLabel}
               studyMode={studyMode}
+              alHudaLesson={alHudaLesson}
             />
           </>
         ) : (

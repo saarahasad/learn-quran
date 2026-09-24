@@ -15,26 +15,22 @@ export default function TarbiyahOverviewPage() {
     TARBIYAH_CHAPTERS.find((chapter) => !isDone(chapter.id)) ?? TARBIYAH_CHAPTERS[0];
 
   const units = [
-    ...TARBIYAH_CHAPTERS.map((chapter) => ({
-      id: chapter.id,
-      kicker: `Chapter ${chapter.num}`,
-      title: chapter.title,
-      items: [
-        {
-          id: chapter.id,
-          num: chapter.num,
-          label: chapter.title,
-          meta: "Notes & key points",
-          done: isDone(chapter.id),
-        },
-      ],
-    })),
     {
-      id: "study-tools",
-      title: "Study tools",
+      id: "chapters",
+      title: "Chapters",
+      items: TARBIYAH_CHAPTERS.map((chapter) => ({
+        id: chapter.id,
+        num: chapter.num,
+        label: chapter.title,
+        done: isDone(chapter.id),
+      })),
+    },
+    {
+      id: "practice",
+      title: "Practice",
       items: [
-        { id: "flashcards", num: "🃏", label: "Flashcards", meta: "Active recall", trackable: false },
-        { id: "quiz", num: "✏️", label: "Knowledge Quiz", meta: "Test yourself", trackable: false },
+        { id: "flashcards", num: "🃏", label: "Flashcards", meta: "Practice", trackable: false },
+        { id: "quiz", num: "✏️", label: "Knowledge Quiz", meta: "Practice", trackable: false },
       ],
     },
   ];

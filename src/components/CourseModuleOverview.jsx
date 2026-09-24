@@ -1,60 +1,11 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import CourseLayout, { CourseOverviewProgress } from "./CourseLayout.jsx";
+import CourseLayout from "./CourseLayout.jsx";
 import {
   LESSON_XP,
-  UNIT_COMPLETE_BONUS,
   buildGamifiedUnits,
   summarizeUnitsProgress,
 } from "../utils/courseProgress.js";
-
-function ProgressRing({ pct = 0, complete = false, size = 36 }) {
-  const stroke = 3;
-  const radius = (size - stroke) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (pct / 100) * circumference;
-
-  return (
-    <svg
-      className={`course-module-ring${complete ? " course-module-ring--complete" : ""}`}
-      width={size}
-      height={size}
-      viewBox={`0 0 ${size} ${size}`}
-      aria-hidden
-    >
-      <circle
-        className="course-module-ring-track"
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        fill="none"
-        strokeWidth={stroke}
-      />
-      <circle
-        className="course-module-ring-fill"
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        fill="none"
-        strokeWidth={stroke}
-        strokeDasharray={circumference}
-        strokeDashoffset={offset}
-        transform={`rotate(-90 ${size / 2} ${size / 2})`}
-      />
-      {complete && (
-        <text
-          x="50%"
-          y="50%"
-          dominantBaseline="central"
-          textAnchor="middle"
-          className="course-module-ring-check"
-        >
-          ✓
-        </text>
-      )}
-    </svg>
-  );
-}
 
 function LessonStatusIcon({ state, num, icon }) {
   if (state === "done") {
@@ -159,12 +110,48 @@ export function CourseModuleCard({ item, studyPath, paramKey = "lesson" }) {
   return <article className={className}>{inner}</article>;
 }
 
+function lessonHref(item, studyPath, paramKey) {
+  return item.href ?? `${studyPath}?${paramKey}=${encodeURIComponent(item.id)}`;
+}
+
+function lessonTag(item) {
+  if (item.state === "current") return "Next";
+  if (item.state === "done") return "Done";
+  return item.meta || null;
+}
+
+function OutlineLesson({ item, studyPath, paramKey }) {
+  const tag = lessonTag(item);
+  const inner = (
+    <>
+      <span className="course-outline-num">{item.state === "done" ? "✓" : item.num}</span>
+      <span className="course-outline-copy">
+        <span className="course-outline-name">{item.label}</span>
+        {item.labelAr && (
+          <span className="course-outline-ar" dir="rtl">{item.labelAr}</span>
+        )}
+      </span>
+      {tag && <span className={`course-outline-tag is-${item.state}`}>{tag}</span>}
+    </>
+  );
+
+  const className = `course-outline-lesson is-${item.state ?? "available"}`;
+  if (!(studyPath || item.href)) {
+    return <div className={className}>{inner}</div>;
+  }
+
+  return (
+    <Link to={lessonHref(item, studyPath, paramKey)} className={className}>
+      {inner}
+    </Link>
+  );
+}
+
 export default function CourseModuleOverview({
   banner,
   breadcrumbs,
   nameAr,
-  title = "Course modules",
-  description,
+  title = "Lessons",
   studyPath,
   resumePath,
   resumeLabel = "Resume study",
@@ -175,123 +162,79 @@ export default function CourseModuleOverview({
   progressHref,
   progressHrefLabel = "Memorisation progress →",
   extraLinks = [],
-  sequentialUnlock = true,
+  sequentialUnlock = false,
 }) {
   const progress = useMemo(() => summarizeUnitsProgress(units), [units]);
   const gamified = useMemo(
     () => buildGamifiedUnits(units, { sequentialUnlock }),
     [units, sequentialUnlock],
   );
+  const nextPath = resumePath || studyPath;
+  const nextName = resumeLabel.replace(/^Resume:\s*/, "").replace(/^Start study$/, "");
+  const started = progress.completed > 0;
+  const countWord = progressLabel === "memorised" ? "memorised" : "done";
 
   return (
     <CourseLayout wide banner={banner} breadcrumbs={breadcrumbs} courseId={courseId}>
-      <div className="course-overview-intro course-card course-card--deep">
-        {nameAr && (
-          <p className="course-overview-ar" dir="rtl">
-            {nameAr}
-          </p>
-        )}
-        <h2>{title}</h2>
-        {description && <p>{description}</p>}
-        <CourseOverviewProgress
-          pct={progress.pct}
-          completed={progress.completed}
-          total={progress.total}
-          label={progressLabel}
-          units={progress.units}
-        />
-        {gamified.totalXpAvailable > 0 && (
-          <div className="course-overview-xp" aria-label={`${gamified.totalXpEarned} of ${gamified.totalXpAvailable} XP earned`}>
-            <div className="course-overview-xp-header">
-              <span className="course-overview-xp-label">Experience</span>
-              <span className="course-overview-xp-value">
-                {gamified.totalXpEarned}
-                <span className="course-overview-xp-total"> / {gamified.totalXpAvailable} XP</span>
-              </span>
-            </div>
-            <div className="course-overview-xp-track" aria-hidden>
-              <div
-                className="course-overview-xp-fill"
-                style={{
-                  width: `${Math.round((gamified.totalXpEarned / gamified.totalXpAvailable) * 100)}%`,
-                }}
-              />
-            </div>
+      <div className="course-outline-page">
+        <header className="course-outline-bar">
+          <div>
+            {nameAr && <p className="course-outline-title-ar" dir="rtl">{nameAr}</p>}
+            <h2>{title === "Course modules" ? "Lessons" : title}</h2>
+            {progress.total > 0 && (
+              <>
+                <p className="course-outline-count">
+                  {progress.completed} of {progress.total} {countWord}
+                </p>
+                <div className="course-outline-track" aria-hidden>
+                  <span style={{ width: `${progress.pct}%` }} />
+                </div>
+              </>
+            )}
           </div>
-        )}
-        <div className="course-overview-actions">
-          <Link to={studyPath} className="course-btn primary">
-            Start study →
-          </Link>
-          {resumePath && resumePath !== studyPath && (
-            <Link to={resumePath} className="course-btn secondary">
-              {resumeLabel}
+          <div className="course-outline-actions">
+            <Link to={nextPath} className="course-btn primary">
+              {started ? "Continue" : "Start"}
             </Link>
-          )}
-          {extraLinks.map((link) => (
-            <Link key={link.to} to={link.to} className={link.className ?? "course-btn secondary"}>
-              {link.label}
-            </Link>
-          ))}
-          {progressHref && (
-            <Link to={progressHref} className="course-btn secondary">
-              {progressHrefLabel}
-            </Link>
-          )}
-          <Link to="/" className="course-btn ghost">
-            ← All courses
-          </Link>
-        </div>
-      </div>
-
-      {gamified.units.map((unit) => (
-        <section key={unit.id} className="course-module-section" aria-label={unit.title}>
-          <div className="course-module-heading">
-            <div>
-              {unit.kicker && <p className="course-module-kicker">{unit.kicker}</p>}
-              <h2>{unit.title}</h2>
-            </div>
-            <div className="course-module-heading-meta">
-              {unit.total > 0 ? (
-                <>
-                  <ProgressRing pct={unit.pct} complete={unit.unitComplete} />
-                  <div className="course-module-heading-stats">
-                    {unit.unitComplete ? (
-                      <span className="course-module-complete-badge">
-                        Complete · +{UNIT_COMPLETE_BONUS} XP
-                      </span>
-                    ) : (
-                      <>
-                        <span className="course-module-count">
-                          {unit.completed}/{unit.total}{" "}
-                          {progressLabel === "memorised" ? "memorised" : "complete"}
-                        </span>
-                        <span className="course-module-xp-hint">
-                          {unit.xpEarned}/{unit.xpAvailable} XP
-                        </span>
-                      </>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <span className="course-module-count">
-                  {unit.items.length} {unit.items.length === 1 ? "tool" : "tools"}
-                </span>
-              )}
-            </div>
+            {nextName && <span className="course-outline-next">{nextName}</span>}
+            <Link to="/" className="course-outline-back">All courses</Link>
           </div>
-          <div className="course-module-grid">
-            {unit.items.map((item) => (
-              <CourseModuleCard
-                key={item.id}
-                item={item}
-                studyPath={studyPath}
-                paramKey={paramKey}
-              />
+        </header>
+        {(extraLinks.length > 0 || progressHref) && (
+          <div className="course-outline-more">
+            {progressHref && (
+              <Link to={progressHref} className="course-outline-back">{progressHrefLabel}</Link>
+            )}
+            {extraLinks.map((link) => (
+              <Link key={link.to} to={link.to} className="course-outline-back">{link.label}</Link>
             ))}
           </div>
-        </section>
-      ))}
+        )}
+
+        <div className="course-outline">
+          {gamified.units.map((unit) => (
+            <section key={unit.id} className="course-outline-unit" aria-label={unit.title}>
+              <header className="course-outline-unit-head">
+                <h3>
+                  {unit.kicker && <span>{unit.kicker}</span>}
+                  {unit.title}
+                </h3>
+                {unit.total > 0 && <span>{unit.completed}/{unit.total}</span>}
+              </header>
+              <div className="course-outline-lessons">
+                {unit.items.map((item) => (
+                  <OutlineLesson
+                    key={item.id}
+                    item={item}
+                    studyPath={studyPath}
+                    paramKey={paramKey}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
     </CourseLayout>
   );
 }

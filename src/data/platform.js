@@ -1,6 +1,10 @@
 import { DIARY_SURAHS, getDiaryItemsForJuz } from "./diarySurahs.js";
 import { JUZ_COURSES, juzCoursePath } from "./courseUnits.js";
+import { AQEEDAH2_META } from "./aqeedah2Course.js";
 import { FIQH_META } from "./fiqhCourse.js";
+import { TARBIYAH2_META } from "./tarbiyah2Course.js";
+import { TAFSIR2_META } from "./tafsir2Course.js";
+import { HADITH2_META } from "./hadith2Course.js";
 
 /** Top-level Learn Islam platform metadata. */
 export const LEARN_ISLAM = {
@@ -31,6 +35,19 @@ export const COURSE_CATALOG = [
     topics: ["Rights of Allah", "Rights of the Prophet", "Family & society", "Active recall"],
   },
   {
+    id: TARBIYAH2_META.id,
+    name: TARBIYAH2_META.name,
+    nameAr: TARBIYAH2_META.nameAr,
+    tagline: TARBIYAH2_META.tagline,
+    description: TARBIYAH2_META.description,
+    available: true,
+    path: TARBIYAH2_META.path,
+    category: TARBIYAH2_META.category,
+    meta: TARBIYAH2_META.meta,
+    accent: TARBIYAH2_META.accent,
+    topics: TARBIYAH2_META.topics,
+  },
+  {
     id: FIQH_META.id,
     name: FIQH_META.name,
     nameAr: FIQH_META.nameAr,
@@ -42,6 +59,45 @@ export const COURSE_CATALOG = [
     meta: FIQH_META.meta,
     accent: FIQH_META.accent,
     topics: FIQH_META.topics,
+  },
+  {
+    id: TAFSIR2_META.id,
+    name: TAFSIR2_META.name,
+    nameAr: TAFSIR2_META.nameAr,
+    tagline: TAFSIR2_META.tagline,
+    description: TAFSIR2_META.description,
+    available: true,
+    path: TAFSIR2_META.path,
+    category: TAFSIR2_META.category,
+    meta: TAFSIR2_META.meta,
+    accent: TAFSIR2_META.accent,
+    topics: TAFSIR2_META.topics,
+  },
+  {
+    id: HADITH2_META.id,
+    name: HADITH2_META.name,
+    nameAr: HADITH2_META.nameAr,
+    tagline: HADITH2_META.tagline,
+    description: HADITH2_META.description,
+    available: true,
+    path: HADITH2_META.path,
+    category: HADITH2_META.category,
+    meta: HADITH2_META.meta,
+    accent: HADITH2_META.accent,
+    topics: HADITH2_META.topics,
+  },
+  {
+    id: AQEEDAH2_META.id,
+    name: AQEEDAH2_META.name,
+    nameAr: AQEEDAH2_META.nameAr,
+    tagline: AQEEDAH2_META.tagline,
+    description: AQEEDAH2_META.description,
+    available: true,
+    path: AQEEDAH2_META.path,
+    category: AQEEDAH2_META.category,
+    meta: AQEEDAH2_META.meta,
+    accent: AQEEDAH2_META.accent,
+    topics: AQEEDAH2_META.topics,
   },
   {
     id: "ajrumiyyah",
@@ -65,6 +121,10 @@ export const COURSE_THEME_BY_ID = {
   tarbiyah: { number: 3, color: "#6BCB77" },
   fiqh: { number: 4, color: "#9B72F2" },
   ajrumiyyah: { number: 5, color: "#6366F1" },
+  "aqeedah-2": { number: 6, color: "#B45309" },
+  "tarbiyah-2": { number: 7, color: "#0F766E" },
+  "tafsir-2": { number: 8, color: "#0891B2" },
+  "hadith-2": { number: 9, color: "#0369A1" },
 };
 
 /** @deprecated Use COURSE_THEME_BY_ID[courseId].color */
@@ -112,6 +172,7 @@ export function getLandingCourses() {
     category: course.category,
     name: course.name,
     nameAr: course.nameAr,
+    tagline: course.tagline,
     description: course.description,
     available: course.available,
     path: course.path,

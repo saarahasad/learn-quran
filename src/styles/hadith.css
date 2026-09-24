@@ -1,0 +1,480 @@
+/* Hadith 2 — visual study notes on top of the shared textbook styles */
+
+.hd-flow {
+  margin: 0;
+  padding: 0.2rem 0 0.15rem;
+}
+
+.hd-flow h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.hd-flow ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hd-flow li {
+  position: relative;
+  padding: 0.85rem 0.9rem 0.9rem;
+  border-radius: 14px;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+}
+
+.hd-flow-n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-bottom: 0.35rem;
+  border-radius: 999px;
+  background: #0f766e;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.hd-flow h4 {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+}
+
+.hd-flow p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.hd-matn {
+  padding: 1.2rem 1.25rem 1.1rem;
+  border-radius: 18px;
+  background:
+    linear-gradient(#f8fffe, #f8fffe) padding-box,
+    linear-gradient(135deg, #0f766e, #14b8a6 40%, #b45309 70%, #0f766e) border-box;
+  border: 8px solid transparent;
+}
+
+.hd-matn-kicker {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.hd-matn p {
+  margin: 0;
+  font-size: 1.18rem;
+  line-height: 1.85;
+}
+
+.hd-matn cite {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: #ccfbf1;
+  color: #115e59;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.hd-narrator {
+  padding: 1.05rem 1.15rem 1.1rem;
+  border-radius: 16px;
+  background: #0c4a6e;
+  color: #f8fafc;
+}
+
+.hd-narrator-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7dd3fc;
+}
+
+.hd-narrator h4,
+.hd-narrator p {
+  color: #f8fafc;
+}
+
+.hd-narrator h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1.2rem;
+}
+
+.hd-narrator p {
+  margin: 0;
+}
+
+.hd-phrases {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hd-phrase {
+  padding: 0.85rem 1rem 0.9rem;
+  border-radius: 0 14px 14px 0;
+  border-left: 4px solid #0d9488;
+  background: #f8fafc;
+}
+
+.hd-phrase q {
+  display: block;
+  margin: 0 0 0.3rem;
+  font-style: normal;
+  font-weight: 700;
+  color: #0f766e;
+  quotes: "«" "»";
+}
+
+.hd-phrase q::before {
+  content: open-quote;
+}
+
+.hd-phrase q::after {
+  content: close-quote;
+}
+
+.hd-phrase p {
+  margin: 0;
+}
+
+.hd-views {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.hd-view {
+  padding: 1rem 1.05rem;
+  border-radius: 16px;
+  color: #fff;
+}
+
+.hd-view h4,
+.hd-view p {
+  color: #fff;
+}
+
+.hd-view--rose {
+  background: #e11d48;
+}
+
+.hd-view--plum {
+  background: #6d28d9;
+}
+
+.hd-view-n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  margin-bottom: 0.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  font-weight: 700;
+}
+
+.hd-view p {
+  margin: 0;
+}
+
+.hd-brief {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 18px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+}
+
+.hd-brief-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 7.5rem;
+  padding: 0.8rem;
+  border-radius: 50% 50% 50% 12px;
+  background: #e11d48;
+  color: #fff;
+  text-align: center;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.hd-brief p {
+  margin: 0;
+}
+
+.hd-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hd-point {
+  padding: 0.95rem 1rem 1rem;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+}
+
+.hd-point-head {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
+
+.hd-point-n {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: #0f766e;
+  color: #fff;
+  font-weight: 800;
+}
+
+.hd-point--2 .hd-point-n { background: #ca8a04; }
+.hd-point--3 .hd-point-n { background: #6d28d9; }
+.hd-point--4 .hd-point-n { background: #e11d48; }
+.hd-point--5 .hd-point-n { background: #ea580c; }
+.hd-point--6 .hd-point-n { background: #15803d; }
+.hd-point--7 .hd-point-n { background: #6d28d9; }
+.hd-point--8 .hd-point-n { background: #e11d48; }
+.hd-point--9 .hd-point-n { background: #ca8a04; }
+.hd-point--10 .hd-point-n { background: #0f766e; }
+.hd-point--11 .hd-point-n { background: #0369a1; }
+
+.hd-point h4 {
+  margin: 0.15rem 0 0;
+  font-size: 1.12rem;
+}
+
+.hd-point > p,
+.hd-point-follow {
+  margin: 0.55rem 0 0;
+}
+
+.hd-point-follow {
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  background: #fffbeb;
+}
+
+.hd-point-parts {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 0.75rem;
+}
+
+.hd-point-part {
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  background: #f0fdfa;
+}
+
+.hd-point-part strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.hd-point-part p {
+  margin: 0;
+}
+
+.hd-quote {
+  margin: 0.55rem 0 0;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  border-left: 3px solid #0f766e;
+}
+
+.hd-quote p {
+  margin: 0;
+  font-style: italic;
+}
+
+.hd-quote cite {
+  display: block;
+  margin-top: 0.25rem;
+  font-style: normal;
+  font-weight: 700;
+  color: #0f766e;
+  font-size: 0.95rem;
+}
+
+.hd-pair {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 0.75rem;
+}
+
+.hd-pair-card {
+  margin: 0;
+  padding: 1rem 1.05rem;
+  border-radius: 16px;
+}
+
+.hd-pair-card h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1.12rem;
+}
+
+.hd-pair-card p {
+  margin: 0;
+}
+
+.hd-pair-card--paper {
+  background: #fff;
+  border: 1px solid #bae6fd;
+  box-shadow: inset 4px 0 0 #0284c7;
+}
+
+.hd-pair-card--red {
+  background: #e11d48;
+  color: #fff;
+}
+
+.hd-pair-card--red h4,
+.hd-pair-card--red p {
+  color: #fff;
+}
+
+.hd-ask {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.hd-ask-q,
+.hd-ask-a {
+  margin: 0;
+  padding: 0.95rem 1rem;
+  border-radius: 16px;
+}
+
+.hd-ask-q {
+  background: #e11d48;
+  color: #fff;
+}
+
+.hd-ask-a {
+  background: #0369a1;
+  color: #fff;
+}
+
+.hd-ask-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hd-contents {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hd-bubble {
+  min-height: 6.2rem;
+  padding: 0.8rem 0.85rem 0.9rem;
+  border-radius: 16px 16px 16px 6px;
+  color: #fff;
+}
+
+.hd-bubble span {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.hd-bubble p {
+  margin: 0;
+  color: #fff;
+  font-size: 1.02rem;
+  line-height: 1.4;
+}
+
+.hd-bubble--1 { background: #e11d48; }
+.hd-bubble--2 { background: #0284c7; }
+.hd-bubble--3 { background: #16a34a; }
+.hd-bubble--4 { background: #0891b2; }
+.hd-bubble--5 { background: #db2777; }
+.hd-bubble--6 { background: #7c3aed; }
+.hd-bubble--0 { background: #0f766e; }
+
+.aq-body .hd-narrator h4,
+.aq-body .hd-narrator p,
+.aq-body .hd-view p,
+.aq-body .hd-bubble p,
+.aq-body .hd-ask-q,
+.aq-body .hd-ask-a,
+.aq-body .hd-brief-mark,
+.aq-body .hd-pair-card--red h4,
+.aq-body .hd-pair-card--red p {
+  color: #fff;
+}
+
+.aq-body .hd-narrator-kicker,
+.aq-body .hd-flow h3,
+.aq-body .hd-matn-kicker,
+.aq-body .hd-matn cite,
+.aq-body .hd-phrase q,
+.aq-body .hd-quote cite {
+  color: inherit;
+}
+
+.aq-body .hd-narrator-kicker { color: #7dd3fc; }
+.aq-body .hd-flow h3,
+.aq-body .hd-matn-kicker,
+.aq-body .hd-phrase q,
+.aq-body .hd-quote cite { color: #0f766e; }
+.aq-body .hd-matn cite { color: #115e59; }
+
+@media (max-width: 900px) {
+  .hd-flow ol,
+  .hd-contents,
+  .hd-views,
+  .hd-brief,
+  .hd-pair {
+    grid-template-columns: 1fr;
+  }
+}

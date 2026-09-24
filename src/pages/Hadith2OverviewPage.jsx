@@ -1,0 +1,55 @@
+import {
+  HADITH2_LESSONS,
+  HADITH2_META,
+  HADITH2_UNITS,
+  hadith2Banner,
+  hadith2StudyPath,
+} from "../data/hadith2Course.js";
+import { LEARN_ISLAM } from "../data/platform.js";
+import CourseModuleOverview from "../components/CourseModuleOverview.jsx";
+import { useCourseProgress } from "../hooks/useCourseProgress.js";
+
+const STUDY_UNITS = HADITH2_UNITS;
+const STUDY_LESSONS = HADITH2_LESSONS.filter((lesson) => lesson.kind !== "tool");
+
+export default function Hadith2OverviewPage() {
+  const { isDone } = useCourseProgress(HADITH2_META.id);
+  const studyPath = hadith2StudyPath();
+  const resumeLesson =
+    STUDY_LESSONS.find((lesson) => !isDone(lesson.id)) ?? STUDY_LESSONS[0];
+
+  const units = STUDY_UNITS.map((unit) => ({
+    id: unit.id,
+    title: unit.title,
+    items: unit.lessons.map((lesson) => ({
+      id: lesson.id,
+      num: lesson.icon,
+      label: lesson.title,
+      badge: lesson.badge,
+      meta: lesson.kind === "tool" ? "Practice" : lesson.draft ? "Notes coming" : undefined,
+      done: isDone(lesson.id),
+      trackable: lesson.kind !== "tool",
+    })),
+  }));
+
+  return (
+    <CourseModuleOverview
+      banner={hadith2Banner()}
+      breadcrumbs={[
+        { label: LEARN_ISLAM.name, to: "/" },
+        { label: HADITH2_META.name },
+      ]}
+      nameAr={HADITH2_META.nameAr}
+      description={HADITH2_META.description}
+      studyPath={studyPath}
+      resumePath={
+        resumeLesson ? `${studyPath}?lesson=${encodeURIComponent(resumeLesson.id)}` : studyPath
+      }
+      resumeLabel={resumeLesson ? `Resume: ${resumeLesson.title}` : "Start study"}
+      units={units}
+      paramKey="lesson"
+      courseId={HADITH2_META.id}
+      sequentialUnlock={false}
+    />
+  );
+}

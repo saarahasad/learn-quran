@@ -23,6 +23,10 @@ export function resolveCourseIdFromPath(pathname) {
   if (juzMatch) return `juz-${juzMatch[1]}`;
   if (pathname.startsWith("/fiqh")) return "fiqh";
   if (pathname.startsWith("/ajrumiyyah")) return "ajrumiyyah";
+  if (pathname.startsWith("/tarbiyah-2")) return "tarbiyah-2";
+  if (pathname.startsWith("/tafsir-2")) return "tafsir-2";
+  if (pathname.startsWith("/hadith-2")) return "hadith-2";
   if (pathname.startsWith("/tarbiyah")) return "tarbiyah";
+  if (pathname.startsWith("/aqeedah-2")) return "aqeedah-2";
   return null;
 }
