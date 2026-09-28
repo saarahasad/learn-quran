@@ -977,6 +977,17 @@
   overflow: hidden;
 }
 
+.ajr-cheat-dot {
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.35rem;
+  border-radius: 50%;
+}
+.ajr-cheat-dot--marfuat { background: #1a4e8a; }
+.ajr-cheat-dot--mansubat { background: #0c5a46; }
+.ajr-cheat-dot--majrurat { background: #8a4518; }
+
 .ajr-outline-matn .course-sidebar-lesson-num {
   flex-shrink: 0;
   margin: 0;

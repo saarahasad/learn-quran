@@ -25,6 +25,32 @@ import { CourseSidebar, CourseSidebarProgress, CourseSidebarUnit } from "./Cours
 
 /** @typedef {'keyboard' | 'iraab-guide' | 'matn' | 'kalam-mindmap' | 'alamat-mindmap' | 'marfuat-mindmap' | 'nominatives-quiz' | 'workbook' | null} AjrumiyyahToolId */
 
+const CHEAT_SHEETS = [
+  {
+    file: "Marfuat-Cheat-Sheet.html",
+    ar: "الْمَرْفُوعَاتُ",
+    en: "Marfūʿāt cheat sheet",
+    tone: "marfuat",
+  },
+  {
+    file: "Mansubat-Cheat-Sheet.html",
+    ar: "الْمَنْصُوبَاتُ",
+    en: "Manṣūbāt cheat sheet",
+    tone: "mansubat",
+  },
+  {
+    file: "Majrurat-Cheat-Sheet.html",
+    ar: "الْمَجْرُورَاتُ",
+    en: "Majrūrāt cheat sheet",
+    tone: "majrurat",
+  },
+];
+
+function cheatSheetHref(file) {
+  const base = import.meta.env.BASE_URL || "/";
+  return `${base}${file}`;
+}
+
 const REFERENCE_LINKS = [
   {
     id: "matn",
@@ -183,6 +209,24 @@ export default function AjrumiyyahCourseSidebar({
         <span className="ajr-outline-legend__matn">Matn chapter</span>
         <span className="ajr-outline-legend__comm">Commentary</span>
       </div>
+      <CourseSidebarUnit title="Cheat sheets" titleAr="أَوْرَاقُ الْمُرَاجَعَةِ">
+        {CHEAT_SHEETS.map((item) => (
+          <li key={item.file} className="ajr-outline-block">
+            <a
+              href={cheatSheetHref(item.file)}
+              title={item.en}
+              className="ajr-outline-matn course-sidebar-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className={`ajr-cheat-dot ajr-cheat-dot--${item.tone}`} aria-hidden />
+              <span className="ajr-outline-matn__ar" dir="rtl" lang="ar">
+                {item.ar}
+              </span>
+            </a>
+          </li>
+        ))}
+      </CourseSidebarUnit>
       <CourseSidebarUnit title="Reference">
         {REFERENCE_LINKS.map((item, idx) => (
           <li key={item.id} className="ajr-outline-block">

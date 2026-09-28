@@ -10,7 +10,7 @@
 <style>
 @font-face{
   font-family:"UthmanTN";
-  src:url("public/fonts/UthmanTN.woff2") format("woff2");
+  src:url("fonts/UthmanTN.woff2") format("woff2");
   font-weight:normal;
   font-style:normal;
   font-display:swap;
@@ -52,6 +52,7 @@ b,strong,h1,h2,th{font-weight:400}
   line-height:1.45;
   color:#4e463c;
 }
+.hint a{color:inherit}
 .print-btn{
   position:fixed;
   z-index:5;
@@ -118,7 +119,7 @@ b,strong,h1,h2,th{font-weight:400}
 .foot-mid{font-size:16px}
 .foot-n{direction:ltr;font-family:var(--lat);font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.04em}
 .foot-n::before{content:counter(pg)}
-.foot-n::after{content:" / 14"}
+.foot-n::after{content:" / 18"}
 
 .mast{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px;padding-bottom:2.5mm;border-bottom:2.5px solid var(--accent);position:relative}
 .mast::after{content:"";position:absolute;left:22%;right:22%;bottom:-5px;border-bottom:1px solid var(--gold-line)}
@@ -248,6 +249,7 @@ table.cross td.job{font-family:var(--lat);direction:ltr;text-align:center;font-s
 table.cross td.kind{color:var(--accent);white-space:nowrap}
 
 .lex{display:grid;grid-template-columns:1fr}
+.lex.two{grid-template-columns:1fr 1fr;column-gap:8mm}
 .lx{display:grid;grid-template-columns:auto auto minmax(0,1fr);grid-template-areas:"w ex en";align-items:baseline;column-gap:14px;padding:6px 0;border-bottom:1px solid var(--rule);break-inside:avoid}
 .lx b{grid-area:w;font-weight:400;font-size:18px;line-height:1.6;color:var(--accent);white-space:nowrap}
 .lx span{grid-area:ex;font-size:16px;line-height:1.75;white-space:nowrap}
@@ -282,7 +284,7 @@ table.cross td.kind{color:var(--accent);white-space:nowrap}
 </style>
 </head>
 <body>
-<p class="hint">Light sheet, Uthmani type. To print: ⌘P · A4 · default margins · turn on <b>Background graphics</b>.</p>
+<p class="hint">Light sheet, Uthmani type. To print: ⌘P · A4 · default margins · turn on <b>Background graphics</b>. · <a href="Marfuat-Cheat-Sheet.html">Marfūʿāt</a> · <a href="Majrurat-Cheat-Sheet.html">Majrūrāt</a></p>
 <button type="button" class="print-btn" onclick="window.print()">Print · طباعة</button>
 
 <div class="stack">
@@ -1207,6 +1209,219 @@ table.cross td.kind{color:var(--accent);white-space:nowrap}
   </div>
 
   <footer class="foot"><span>الْآجُرُّومِيَّةُ · التَّمْيِيزُ</span><span class="foot-mid"><em class="hit">كَلِمَةٌ</em> = الْكَلِمَةُ الْمَنْصُوبَةُ</span><span class="foot-n"></span></footer>
+</section>
+
+<!-- ======================= ISTITHNA ======================= -->
+<section class="page" id="istithna">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 7</p>
+    <h1>بَابُ الِاسْتِثْنَاءِ</h1>
+    <p class="sub">What is left out with <bdi>إلا</bdi> — the case depends on the sentence before it</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>الْمُسْتَثْنَى بِإِلَّا <span class="term">مَنْصُوبٌ</span> إِذَا كَانَ الْكَلَامُ تَامًّا مُوجَبًا. وَإِنْ كَانَ مَنْفِيًّا تَامًّا جَازَ فِيهِ <span class="term">الْبَدَلُ وَالنَّصْبُ</span>. وَإِنْ كَانَ نَاقِصًا كَانَ <span class="term">عَلَى حَسَبِ الْعَوَامِلِ</span>.</p>
+  </div>
+
+  <h2><span>ثَلَاثُ حَالَاتٍ</span><small>complete or not, and affirmative or negative</small></h2>
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">تَامٌّ مُوجَبٌ</span><span class="en">Naṣb is required</span></header>
+      <p class="ex">قَامَ الْقَوْمُ إِلَّا <em class="hit">زَيْدًا</em></p>
+      <p class="tr">“The people stood, except Zayd.” The sentence already has its subject, and it is affirmative.</p>
+      <table class="ir"><tbody><tr><th>زَيْدًا</th><td>مُسْتَثْنًى مَنْصُوبٌ بِالْفَتْحَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">تَامٌّ مَنْفِيٌّ</span><span class="en">Badal, or naṣb</span></header>
+      <p class="ex">مَا قَامَ الْقَوْمُ إِلَّا <em class="hit">زَيْدٌ</em></p>
+      <p class="tr">“The people did not stand, except Zayd.” Zayd may follow القوم in rafʿ, or stay manṣūb as the exception.</p>
+      <p class="also">وَإِلَّا <em class="hit">زَيْدًا</em></p>
+      <table class="ir"><tbody><tr><th>زَيْدٌ</th><td>بَدَلٌ مِنَ الْقَوْمِ، مَرْفُوعٌ</td></tr><tr><th>زَيْدًا</th><td>مُسْتَثْنًى مَنْصُوبٌ، وَكِلَاهُمَا جَائِزٌ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">نَاقِصٌ</span><span class="en">The excepted-from is missing</span></header>
+      <p class="ex">مَا قَامَ إِلَّا <em class="hit">زَيْدٌ</em></p>
+      <p class="tr">Nothing was named before إلا. The word takes the case the sentence’s own governor wants.</p>
+      <p class="also">مَا رَأَيْتُ إِلَّا <em class="hit">زَيْدًا</em> · مَا مَرَرْتُ إِلَّا بِـ<em class="hit">زَيْدٍ</em></p>
+      <table class="ir"><tbody><tr><th>زَيْدٌ</th><td>فَاعِلٌ مَرْفُوعٌ</td></tr><tr><th>زَيْدًا</th><td>مَفْعُولٌ بِهِ مَنْصُوبٌ</td></tr><tr><th>زَيْدٍ</th><td>مَجْرُورٌ بِالْبَاءِ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <h2><span>غَيْرُ الْأَدَوَاتِ</span><small>إلا is one of eight</small></h2>
+  <div class="duo">
+    <div class="panel">
+      <span class="lbl">غَيْرُ · سِوَى · سُوَى · سَوَاءٌ</span>
+      <p class="ex">قَامَ الْقَوْمُ غَيْرَ <em class="hit">زَيْدٍ</em></p>
+      <p class="ar small">الِاسْمُ بَعْدَهَا مُضَافٌ إِلَيْهِ مَجْرُورٌ أَبَدًا. وَالْأَدَاةُ نَفْسُهَا تَأْخُذُ حُكْمَ الِاسْمِ بَعْدَ «إِلَّا».</p>
+      <p class="tr">Always nouns. The word after them stays majrūr. The tool takes the naṣb, the badal, or the governor’s case.</p>
+    </div>
+    <div class="panel">
+      <span class="lbl">خَلَا · عَدَا · حَاشَا</span>
+      <p class="ex">قَامَ الْقَوْمُ خَلَا <em class="hit">زَيْدًا</em> · خَلَا <em class="hit">زَيْدٍ</em></p>
+      <p class="ar small">فِعْلٌ: مَا بَعْدَهُ مَفْعُولٌ بِهِ. حَرْفٌ: مَا بَعْدَهُ مَجْرُورٌ. وَبَعْدَ «مَا» لَا يَكُونُ إِلَّا فِعْلًا، فَيَتَعَيَّنُ النَّصْبُ.</p>
+      <p class="tr">Either reading, until ما المصدرية stands in front. Then only the verb, and only naṣb.</p>
+    </div>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الِاسْتِثْنَاءُ</span><span class="foot-mid"><em class="hit">كَلِمَةٌ</em> = الْكَلِمَةُ الْمَنْصُوبَةُ</span><span class="foot-n"></span></footer>
+</section>
+
+<!-- ======================= LA ======================= -->
+<section class="page" id="la">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 8</p>
+    <h1>بَابُ لَا</h1>
+    <p class="sub"><bdi>لا</bdi> that denies a whole kind — naṣb, and no tanwīn</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>اعْلَمْ أَنَّ «لَا» <span class="term">تَنْصِبُ النَّكِرَاتِ بِغَيْرِ تَنْوِينٍ</span> إِذَا بَاشَرَتِ النَّكِرَةَ وَلَمْ تَتَكَرَّرْ «لَا»، نَحْوُ: لَا <span class="term">رَجُلَ</span> فِي الدَّارِ.</p>
+  </div>
+
+  <h2><span>ثَلَاثُ صُوَرٍ</span><small>does لا touch the noun, and is it repeated</small></h2>
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">بَاشَرَتْ وَلَمْ تَتَكَرَّرْ</span><span class="en">Naṣb, no tanwīn</span></header>
+      <p class="ex">لَا <em class="hit">رَجُلَ</em> فِي الدَّارِ</p>
+      <p class="tr">“There is no man at all in the house.” لا sits on the indefinite, and it is not repeated.</p>
+      <table class="ir"><tbody><tr><th>رَجُلَ</th><td>اسْمُ «لَا» مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ نَصْبٍ، بِغَيْرِ تَنْوِينٍ</td></tr></tbody></table>
+    </article>
+    <article class="card test">
+      <header><span class="badge">2</span><span class="name">لَمْ تُبَاشِرْ</span><span class="en">Rafʿ, and لا must be repeated</span></header>
+      <p class="ex">لَا فِي الدَّارِ <em class="hit">رَجُلٌ</em> وَلَا امْرَأَةٌ</p>
+      <p class="tr">“Not in the house is a man, nor a woman.” A phrase sits between لا and the noun, so the naṣb does not work.</p>
+      <table class="ir"><tbody><tr><th>رَجُلٌ</th><td>مُبْتَدَأٌ مَرْفُوعٌ، وَتَكْرَارُ «لَا» وَاجِبٌ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">تَكَرَّرَتْ</span><span class="en">Either reading</span></header>
+      <p class="ex">لَا <em class="hit">رَجُلَ</em> فِي الدَّارِ وَلَا امْرَأَةَ</p>
+      <p class="tr">You may keep the naṣb, or drop it and put both nouns in rafʿ with tanwīn.</p>
+      <p class="also">لَا <em class="hit">رَجُلٌ</em> فِي الدَّارِ وَلَا امْرَأَةٌ</p>
+      <table class="ir"><tbody><tr><th>رَجُلَ</th><td>إِعْمَالُ «لَا»، بِغَيْرِ تَنْوِينٍ</td></tr><tr><th>رَجُلٌ</th><td>إِلْغَاؤُهَا، وَالرَّفْعُ بِالتَّنْوِينِ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · لَا</span><span class="foot-mid"><em class="hit">كَلِمَةٌ</em> = الْكَلِمَةُ الْمَنْصُوبَةُ</span><span class="foot-n"></span></footer>
+</section>
+
+<!-- ======================= MUNADA ======================= -->
+<section class="page" id="munada">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 9</p>
+    <h1>بَابُ الْمُنَادَى</h1>
+    <p class="sub">The one you call. Two types are built on ḍamma; three are manṣūb</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>الْمُنَادَى خَمْسَةُ أَنْوَاعٍ: <span class="term">الْمُفْرَدُ الْعَلَمُ</span>، وَ<span class="term">النَّكِرَةُ الْمَقْصُودَةُ</span>، وَالنَّكِرَةُ غَيْرُ الْمَقْصُودَةِ، وَالْمُضَافُ، وَالشَّبِيهُ بِالْمُضَافِ. فَالْأَوَّلَانِ يُبْنَيَانِ عَلَى الضَّمِّ مِنْ غَيْرِ تَنْوِينٍ، وَالثَّلَاثَةُ الْبَاقِيَةُ <span class="term">مَنْصُوبَةٌ</span> لَا غَيْرُ.</p>
+  </div>
+
+  <div class="notes">
+    <p><span class="lbl">يَا</span>يَا مُحَمَّدُ. هِيَ الْأَدَاةُ فِي جُلِّ الْأَمْثِلَةِ.</p>
+    <p><span class="lbl">أَ · أَيْ · أَيَا · هَيَا</span>أَزَيْدُ أَقْبِلْ. أَيْ إِبْرَاهِيمُ. أَيَا شَجَرَ الْخَابُورِ. هَيَا مُحَمَّدُ تَعَالَ.</p>
+    <p><span class="lbl">الْأَصْلُ</span>يَا عَبْدَ اللَّهِ فِي مَعْنَى «أَدْعُو عَبْدَ اللَّهِ». فَالْمُنَادَى مَفْعُولٌ فِي الْأَصْلِ.</p>
+  </div>
+
+  <h2><span>خَمْسَةُ أَنْوَاعٍ</span><small>the type decides the ending</small></h2>
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">الْمُفْرَدُ الْعَلَمُ</span><span class="en">A proper name, built on ḍamma</span></header>
+      <p class="ex">يَا <em class="hit">زَيْدُ</em></p>
+      <p class="tr">“O Zayd.” Also يَا مُحَمَّدُ، يَا فَاطِمَةُ، and the dual and plural of the name.</p>
+      <table class="ir"><tbody><tr><th>زَيْدُ</th><td>مُنَادًى مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ، بِغَيْرِ تَنْوِينٍ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">نَكِرَةٌ مَقْصُودَةٌ</span><span class="en">One particular person, built on ḍamma</span></header>
+      <p class="ex">يَا <em class="hit">رَجُلُ</em></p>
+      <p class="tr">“O man,” said to one man who is there. The word could fit many, and you mean one.</p>
+      <table class="ir"><tbody><tr><th>رَجُلُ</th><td>مُنَادًى مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">نَكِرَةٌ غَيْرُ مَقْصُودَةٍ</span><span class="en">Anyone the word fits — manṣūb</span></header>
+      <p class="ex">يَا <em class="hit">غَافِلًا</em> تَنَبَّهْ</p>
+      <p class="tr">“O heedless one, pay attention” — every heedless person, not one face.</p>
+      <table class="ir"><tbody><tr><th>غَافِلًا</th><td>مُنَادًى مَنْصُوبٌ بِالْفَتْحَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">4</span><span class="name">الْمُضَافُ</span><span class="en">Annexed — manṣūb</span></header>
+      <p class="ex">يَا <em class="hit">طَالِبَ</em> الْعِلْمِ</p>
+      <p class="tr">“O student of knowledge.” Also يَا عَبْدَ اللَّهِ.</p>
+      <table class="ir"><tbody><tr><th>طَالِبَ</th><td>مُنَادًى مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ</td></tr><tr><th>الْعِلْمِ</th><td>مُضَافٌ إِلَيْهِ مَجْرُورٌ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">5</span><span class="name">الشَّبِيهُ بِالْمُضَافِ</span><span class="en">Something after it completes it — manṣūb</span></header>
+      <p class="ex">يَا <em class="hit">حَافِظًا</em> دَرْسَهُ</p>
+      <p class="tr">“O one who has memorised his lesson.” The extra piece can be a subject, an object, or a prepositional phrase.</p>
+      <p class="also">يَا <em class="hit">حَمِيدًا</em> فِعْلُهُ · يَا <em class="hit">مُحِبًّا</em> لِلْخَيْرِ</p>
+      <table class="ir"><tbody><tr><th>حَافِظًا</th><td>مُنَادًى شَبِيهٌ بِالْمُضَافِ، مَنْصُوبٌ بِالْفَتْحَةِ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الْمُنَادَى</span><span class="foot-mid"><em class="hit">كَلِمَةٌ</em> = الْكَلِمَةُ الْمَنْصُوبَةُ</span><span class="foot-n"></span></footer>
+</section>
+
+<!-- ======================= MAFOOL AJLI + MAAH ======================= -->
+<section class="page" id="mafool-ajli">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 10</p>
+    <h1>الْمَفْعُولُ لِأَجْلِهِ وَالْمَفْعُولُ مَعَهُ</h1>
+    <p class="sub">Why the action happened, and who it happened with</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ · لِأَجْلِهِ</span>
+    <p>وَهُوَ الِاسْمُ الْمَنْصُوبُ الَّذِي يُذْكَرُ بَيَانًا لِسَبَبِ وُقُوعِ الْفِعْلِ، نَحْوُ: قَامَ زَيْدٌ <span class="term">إِجْلَالًا</span> لِعَمْرٍو.</p>
+  </div>
+
+  <h2><span>خَمْسَةُ أُمُورٍ</span><small>all five meet in ضربت ابني تأديبا</small></h2>
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">تَأْدِيبًا</span><span class="en">Why I struck him</span></header>
+      <p class="ex">ضَرَبْتُ ابْنِي <em class="hit">تَأْدِيبًا</em></p>
+      <p class="tr">A masdar of an inner act, the cause of the verb, at the same time, by the same doer. Also قَصَدْتُكَ ابْتِغَاءَ مَعْرُوفِكَ.</p>
+      <p class="also">ضَرَبْتُ ابْنِي <em class="hit">لِلتَّأْدِيبِ</em> — the lām written out, so the noun is majrūr</p>
+      <table class="ir"><tbody><tr><th>تَأْدِيبًا</th><td>مَفْعُولٌ لِأَجْلِهِ مَنْصُوبٌ بِالْفَتْحَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card test">
+      <header><span class="badge">2</span><span class="name">لَيْسَ هُوَ</span><span class="en">A visit is not the reason for a visit</span></header>
+      <p class="ex">زُرْتُكَ <em class="hit">زِيَارَةً</em></p>
+      <p class="tr">This is the absolute object, the maṣdar of the same verb. A thing is not the cause of itself. Reading and striking are acts of the limbs, so they are not this mafʿūl either.</p>
+      <table class="ir"><tbody><tr><th>زِيَارَةً</th><td>مَفْعُولٌ مُطْلَقٌ، لَا مَفْعُولٌ لِأَجْلِهِ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ · مَعَهُ</span>
+    <p>وَهُوَ الِاسْمُ الْمَنْصُوبُ الَّذِي يُذْكَرُ لِبَيَانِ مَنْ فُعِلَ مَعَهُ الْفِعْلُ، نَحْوُ: جَاءَ الْأَمِيرُ وَ<span class="term">الْجَيْشَ</span>، وَاسْتَوَى الْمَاءُ وَ<span class="term">الْخَشَبَةَ</span>.</p>
+  </div>
+
+  <h2><span>وَاوُ الْمَعِيَّةِ</span><small>a wāw that means “with,” not the ordinary “and”</small></h2>
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">يَتَعَيَّنُ النَّصْبُ</span><span class="en">It cannot share the action</span></header>
+      <p class="ex">اسْتَوَى الْمَاءُ وَ<em class="hit">الْخَشَبَةَ</em></p>
+      <p class="tr">“The water levelled with the plank.” The plank is not a second doer of استوى.</p>
+      <table class="ir"><tbody><tr><th>الْخَشَبَةَ</th><td>مَفْعُولٌ مَعَهُ مَنْصُوبٌ بِالْفَتْحَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">يَجُوزُ الْوَجْهَانِ</span><span class="en">It can share the action</span></header>
+      <p class="ex">جَاءَ الْأَمِيرُ وَ<em class="hit">الْجَيْشَ</em></p>
+      <p class="tr">“The prince came, the army with him.” The army can also come, so you may join it: وَالْجَيْشُ.</p>
+      <p class="also">اشْتَرَكَ زَيْدٌ وَ<em class="hit">عَمْرٌو</em> — both are subjects. Sharing is not done by one, so this wāw is ordinary “and.”</p>
+      <table class="ir"><tbody><tr><th>الْجَيْشَ</th><td>مَفْعُولٌ مَعَهُ، أَوْ مَعْطُوفٌ مَرْفُوعٌ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <div class="notes">
+    <p><span class="lbl">لِأَجْلِهِ</span>مَصْدَرٌ قَلْبِيٌّ، عِلَّةٌ لِمَا قَبْلَهُ، وَقْتُهُ وَقْتُ الْفِعْلِ، وَفَاعِلُهُ فَاعِلُهُ.</p>
+    <p><span class="lbl">مَعَهُ</span>اسْمٌ صَرِيحٌ فَضْلَةٌ، بَعْدَ وَاوٍ بِمَعْنَى «مَعَ». يَنْصِبُهُ فِعْلٌ، أَوِ اسْمُ فَاعِلٍ: الْأَمِيرُ حَاضِرٌ وَالْجَيْشَ.</p>
+    <p><span class="lbl">الِاسْمَانِ</span>يُسَمَّى الْأَوَّلُ أَيْضًا الْمَفْعُولَ مِنْ أَجْلِهِ، وَالْمَفْعُولَ لَهُ.</p>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الْمَفْعُولُ لِأَجْلِهِ</span><span class="foot-mid"><em class="hit">كَلِمَةٌ</em> = الْكَلِمَةُ الْمَنْصُوبَةُ</span><span class="foot-n"></span></footer>
 </section>
 
 </div>
