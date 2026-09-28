@@ -27,6 +27,12 @@ import { CourseSidebar, CourseSidebarProgress, CourseSidebarUnit } from "./Cours
 
 const CHEAT_SHEETS = [
   {
+    file: "Foundations-Cheat-Sheet.html",
+    ar: "الْأُصُولُ",
+    en: "Foundations cheat sheet",
+    tone: "foundations",
+  },
+  {
     file: "Marfuat-Cheat-Sheet.html",
     ar: "الْمَرْفُوعَاتُ",
     en: "Marfūʿāt cheat sheet",

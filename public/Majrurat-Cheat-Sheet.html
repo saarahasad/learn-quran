@@ -265,6 +265,7 @@ table.cross td.kind{color:var(--accent);white-space:nowrap}
   .hint,.print-btn{display:none !important}
   .stack{display:block;width:auto;padding:0;gap:0}
   .page{
+    display:block;
     border:0;
     border-radius:0;
     box-shadow:none;
@@ -272,6 +273,8 @@ table.cross td.kind{color:var(--accent);white-space:nowrap}
     break-before:page;
     page-break-before:always;
   }
+  .page>*+*{margin-top:14px}
+  .foot{break-before:avoid;break-inside:avoid}
   .page:first-child{break-before:auto;page-break-before:auto}
   .card,.panel,.step,.poem,.notes p,.tree,table,.glance,.lx{break-inside:avoid}
   h2,.mast,.run{break-after:avoid}
@@ -284,7 +287,7 @@ table.cross td.kind{color:var(--accent);white-space:nowrap}
 </style>
 </head>
 <body>
-<p class="hint">Light sheet, Uthmani type. To print: ⌘P · A4 · default margins · turn on <b>Background graphics</b>. · <a href="Mansubat-Cheat-Sheet.html">Manṣūbāt</a> · <a href="Marfuat-Cheat-Sheet.html">Marfūʿāt</a></p>
+<p class="hint">Light sheet, Uthmani type. To print: ⌘P · A4 · default margins · turn on <b>Background graphics</b>. · <a href="Foundations-Cheat-Sheet.html">Foundations</a> · <a href="Mansubat-Cheat-Sheet.html">Manṣūbāt</a> · <a href="Marfuat-Cheat-Sheet.html">Marfūʿāt</a></p>
 <button type="button" class="print-btn" onclick="window.print()">Print · طباعة</button>
 
 <div class="stack">

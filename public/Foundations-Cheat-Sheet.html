@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundations Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
+<style>
+@font-face{
+  font-family:"UthmanTN";
+  src:url("fonts/UthmanTN.woff2") format("woff2");
+  font-weight:normal;
+  font-style:normal;
+  font-display:swap;
+}
+:root{
+  --ink:#241a28;
+  --muted:#6a5a70;
+  --rule:#e0d5e4;
+  --rule-strong:#c9b3cf;
+  --paper:#fff;
+  --wash:#f8f3f9;
+  --accent:#5c2a6e;
+  --hit-bg:#eedff3;
+  --gold:#8a5a0b;
+  --gold-line:#c4922a;
+  --gold-bg:#fbf6ea;
+  --ar:"UthmanTN","Traditional Arabic",serif;
+  --lat:Newsreader,Georgia,"Iowan Old Style",serif;
+}
+*{box-sizing:border-box}
+html{font-synthesis:none;color-scheme:light}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:var(--ar);
+  font-weight:400;
+  background:#e4ddd0;
+}
+p{margin:0}
+b,strong,h1,h2,th{font-weight:400}
+.lat,.en,.tr,.kick,.sub,.hint,h2 small,.run-en,.foot,.print-btn{font-family:var(--lat)}
+
+.hint{
+  max-width:1040px;
+  margin:22px auto 0;
+  padding:0 16px;
+  text-align:center;
+  font-size:14px;
+  line-height:1.45;
+  color:#4e463c;
+}
+.hint a{color:inherit}
+.print-btn{
+  position:fixed;
+  z-index:5;
+  top:16px;
+  left:16px;
+  border:0;
+  cursor:pointer;
+  background:var(--accent);
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.01em;
+  padding:8px 14px;
+  border-radius:999px;
+  box-shadow:0 6px 16px rgba(92,42,110,.28);
+}
+.print-btn:hover{background:#471f56}
+
+.stack{
+  counter-reset:pg;
+  width:min(1040px,calc(100% - 32px));
+  margin:0 auto;
+  padding:20px 0 64px;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+
+.page{
+  counter-increment:pg;
+  position:relative;
+  direction:rtl;
+  width:100%;
+  height:auto;
+  padding:28px 32px 22px;
+  background:var(--paper);
+  color:var(--ink);
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  overflow:visible;
+  border:1px solid #e3dacb;
+  border-radius:10px;
+  box-shadow:0 8px 24px rgba(55,42,22,.08);
+}
+.page>*{flex-shrink:0}
+.page .pin{margin-top:4px}
+
+.foot{
+  position:static;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:12px;
+  direction:rtl;
+  border-top:1px solid var(--rule);
+  margin-top:4px;
+  padding-top:10px;
+  font-family:var(--ar);
+  font-size:17px;
+  line-height:1.8;
+  color:var(--muted);
+}
+.foot-mid{font-size:16px}
+.foot-n{direction:ltr;font-family:var(--lat);font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.04em}
+.foot-n::before{content:counter(pg)}
+.foot-n::after{content:" / 10"}
+
+.mast{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px;padding-bottom:2.5mm;border-bottom:2.5px solid var(--accent);position:relative}
+.mast::after{content:"";position:absolute;left:22%;right:22%;bottom:-5px;border-bottom:1px solid var(--gold-line)}
+.kick{direction:ltr;margin:0;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.mast h1{margin:0;font-size:32px;line-height:1.85;color:var(--accent)}
+.sub{direction:ltr;margin:0;font-size:14px;font-style:italic;color:var(--muted)}
+.sub b{font-weight:600;font-style:normal;color:var(--ink)}
+
+.run{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:12px;
+  padding-bottom:1.5mm;
+  border-bottom:2px solid var(--accent);
+}
+.run-ar{font-size:18px;line-height:1.6;color:var(--accent)}
+.run-en{direction:ltr;font-size:12px;font-style:italic;color:var(--muted)}
+
+.matn{background:var(--wash);border:1px solid var(--rule);border-inline-start:4px solid var(--accent);border-radius:6px;padding:12px 18px 14px}
+.matn p{font-size:20px;line-height:2.15}
+.lbl{display:block;font-size:15px;line-height:1.8;color:var(--accent);margin-bottom:2px}
+.term{color:var(--accent)}
+.term.fol{color:var(--gold)}
+
+.key{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 18px;direction:ltr;font-size:12.5px;color:var(--muted)}
+.key b{color:var(--gold);font-weight:600}
+
+h2{margin:6px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;padding-bottom:4px;border-bottom:1px solid var(--rule)}
+h2 span{font-size:22px;line-height:1.7;color:var(--ink)}
+h2 small{direction:ltr;font-size:13px;color:var(--muted);font-style:italic}
+
+.hit{font-style:normal;color:var(--accent);background:var(--hit-bg);border-radius:2px;padding:0 .1em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.cards>.card:last-child:nth-child(odd){grid-column:1 / -1}
+.card{border:1px solid var(--rule-strong);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;background:#fff;break-inside:avoid}
+.card.fol{border-color:#ead9b4}
+.card header{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"badge name" "badge en";align-items:center;column-gap:10px;row-gap:0;padding:8px 14px 7px;background:var(--wash);border-bottom:1px solid var(--rule)}
+.card.fol header,.card.test header{background:var(--gold-bg)}
+.badge{grid-area:badge;font-family:var(--lat);font-weight:600;font-size:13px;min-width:26px;height:26px;padding:0 7px;border-radius:13px;border:1.5px solid var(--accent);color:var(--accent);background:#fff;display:inline-flex;align-items:center;justify-content:center;direction:ltr}
+.card.fol .badge,.card.test .badge{border-color:var(--gold);color:var(--gold)}
+.card .name{grid-area:name;font-size:20px;line-height:1.7;color:var(--accent)}
+.card.fol .name,.card.test .name{color:#6d4a0c}
+.card .en{grid-area:en;margin:0;justify-self:start;direction:ltr;font-size:13px;font-style:italic;color:var(--muted);line-height:1.3;text-align:right}
+.card .ex{font-size:24px;line-height:2.15;text-align:center;padding:12px 14px 0;margin:0}
+.card .tr{direction:ltr;text-align:center;font-size:13px;color:var(--muted);font-style:italic;line-height:1.4;padding:2px 14px 10px}
+.card.slim{border-top-width:3px}
+.card.slim .ex{padding-top:2.5mm}
+.card.slim .tr{color:var(--accent);font-style:normal;font-family:var(--lat);font-size:12px}
+
+table.ir{width:100%;border-collapse:collapse;margin-top:auto;border-top:1px solid var(--rule)}
+table.ir th,table.ir td{padding:6px 12px;text-align:right;vertical-align:middle;font-size:16px;line-height:1.9}
+table.ir th{width:1%;white-space:nowrap;color:var(--gold);background:var(--gold-bg);border-inline-end:1px solid #ead9b4;border-inline-start:2.5px solid var(--gold-line)}
+table.ir tr+tr th,table.ir tr+tr td{border-top:1px solid var(--rule)}
+table.ir .hit{background:none;border-bottom:0;padding:0}
+
+.glance{display:grid;grid-template-columns:1fr 1fr;gap:0 8mm}
+.g{display:grid;grid-template-columns:18px 1fr auto;align-items:baseline;gap:6px;padding:0.4mm 0;border-bottom:1px solid var(--rule);font-size:15.5px;line-height:1.7}
+.g.wide{grid-column:1 / -1}
+.gn{font-family:var(--lat);font-size:11px;font-weight:600;color:var(--muted);text-align:center}
+.gx{color:var(--accent)}
+
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5mm}
+.notes.four{grid-template-columns:1fr 1fr}
+.notes p{background:var(--wash);border:1px solid var(--rule);border-radius:3px;padding:1.5mm 3mm 2mm;font-size:15px;line-height:1.8}
+
+.steps{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:2.5mm}
+.step{border:1px solid var(--rule-strong);border-top:3px solid var(--accent);border-radius:3px;padding:2mm 3mm 2.5mm;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px}
+.step .big{font-size:20px;line-height:1.7;color:var(--accent)}
+.step .tr{direction:ltr;font-size:12px;color:var(--muted);font-style:italic;line-height:1.4}
+.step .ar{font-size:16px;line-height:1.8}
+.step .tr .ar{font-style:normal;font-size:15px;color:var(--ink);line-height:1.8}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.panel{border:1px solid var(--rule-strong);border-inline-start:3px solid var(--accent);border-radius:3px;padding:2mm 3.5mm 2.5mm;display:flex;flex-direction:column;gap:0.5mm}
+.panel .ex{font-size:18px;line-height:1.85}
+.panel .tr{direction:ltr;text-align:left;font-size:12.5px;color:var(--muted);font-style:italic;line-height:1.4}
+.panel .ar{font-style:normal}
+.panel .ar.small{font-size:16px;line-height:1.85;color:var(--ink)}
+.panel.test{background:var(--gold-bg);border-color:#ead9b4;border-inline-start-color:var(--gold-line)}
+.panel.test .lbl{color:var(--gold)}
+
+.tree{display:flex;flex-direction:column;align-items:center;--line:var(--accent)}
+.t-root{border:2px solid var(--accent);background:var(--wash);color:var(--accent);font-size:20px;line-height:1.6;padding:0 18px;border-radius:4px}
+.t-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;position:relative;padding-top:16px}
+.t-row::before{content:"";position:absolute;top:0;left:25%;right:25%;height:16px;border:1.5px solid var(--line);border-bottom:0;border-radius:5px 5px 0 0}
+.tree>.t-row{margin-top:8px}
+.tree>.t-row::after{content:"";position:absolute;top:-8px;left:50%;width:1.5px;height:8px;background:var(--line)}
+.t-col{display:flex;flex-direction:column;align-items:center;gap:4px}
+.t-node{border:1.5px solid var(--accent);border-radius:4px;padding:0 12px 2px;text-align:center;font-size:17px;line-height:1.6;color:var(--accent);background:#fff}
+.t-node .lat{display:block;font-size:11px;font-style:italic;color:var(--muted);line-height:1.2}
+.t-node.sm{font-size:15px;padding:0 8px 2px}
+.t-row.inner{gap:8px;padding-top:14px}
+.t-row.inner::before{height:14px;border-width:1.5px}
+.t-ex{font-size:16px;line-height:1.85;text-align:center}
+
+.tbl{overflow:hidden}
+table.pron{width:100%;border-collapse:collapse;font-size:15px}
+table.pron th,table.pron td{border:1px solid var(--rule-strong)}
+table.pron th{background:var(--wash);color:var(--accent);font-size:14px;padding:1mm 2mm;line-height:1.55;text-align:center;border-bottom:2px solid var(--accent)}
+table.pron th.lat{font-size:11px;font-style:italic;color:var(--muted)}
+table.pron td{padding:0 2mm;line-height:1.7;text-align:center;vertical-align:middle}
+table.pron tr.first td{border-top:2px solid var(--accent)}
+table.pron td.grp{background:var(--wash);color:var(--accent);font-size:14.5px;text-align:right;line-height:1.45;padding:1mm 2.5mm}
+table.pron td.grp .lat{display:block;font-size:10.5px;color:var(--muted);font-style:italic}
+table.pron td.suf{color:var(--gold);font-size:17px}
+table.pron td.en{direction:ltr;font-size:11.5px;color:var(--muted);font-style:italic;white-space:nowrap}
+table.pron td.att .hit{background:var(--hit-bg);padding:0 .08em}
+table.pron td.exm{font-size:14px}
+table.pron td.det{color:var(--accent);font-size:16px;background:var(--wash)}
+
+.poem{border-top:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);padding:1.5mm 0 2mm;text-align:center;display:flex;flex-direction:column}
+.poem p{font-size:16px;line-height:1.9}
+.poem .tr{direction:ltr;font-family:var(--lat);font-size:12.5px;color:var(--muted);font-style:italic;line-height:1.4}
+
+.chain{display:flex;align-items:stretch;gap:10px}
+.chain .arrow{align-self:center;font-family:var(--lat);color:var(--accent);font-size:18px;line-height:1}
+.chain .step.on{background:var(--gold-bg);border-top-color:var(--gold-line)}
+.chain .step.on .big{color:#6d4a0c}
+.card .also{text-align:center;font-size:16px;line-height:2.05;padding:0 3mm 1mm}
+
+table.cross{width:100%;border-collapse:collapse;font-size:14.5px}
+table.cross th,table.cross td{border:1px solid var(--rule-strong);padding:1mm 2.5mm;text-align:right;line-height:1.95;vertical-align:middle}
+table.cross th{background:var(--wash);color:var(--accent);text-align:center;font-size:13.5px}
+table.cross td.job{font-family:var(--lat);direction:ltr;text-align:center;font-style:italic;color:var(--muted);font-size:12.5px;white-space:nowrap}
+table.cross td.kind{color:var(--accent);white-space:nowrap}
+
+.lex{display:grid;grid-template-columns:1fr}
+.lex.two{grid-template-columns:1fr 1fr;column-gap:8mm}
+.lx{display:grid;grid-template-columns:auto auto minmax(0,1fr);grid-template-areas:"w ex en";align-items:baseline;column-gap:14px;padding:6px 0;border-bottom:1px solid var(--rule);break-inside:avoid}
+.lx b{grid-area:w;font-weight:400;font-size:18px;line-height:1.6;color:var(--accent);white-space:nowrap}
+.lx span{grid-area:ex;font-size:16px;line-height:1.75;white-space:nowrap}
+.lx i{grid-area:en;font-family:var(--lat);font-style:italic;font-size:13px;line-height:1.3;color:var(--muted);direction:ltr;text-align:right}
+.lex>.lx:last-child:nth-child(odd){grid-column:1 / -1}
+
+.chain .step{flex:1}
+
+@page{size:A4;margin:12mm}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{background:#fff !important}
+  .hint,.print-btn{display:none !important}
+  .stack{display:block;width:auto;padding:0;gap:0}
+  .page{
+    display:block;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+    padding:0 0 8mm;
+    break-before:page;
+    page-break-before:always;
+  }
+  .page>*+*{margin-top:14px}
+  .foot{break-before:avoid;break-inside:avoid}
+  .page:first-child{break-before:auto;page-break-before:auto}
+  .card,.panel,.step,.poem,.notes p,.tree,table,.glance,.lx{break-inside:avoid}
+  h2,.mast,.run{break-after:avoid}
+}
+@media (max-width:760px){
+  .cards,.duo,.notes,.notes.four,.glance,.steps,.chain,.lex{display:flex;flex-direction:column}
+  .page{padding:18px 14px 16px}
+  .card .en{text-align:right}
+}
+</style>
+</head>
+<body>
+<p class="hint">Light sheet, Uthmani type. To print: ⌘P · A4 · default margins · turn on <b>Background graphics</b>. · <a href="Marfuat-Cheat-Sheet.html">Marfūʿāt</a> · <a href="Mansubat-Cheat-Sheet.html">Manṣūbāt</a> · <a href="Majrurat-Cheat-Sheet.html">Majrūrāt</a></p>
+<button type="button" class="print-btn" onclick="window.print()">Print · طباعة</button>
+
+<div class="stack">
+
+<section class="page" id="usul">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 1</p>
+    <h1>أُصُولُ النَّحْوِ</h1>
+    <p class="sub">The first three chapters — speech, iʿrāb, and the signs that mark it</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">ثَلَاثَةُ أَبْوَابٍ</span>
+    <p>أَنْوَاعُ <span class="term">الْكَلَامِ</span>، ثُمَّ بَابُ <span class="term">الْإِعْرَابِ</span>، ثُمَّ بَابُ <span class="term">عَلَامَاتِ الْإِعْرَابِ</span>.</p>
+  </div>
+
+  <div class="key">
+    <span><em class="hit">كَلِمَةٌ</em> = the word the rule is pointing at</span>
+    <span>Keep this sheet with the three case sheets</span>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">الْكَلَامُ</span><span class="en">What counts as a sentence</span></header>
+      <p class="ex">اللَّفْظُ الْمُرَكَّبُ الْمُفِيدُ بِالْوَضْعِ</p>
+      <p class="tr">Uttered, composed, complete, and Arabic. Then three kinds: اسم، فعل، حرف.</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">الْإِعْرَابُ</span><span class="en">The ending changes with the governor</span></header>
+      <p class="ex">رَفْعٌ · نَصْبٌ · خَفْضٌ · جَزْمٌ</p>
+      <p class="tr">Nouns take the first three. Verbs take rafʿ, naṣb, and jazm.</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">الْعَلَامَاتُ</span><span class="en">The marks of those four states</span></header>
+      <p class="ex">أَصْلٌ، أَوْ حَرْفٌ نَائِبٌ</p>
+      <p class="tr">A vowel, or a letter standing in for it, or deletion. Then: declined by vowels, or by letters.</p>
+    </article>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الْأُصُولُ</span><span class="foot-mid"><em class="hit">كَلِمَةٌ</em> = مَوْضِعُ الْقَاعِدَةِ</span><span class="foot-n"></span></footer>
+</section>
+
+<section class="page" id="kalam">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 2</p>
+    <h1>أَنْوَاعُ الْكَلَامِ</h1>
+    <p class="sub">Speech for the grammarian: four conditions, all required</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>الْكَلَامُ هُوَ <span class="term">اللَّفْظُ الْمُرَكَّبُ الْمُفِيدُ بِالْوَضْعِ</span>.</p>
+  </div>
+
+  <h2><span>أَرْبَعَةُ أُمُورٍ</span><small>drop any one, and it is no longer kalām</small></h2>
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">لَفْظٌ</span><span class="en">Spoken letters</span></header>
+      <p class="ex"><em class="hit">أَحْمَدُ</em> · يَكْتُبُ · سَعِيدٌ</p>
+      <p class="tr">A sound from the letters أ to ي. A pointing hand is not this.</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">مُرَكَّبٌ</span><span class="en">Two words, or estimated as two</span></header>
+      <p class="ex"><em class="hit">مُحَمَّدٌ مُسَافِرٌ</em></p>
+      <p class="tr">“Muḥammad is a traveller.” Also الْعِلْمُ نَافِعٌ. One word alone is not kalām.</p>
+      <p class="also">مَنْ أَخُوكَ؟ — مُحَمَّدٌ. estimated: مُحَمَّدٌ أَخِي</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">مُفِيدٌ</span><span class="en">The listener can stop</span></header>
+      <p class="ex">إِذَا حَضَرَ الْأُسْتَاذُ <em class="hit">أَنْصَتَ التَّلَامِيذُ</em></p>
+      <p class="tr">“When the teacher arrived, the students fell silent.” إذا حضر الأستاذ by itself leaves you waiting.</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">4</span><span class="name">بِالْوَضْعِ</span><span class="en">Arabic words, used as Arabic</span></header>
+      <p class="ex"><em class="hit">الْجَوُّ صَحْوٌ</em></p>
+      <p class="tr">“The weather is clear.” Also الْبُسْتَانُ مُثْمِرٌ. A Persian sentence is useful, and it is not this kalām.</p>
+    </article>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الْكَلَامُ</span><span class="foot-mid">لَفْظٌ · مُرَكَّبٌ · مُفِيدٌ · وَضْعٌ عَرَبِيٌّ</span><span class="foot-n"></span></footer>
+</section>
+
+<section class="page" id="aqsam">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 3</p>
+    <h1>اسْمٌ وَفِعْلٌ وَحَرْفٌ</h1>
+    <p class="sub">Every Arabic word is one of three. The noun is known by four signs</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>وَأَقْسَامُهُ ثَلَاثَةٌ: <span class="term">اسْمٌ</span>، وَ<span class="term">فِعْلٌ</span>، وَ<span class="term">حَرْفٌ جَاءَ لِمَعْنًى</span>. فَالِاسْمُ يُعْرَفُ بِالْخَفْضِ وَالتَّنْوِينِ وَدُخُولِ الْأَلِفِ وَاللَّامِ وَحُرُوفِ الْخَفْضِ.</p>
+  </div>
+
+  <h2><span>عَلَامَاتُ الِاسْمِ</span><small>one clear sign is enough</small></h2>
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">الْخَفْضُ</span><span class="en">A kasra, or what stands in for it</span></header>
+      <p class="ex">مَرَرْتُ بِ<em class="hit">بَكْرٍ</em></p>
+      <p class="tr">“I passed by Bakr.” The governor put a kasra on the end.</p>
+      <table class="ir"><tbody><tr><th>بَكْرٍ</th><td>اسْمٌ مَجْرُورٌ بِالْبَاءِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">التَّنْوِينُ</span><span class="en">A silent nūn heard, not written</span></header>
+      <p class="ex"><em class="hit">مُحَمَّدٍ</em> · مُسْلِمَاتٍ</p>
+      <p class="tr">A nūn that follows the last letter in speech, and leaves the line.</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">دُخُولُ أَلْ</span><span class="en">The article at the start</span></header>
+      <p class="ex"><em class="hit">الرَّجُلُ</em> · الْغُلَامُ · الْفَرَسُ</p>
+      <p class="tr">“The man. The boy. The horse.” Also الْكِتَابُ، الْبَيْتُ، الْمَدْرَسَةُ.</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">4</span><span class="name">حُرُوفُ الْخَفْضِ</span><span class="en">A jarr particle in front of it</span></header>
+      <p class="ex">الْمَاءُ فِي <em class="hit">الْكُوزِ</em></p>
+      <p class="tr">“The water is in the jug.” The particle itself is a sign that what follows is a noun.</p>
+    </article>
+  </div>
+
+  <h2><span>حُرُوفُ الْخَفْضِ وَالْقَسَمِ</span></h2>
+  <div class="lex two">
+    <div class="lx"><b>مِنْ</b><span>مِنْ</span><i>from, beginning</i></div>
+    <div class="lx"><b>إِلَى</b><span>إِلَى</span><i>to, ending</i></div>
+    <div class="lx"><b>عَنْ</b><span>عَنْ</span><i>from, about</i></div>
+    <div class="lx"><b>عَلَى</b><span>عَلَى</span><i>on, above</i></div>
+    <div class="lx"><b>فِي</b><span>فِي</span><i>in</i></div>
+    <div class="lx"><b>رُبَّ</b><span>رُبَّ</span><i>how few / how many</i></div>
+    <div class="lx"><b>الْبَاءُ</b><span>بِـ</span><i>by, with</i></div>
+    <div class="lx"><b>الْكَافُ</b><span>كَـ</span><i>like</i></div>
+    <div class="lx"><b>اللَّامُ</b><span>لِـ</span><i>for</i></div>
+    <div class="lx"><b>وَاوُ الْقَسَمِ</b><span>وَاللَّهِ</span><i>oath wāw</i></div>
+    <div class="lx"><b>بَاءُ الْقَسَمِ</b><span>بِاللَّهِ</span><i>oath bāʾ</i></div>
+    <div class="lx"><b>تَاءُ الْقَسَمِ</b><span>تَاللَّهِ</span><i>oath tāʾ — with Allāh</i></div>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الِاسْمُ</span><span class="foot-mid">خَفْضٌ · تَنْوِينٌ · أَلْ · حَرْفُ جَرٍّ</span><span class="foot-n"></span></footer>
+</section>
+
+<section class="page" id="fail-harf">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 4</p>
+    <h1>عَلَامَاتُ الْفِعْلِ وَالْحَرْفِ</h1>
+    <p class="sub">The verb has four signs in the matn. The particle is known by having none of them</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>وَالْفِعْلُ يُعْرَفُ بِ<span class="term">قَدْ</span> وَ<span class="term">السِّينِ</span> وَ<span class="term">سَوْفَ</span> وَ<span class="term">تَاءِ التَّأْنِيثِ السَّاكِنَةِ</span>. وَالْحَرْفُ مَا لَا يَصْلُحُ مَعَهُ دَلِيلُ الِاسْمِ وَلَا دَلِيلُ الْفِعْلِ.</p>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">قَدْ</span><span class="en">It enters the past and the present</span></header>
+      <p class="ex"><em class="hit">قَدْ</em> أَفْلَحَ الْمُؤْمِنُونَ</p>
+      <p class="tr">“The believers have succeeded.” — 23:1. Also قَدْ قَامَ زَيْدٌ, and قَدْ يَصْدُقُ الْكَذُوبُ.</p>
+      <table class="ir"><tbody><tr><th>قَدْ</th><td>حَرْفٌ يَدْخُلُ عَلَى الْمَاضِي وَالْمُضَارِعِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">السِّينُ وَسَوْفَ</span><span class="en">They lock the present to the future</span></header>
+      <p class="ex"><em class="hit">سَيَقُولُ</em> السُّفَهَاءُ</p>
+      <p class="tr">“The foolish among the people will say.” — 2:142. سوف is the more distant future: وَسَوْفَ يُؤْتِي اللَّهُ الْمُؤْمِنِينَ.</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">تَاءُ التَّأْنِيثِ</span><span class="en">Silent tāʾ, on the past only</span></header>
+      <p class="ex">قَالَ<em class="hit">تْ</em> عَائِشَةُ</p>
+      <p class="tr">“ʿĀʾishah said.” It marks a feminine doer, or a feminine nāʾib. A vowel may appear only to avoid two sukūns: وَقَالَتِ اخْرُجْ.</p>
+      <table class="ir"><tbody><tr><th>قَالَتْ</th><td>فِعْلٌ مَاضٍ، وَالتَّاءُ عَلَامَةُ تَأْنِيثٍ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">4</span><span class="name">الْحَرْفُ</span><span class="en">No noun-sign, and no verb-sign</span></header>
+      <p class="ex">﴿<em class="hit">إِنَّ</em> اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ﴾</p>
+      <p class="tr">“Indeed, Allah has power over all things.” — 2:20. إنّ takes neither tanwīn nor قد.</p>
+      <table class="ir"><tbody><tr><th>إِنَّ</th><td>حَرْفُ تَوْكِيدٍ وَنَصْبٍ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <div class="notes">
+    <p><span class="lbl">الْأَمْرُ</span>الْمَتْنُ سَكَتَ عَنْ عَلَامَتِهِ. الشَّارِحُ: طَلَبٌ، مَعَ قَبُولِ يَاءِ الْمُخَاطَبَةِ أَوْ نُونِ التَّوْكِيدِ: قُمْ، قُومِي، اكْتُبَنَّ.</p>
+    <p><span class="lbl">قَدْ</span>عَلَى الْمَاضِي: تَحْقِيقٌ. عَلَى الْمُضَارِعِ: تَقْلِيلٌ أَوْ تَحْقِيقٌ.</p>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الْفِعْلُ</span><span class="foot-mid">قَدْ · سِينٌ · سَوْفَ · تَاءٌ سَاكِنَةٌ</span><span class="foot-n"></span></footer>
+</section>
+
+<section class="page" id="irab">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 5</p>
+    <h1>بَابُ الْإِعْرَابِ</h1>
+    <p class="sub">The ending changes because the governor changed — heard, or only estimated</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>الْإِعْرَابُ هُوَ <span class="term">تَغْيِيرُ أَوَاخِرِ الْكَلِمِ</span> لِاخْتِلَافِ الْعَوَامِلِ الدَّاخِلَةِ عَلَيْهَا، لَفْظًا أَوْ تَقْدِيرًا. وَأَقْسَامُهُ أَرْبَعَةٌ: رَفْعٌ، وَنَصْبٌ، وَخَفْضٌ، وَجَزْمٌ.</p>
+  </div>
+
+  <div class="duo">
+    <div class="panel">
+      <span class="lbl">لَفْظًا</span>
+      <p class="ex">جَاءَ <em class="hit">مُحَمَّدٌ</em> · رَأَيْتُ مُحَمَّدًا · مَرَرْتُ بِمُحَمَّدٍ</p>
+      <p class="tr">You hear the ḍamma, the fatḥa, and the kasra.</p>
+    </div>
+    <div class="panel">
+      <span class="lbl">تَقْدِيرًا</span>
+      <p class="ex">جَاءَ <em class="hit">الْفَتَى</em> · رَأَيْتُ الْفَتَى · مَرَرْتُ بِالْفَتَى</p>
+      <p class="tr">The alif will not take a vowel. The case is estimated: تعذر، ثقل، or مناسبة.</p>
+    </div>
+  </div>
+
+  <h2><span>أَرْبَعَةُ أَنْوَاعٍ</span><small>rafʿ and naṣb are shared · khafḍ is for nouns · jazm is for the muḍāriʿ</small></h2>
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">رَفْعٌ</span><span class="en">Language: height. Term: the ḍamma, or its stand-in</span></header>
+      <p class="ex">حَضَرَ <em class="hit">مُحَمَّدٌ</em> · يُسَافِرُ إِبْرَاهِيمُ</p>
+      <p class="tr">A noun, or a present verb with nothing attached.</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">نَصْبٌ</span><span class="en">Language: standing straight. Term: the fatḥa, or its stand-in</span></header>
+      <p class="ex">يُسَافِرُ ← لَنْ <em class="hit">يُسَافِرَ</em></p>
+      <p class="tr">A nāṣib entered. The same state on a noun: رَأَيْتُ مُحَمَّدًا.</p>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">خَفْضٌ</span><span class="en">Nouns only</span></header>
+      <p class="ex">﴿الْحَمْدُ لِ<em class="hit">لَّهِ</em> رَبِّ الْعَالَمِينَ﴾</p>
+      <p class="tr">“All praise belongs to Allah, Lord of all the worlds.” — 1:2</p>
+      <table class="ir"><tbody><tr><th>اللَّهِ</th><td>مَجْرُورٌ بِاللَّامِ</td></tr><tr><th>رَبِّ</th><td>مَجْرُورٌ بِالْإِضَافَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">4</span><span class="name">جَزْمٌ</span><span class="en">The present verb only</span></header>
+      <p class="ex">لَمْ <em class="hit">يَلْعَبْ</em></p>
+      <p class="tr">A jāzim entered. Nouns never take this state.</p>
+    </article>
+  </div>
+
+  <div class="notes">
+    <p><span class="lbl">لِلْأَسْمَاءِ</span>الرَّفْعُ وَالنَّصْبُ وَالْخَفْضُ. وَلَا جَزْمَ فِيهَا.</p>
+    <p><span class="lbl">لِلْأَفْعَالِ</span>الرَّفْعُ وَالنَّصْبُ وَالْجَزْمُ. وَلَا خَفْضَ فِيهَا.</p>
+    <p><span class="lbl">الْبِنَاءُ</span>ضِدُّهُ: آخِرٌ ثَابِتٌ لَا يَتَغَيَّرُ بِتَغَيُّرِ الْعَامِلِ.</p>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الْإِعْرَابُ</span><span class="foot-mid">رَفْعٌ · نَصْبٌ · خَفْضٌ · جَزْمٌ</span><span class="foot-n"></span></footer>
+</section>
+
+<section class="page" id="raf">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 6</p>
+    <h1>عَلَامَاتُ الرَّفْعِ</h1>
+    <p class="sub">Four signs: the ḍamma, then wāw, alif, and nūn standing in for it</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>لِلرَّفْعِ أَرْبَعُ عَلَامَاتٍ: <span class="term">الضَّمَّةُ</span>، وَ<span class="term">الْوَاوُ</span>، وَ<span class="term">الْأَلِفُ</span>، وَ<span class="term">النُّونُ</span>.</p>
+  </div>
+
+  <h2><span>الضَّمَّةُ فِي أَرْبَعَةِ مَوَاضِعَ</span></h2>
+  <div class="lex">
+    <div class="lx"><b>اسْمٌ مُفْرَدٌ</b><span>جَاءَ <em class="hit">مُحَمَّدٌ</em> · فَاطِمَةُ</span><i>not dual, not a sound plural, not one of the five</i></div>
+    <div class="lx"><b>جَمْعُ تَكْسِيرٍ</b><span>جَاءَ <em class="hit">الرِّجَالُ</em></span><i>the form of the singular has changed</i></div>
+    <div class="lx"><b>جَمْعُ مُؤَنَّثٍ سَالِمٌ</b><span>جَاءَتِ <em class="hit">الْمُؤْمِنَاتُ</em></span><i>also ﴿وَالْمُسْلِمَاتُ﴾</i></div>
+    <div class="lx"><b>مُضَارِعٌ مُجَرَّدٌ</b><span><em class="hit">يَكْتُبُ</em> مُحَمَّدٌ</span><i>nothing attached to its end</i></div>
+  </div>
+
+  <h2><span>نَائِبَاتُ الضَّمَّةِ</span></h2>
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">و</span><span class="name">الْوَاوُ</span><span class="en">Two places</span></header>
+      <p class="ex">جَاءَ <em class="hit">الْمُؤْمِنُونَ</em></p>
+      <p class="tr">Sound masculine plural. And the five nouns: جَاءَ أَبُوكَ، هَذَا ذُو مَالٍ.</p>
+      <p class="also">أَبُوكَ · أَخُوكَ · حَمُوكَ · فُوكَ · ذُو مَالٍ</p>
+      <table class="ir"><tbody><tr><th>الْمُؤْمِنُونَ</th><td>فَاعِلٌ مَرْفُوعٌ بِالْوَاوِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">ا</span><span class="name">الْأَلِفُ</span><span class="en">The dual of nouns only</span></header>
+      <p class="ex">جَاءَ <em class="hit">الرَّجُلَانِ</em></p>
+      <p class="tr">“The two men came.”</p>
+      <table class="ir"><tbody><tr><th>الرَّجُلَانِ</th><td>فَاعِلٌ مَرْفُوعٌ بِالْأَلِفِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">ن</span><span class="name">النُّونُ</span><span class="en">The five verbs, kept in place</span></header>
+      <p class="ex"><em class="hit">يَفْعَلَانِ</em> · تَفْعَلَانِ · يَفْعَلُونَ · تَفْعَلُونَ · تَفْعَلِينَ</p>
+      <p class="tr">A dual, a plural, or the feminine addressee, stuck to the present verb.</p>
+      <table class="ir"><tbody><tr><th>يَفْعَلَانِ</th><td>فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِثُبُوتِ النُّونِ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الرَّفْعُ</span><span class="foot-mid">ضَمَّةٌ · وَاوٌ · أَلِفٌ · نُونٌ</span><span class="foot-n"></span></footer>
+</section>
+
+<section class="page" id="nasb">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 7</p>
+    <h1>عَلَامَاتُ النَّصْبِ</h1>
+    <p class="sub">Five signs: the fatḥa, then alif, kasra, yāʾ, and deletion of nūn</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>وَلِلنَّصْبِ خَمْسُ عَلَامَاتٍ: <span class="term">الْفَتْحَةُ</span>، وَ<span class="term">الْأَلِفُ</span>، وَ<span class="term">الْكَسْرَةُ</span>، وَ<span class="term">الْيَاءُ</span>، وَ<span class="term">حَذْفُ النُّونِ</span>.</p>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">الْفَتْحَةُ</span><span class="en">Three places</span></header>
+      <p class="ex">رَأَيْتُ <em class="hit">مُحَمَّدًا</em></p>
+      <p class="tr">Singular noun. Broken plural: رَأَيْتُ الرِّجَالَ. Present verb after a nāṣib, with nothing attached: لَنْ يُسَافِرَ.</p>
+      <table class="ir"><tbody><tr><th>مُحَمَّدًا</th><td>مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">الْأَلِفُ</span><span class="en">The five nouns</span></header>
+      <p class="ex">رَأَيْتُ <em class="hit">أَبَاكَ</em> وَأَخَاكَ</p>
+      <p class="tr">“I saw your father and your brother.”</p>
+      <table class="ir"><tbody><tr><th>أَبَاكَ</th><td>مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْأَلِفِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">الْكَسْرَةُ</span><span class="en">Sound feminine plural</span></header>
+      <p class="ex">رَأَيْتُ <em class="hit">الْمُؤْمِنَاتِ</em></p>
+      <p class="tr">Naṣb here copies jarr: a kasra, not a fatḥa.</p>
+      <table class="ir"><tbody><tr><th>الْمُؤْمِنَاتِ</th><td>مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْكَسْرَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">4</span><span class="name">الْيَاءُ</span><span class="en">Dual, and sound masculine plural</span></header>
+      <p class="ex">رَأَيْتُ <em class="hit">الرَّجُلَيْنِ</em></p>
+      <p class="also">رَأَيْتُ <em class="hit">الْمُؤْمِنِينَ</em></p>
+      <table class="ir"><tbody><tr><th>الرَّجُلَيْنِ</th><td>مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">5</span><span class="name">حَذْفُ النُّونِ</span><span class="en">The five verbs, whose rafʿ was the nūn kept</span></header>
+      <p class="ex">لَنْ <em class="hit">يَفْعَلُوا</em></p>
+      <p class="also">لَنْ يَفْعَلَا · لَنْ تَفْعَلِي</p>
+      <table class="ir"><tbody><tr><th>يَفْعَلُوا</th><td>فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِحَذْفِ النُّونِ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · النَّصْبُ</span><span class="foot-mid">فَتْحَةٌ · أَلِفٌ · كَسْرَةٌ · يَاءٌ · حَذْفُ النُّونِ</span><span class="foot-n"></span></footer>
+</section>
+
+<section class="page" id="khafd">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 8</p>
+    <h1>عَلَامَاتُ الْخَفْضِ</h1>
+    <p class="sub">Three signs: the kasra, then yāʾ, then fatḥa on what does not take tanwīn</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>وَلِلْخَفْضِ ثَلَاثُ عَلَامَاتٍ: <span class="term">الْكَسْرَةُ</span>، وَ<span class="term">الْيَاءُ</span>، وَ<span class="term">الْفَتْحَةُ</span>.</p>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">الْكَسْرَةُ</span><span class="en">Three places</span></header>
+      <p class="ex">مَرَرْتُ بِ<em class="hit">مُحَمَّدٍ</em></p>
+      <p class="tr">A fully declinable singular. A fully declinable broken plural: بِرِجَالٍ. Sound feminine plural: بِالْمُؤْمِنَاتِ.</p>
+      <table class="ir"><tbody><tr><th>مُحَمَّدٍ</th><td>اسْمٌ مَجْرُورٌ بِالْكَسْرَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">الْيَاءُ</span><span class="en">Three places</span></header>
+      <p class="ex">مَرَرْتُ بِ<em class="hit">أَبِيكَ</em></p>
+      <p class="tr">The five nouns. The dual: بِالرَّجُلَيْنِ. The sound masculine plural: بِالْمُؤْمِنِينَ.</p>
+      <table class="ir"><tbody><tr><th>أَبِيكَ</th><td>اسْمٌ مَجْرُورٌ بِالْيَاءِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">الْفَتْحَةُ</span><span class="en">The noun that does not fully decline</span></header>
+      <p class="ex">مَرَرْتُ بِ<em class="hit">أَحْمَدَ</em></p>
+      <p class="tr">“I passed by Aḥmad.” Also صَلَّيْتُ فِي مَسَاجِدَ. No tanwīn, and the kasra is replaced by a fatḥa.</p>
+      <table class="ir"><tbody><tr><th>أَحْمَدَ</th><td>اسْمٌ لَا يَنْصَرِفُ، مَجْرُورٌ بِالْفَتْحَةِ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الْخَفْضُ</span><span class="foot-mid">كَسْرَةٌ · يَاءٌ · فَتْحَةٌ</span><span class="foot-n"></span></footer>
+</section>
+
+<section class="page" id="jazm">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 9</p>
+    <h1>عَلَامَاتُ الْجَزْمِ</h1>
+    <p class="sub">Two signs, on the present verb only: sukūn, or deletion</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>وَلِلْجَزْمِ عَلَامَتَانِ: <span class="term">السُّكُونُ</span>، وَ<span class="term">الْحَذْفُ</span>.</p>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <header><span class="badge">1</span><span class="name">السُّكُونُ</span><span class="en">A sound last letter</span></header>
+      <p class="ex">يَلْعَبُ ← لَمْ <em class="hit">يَلْعَبْ</em></p>
+      <p class="tr">The last letter is not alif, wāw, or yāʾ. The ḍamma simply becomes a sukūn. Also لَمْ يَنْجَحْ، لَمْ يُسَافِرْ.</p>
+      <table class="ir"><tbody><tr><th>يَلْعَبْ</th><td>فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِالسُّكُونِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">2</span><span class="name">حَذْفُ حَرْفِ الْعِلَّةِ</span><span class="en">A weak last letter</span></header>
+      <p class="ex">يَسْعَى ← لَمْ <em class="hit">يَسْعَ</em></p>
+      <p class="tr">The weak letter is dropped. The vowel before it remains as evidence: لَمْ يَدْعُ، لَمْ يُعْطِ.</p>
+      <table class="ir"><tbody><tr><th>يَسْعَ</th><td>مَجْزُومٌ بِحَذْفِ الْأَلِفِ</td></tr></tbody></table>
+    </article>
+    <article class="card">
+      <header><span class="badge">3</span><span class="name">حَذْفُ النُّونِ</span><span class="en">The five verbs again</span></header>
+      <p class="ex">لَمْ <em class="hit">يَفْعَلُوا</em></p>
+      <p class="also">لَمْ يَفْعَلَا · لَمْ تَفْعَلِي</p>
+      <p class="tr">The same deletion that marked naṣb now marks jazm.</p>
+      <table class="ir"><tbody><tr><th>يَفْعَلُوا</th><td>مَجْزُومٌ بِحَذْفِ النُّونِ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <div class="notes">
+    <p><span class="lbl">دَلِيلُ الْمَحْذُوفِ</span>فَتْحَةٌ قَبْلَ الْأَلِفِ، وَضَمَّةٌ قَبْلَ الْوَاوِ، وَكَسْرَةٌ قَبْلَ الْيَاءِ.</p>
+    <p><span class="lbl">الْجَزْمُ</span>لَا يَدْخُلُ الِاسْمَ. هُوَ لِلْمُضَارِعِ وَحْدَهُ.</p>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الْجَزْمُ</span><span class="foot-mid">سُكُونٌ · حَذْفٌ</span><span class="foot-n"></span></footer>
+</section>
+
+<section class="page" id="muarabat">
+  <header class="mast">
+    <p class="kick">Al-Ājurrūmiyyah · Cheat sheet 10</p>
+    <h1>الْمُعْرَبَاتُ</h1>
+    <p class="sub">Two kinds: declined by vowels, and declined by letters. Three things leave the first pattern</p>
+  </header>
+
+  <div class="matn">
+    <span class="lbl">الْمَتْنُ</span>
+    <p>الْمُعْرَبَاتُ قِسْمَانِ: قِسْمٌ يُعْرَبُ بِ<span class="term">الْحَرَكَاتِ</span>، وَقِسْمٌ يُعْرَبُ بِ<span class="term">الْحُرُوفِ</span>. وَكُلُّهَا تُرْفَعُ بِالضَّمَّةِ، وَتُنْصَبُ بِالْفَتْحَةِ، وَتُخْفَضُ بِالْكَسْرَةِ، وَتُجْزَمُ بِالسُّكُونِ — وَخَرَجَ عَنْ ذَلِكَ ثَلَاثَةُ أَشْيَاءَ.</p>
+  </div>
+
+  <h2><span>بِالْحَرَكَاتِ</span><small>four types</small></h2>
+  <div class="lex two">
+    <div class="lx"><b>الِاسْمُ الْمُفْرَدُ</b><span>مُحَمَّدٌ · مُحَمَّدًا · مُحَمَّدٍ</span><i>ḍamma, fatḥa, kasra</i></div>
+    <div class="lx"><b>جَمْعُ التَّكْسِيرِ</b><span>الرِّجَالُ · الرِّجَالَ · الرِّجَالِ</span><i>the same three vowels</i></div>
+    <div class="lx"><b>جَمْعُ الْمُؤَنَّثِ</b><span>الْمُؤْمِنَاتُ · الْمُؤْمِنَاتِ</span><i>except naṣb, which takes kasra</i></div>
+    <div class="lx"><b>الْمُضَارِعُ الْمُجَرَّدُ</b><span>يَكْتُبُ · لَنْ يَكْتُبَ · لَمْ يَكْتُبْ</span><i>except a weak last letter, deleted in jazm</i></div>
+  </div>
+
+  <h2><span>ثَلَاثَةٌ خَرَجَتْ</span></h2>
+  <div class="cards">
+    <article class="card test">
+      <header><span class="badge">1</span><span class="name">جَمْعُ الْمُؤَنَّثِ السَّالِمِ</span><span class="en">Naṣb by kasra</span></header>
+      <p class="ex">رَأَيْتُ <em class="hit">الْمُسْلِمَاتِ</em></p>
+      <table class="ir"><tbody><tr><th>الْمُسْلِمَاتِ</th><td>مَنْصُوبٌ بِالْكَسْرَةِ نِيَابَةً عَنِ الْفَتْحَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card test">
+      <header><span class="badge">2</span><span class="name">مَا لَا يَنْصَرِفُ</span><span class="en">Jarr by fatḥa</span></header>
+      <p class="ex">مَرَرْتُ بِ<em class="hit">أَحْمَدَ</em></p>
+      <table class="ir"><tbody><tr><th>أَحْمَدَ</th><td>مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ</td></tr></tbody></table>
+    </article>
+    <article class="card test">
+      <header><span class="badge">3</span><span class="name">مُعْتَلُّ الْآخِرِ</span><span class="en">Jazm by deleting the last letter</span></header>
+      <p class="ex">لَمْ <em class="hit">يَسْعَ</em> · لَمْ يَدْعُ · لَمْ يُعْطِ</p>
+      <table class="ir"><tbody><tr><th>يَسْعَ</th><td>مَجْزُومٌ بِحَذْفِ حَرْفِ الْعِلَّةِ</td></tr></tbody></table>
+    </article>
+  </div>
+
+  <h2><span>بِالْحُرُوفِ</span><small>four types</small></h2>
+  <div class="lex">
+    <div class="lx"><b>الْمُثَنَّى</b><span>الرَّجُلَانِ · الرَّجُلَيْنِ</span><i>rafʿ by alif · naṣb and jarr by yāʾ</i></div>
+    <div class="lx"><b>جَمْعُ الْمُذَكَّرِ</b><span>الْمُؤْمِنُونَ · الْمُؤْمِنِينَ</span><i>rafʿ by wāw · naṣb and jarr by yāʾ</i></div>
+    <div class="lx"><b>الْأَسْمَاءُ الْخَمْسَةُ</b><span>أَبُوكَ · أَبَاكَ · أَبِيكَ</span><i>wāw, alif, yāʾ</i></div>
+    <div class="lx"><b>الْأَفْعَالُ الْخَمْسَةُ</b><span>يَفْعَلُونَ · لَنْ يَفْعَلُوا · لَمْ يَفْعَلُوا</span><i>nūn kept in rafʿ, deleted in naṣb and jazm</i></div>
+  </div>
+
+  <footer class="foot"><span>الْآجُرُّومِيَّةُ · الْمُعْرَبَاتُ</span><span class="foot-mid">حَرَكَاتٌ أَوْ حُرُوفٌ</span><span class="foot-n"></span></footer>
+</section>
+
+</div>
+</body>
+</html>
