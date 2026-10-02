@@ -78,6 +78,10 @@ import {
   AWAMIL_MUBTADA_EXERCISES,
   AWAMIL_MUBTADA_END,
 } from "./tuhfat/awamilMubtada.js";
+import { NAAT_AFTER, NAAT_END } from "./tuhfat/naat.js";
+import { ATF_AFTER, ATF_END } from "./tuhfat/atf.js";
+import { TAWKID_AFTER, TAWKID_END } from "./tuhfat/tawkid.js";
+import { BADAL_AFTER, BADAL_END } from "./tuhfat/badal.js";
 import { blocksToHtml } from "../utils/ajrumiyyahTuhfatRender.js";
 import { BAKED_PEN_MARKS } from "./ajrumiyyahPenMarks.js";
 import { hashHtml, htmlWithPenMarks } from "../utils/commentaryPen.js";
@@ -114,6 +118,10 @@ export const TUHFAT_BLOCKS_AFTER = {
   "naib-fail": NAIB_FAIL_AFTER,
   "mubtada-khabar": MUBTADA_KHABAR_AFTER,
   "awamil-mubtada": AWAMIL_MUBTADA_AFTER,
+  naat: NAAT_AFTER,
+  atf: ATF_AFTER,
+  tawkid: TAWKID_AFTER,
+  badal: BADAL_AFTER,
 };
 
 /** Questions/exercises after each matn-line section (book order) — single section or array */
@@ -199,6 +207,18 @@ export const TUHFAT_DRILLS_AFTER = {
   },
   "awamil-mubtada": {
     9: [AWAMIL_MUBTADA_EXERCISES, AWAMIL_MUBTADA_END],
+  },
+  naat: {
+    2: NAAT_END,
+  },
+  atf: {
+    1: ATF_END,
+  },
+  tawkid: {
+    1: TAWKID_END,
+  },
+  badal: {
+    1: BADAL_END,
   },
 };
 

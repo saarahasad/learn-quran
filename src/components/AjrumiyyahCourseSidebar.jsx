@@ -46,6 +46,12 @@ const CHEAT_SHEETS = [
     tone: "marfuat",
   },
   {
+    file: "Tawabi-Cheat-Sheet.html",
+    ar: "التَّوَابِعُ",
+    en: "Followers cheat sheet",
+    tone: "tawabi",
+  },
+  {
     file: "Mansubat-Cheat-Sheet.html",
     ar: "الْمَنْصُوبَاتُ",
     en: "Manṣūbāt cheat sheet",

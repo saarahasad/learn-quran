@@ -81,6 +81,14 @@ import MustathnaState2DeepdiveGuide from "../components/ajrumiyyah/MustathnaStat
 import MustathnaState3DeepdiveGuide from "../components/ajrumiyyah/MustathnaState3DeepdiveGuide.jsx";
 import MustathnaGhayruCommentaryGuide from "../components/ajrumiyyah/MustathnaGhayruCommentaryGuide.jsx";
 import MustathnaKhalaAdaHashaGuide from "../components/ajrumiyyah/MustathnaKhalaAdaHashaGuide.jsx";
+import NaatAgreementGuide from "../components/ajrumiyyah/NaatAgreementGuide.jsx";
+import MarifaNakiraGuide from "../components/ajrumiyyah/MarifaNakiraGuide.jsx";
+import AtfParticlesGuide from "../components/ajrumiyyah/AtfParticlesGuide.jsx";
+import AtfRulingGuide from "../components/ajrumiyyah/AtfRulingGuide.jsx";
+import TawkidKindsGuide from "../components/ajrumiyyah/TawkidKindsGuide.jsx";
+import TawkidWordsGuide from "../components/ajrumiyyah/TawkidWordsGuide.jsx";
+import BadalRulingGuide from "../components/ajrumiyyah/BadalRulingGuide.jsx";
+import BadalTypesGuide from "../components/ajrumiyyah/BadalTypesGuide.jsx";
 import DammahDrillInteractive from "../components/ajrumiyyah/DammahDrillInteractive.jsx";
 import WawDrillInteractive from "../components/ajrumiyyah/WawDrillInteractive.jsx";
 
@@ -642,6 +650,62 @@ export function guideAfterLine(chapterId, lineIdx) {
       key: "mustathna-state3-deepdive",
       noHead: true,
       body: <MustathnaState3DeepdiveGuide />,
+    };
+  }
+  if (chapterId === "naat" && lineIdx === 0) {
+    return {
+      key: "naat-agreement",
+      noHead: true,
+      body: <NaatAgreementGuide />,
+    };
+  }
+  if (chapterId === "naat" && lineIdx === 2) {
+    return {
+      key: "marifa-nakira",
+      noHead: true,
+      body: <MarifaNakiraGuide />,
+    };
+  }
+  if (chapterId === "atf" && lineIdx === 0) {
+    return {
+      key: "atf-particles",
+      noHead: true,
+      body: <AtfParticlesGuide />,
+    };
+  }
+  if (chapterId === "atf" && lineIdx === 1) {
+    return {
+      key: "atf-ruling",
+      noHead: true,
+      body: <AtfRulingGuide />,
+    };
+  }
+  if (chapterId === "tawkid" && lineIdx === 0) {
+    return {
+      key: "tawkid-kinds",
+      noHead: true,
+      body: <TawkidKindsGuide />,
+    };
+  }
+  if (chapterId === "tawkid" && lineIdx === 1) {
+    return {
+      key: "tawkid-words",
+      noHead: true,
+      body: <TawkidWordsGuide />,
+    };
+  }
+  if (chapterId === "badal" && lineIdx === 0) {
+    return {
+      key: "badal-ruling",
+      noHead: true,
+      body: <BadalRulingGuide />,
+    };
+  }
+  if (chapterId === "badal" && lineIdx === 1) {
+    return {
+      key: "badal-types",
+      noHead: true,
+      body: <BadalTypesGuide />,
     };
   }
   if (chapterId === "istithna" && lineIdx === 5) {

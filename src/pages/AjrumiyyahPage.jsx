@@ -230,13 +230,13 @@ function LessonCover({ chapter, isDone, onToggleDone, onJump }) {
         ) : (
           <ul className="ajr-lesson-cover__list">
             {commentaryLabels.map((item) => {
-              const progressId = commentaryProgressId(chapter.id, item.lineIdx);
+              const progressId = commentaryProgressId(chapter.id, item.lineIdx, item.subIdx);
               const done = isDone?.(progressId);
               const tone = commentaryTopicTone(chapter.id, item.lineIdx, item.en);
               const workbookId = workbookIdForSection(chapter.id, item.lineIdx);
               return (
                 <li
-                  key={item.lineIdx}
+                  key={`${item.lineIdx}-${item.subIdx}`}
                   className={`ajr-lesson-cover__row ajr-lesson-cover__row--${tone}${
                     done ? " ajr-lesson-cover__row--done" : ""
                   }${workbookId ? " ajr-lesson-cover__row--workbook" : ""}`}
