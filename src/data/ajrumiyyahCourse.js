@@ -1477,6 +1477,10 @@ export function ajrumiyyahIraabGuidePath() {
   return `${ajrumiyyahCoursePath()}/iraab-guide`;
 }
 
+export function ajrumiyyahIraabTypesPath() {
+  return `${ajrumiyyahCoursePath()}/iraab-types`;
+}
+
 export function ajrumiyyahStudyPath(chapterId, lineIndex) {
   const base = `${ajrumiyyahCoursePath()}/study`;
   if (!chapterId) return base;

@@ -5,6 +5,7 @@ import {
   ajrumiyyahAlamatMindMapPath,
   ajrumiyyahIraabGuidePath,
   ajrumiyyahIraabKeyboardPath,
+  ajrumiyyahIraabTypesPath,
   ajrumiyyahKalamMindMapPath,
   ajrumiyyahMarfuatMindMapPath,
   ajrumiyyahMatnPath,
@@ -23,9 +24,15 @@ import {
 import { useCourseProgress } from "../hooks/useCourseProgress.js";
 import { CourseSidebar, CourseSidebarProgress, CourseSidebarUnit } from "./CourseLayout.jsx";
 
-/** @typedef {'keyboard' | 'iraab-guide' | 'matn' | 'kalam-mindmap' | 'alamat-mindmap' | 'marfuat-mindmap' | 'nominatives-quiz' | 'workbook' | null} AjrumiyyahToolId */
+/** @typedef {'keyboard' | 'iraab-guide' | 'iraab-types' | 'matn' | 'kalam-mindmap' | 'alamat-mindmap' | 'marfuat-mindmap' | 'nominatives-quiz' | 'workbook' | null} AjrumiyyahToolId */
 
 const CHEAT_SHEETS = [
+  {
+    file: "Ajrumiyyah-Booklet.html",
+    ar: "الْكِتَابُ",
+    en: "Print the whole booklet",
+    tone: "booklet",
+  },
   {
     file: "Foundations-Cheat-Sheet.html",
     ar: "الْأُصُولُ",
@@ -75,6 +82,12 @@ const REFERENCE_LINKS = [
     to: ajrumiyyahIraabGuidePath(),
     ar: "شَرْحُ الْآيَةِ",
     en: "Ayah iʿrāb explainer",
+  },
+  {
+    id: "iraab-types",
+    to: ajrumiyyahIraabTypesPath(),
+    ar: "إِعْرَابُ الْأَنْوَاعِ",
+    en: "Iʿrāb of every type",
   },
   {
     id: "kalam-mindmap",

@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import AjrumiyyahAlamatMindMapPage from "./pages/AjrumiyyahAlamatMindMapPage.jsx";
 import AjrumiyyahIraabGuidePage from "./pages/AjrumiyyahIraabGuidePage.jsx";
 import AjrumiyyahIraabKeyboardPage from "./pages/AjrumiyyahIraabKeyboardPage.jsx";
+import AjrumiyyahIraabTypesPage from "./pages/AjrumiyyahIraabTypesPage.jsx";
 import AjrumiyyahKalamMindMapPage from "./pages/AjrumiyyahKalamMindMapPage.jsx";
 import AjrumiyyahMarfuatMindMapPage from "./pages/AjrumiyyahMarfuatMindMapPage.jsx";
 import AjrumiyyahMatnPage from "./pages/AjrumiyyahMatnPage.jsx";
@@ -50,6 +51,7 @@ function AppRoutes() {
       <Route path="/ajrumiyyah/marfuat-mindmap" element={<AjrumiyyahMarfuatMindMapPage />} />
       <Route path="/ajrumiyyah/iraab-keyboard" element={<AjrumiyyahIraabKeyboardPage />} />
       <Route path="/ajrumiyyah/iraab-guide" element={<AjrumiyyahIraabGuidePage />} />
+      <Route path="/ajrumiyyah/iraab-types" element={<AjrumiyyahIraabTypesPage />} />
       <Route path="/ajrumiyyah/nominatives-quiz" element={<NominativesMasteryPage />} />
       <Route path="/ajrumiyyah/study" element={<AjrumiyyahPage />} />
       <Route path="/ajrumiyyah/workbook" element={<AjrumiyyahWorkbookPage />} />
