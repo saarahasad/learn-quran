@@ -34,6 +34,7 @@ export default function MushafPageViewer({
   pageMemoryShowAll = false,
   onPageMemoryReveal,
   onAyahSelect,
+  onOtherSurahAyahSelect = null,
   showMemorizationMistakes = false,
   markMistakeMode = false,
   memorizationMistakes = [],
@@ -113,7 +114,8 @@ export default function MushafPageViewer({
             onError={handleImgError}
             className={loaded ? "is-loaded" : ""}
           />
-          {loaded && showAyahOverlay && !calibrateMode && (
+          {/* Tap zones are measured on the QuranFlash scan; on the fallback scan they'd hit the wrong āyah. */}
+          {loaded && showAyahOverlay && !calibrateMode && src !== getMushafPageFallbackUrl(page) && (
             <AyahOverlay
               page={page}
               surahNumber={surahNumber}
@@ -123,6 +125,7 @@ export default function MushafPageViewer({
               showHighlight={showHighlight}
               indicatorMode={indicatorMode}
               onSelectAyah={onAyahSelect}
+              onSelectOtherSurahAyah={onOtherSurahAyahSelect}
             />
           )}
           {loaded && hasOverlays && !calibrateMode && (

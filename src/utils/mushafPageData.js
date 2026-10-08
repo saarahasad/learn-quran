@@ -8,6 +8,7 @@ const COORD_BASE =
   "https://raw.githubusercontent.com/bodoorzahera/Quran-coordinate/master/data/coords";
 
 import { MUSHAF_REF_HEIGHT, MUSHAF_REF_WIDTH } from "./mushafPageHotspots.js";
+import { fetchWithTimeout } from "./fetchWithTimeout.js";
 
 const COORD_REF_WIDTH = 900;
 const COORD_REF_HEIGHT = 1437;
@@ -24,7 +25,7 @@ function padPage(n) {
 
 async function fetchPageCoords(pageNumber) {
   const padded = `page-${padPage(pageNumber)}.json`;
-  const res = await fetch(`${COORD_BASE}/${padded}`);
+  const res = await fetchWithTimeout(`${COORD_BASE}/${padded}`);
   if (!res.ok) return {};
   const data = await res.json();
   return data.coords ?? {};
@@ -32,7 +33,7 @@ async function fetchPageCoords(pageNumber) {
 
 async function fetchPageVerses(pageNumber) {
   const url = `${QDC_BASE}/${pageNumber}?words=true&word_fields=text_uthmani,location,code_v1&word_translation_language=en&word_transliteration_language=en`;
-  const res = await fetch(url);
+  const res = await fetchWithTimeout(url);
   if (!res.ok) throw new Error(`QuranDC page ${pageNumber}`);
   const data = await res.json();
   return data.verses ?? [];
@@ -149,11 +150,15 @@ export async function loadPageWords(pageNumber, surahNumber = null) {
       }
       return { pageNumber, words, error: null };
     })
-    .catch((err) => ({
-      pageNumber,
-      words: [],
-      error: err?.message ?? "Failed to load page",
-    }));
+    .catch((err) => {
+      // Allow a retry next time instead of caching the failure for the session.
+      pageCache.delete(cacheKey);
+      return {
+        pageNumber,
+        words: [],
+        error: err?.message ?? "Failed to load page",
+      };
+    });
 
   pageCache.set(cacheKey, promise);
   return promise;
@@ -175,7 +180,7 @@ export function prefetchPage(pageNumber, surahNumber = null) {
 /** Fetch one āyah's words from the chapter endpoint (when missing from page data). */
 export async function fetchAyahWordsFromChapter(surahNumber, ayahNumber) {
   const url = `${QDC_CHAPTER}/${surahNumber}?words=true&word_fields=text_uthmani,location,line_number&per_page=1&page=${ayahNumber}`;
-  const res = await fetch(url);
+  const res = await fetchWithTimeout(url);
   if (!res.ok) return [];
 
   const data = await res.json();

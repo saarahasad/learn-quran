@@ -131,6 +131,16 @@ export default function MushafImageReader({
   onMarkMistakeModeChange = null,
   showMemorizationMistakes: showMemorizationMistakesProp = null,
   onShowMemorizationMistakesChange = null,
+  /** Printed page to open on when this sūrah mounts (e.g. after flipping in from a neighbour). */
+  initialPage = null,
+  /** Āyah to pre-select on open. */
+  initialAyah = null,
+  /** (direction: "forward" | "back", fromPage) => target or null — lets page flips continue into the next/previous sūrah. */
+  getNeighbourPage = null,
+  /** (direction, fromPage) => void — switch to the neighbour returned above. */
+  onFlipToNeighbour = null,
+  /** (surahNumber, ayah, page) => void — an āyah of another sūrah on a shared page was tapped. */
+  onOtherSurahAyahSelect = null,
 }) {
   const pages = useMemo(
     () => getSurahMushafPages(surah.revelationOrder),
@@ -144,7 +154,18 @@ export default function MushafImageReader({
   );
   const ayahsByN = useMemo(() => new Map(ayahs.map((a) => [a.n, a])), [ayahs]);
 
-  const [viewIndex, setViewIndex] = useState(0);
+  const [viewIndex, setViewIndex] = useState(() => {
+    if (initialPage == null) return 0;
+    return findViewIndex(viewUnits, initialPage);
+  });
+  const viewIndexRef = useRef(viewIndex);
+  useEffect(() => {
+    viewIndexRef.current = viewIndex;
+  }, [viewIndex]);
+  /** Last view index whose selection reset has run (skips the mount pass). */
+  const appliedIndexRef = useRef(viewIndex);
+  const pendingSelectRef = useRef(initialAyah);
+  const swipeRef = useRef(null);
   const visibleMushafPageRef = useRef(null);
   const [selectedAyahN, setSelectedAyahN] = useState(null);
   const [highlightActive, setHighlightActive] = useState(false);
@@ -255,25 +276,60 @@ export default function MushafImageReader({
     [showPageGuide, compact, onGuidePageChange],
   );
 
+  // Side effects stay outside the state updater (updaters may run twice and must be pure).
   const goForward = useCallback(() => {
-    setViewIndex((index) => {
-      const next = Math.min(viewUnits.length - 1, index + 1);
-      if (next !== index) {
-        syncGuideForSpread(viewUnits[next], "forward");
-      }
-      return next;
-    });
-  }, [viewUnits, syncGuideForSpread]);
+    const index = viewIndexRef.current;
+    if (index < viewUnits.length - 1) {
+      const next = index + 1;
+      viewIndexRef.current = next;
+      setViewIndex(next);
+      syncGuideForSpread(viewUnits[next], "forward");
+      return;
+    }
+    const unit = viewUnits[index] ?? [];
+    const lastPage = unit[unit.length - 1];
+    if (lastPage != null && getNeighbourPage?.("forward", lastPage)) {
+      onFlipToNeighbour?.("forward", lastPage);
+    }
+  }, [viewUnits, syncGuideForSpread, getNeighbourPage, onFlipToNeighbour]);
 
   const goBack = useCallback(() => {
-    setViewIndex((index) => {
-      const next = Math.max(0, index - 1);
-      if (next !== index) {
-        syncGuideForSpread(viewUnits[next], "back");
-      }
-      return next;
-    });
-  }, [viewUnits, syncGuideForSpread]);
+    const index = viewIndexRef.current;
+    if (index > 0) {
+      const next = index - 1;
+      viewIndexRef.current = next;
+      setViewIndex(next);
+      syncGuideForSpread(viewUnits[next], "back");
+      return;
+    }
+    const firstPage = (viewUnits[index] ?? [])[0];
+    if (firstPage != null && getNeighbourPage?.("back", firstPage)) {
+      onFlipToNeighbour?.("back", firstPage);
+    }
+  }, [viewUnits, syncGuideForSpread, getNeighbourPage, onFlipToNeighbour]);
+
+  // Swipe to turn pages (iPad / phone). Arabic muṣḥaf: drag right → next page.
+  function onSpreadTouchStart(event) {
+    if (event.touches.length !== 1) {
+      swipeRef.current = null;
+      return;
+    }
+    const t = event.touches[0];
+    swipeRef.current = { x: t.clientX, y: t.clientY, time: Date.now() };
+  }
+
+  function onSpreadTouchEnd(event) {
+    const start = swipeRef.current;
+    swipeRef.current = null;
+    if (!start || calibrateMode || markMistakeMode) return;
+    const t = event.changedTouches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    if (Date.now() - start.time > 800) return;
+    if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    if (dx > 0) goForward();
+    else goBack();
+  }
 
   function selectAyah(ayahN) {
     setSelectedAyahN(ayahN);
@@ -289,16 +345,32 @@ export default function MushafImageReader({
   }, [viewUnits, viewIndex, currentSpread]);
 
   useEffect(() => {
-    setViewIndex(0);
-    visibleMushafPageRef.current = pages[0] ?? null;
-    setSelectedAyahN(null);
-    setHighlightActive(false);
+    const startPage = initialPage;
+    const startIndex =
+      startPage != null && pages.includes(startPage) ? findViewIndex(viewUnits, startPage) : 0;
+    const startAyah = initialAyah ?? null;
+    visibleMushafPageRef.current = (viewUnits[startIndex] ?? [])[0] ?? pages[0] ?? null;
     pendingGuidePageRef.current = null;
+    if (startIndex === viewIndexRef.current) {
+      pendingSelectRef.current = null;
+      setViewIndex(startIndex); // overrides any re-sync queued by the viewUnits effect
+      setSelectedAyahN(startAyah);
+      setHighlightActive(startAyah != null);
+    } else {
+      pendingSelectRef.current = startAyah;
+      viewIndexRef.current = startIndex;
+      setViewIndex(startIndex);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only on sūrah change
   }, [surah.id, pages]);
 
   useEffect(() => {
-    setSelectedAyahN(null);
-    setHighlightActive(false);
+    if (appliedIndexRef.current === viewIndex) return;
+    appliedIndexRef.current = viewIndex;
+    const pending = pendingSelectRef.current;
+    pendingSelectRef.current = null;
+    setSelectedAyahN(pending);
+    setHighlightActive(pending != null);
     setActiveLayerIds([]);
     setPageMemoryRevealed(new Set());
     setPageMemoryShowAll(false);
@@ -372,8 +444,14 @@ export default function MushafImageReader({
   }
 
   const isDouble = !mobileSinglePage && currentSpread.length === 2;
-  const canGoForward = viewIndex < viewUnits.length - 1;
-  const canGoBack = viewIndex > 0;
+  const firstVisiblePage = currentSpread[0];
+  const lastVisiblePage = currentSpread[currentSpread.length - 1];
+  const canGoForward =
+    viewIndex < viewUnits.length - 1 ||
+    (lastVisiblePage != null && Boolean(getNeighbourPage?.("forward", lastVisiblePage)));
+  const canGoBack =
+    viewIndex > 0 ||
+    (firstVisiblePage != null && Boolean(getNeighbourPage?.("back", firstVisiblePage)));
   const selectedAyah = selectedAyahN != null ? ayahsByN.get(selectedAyahN) ?? null : null;
 
   function toggleLayer(layerId) {
@@ -543,7 +621,8 @@ export default function MushafImageReader({
 
           <div
             className={`mushaf-reader__spread${isDouble ? " is-double" : " is-single"}`}
-            onMouseLeave={() => setHighlightActive(false)}
+            onTouchStart={onSpreadTouchStart}
+            onTouchEnd={onSpreadTouchEnd}
           >
             {currentSpread.map((page) => (
               <MushafPageViewer
@@ -574,6 +653,7 @@ export default function MushafImageReader({
                 pageMemoryShowAll={pageMemoryShowAll}
                 onPageMemoryReveal={revealPageMemoryKey}
                 onAyahSelect={selectAyah}
+                onOtherSurahAyahSelect={onOtherSurahAyahSelect}
                 showMemorizationMistakes={showMistakeHighlights}
                 markMistakeMode={markMistakeMode}
                 memorizationMistakes={getMistakesForPage(page)}
