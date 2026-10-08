@@ -1,0 +1,186 @@
+/* Per-āyah iʿrāb diagram — cards above each word, relation arrows looping beneath.
+   Colour is reserved for grammatical relations; everything else stays ink on white. */
+@font-face {
+  font-family: "LQ Hafs";
+  src: url("/fonts/KFGQPC%20Uthmanic%20Script%20HAFS%20Regular.otf") format("opentype");
+  font-display: swap;
+}
+
+.iraab-dia {
+  --iraab-ink: #111;
+  --iraab-muted: #5f6366;
+  --iraab-line: #d9dcdd;
+  --iraab-soft: #f6f7f7;
+  --iraab-ghost: #9a9fa2;
+  --iraab-jar: #c08a00;
+  --iraab-atf: #d1344f;
+  --iraab-taaluq: #1f6fd1;
+  --iraab-idafa: #7b3fc4;
+  --iraab-tabi: #0a9690;
+  --iraab-amal: #e0661a;
+  --iraab-isnad: #3e8e1f;
+  --iraab-sila: #6b7280;
+  --iraab-f-quran: "LQ Hafs", "KFGQPC Uthmanic Script HAFS", "Amiri Quran", "Amiri", serif;
+  --iraab-f-ar: "Noto Naskh Arabic", "Amiri", serif;
+  margin-top: 1.25rem;
+  color: var(--iraab-ink);
+}
+
+.iraab-dia__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--iraab-line);
+}
+.iraab-dia__label {
+  font: 600 0.72rem/1 var(--edx-font, system-ui, sans-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--iraab-muted);
+}
+.iraab-dia__label-ar { font: 700 1.05rem/1 var(--iraab-f-ar); }
+
+.iraab-dia__scroller {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+  border: 1px solid var(--iraab-line);
+  border-radius: 14px;
+  padding: 20px 16px 6px;
+}
+
+.iraab-dia__stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 12px;
+  width: max-content;
+  min-width: 100%;
+  margin: 0 auto;
+}
+
+.iraab-dia__col {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  width: 156px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.iraab-dia__col.is-wide { width: 184px; }
+.iraab-dia__col:focus-visible { outline: 2px solid var(--iraab-ink); outline-offset: 4px; border-radius: 10px; }
+
+.iraab-dia__box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 150px;
+  padding: 9px 9px 11px;
+  border: 1.5px solid var(--iraab-line);
+  border-radius: 10px;
+  background: var(--iraab-soft);
+  text-align: center;
+  font-family: var(--iraab-f-ar);
+  line-height: 1.6;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.iraab-dia__box::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  border-right: 1.5px solid var(--iraab-line);
+  border-bottom: 1.5px solid var(--iraab-line);
+  transform: translateX(-50%) rotate(45deg);
+}
+.iraab-dia__role { font-weight: 700; font-size: 17px; }
+.iraab-dia__det { font-size: 15px; }
+.iraab-dia__sign {
+  margin-top: 4px;
+  padding-top: 3px;
+  border-top: 1px dashed var(--iraab-line);
+  font-size: 13px;
+  color: var(--iraab-muted);
+}
+.iraab-dia__col.is-ghost .iraab-dia__box { border-style: dashed; background: transparent; }
+.iraab-dia__col.is-on .iraab-dia__box {
+  border-color: var(--iraab-ink);
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.14);
+}
+
+.iraab-dia__word {
+  padding: 0 4px;
+  font-family: var(--iraab-f-quran);
+  font-size: 36px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.iraab-dia__col.is-ghost .iraab-dia__word { color: var(--iraab-ghost); font-size: 24px; }
+.iraab-dia__word small {
+  display: block;
+  font: 500 10px/1.2 system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.iraab-dia__arrows { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.iraab-dia__arrows path { fill: none; stroke-width: 2.1; }
+.iraab-dia__arrows g { transition: opacity 0.2s; }
+.iraab-dia__arrows g.is-dim { opacity: 0.1; }
+.iraab-dia__arrows text {
+  font-family: var(--iraab-f-ar);
+  font-size: 14px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 5px;
+}
+
+.iraab-dia__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.iraab-dia__chips button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 11px;
+  border: 1px solid var(--iraab-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--iraab-ink);
+  font: 600 13px var(--iraab-f-ar);
+  cursor: pointer;
+}
+.iraab-dia__chips button[aria-pressed="true"] { border-color: var(--iraab-ink); }
+.iraab-dia__chips i { display: block; width: 18px; height: 3px; border-radius: 2px; }
+
+.iraab-dia__jumla {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--iraab-line);
+  border-radius: 10px;
+  background: var(--iraab-soft);
+  font: 15px/1.85 var(--iraab-f-ar);
+}
+.iraab-dia__src { margin: 8px 0 0; font-size: 12px; color: var(--iraab-muted); }
+
+@media (max-width: 560px) {
+  .iraab-dia__col { width: 136px; }
+  .iraab-dia__col.is-wide { width: 160px; }
+  .iraab-dia__word { font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .iraab-dia * { transition: none !important; }
+}
