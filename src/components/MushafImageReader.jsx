@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { getSurahMushafPages } from "../data/mushafPageMap.js";
+import { getMushafPageForAyah, getSurahMushafPages } from "../data/mushafPageMap.js";
+import { loadPageWords } from "../utils/mushafPageData.js";
 import {
   BAQARAH_GUIDE_MUSHAF_PAGES,
   hasBaqarahPageGuides,
@@ -335,6 +336,48 @@ export default function MushafImageReader({
     setSelectedAyahN(ayahN);
     setHighlightActive(true);
   }
+
+  const ayahCount = surah.ayahCount ?? ayahs.length;
+
+  /** Printed page holding an āyah: word data first, page-range estimate as fallback. */
+  async function findPageForAyah(ayahN) {
+    for (const page of pages) {
+      const { words } = await loadPageWords(page, surah.revelationOrder);
+      if (words.some((w) => w.ayah === ayahN)) return page;
+    }
+    return getMushafPageForAyah(surah.revelationOrder, ayahN, ayahCount);
+  }
+
+  const ayahNavToken = useRef(0);
+
+  async function goToAyah(ayahN) {
+    if (ayahN < 1) {
+      // Continue into the previous sūrah's last āyah.
+      const prev = getSurahMushafPages(surah.revelationOrder - 1);
+      if (prev.length) onOtherSurahAyahSelect?.(surah.revelationOrder - 1, -1, prev[prev.length - 1]);
+      return;
+    }
+    if (ayahN > ayahCount) {
+      const next = getSurahMushafPages(surah.revelationOrder + 1);
+      if (next.length) onOtherSurahAyahSelect?.(surah.revelationOrder + 1, 1, next[0]);
+      return;
+    }
+    const token = ++ayahNavToken.current;
+    const page = await findPageForAyah(ayahN);
+    if (token !== ayahNavToken.current) return; // a newer tap won
+    const index = page != null ? findViewIndex(viewUnits, page) : viewIndexRef.current;
+    if (index === viewIndexRef.current) {
+      selectAyah(ayahN);
+    } else {
+      pendingSelectRef.current = ayahN;
+      viewIndexRef.current = index;
+      setViewIndex(index);
+    }
+  }
+
+  const hasPrevSurah = getSurahMushafPages(surah.revelationOrder - 1).length > 0;
+  const hasNextSurah = getSurahMushafPages(surah.revelationOrder + 1).length > 0;
+  const canCrossSurah = Boolean(onOtherSurahAyahSelect);
 
   useEffect(() => {
     const next = viewUnits[viewIndex + 1] ?? [];
@@ -688,6 +731,16 @@ export default function MushafImageReader({
         ayah={selectedAyah}
         surahNumber={surah.revelationOrder}
         pages={currentSpread}
+        onPrevAyah={
+          selectedAyahN != null && (selectedAyahN > 1 || (canCrossSurah && hasPrevSurah))
+            ? () => goToAyah(selectedAyahN - 1)
+            : null
+        }
+        onNextAyah={
+          selectedAyahN != null && (selectedAyahN < ayahCount || (canCrossSurah && hasNextSurah))
+            ? () => goToAyah(selectedAyahN + 1)
+            : null
+        }
       />
 
       {showPageGuide && !compact && (

@@ -2007,9 +2007,42 @@
   margin: 0 auto;
 }
 
+.mushaf-explanation__nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-inline-start: auto;
+}
+
+.mushaf-explanation__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--edx-border, #d9dcdd);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--edx-text, #111);
+  font: 600 0.85rem/1 var(--edx-font, system-ui, sans-serif);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mushaf-explanation__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mushaf-explanation__nav-btn:hover:not(:disabled) {
+    border-color: var(--edx-text, #111);
+  }
+}
+
 .mushaf-explanation__header {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.4rem;
   margin-bottom: clamp(0.75rem, 2vw, 1rem);
 }
