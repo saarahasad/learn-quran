@@ -474,7 +474,10 @@ export default function QuranRevisionApp() {
 
   const handleOtherSurahAyah = useCallback((surahNumber, ayah, page) => {
     const target = surahs.find((s) => s.revelationOrder === surahNumber);
-    if (target) switchSurahAt(target, page, ayah);
+    if (!target) return;
+    // ayah -1 = that sūrah's last āyah (used by "Previous āyah" at a sūrah's start)
+    const n = ayah === -1 ? (target.ayahCount ?? target.ayahs.length) : ayah;
+    switchSurahAt(target, page, n);
   }, [surahs, switchSurahAt]);
 
   useEffect(()=>save(allSurahs),[allSurahs]);

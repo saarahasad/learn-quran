@@ -48,6 +48,8 @@ export default function AyahExplanationPanel({
   ayah,
   surahNumber = null,
   pages = [],
+  onPrevAyah = null,
+  onNextAyah = null,
 }) {
   const [apiWords, setApiWords] = useState([]);
 
@@ -93,11 +95,33 @@ export default function AyahExplanationPanel({
         <header className="mushaf-explanation__header">
           <span className="mushaf-explanation__label">Āyah</span>
           <span className="mushaf-explanation__num">{toArabicNum(ayah.n)}</span>
+          {(onPrevAyah || onNextAyah) && (
+            <span className="mushaf-explanation__nav">
+              <button
+                type="button"
+                className="mushaf-explanation__nav-btn"
+                onClick={onNextAyah ?? undefined}
+                disabled={!onNextAyah}
+                aria-label="Next āyah"
+              >
+                <span aria-hidden="true">←</span> Next āyah
+              </button>
+              <button
+                type="button"
+                className="mushaf-explanation__nav-btn"
+                onClick={onPrevAyah ?? undefined}
+                disabled={!onPrevAyah}
+                aria-label="Previous āyah"
+              >
+                Previous <span aria-hidden="true">→</span>
+              </button>
+            </span>
+          )}
         </header>
 
         {showRecitation && (
           <AyahAudioPlayer
-            key={`${surahNumber}-${ayah.n}`}
+            key={`audio-${surahNumber}-${ayah.n}`}
             surahNumber={surahNumber}
             ayahNumber={ayah.n}
           />
@@ -138,7 +162,7 @@ export default function AyahExplanationPanel({
 
         {iraab && (
           <IraabAyahDiagram
-            key={`${surahNumber}-${ayah.n}`}
+            key={`iraab-${surahNumber}-${ayah.n}`}
             ayah={iraab.ayah}
             source={iraab.source}
           />
