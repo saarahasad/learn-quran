@@ -2,6 +2,8 @@
  * QuranFlash Medina3 verse hit-zones (vBtn overlays).
  * Coordinates live inside btnScaler (≈1.453×) then map to the 680×976 PNG.
  */
+import { fetchWithTimeout } from "./fetchWithTimeout.js";
+
 const QURANFLASH_EPUB = "https://app.quranflash.com/book/Medina3/epub/EPUB";
 
 export const MUSHAF_REF_WIDTH = 680;
@@ -67,7 +69,7 @@ function parseHotspotsFromXhtml(html) {
 export async function getPageHotspots(printedPage) {
   if (cache.has(printedPage)) return cache.get(printedPage);
 
-  const promise = fetch(xhtmlUrlForPrintedPage(printedPage))
+  const promise = fetchWithTimeout(xhtmlUrlForPrintedPage(printedPage))
     .then((res) => {
       if (!res.ok) throw new Error(`hotspots page ${printedPage}`);
       return res.text();
@@ -76,14 +78,18 @@ export async function getPageHotspots(printedPage) {
       hotspots: parseHotspotsFromXhtml(html),
       layout: parseLayoutMeta(html, printedPage),
     }))
-    .catch(() => ({
+    .catch(() => {
+      // Don't keep a failure cached — the next view of this page retries.
+      cache.delete(printedPage);
+      return {
       hotspots: [],
       layout: {
         scale: 1,
         containerLeft: printedPage % 2 === 1 ? -20 : 12,
         containerTop: 10,
       },
-    }));
+      };
+    });
 
   cache.set(printedPage, promise);
   return promise;

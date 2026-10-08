@@ -79,6 +79,11 @@ export function MadaniMushafPage({
   onMarkMistakeModeChange = null,
   showMemorizationMistakes = null,
   onShowMemorizationMistakesChange = null,
+  initialPage = null,
+  initialAyah = null,
+  getNeighbourPage = null,
+  onFlipToNeighbour = null,
+  onOtherSurahAyahSelect = null,
 }) {
   return (
     <MushafImageReader
@@ -92,6 +97,11 @@ export function MadaniMushafPage({
       onMarkMistakeModeChange={onMarkMistakeModeChange}
       showMemorizationMistakes={showMemorizationMistakes}
       onShowMemorizationMistakesChange={onShowMemorizationMistakesChange}
+      initialPage={initialPage}
+      initialAyah={initialAyah}
+      getNeighbourPage={getNeighbourPage}
+      onFlipToNeighbour={onFlipToNeighbour}
+      onOtherSurahAyahSelect={onOtherSurahAyahSelect}
     />
   );
 }

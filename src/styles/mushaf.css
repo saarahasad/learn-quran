@@ -921,11 +921,17 @@
     background: #fffef8;
   }
 
+  /* Keep the frame at the image's exact aspect ratio. Capping only the height (old max-height)
+     squashed the frame while the image overflowed it, so the tap boxes drifted off the āyāt
+     on iPad portrait. Shrink the width instead so frame, image and hit-zones stay in sync. */
   .mushaf-reader--mobile-single .mushaf-img-frame {
-    width: 100%;
+    width: min(100%, calc((100dvh - var(--mushaf-mobile-chrome)) * 680 / 976));
     aspect-ratio: 680 / 976;
-    max-height: calc(100dvh - var(--mushaf-mobile-chrome));
     margin-inline: auto;
+  }
+
+  .mushaf-reader--mobile-single .mushaf-reader__spread {
+    touch-action: pan-y pinch-zoom;
   }
 
   .mushaf-reader--mobile-single .mushaf-img-frame img {
@@ -969,8 +975,21 @@
   transition: background 0.1s ease, box-shadow 0.1s ease;
 }
 
-.mushaf-ayah-hit:hover {
-  background: rgba(255, 240, 180, 0.22);
+/* Only real hover devices: on iPad/iPhone :hover sticks to the last tapped box,
+   which made it look like the wrong āyah was selected. */
+@media (hover: hover) and (pointer: fine) {
+  .mushaf-ayah-hit:hover {
+    background: rgba(255, 240, 180, 0.22);
+  }
+}
+
+.mushaf-ayah-hit {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Āyāt of a neighbouring sūrah on a shared page: tappable, shown with a faint wash on hover only. */
+.mushaf-ayah-hit--other-surah {
+  background: transparent;
 }
 
 .mushaf-ayah-hit.is-selected {

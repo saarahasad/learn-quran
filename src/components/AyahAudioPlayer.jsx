@@ -136,18 +136,27 @@ export default function AyahAudioPlayer({
     setCurrentTime(0);
     setDuration(0);
     setPlaying(false);
+    if (audio.getAttribute("src") !== src) audio.setAttribute("src", src);
     audio.load();
-
-    if (!autoPlay) return undefined;
 
     const tryPlay = () => {
       audio.play().catch(() => setPlaying(false));
     };
 
-    if (audio.readyState >= 2) tryPlay();
-    else audio.addEventListener("canplay", tryPlay, { once: true });
+    if (autoPlay) {
+      if (audio.readyState >= 2) tryPlay();
+      else audio.addEventListener("canplay", tryPlay, { once: true });
+    }
 
-    return clearReadingPause;
+    return () => {
+      clearReadingPause();
+      audio.removeEventListener("canplay", tryPlay);
+      // Release the network stream: tapping many āyāt quickly on iPad otherwise leaves
+      // several MP3 downloads alive, which stalls Safari and can force a tab reload.
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
+    };
   }, [src, autoPlay, surahNumber, ayahNumber, clearReadingPause]);
 
   const togglePlay = () => {

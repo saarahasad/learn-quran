@@ -13,6 +13,7 @@ function AyahOverlay({
   showHighlight,
   indicatorMode = "fill",
   onSelectAyah,
+  onSelectOtherSurahAyah = null,
 }) {
   const [zones, setZones] = useState([]);
   const [layout, setLayout] = useState({
@@ -26,14 +27,19 @@ function AyahOverlay({
 
     getPageHotspots(page).then(({ hotspots, layout: meta }) => {
       if (cancelled) return;
-      setZones(hotspots.filter((h) => h.surah === surahNumber));
+      // Juz ʿAmma pages hold several sūrahs. Keep neighbours tappable when the reader can switch to them.
+      setZones(
+        onSelectOtherSurahAyah
+          ? hotspots
+          : hotspots.filter((h) => h.surah === surahNumber),
+      );
       setLayout(meta);
     });
 
     return () => {
       cancelled = true;
     };
-  }, [page, surahNumber]);
+  }, [page, surahNumber, onSelectOtherSurahAyah]);
 
   if (!zones.length) return null;
 
@@ -57,8 +63,9 @@ function AyahOverlay({
       aria-label={`Āyāt on page ${page}`}
     >
       {zones.map((zone) => {
-        const isPassage = highlightSet?.has(zone.ayah) && showHighlight;
-        const isCurrent = showHighlight && currentAyah === zone.ayah;
+        const isOther = zone.surah !== surahNumber;
+        const isPassage = !isOther && highlightSet?.has(zone.ayah) && showHighlight;
+        const isCurrent = !isOther && showHighlight && currentAyah === zone.ayah;
 
         return (
           <button
@@ -66,14 +73,19 @@ function AyahOverlay({
             type="button"
             className={[
               "mushaf-ayah-hit",
+              isOther && "mushaf-ayah-hit--other-surah",
               isPassage && "is-selected",
               isCurrent && (useBorder ? "is-current-border" : "is-current"),
             ]
               .filter(Boolean)
               .join(" ")}
             style={hotspotToPercent(zone, layout)}
-            onClick={() => onSelectAyah?.(zone.ayah)}
-            aria-label={`Āyah ${zone.ayah}`}
+            onClick={() =>
+              isOther
+                ? onSelectOtherSurahAyah?.(zone.surah, zone.ayah, page)
+                : onSelectAyah?.(zone.ayah)
+            }
+            aria-label={isOther ? `Sūrah ${zone.surah}, āyah ${zone.ayah}` : `Āyah ${zone.ayah}`}
             aria-pressed={isPassage || isCurrent}
             tabIndex={onSelectAyah ? 0 : -1}
           />

@@ -11,6 +11,8 @@ import CourseLayout, {
 } from "./src/components/CourseLayout.jsx";
 import TextbookStudy from "./src/components/TextbookStudy.jsx";
 import { hasBaqarahPageGuides } from "./src/data/baqarahPageGuides.js";
+import { getSurahMushafPages } from "./src/data/mushafPageMap.js";
+import TafsirDeck from "./src/components/tafsir/TafsirDeck.jsx";
 import { GENERATED_SURAHS } from "./src/data/generatedSurahs.js";
 import { JUZ1_GENERATED_SURAHS } from "./src/data/juz1GeneratedSurahs.js";
 import { JUZ30_GENERATED_SURAHS } from "./src/data/juz30GeneratedSurahs.js";
@@ -404,6 +406,12 @@ function routeFromUrl(surahs) {
   },surahs);
 }
 
+/** Router paths are basename-relative; raw History API calls need the deploy base (e.g. /learn-quran/). */
+function withBase(path) {
+  const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+  return `${base}${path}`;
+}
+
 function routeUrl(route,juz) {
   const params = new URLSearchParams();
   params.set("surah",route.sid);
@@ -432,9 +440,42 @@ export default function QuranRevisionApp() {
   const [memorizeOpen, setMemorizeOpen] = useState(false);
   const [page10DrillOpen, setPage10DrillOpen] = useState(false);
 
+  /** Where to open the muṣḥaf after flipping or tapping into a neighbouring sūrah. */
+  const [mushafEntry, setMushafEntry] = useState(null);
+
   const handleSpreadChange = useCallback((scope) => {
     setMushafQuizScope(scope);
   }, []);
+
+  const currentSid = route.sid;
+
+  /** Next/previous printed page continues into whichever sūrah of this juz sits on it. */
+  const getNeighbourPage = useCallback((direction, fromPage) => {
+    const target = direction === "forward" ? fromPage + 1 : fromPage - 1;
+    const candidates = surahs
+      .filter((s) => s.id !== currentSid && getSurahMushafPages(s.revelationOrder).includes(target))
+      .sort((a, b) => a.revelationOrder - b.revelationOrder);
+    if (!candidates.length) return null;
+    const surah = direction === "forward" ? candidates[0] : candidates[candidates.length - 1];
+    return { surah, page: target };
+  }, [surahs, currentSid]);
+
+  const switchSurahAt = useCallback((surah, page, ayah = null) => {
+    setMushafEntry({ sid: surah.id, page, ayah });
+    const next = { sid: surah.id, view: "revise", scene: 0 };
+    setRoute(next);
+    window.history.pushState(next, "", withBase(routeUrl(next, juz)));
+  }, [juz]);
+
+  const handleFlipToNeighbour = useCallback((direction, fromPage) => {
+    const target = getNeighbourPage(direction, fromPage);
+    if (target) switchSurahAt(target.surah, target.page);
+  }, [getNeighbourPage, switchSurahAt]);
+
+  const handleOtherSurahAyah = useCallback((surahNumber, ayah, page) => {
+    const target = surahs.find((s) => s.revelationOrder === surahNumber);
+    if (target) switchSurahAt(target, page, ayah);
+  }, [surahs, switchSurahAt]);
 
   useEffect(()=>save(allSurahs),[allSurahs]);
   useEffect(() => {
@@ -446,7 +487,7 @@ export default function QuranRevisionApp() {
   }, [route.sid]);
   useEffect(()=>{
     const current = routeFromUrl(surahs);
-    window.history.replaceState(current,"",routeUrl(current,juz));
+    window.history.replaceState(current,"",withBase(routeUrl(current,juz)));
     const onPopState = () => {
       setRoute(routeFromUrl(surahs));
     };
@@ -464,12 +505,12 @@ export default function QuranRevisionApp() {
 
   function navigate(next,{replace=false}={}) {
     const normalized = normalizeRoute(typeof next==="function"?next(route):next,surahs);
-    const nextUrl = routeUrl(normalized,juz);
+    const nextUrl = withBase(routeUrl(normalized,juz));
     const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
     setRoute(normalized);
     window.history[replace||nextUrl===currentUrl?"replaceState":"pushState"](normalized,"",nextUrl);
   }
-  function go(id,v){ navigate({sid:id,view:v,scene:0}); }
+  function go(id,v){ setMushafEntry(null); navigate({sid:id,view:v,scene:0}); }
   function goRevise(){ navigate({sid,view:"revise",scene:0},{replace:true}); }
   function goView(v){ navigate({sid,view:v,scene:v==="revise"?scene:0}); }
   function goScene(nextScene){ navigate({sid,view:"revise",scene:nextScene},{replace:true}); }
@@ -595,7 +636,13 @@ export default function QuranRevisionApp() {
           guidePage={guidePage}
           onGuidePageChange={setGuidePage}
           onSpreadChange={handleSpreadChange}
+          initialPage={mushafEntry?.sid === surah.id ? mushafEntry.page : null}
+          initialAyah={mushafEntry?.sid === surah.id ? mushafEntry.ayah : null}
+          getNeighbourPage={getNeighbourPage}
+          onFlipToNeighbour={handleFlipToNeighbour}
+          onOtherSurahAyahSelect={handleOtherSurahAyah}
         />
+        <TafsirDeck key={`tafsir-${surah.id}`} surah={surah.revelationOrder} />
         {testOpen && (
           <HifdhAudioTestPopup
             key={`test-${surah.id}`}
