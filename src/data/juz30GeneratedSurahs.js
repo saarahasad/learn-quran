@@ -2136,7 +2136,10 @@ function cleanToken(token) {
 }
 
 function makeWords(ar, surahNumber, ayahNumber) {
-  const tokens = ar.split(/\s+/).map(cleanToken).filter(Boolean);
+  const tokens = ar
+    .split(/\s+/)
+    .map(cleanToken)
+    .filter((token) => /[\u0621-\u064A\u0671]/.test(token)); // drop ۩ and stand-alone signs
   const wbw = getJuz30Wbw(surahNumber, ayahNumber);
   if (wbw && wbw.length === tokens.length) {
     return tokens.map((token, i) => ({ ar: token, tr: wbw[i].tr, en: wbw[i].en }));

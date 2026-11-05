@@ -1,4 +1,7 @@
-export const GENERATED_SURAHS = {
+import { getJuz30Wbw } from "./juz30WordByWord.js";
+import { arabicTokens } from "../utils/ayahWordByWord.js";
+
+const RAW_GENERATED_SURAHS = {
   "qariah": {
     "id": "qariah",
     "name": "Al-Qāriʿah",
@@ -1349,3 +1352,23 @@ export const GENERATED_SURAHS = {
     "hasTextbook": true
   }
 };
+
+/** Replace placeholder word lists with real per-word glosses (Juz ʿAmma dataset). */
+function withWordByWord(surah) {
+  return {
+    ...surah,
+    ayahs: surah.ayahs.map((ayah) => {
+      const wbw = getJuz30Wbw(surah.revelationOrder, ayah.n);
+      const tokens = arabicTokens(ayah.ar);
+      if (!wbw || wbw.length !== tokens.length) return ayah;
+      return {
+        ...ayah,
+        words: tokens.map((ar, i) => ({ ar, tr: wbw[i].tr, en: wbw[i].en })),
+      };
+    }),
+  };
+}
+
+export const GENERATED_SURAHS = Object.fromEntries(
+  Object.entries(RAW_GENERATED_SURAHS).map(([id, surah]) => [id, withWordByWord(surah)]),
+);
