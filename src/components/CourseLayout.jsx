@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { CourseNavContext } from "./courseNavContext.js";
 import { Link, useLocation } from "react-router-dom";
 import { LEARN_ISLAM, getCourseTheme } from "../data/platform.js";
 import { courseThemeClass, courseThemeStyle, resolveCourseIdFromPath } from "../utils/courseTheme.js";
@@ -266,6 +267,8 @@ export default function CourseLayout({
   lesson = false,
   courseId,
   themeColor,
+  /** The page renders its own toolbar that shows the Outline button and breadcrumbs. */
+  navInToolbar = false,
   children,
 }) {
   const { pathname } = useLocation();
@@ -334,13 +337,20 @@ export default function CourseLayout({
     );
   }
 
+  const navValue = {
+    breadcrumbs: breadcrumbs ?? [],
+    openOutline: sidebar && isDrawer ? () => setDrawerOpen(true) : null,
+    outlineOpen: drawerOpen,
+  };
+
   return (
+    <CourseNavContext.Provider value={navValue}>
     <div className={`site-shell${themeClass ? ` ${themeClass}` : ""}`} style={themeStyle}>
       <CourseHeader />
       {banner && <CourseBanner {...banner} />}
       {sidebar && isDrawer ? (
         <div className="course-body course-body--drawer">
-          <div className="course-navbar">
+          {!navInToolbar && <div className="course-navbar">
             <button
               type="button"
               className="course-outline-trigger"
@@ -354,7 +364,7 @@ export default function CourseLayout({
               <span>Outline</span>
             </button>
             {breadcrumbs && <CourseBreadcrumbs items={breadcrumbs} />}
-          </div>
+          </div>}
           <div
             className={`course-drawer${drawerOpen ? " is-open" : ""}`}
             aria-hidden={!drawerOpen}
@@ -415,7 +425,7 @@ export default function CourseLayout({
             </div>
           </div>
           <main className="course-main">
-            {breadcrumbs && <CourseBreadcrumbs items={breadcrumbs} />}
+            {breadcrumbs && !navInToolbar && <CourseBreadcrumbs items={breadcrumbs} />}
             <div
               className={`course-main-inner${fullWidth ? " full" : wide ? " wide" : ""}`}
             >
@@ -436,5 +446,6 @@ export default function CourseLayout({
         </>
       )}
     </div>
+    </CourseNavContext.Provider>
   );
 }

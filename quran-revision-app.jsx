@@ -587,6 +587,7 @@ export default function QuranRevisionApp() {
         { label: surah.name },
       ]}
       sidebar={studySidebar}
+      navInToolbar
     >
       <style>{FONTS}</style>
       <StudyToolbar title={surah.name} titleAr={surah.nameAr} onSlots={setToolbarSlots}>

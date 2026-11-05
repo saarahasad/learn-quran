@@ -237,3 +237,70 @@
     justify-content: space-between;
   }
 }
+
+/* Course navigation folded into the toolbar's title line */
+.study-toolbar__title {
+  flex-wrap: wrap;
+  row-gap: 0.15rem;
+}
+
+.study-toolbar__outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 34px;
+  margin-right: 0.35rem;
+  padding: 0 0.75rem 0 0.6rem;
+  border: 1px solid #e2ded7;
+  border-radius: 999px;
+  background: #fff;
+  color: #1c1917;
+  font: 600 0.86rem/1 var(--edx-font, "DM Sans", sans-serif);
+  cursor: pointer;
+  align-self: center;
+}
+
+.study-toolbar__outline svg {
+  color: var(--course-color, #0f766e);
+}
+
+.study-toolbar__outline:hover,
+.study-toolbar__outline[aria-expanded="true"] {
+  background: #f7f5f1;
+  border-color: var(--course-color, #0f766e);
+}
+
+.study-toolbar__crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: #78716c;
+  white-space: nowrap;
+}
+
+.study-toolbar__crumb a {
+  color: var(--course-color, #0f766e);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.study-toolbar__crumb a:hover {
+  text-decoration: underline;
+}
+
+/* With no separate Outline bar above, the toolbar sticks right under the header */
+.course-body--drawer .study-toolbar {
+  top: var(--site-header-h, 64px);
+}
+
+.course-body--drawer .course-main-inner.wide:has(> .study-toolbar),
+.course-body--drawer .course-main-inner.wide:has(.study-toolbar) {
+  padding-top: 0.75rem;
+}
+
+@media (max-width: 720px) {
+  .study-toolbar__crumb {
+    display: none;
+  }
+}

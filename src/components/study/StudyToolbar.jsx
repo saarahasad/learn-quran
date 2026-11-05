@@ -1,4 +1,6 @@
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
+import { Link } from "react-router-dom";
+import { CourseNavContext } from "../courseNavContext.js";
 import "../../styles/study-toolbar.css";
 
 /**
@@ -18,10 +20,34 @@ export default function StudyToolbar({ title, titleAr, onSlots, children }) {
     (node) => onSlots?.((cur) => (cur?.bottom === node ? cur : { ...cur, bottom: node })),
     [onSlots],
   );
+  const nav = useContext(CourseNavContext);
+  // Course crumbs between "home" and this page (e.g. "Juz 30 — Short Surahs").
+  const crumbs = (nav?.breadcrumbs ?? []).slice(1, -1).filter((c) => c.to);
+
   return (
     <div className="study-toolbar" role="toolbar" aria-label="Study tools">
       <div className="study-toolbar__row study-toolbar__row--top">
         <div className="study-toolbar__title">
+          {nav?.openOutline && (
+            <button
+              type="button"
+              className="study-toolbar__outline"
+              onClick={nav.openOutline}
+              aria-expanded={nav.outlineOpen}
+              aria-controls="course-drawer-panel"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+                <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+              </svg>
+              <span>Outline</span>
+            </button>
+          )}
+          {crumbs.map((c) => (
+            <span key={c.to} className="study-toolbar__crumb">
+              <Link to={c.to}>{c.label}</Link>
+              <span aria-hidden>›</span>
+            </span>
+          ))}
           {titleAr && (
             <span className="study-toolbar__title-ar" dir="rtl" lang="ar">
               {titleAr}
