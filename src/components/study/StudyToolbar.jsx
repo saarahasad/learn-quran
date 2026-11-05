@@ -10,10 +10,14 @@ import "../../styles/study-toolbar.css";
  * portal their own groups into, so every control lives on this one bar.
  */
 export default function StudyToolbar({ title, titleAr, onSlots, children }) {
-  // Two slots the mushaf reader portals into: row 1 (page + view), row 2 (mistakes).
+  // Slots the mushaf reader portals into: nav (page turning), top (hide words), bottom (mistakes).
   // Stable ref callbacks: a new function each render would detach/re-attach and loop.
   const setTop = useCallback(
     (node) => onSlots?.((cur) => (cur?.top === node ? cur : { ...cur, top: node })),
+    [onSlots],
+  );
+  const setNav = useCallback(
+    (node) => onSlots?.((cur) => (cur?.nav === node ? cur : { ...cur, nav: node })),
     [onSlots],
   );
   const setBottom = useCallback(
@@ -55,6 +59,9 @@ export default function StudyToolbar({ title, titleAr, onSlots, children }) {
           )}
           {title && <span className="study-toolbar__title-en">{title}</span>}
         </div>
+        <div className="study-toolbar__nav" ref={setNav} />
+      </div>
+      <div className="study-toolbar__row study-toolbar__row--middle">
         <div className="study-toolbar__scroll" ref={setTop} />
       </div>
       <div className="study-toolbar__row study-toolbar__row--bottom">

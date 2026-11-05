@@ -551,13 +551,12 @@ export default function MushafImageReader({
     closeMistakePopover();
   }
 
-  const inToolbar = Boolean(toolbarSlot?.top && toolbarSlot?.bottom) && !compact;
+  const inToolbar = Boolean(toolbarSlot?.top && toolbarSlot?.bottom && toolbarSlot?.nav) && !compact;
   const memoryActive = pageMemoryMode !== "full";
   const pageLabel = `صفحة ${currentSpread.map((p) => toArabicNum(p)).join(" – ")}`;
   const toolbarTools = inToolbar && (
     <>
       {createPortal(
-        <>
           <ToolbarGroup label="Turn pages">
             <ToolbarButton
               icon={Icons.next}
@@ -575,6 +574,11 @@ export default function MushafImageReader({
               title="Previous page"
             />
           </ToolbarGroup>
+        ,
+        toolbarSlot.nav,
+      )}
+      {createPortal(
+        <>
           {!calibrateMode && (
             <ToolbarGroup label="Hide words to test your memory">
               <span className="study-toolbar__caption" aria-hidden>Hide words</span>
@@ -591,18 +595,21 @@ export default function MushafImageReader({
                   />
                 ))}
               </div>
-              {memoryActive && (
-                <>
-                  <ToolbarButton icon={Icons.shuffle} label="Hide different words" onClick={shufflePageMemory} />
-                  <ToolbarButton
-                    icon={Icons.eye}
-                    label={pageMemoryShowAll ? "Hide them again" : "Reveal all"}
-                    toggle
-                    active={pageMemoryShowAll}
-                    onClick={togglePageMemoryRevealAll}
-                  />
-                </>
-              )}
+              {/* Always shown (greyed out under "None") so choosing an option never reflows the bar */}
+              <ToolbarButton
+                icon={Icons.shuffle}
+                label="Hide different words"
+                onClick={shufflePageMemory}
+                disabled={!memoryActive}
+              />
+              <ToolbarButton
+                icon={Icons.eye}
+                label={pageMemoryShowAll ? "Hide them again" : "Reveal all"}
+                toggle
+                active={pageMemoryShowAll}
+                onClick={togglePageMemoryRevealAll}
+                disabled={!memoryActive}
+              />
             </ToolbarGroup>
           )}
         </>,

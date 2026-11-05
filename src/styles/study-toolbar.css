@@ -220,23 +220,6 @@
   }
 }
 
-/* Tablets: title on its own short line so page turning + hide switch share one row */
-@media (min-width: 721px) {
-  .study-toolbar__row--top {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.2rem;
-  }
-
-  .study-toolbar__title {
-    border-right: none;
-    padding-left: 0.4rem;
-  }
-
-  .study-toolbar__row--top .study-toolbar__scroll {
-    justify-content: space-between;
-  }
-}
 
 /* Course navigation folded into the toolbar's title line */
 .study-toolbar__title {
@@ -311,4 +294,47 @@
   font-weight: 700;
   color: #57534e;
   white-space: nowrap;
+}
+
+/* ── Stable three-line layout ─────────────────────────────
+   1: Outline · course › sūrah  ………  ‹ Next page · صفحة · Previous page ›
+   2: Hide words …
+   3: actions                                                         */
+.study-toolbar__row--top {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 0.3rem;
+}
+
+.study-toolbar__title {
+  border-right: none;
+}
+
+.study-toolbar__nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.study-toolbar__nav .study-toolbar__group {
+  border-right: none;
+  padding-right: 0;
+}
+
+.study-toolbar__row--middle {
+  padding-top: 0.35rem;
+  border-top: 1px solid #f0ece5;
+}
+
+@media (max-width: 720px) {
+  .study-toolbar__row--top {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .study-toolbar__nav {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+  }
 }
