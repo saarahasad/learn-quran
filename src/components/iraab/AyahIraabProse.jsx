@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getAyahIraabProse } from "../../data/juz30Iraab/index.js";
 import "../../styles/iraab-prose.css";
 
@@ -106,9 +106,46 @@ const LEGEND = [
   ["is-sign", "العلامة"],
 ];
 
+/* Āyāt not in the hand-made files: built from surahquran.com (scripts/juz30-iraab-diagrams/build_prose.py) */
+const SURAHQURAN_FILES = import.meta.glob("../../data/juz30Iraab/surahquran/*.json");
+const fileCache = new Map();
+function loadSurahquran(n) {
+  const loader = SURAHQURAN_FILES[`../../data/juz30Iraab/surahquran/${n}.json`];
+  if (!loader) return Promise.resolve(null);
+  if (!fileCache.has(n)) {
+    fileCache.set(
+      n,
+      loader()
+        .then((m) => m.default ?? m)
+        .catch((err) => {
+          fileCache.delete(n);
+          throw err;
+        }),
+    );
+  }
+  return fileCache.get(n);
+}
+
+function useProseEntries(surahNumber, ayahNumber) {
+  const local = getAyahIraabProse(surahNumber, ayahNumber);
+  const key = `${surahNumber}:${ayahNumber}`;
+  const [loaded, setLoaded] = useState({ key: null, rows: null });
+  useEffect(() => {
+    if (local || surahNumber == null || ayahNumber == null) return undefined;
+    let alive = true;
+    loadSurahquran(surahNumber)
+      .then((data) => alive && setLoaded({ key, rows: data?.[String(ayahNumber)] ?? null }))
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [local, surahNumber, ayahNumber, key]);
+  return local ?? (loaded.key === key ? loaded.rows : null);
+}
+
 export default function AyahIraabProse({ surahNumber, ayahNumber }) {
   const [open, setOpen] = useState(true);
-  const entries = getAyahIraabProse(surahNumber, ayahNumber);
+  const entries = useProseEntries(surahNumber, ayahNumber);
   if (!entries?.length) return null;
 
   return (
