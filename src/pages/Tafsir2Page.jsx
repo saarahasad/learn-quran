@@ -150,7 +150,11 @@ function AqeedahSection({ section }) {
           {section.items.map((item) => (
             <li key={item.n} className={`tf-benefit tf-benefit--${item.tone ?? "green"}`}>
               <span className="tf-benefit-n">{item.n}</span>
-              <p>{item.body}</p>
+              <div className="tf-benefit-body">
+                {(Array.isArray(item.body) ? item.body : [item.body]).map((para) => (
+                  <p key={para}>{para}</p>
+                ))}
+              </div>
             </li>
           ))}
         </ol>

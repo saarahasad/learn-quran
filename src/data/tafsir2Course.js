@@ -108,6 +108,63 @@ const NAZIAT_1_14 = [
   { n: "١٤", ar: "فَإِذَا هُم بِالسَّاهِرَةِ" },
 ];
 
+const NAZIAT_15_26 = [
+  { n: "١٥", ar: "هَلْ أَتَىٰكَ حَدِيثُ مُوسَىٰ" },
+  { n: "١٦", ar: "إِذْ نَادَاهُ رَبُّهُ بِالْوَادِ الْمُقَدَّسِ طُوًى" },
+  { n: "١٧", ar: "اذْهَبْ إِلَىٰ فِرْعَوْنَ إِنَّهُ طَغَىٰ" },
+  { n: "١٨", ar: "فَقُلْ هَل لَّكَ إِلَىٰ أَن تَزَكَّىٰ" },
+  { n: "١٩", ar: "وَأَهْدِيَكَ إِلَىٰ رَبِّكَ فَتَخْشَىٰ" },
+  { n: "٢٠", ar: "فَأَرَاهُ الْآيَةَ الْكُبْرَىٰ" },
+  { n: "٢١", ar: "فَكَذَّبَ وَعَصَىٰ" },
+  { n: "٢٢", ar: "ثُمَّ أَدْبَرَ يَسْعَىٰ" },
+  { n: "٢٣", ar: "فَحَشَرَ فَنَادَىٰ" },
+  { n: "٢٤", ar: "فَقَالَ أَنَا رَبُّكُمُ الْأَعْلَىٰ" },
+  { n: "٢٥", ar: "فَأَخَذَهُ اللَّهُ نَكَالَ الْآخِرَةِ وَالْأُولَىٰ" },
+  { n: "٢٦", ar: "إِنَّ فِي ذَٰلِكَ لَعِبْرَةً لِّمَن يَخْشَىٰ" },
+];
+
+const NAZIAT_27_33 = [
+  { n: "٢٧", ar: "أَأَنتُمْ أَشَدُّ خَلْقًا أَمِ السَّمَاءُ بَنَاهَا" },
+  { n: "٢٨", ar: "رَفَعَ سَمْكَهَا فَسَوَّاهَا" },
+  { n: "٢٩", ar: "وَأَغْطَشَ لَيْلَهَا وَأَخْرَجَ ضُحَاهَا" },
+  { n: "٣٠", ar: "وَالْأَرْضَ بَعْدَ ذَٰلِكَ دَحَاهَا" },
+  { n: "٣١", ar: "أَخْرَجَ مِنْهَا مَاءَهَا وَمَرْعَاهَا" },
+  { n: "٣٢", ar: "وَالْجِبَالَ أَرْسَاهَا" },
+  { n: "٣٣", ar: "مَتَاعًا لَّكُمْ وَلِأَنْعَامِكُمْ" },
+];
+
+const NAZIAT_34_41 = [
+  { n: "٣٤", ar: "فَإِذَا جَاءَتِ الطَّامَّةُ الْكُبْرَىٰ" },
+  { n: "٣٥", ar: "يَوْمَ يَتَذَكَّرُ الْإِنسَانُ مَا سَعَىٰ" },
+  { n: "٣٦", ar: "وَبُرِّزَتِ الْجَحِيمُ لِمَن يَرَىٰ" },
+  { n: "٣٧", ar: "فَأَمَّا مَن طَغَىٰ" },
+  { n: "٣٨", ar: "وَآثَرَ الْحَيَاةَ الدُّنْيَا" },
+  { n: "٣٩", ar: "فَإِنَّ الْجَحِيمَ هِيَ الْمَأْوَىٰ" },
+  { n: "٤٠", ar: "وَأَمَّا مَنْ خَافَ مَقَامَ رَبِّهِ وَنَهَى النَّفْسَ عَنِ الْهَوَىٰ" },
+  { n: "٤١", ar: "فَإِنَّ الْجَنَّةَ هِيَ الْمَأْوَىٰ" },
+];
+
+const NAZIAT_42_46 = [
+  { n: "٤٢", ar: "يَسْأَلُونَكَ عَنِ السَّاعَةِ أَيَّانَ مُرْسَىٰهَا" },
+  { n: "٤٣", ar: "فِيمَ أَنتَ مِن ذِكْرَاهَا" },
+  { n: "٤٤", ar: "إِلَىٰ رَبِّكَ مُنتَهَاهَا" },
+  { n: "٤٥", ar: "إِنَّمَا أَنتَ مُنذِرُ مَن يَخْشَاهَا" },
+  { n: "٤٦", ar: "كَأَنَّهُمْ يَوْمَ يَرَوْنَهَا لَمْ يَلْبَثُوا إِلَّا عَشِيَّةً أَوْ ضُحَاهَا" },
+];
+
+const ABASA_1_10 = [
+  { n: "١", ar: "عَبَسَ وَتَوَلَّىٰ" },
+  { n: "٢", ar: "أَن جَاءَهُ الْأَعْمَىٰ" },
+  { n: "٣", ar: "وَمَا يُدْرِيكَ لَعَلَّهُ يَزَّكَّىٰ" },
+  { n: "٤", ar: "أَوْ يَذَّكَّرُ فَتَنفَعَهُ الذِّكْرَىٰ" },
+  { n: "٥", ar: "أَمَّا مَنِ اسْتَغْنَىٰ" },
+  { n: "٦", ar: "فَأَنتَ لَهُ تَصَدَّىٰ" },
+  { n: "٧", ar: "وَمَا عَلَيْكَ أَلَّا يَزَّكَّىٰ" },
+  { n: "٨", ar: "وَأَمَّا مَن جَاءَكَ يَسْعَىٰ" },
+  { n: "٩", ar: "وَهُوَ يَخْشَىٰ" },
+  { n: "١٠", ar: "فَأَنتَ عَنْهُ تَلَهَّىٰ" },
+];
+
 export const TAFSIR2_UNITS = [
   {
     id: "semester",
@@ -1710,6 +1767,765 @@ export const TAFSIR2_UNITS = [
           },
         ],
       },
+      {
+        id: "naziat-musa",
+        title: "The story of Moses (79:15–17)",
+        icon: "8",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · 79:15–26",
+            title: "Has there reached you the story of Moses?",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: NAZIAT_15_26,
+            translation:
+              "{Has there reached you the story of Moses? When his Lord called to him in the sacred valley of Tuwa: “Go to Pharaoh. Indeed, he has transgressed, And say to him, ‘Would you [be willing to] purify yourself, And let me guide you to your Lord so you would fear [Him]?’” And he showed him the greatest sign, But Pharaoh denied and disobeyed. Then he turned his back, striving, And he gathered [his people] and called out. And said, “I am your most exalted lord.” So Allah seized him in exemplary punishment in the hereafter and in this life. Indeed in that is a warning for whoever would fear [Allah]}",
+            ref: "[an-Nazi‘aat 79:15–26]",
+          },
+          {
+            type: "verse",
+            ayah: "{Has there reached you the story of Moses?}",
+            paras: [
+              "That is, has there come to you, O Messenger, the story of Musa عليه السلام? This is a word of consolation for the Prophet ﷺ.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{When his Lord called to him in the sacred valley of Tuwa}",
+            paras: ["That is, when Allah ﷻ called Musa عليه السلام in the blessed, sacred valley."],
+          },
+          {
+            type: "terms",
+            items: [
+              {
+                word: "Tuwa",
+                gloss: "a name for the sacred valley",
+                body: "The valley was sacred because Allah ﷻ sent revelation to Musa عليه السلام in that place.",
+              },
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Go to Pharaoh. Indeed, he has transgressed}",
+            paras: [
+              "That is, Allah ﷻ said to Musa عليه السلام: Go to Pharaoh and call him to Allah ﷻ, for he has transgressed.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-pharaoh",
+        title: "Pharaoh’s denial and the seizure (79:17–26)",
+        icon: "9",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · commentary, continued",
+            title: "Transgression, fear, and the greatest sign",
+          },
+          {
+            type: "verse",
+            ayah: "Tughyaan",
+            paras: [
+              "Tughyaan (translated here as “transgression”) means going to extremes in committing sins and overstepping the mark. A word from the same root appears in the verse in which Allah ﷻ says: {Indeed, when the water overflowed [tughyan]} [al-Haqqah 69:11]; the water increased and overflowed its limits. From the same root comes the word taghut (which refers to transgression) because that is overstepping the mark.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And say to him, ‘Would you [be willing to] purify yourself’}",
+            paras: [
+              "That is, do you want to purify yourself from faults, shortcomings and sins, by saying: Laa ilaaha illa Allah (there is no god worthy of worship except Allah)?",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And let me guide you to your Lord so you would fear [Him]?}",
+            paras: [
+              "That is, let me guide you to the path of obedience to your Lord ﷻ, so that you might fear Him after you come to know about Him.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "Khashyah (translated here as “fear”) refers to fear based on knowledge. If fear is not based on knowledge, then it is called khawf mujarrad (pure fear). This is the difference between khashyah and khawf.",
+          },
+          {
+            type: "note",
+            title: "Guidance before fear",
+            body: "The fact that guidance is mentioned before fear indicates that fear of Allah does not occur except after coming to know Him ﷻ. Allah ﷻ says elsewhere: {Only those fear Allah, from among His servants, who have knowledge} [Fatir 35:28].",
+          },
+          {
+            type: "verse",
+            ayah: "{And he showed him the greatest sign}",
+            paras: [
+              "The greatest sign was the hand of Musa عليه السلام, when he brought it out appearing white to the onlookers, and his staff, when it clearly turned into a snake.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{But Pharaoh denied and disobeyed}",
+            paras: ["Thus Pharaoh rejected the message of Musa عليه السلام, and disobeyed the commands of Allah ﷻ."],
+          },
+          {
+            type: "verse",
+            ayah: "{Then he turned his back, striving}",
+            paras: [
+              "That is, he turned away from what Musa عليه السلام called him to, of obedience to Allah, fear of Him and affirmation of His oneness (Tawhid), and he strove hard in opposing Musa عليه السلام.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And he gathered [his people]}",
+            paras: [
+              "That is, he brought together the people of his kingdom, assembling his courtiers to advise him, gathering his troops to fight and wage war, and bringing his people together to attend the day of the festival.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{and called out And said, “I am your most exalted lord”}",
+            paras: ["Above whom there is no other lord."],
+          },
+          {
+            type: "verse",
+            ayah: "{So Allah seized him in exemplary punishment in the hereafter and in this life}",
+            paras: [
+              "Allah wrought vengeance upon him with punishment in this world and the Hereafter. Thus He made him a lesson and an example for other rebellious people like him.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Indeed in that is a warning for whoever would fear [Allah]}",
+            paras: ["That is, in this story there is a lesson and an exhortation for those who fear Allah ﷻ."],
+          },
+          {
+            type: "terms",
+            items: [
+              {
+                word: "tughyaan",
+                gloss: "transgression",
+                body: "Going to extremes in committing sins and overstepping the mark. The same root is in {when the water overflowed [tughyan]} [al-Haqqah 69:11], and in taghut, because that too is overstepping the mark.",
+              },
+              {
+                word: "khashyah",
+                gloss: "fear based on knowledge",
+                body: "If fear is not based on knowledge, it is khawf mujarrad (pure fear). Guidance is mentioned before fear, because fear of Allah does not occur except after coming to know Him.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-musa-learn",
+        title: "What we learn from 79:15–26",
+        icon: "10",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · 79:15–26",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "rose",
+                body: [
+                  "Allah tells us the story of Pharaoh after mentioning how the polytheists denied the Resurrection, because of the similarities that may be seen between Pharaoh and his people, and the disbelievers of Quraysh, namely their stubbornness, arrogance and persecution of the Muslims; and because of the similarities between Musa and Muhammad ﷺ.",
+                  "Allah tells the story of Pharaoh as a warning to the polytheists that just as He destroyed Pharaoh because of his stubbornness and arrogance, He would also destroy the disbelievers of Quraysh if they did not believe.",
+                  "This story also offers consolation to the Muslims and the believers; just as Allah saved Musa and the people with him from the persecution of Pharaoh, in like manner Allah would save the Prophet ﷺ and the believers from the persecution of the disbelievers of Quraysh.",
+                ],
+              },
+              {
+                n: "2",
+                tone: "sky",
+                body: "When calling people to Allah, it is essential to be gentle and kind, and to avoid harshness, even with transgressors and tyrants, because gentle words attract the hearts of the listeners, and make it more likely that they will respond to this call.",
+              },
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The usage of the word strive in the phrase {Then he turned his back, striving} indicates that Pharaoh strove hard and did his utmost to convince his people that he was the “most exalted lord”. This is how those who oppose the religion of Allah in every time and place strive their utmost and do all that they can to oppose the religion. So shouldn’t the Muslim also strive his utmost to spread Islam and defend his religion?",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "3",
+                tone: "teal",
+                body: "{So Allah seized him in exemplary punishment in the hereafter and in this life}. The punishment of the Hereafter is mentioned before the punishment in this world, because it is more severe and more lasting. Thus it is the real punishment, a severe and everlasting punishment that will seize the transgressors and sinners.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-musa-activity",
+        title: "Activity · The story of Moses",
+        icon: "11",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt: "Derive the following from this Quranic passage:",
+                parts: [
+                  {
+                    text: "a. Lessons for da‘wah from the way in which Musa عليه السلام addressed Pharaoh.",
+                  },
+                  {
+                    text: "b. The reason why the punishment of the Hereafter is mentioned before the punishment in this world in the verse: {So Allah seized him in exemplary punishment in the hereafter and in this life}.",
+                  },
+                ],
+              },
+              {
+                n: "2",
+                prompt: "Explain the meaning of the following words: sacred; turned his back; gathered [his people].",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-heaven",
+        title: "A more difficult creation (79:27–28)",
+        icon: "12",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · 79:27–33",
+            title: "Are you a more difficult creation, or the heaven?",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: NAZIAT_27_33,
+            translation:
+              "{Are you a more difficult creation or is the heaven? Allah constructed it. He raised its ceiling and proportioned it, And He darkened its night and extracted its brightness, And after that He spread the earth. He extracted from it its water and its pasture. And the mountains He set firmly, As provision for you and your grazing livestock}",
+            ref: "[an-Nazi‘aat 79:27–33]",
+          },
+          {
+            type: "verse",
+            ayah: "{Are you a more difficult creation or is the heaven? Allah constructed it}",
+            paras: [
+              "That is, is recreating you after death more difficult than creating the heaven?",
+              "What is meant is: the One Who is able to create the heaven is also able to re-create you after death.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Allah constructed it}",
+            paras: ["Means: Allah ﷻ raised it above you like a structure or firmament."],
+          },
+          {
+            type: "verse",
+            ayah: "{He raised its ceiling}",
+            paras: ["That is, He built it high."],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The word samk (translated here as “ceiling”) means raising something in an open space, whether what is raised is connected to the earth or not. Connecting the verb rafa‘a (He raised) to the object (samk), the name of which also refers to raising, is done by way of emphasizing the action of raising. Thus the heaven is vastly raised.",
+          },
+          {
+            type: "verse",
+            ayah: "{and proportioned it}",
+            paras: ["He created it appropriately, with no imperfections, cracks or gaps."],
+          },
+          {
+            type: "terms",
+            items: [
+              {
+                word: "samk",
+                gloss: "ceiling",
+                body: "Raising something in an open space, whether or not it is connected to the earth. Joining rafa‘a (He raised) to samk emphasizes the raising: the heaven is vastly raised.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-earth",
+        title: "The earth spread out (79:29–33)",
+        icon: "13",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · commentary, continued",
+            title: "Night, brightness, and provision",
+          },
+          {
+            type: "verse",
+            ayah: "{And He darkened its night}",
+            paras: ["That is, He made its night dark by causing the sun to set."],
+          },
+          {
+            type: "verse",
+            ayah: "{and extracted its brightness}",
+            paras: [
+              "That is, He made its day obvious and visible. Day is referred to as duha (lit. forenoon) because it is the best time of the day.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And after that He spread the earth}",
+            paras: ["That is, after creating the heavens, He spread out the earth."],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The word translated here as “spread” refers to smoothing out and levelling something.",
+          },
+          {
+            type: "verse",
+            ayah: "{He extracted from it its water and its pasture}",
+            paras: [
+              "That is, He caused springs of water to burst forth from the earth, and caused grass and vegetation to grow on it.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And the mountains He set firmly}",
+            paras: ["That is, He fixed them firmly in the earth."],
+          },
+          {
+            type: "verse",
+            ayah: "{As provision for you and your grazing livestock}",
+            paras: ["That is, to benefit you."],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The word mataa (translated here as “provision”) refers to something that one benefits from for a while. It has the meaning of a defined time limit. What is meant in this verse is granting something to benefit from for a while.",
+          },
+          {
+            type: "terms",
+            items: [
+              {
+                word: "duha",
+                gloss: "forenoon",
+                body: "The day’s brightness. Day is called duha because it is the best time of the day.",
+              },
+              {
+                word: "spread",
+                gloss: "smoothing out and levelling",
+                body: "After creating the heavens, He spread out the earth.",
+              },
+              {
+                word: "mataa",
+                gloss: "provision",
+                body: "Something one benefits from for a while, with a defined time limit. Here it means granting something to benefit from for a while.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-heaven-learn",
+        title: "What we learn from 79:27–33",
+        icon: "14",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · 79:27–33",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "Surat Fussilat indicates that the heaven was created after the earth. Allah ﷻ says: {Say, “Do you indeed disbelieve in He who created the earth in two days … Then He directed Himself to the heaven while it was smoke …”} [Fussilat 41:9–11], whereas in this surah, He says: {… the heaven? Allah constructed it … And after that He spread the earth}. However, there is no contradiction between the verses, because the creation of the earth itself came before the creation of the heaven itself, then after creating the heaven, Allah ﷻ spread out the earth and levelled it. Thus the earth was created first, then the heaven was created, then the earth was spread out.",
+          },
+        ],
+      },
+      {
+        id: "naziat-heaven-activity",
+        title: "Activity · Defending the religion",
+        icon: "15",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt: "Imagine that you are defending Allah’s religion:",
+                parts: [
+                  {
+                    text: "a. You are debating with someone who denies the Resurrection. What are the things that you will quote as evidence that people will be resurrected on the Day of Resurrection?",
+                  },
+                  {
+                    text: "b. You are debating with someone who casts aspersions on the Quran by saying that there are contradictions in it. So he says that Surat Fussilat says that the heaven was created after the earth, and Surat an-Nazi‘aat says the opposite. How will you explain to him that he is mistaken?",
+                  },
+                ],
+              },
+              {
+                n: "2",
+                prompt: "Draw a line from each word or phrase in List A to that which matches it in List B:",
+                table: {
+                  columns: ["(A)", "(B)"],
+                  rows: [
+                    ["its ceiling", "made dark"],
+                    ["darkened", "made firm"],
+                    ["spread it", "its structure"],
+                    ["set firmly", "spread out"],
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-taammah",
+        title: "The greatest Overwhelming Calamity (79:34–38)",
+        icon: "16",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · 79:34–41",
+            title: "When the greatest calamity comes",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: NAZIAT_34_41,
+            translation:
+              "{But when there comes the greatest Overwhelming Calamity, The Day when man will remember that for which he strove, And Hellfire will be exposed for [all] those who see, So as for he who transgressed And preferred the life of the world Then indeed, Hellfire will be [his] refuge. But as for he who feared standing before his Lord and prevented the soul from [unlawful] inclination, Then indeed, Paradise will be [his] refuge}",
+            ref: "[an-Nazi‘aat 79:34–41]",
+          },
+          {
+            type: "verse",
+            ayah: "{But when there comes the greatest Overwhelming Calamity}",
+            paras: [
+              "at-Taammah (translated here as “the Overwhelming Calamity”) is one of the names of the Day of Resurrection.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "This word refers to an event or incident that is overwhelming (tatimm). It is taken from the phrase tamma al-maa, which refers to water when it covers things. Thus it is describing the extreme hardship and horror of that Day, for such words are only used to refer to the most terrifying incidents.",
+          },
+          {
+            type: "verse",
+            ayah: "{greatest}",
+            paras: [
+              "This serves to emphasize how terrible it will be, for this is the clearest way to express what will accompany this event of terrifying matters.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{The Day when man will remember that for which he strove}",
+            paras: ["That is, he will remember what he did of good and evil."],
+          },
+          {
+            type: "verse",
+            ayah: "{And Hellfire will be exposed for [all] those who see}",
+            paras: ["That is, Hell will be brought forth so that people can see it with their own eyes."],
+          },
+          {
+            type: "verse",
+            ayah: "{So as for he who transgressed And preferred the life of the world}",
+            paras: [
+              "That is, the one who over-stepped the mark in misguidance and evildoing, preferred the life of this world and gave it precedence over the matter of his religion and his Hereafter.",
+            ],
+          },
+          {
+            type: "terms",
+            items: [
+              {
+                word: "at-Taammah",
+                gloss: "the Overwhelming Calamity",
+                body: "A name of the Day of Resurrection. From tatimm, and from tamma al-maa: water when it covers things. It describes the extreme hardship and horror of that Day. “Greatest” emphasizes how terrible it will be.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-refuge",
+        title: "Hellfire or Paradise (79:39–41)",
+        icon: "17",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · commentary, continued",
+            title: "The refuge of each",
+          },
+          {
+            type: "verse",
+            ayah: "{Then indeed, Hellfire will be [his] refuge}",
+            paras: [
+              "That is, his ultimate destination will be the Fire.",
+              "The word translated here as “refuge” refers to the place to which one returns and settles.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{But as for he who feared standing before his Lord and prevented the soul from [unlawful] inclination, Then indeed, Paradise will be [his] refuge}",
+            paras: [
+              "That is, for the one who dreaded his standing before Allah ﷻ, and as a result of that dread he forbade himself to follow whims and desires and pleasures – his ultimate destination will be Paradise.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The root meaning of the word hawa (translated above as “[unlawful] inclinations”) is inclination in a general sense. Then the word began to be used to refer to inclination towards desires. It is called thus because it throws down (yahwi) the individual into a great deal of trouble in this world, and in the Hereafter it will lead him to al-hawiyah (the pit of Hell).",
+          },
+          {
+            type: "terms",
+            items: [
+              {
+                word: "refuge",
+                gloss: "the place to which one returns and settles",
+                body: "For the one who transgressed and preferred this world, that place is the Fire. For the one who feared standing before his Lord and restrained his soul, it is Paradise.",
+              },
+              {
+                word: "hawa",
+                gloss: "[unlawful] inclination",
+                body: "At root, inclination in a general sense; then, inclination towards desires. It throws a person down (yahwi) into trouble in this world, and in the Hereafter it leads him to al-hawiyah, the pit of Hell.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-taammah-learn",
+        title: "What we learn from 79:34–41",
+        icon: "18",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · 79:34–41",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "rose",
+                body: "In the verse {And Hellfire will be exposed for [all] those who see}, this indicates that all the believers and disbelievers will see it. As for the believer, he will see it and appreciate the extent of the blessing that has been bestowed upon him; as for the disbeliever, he will see it, so that he will fear it before he is admitted to it.",
+              },
+              {
+                n: "2",
+                tone: "sky",
+                body: "{But as for he who feared standing before his Lord and prevented the soul from [unlawful] inclination}. Here Allah ﷻ mentions together in one place fear of standing before Him ﷻ and forbidding oneself to follow [unlawful] inclinations. That is because fear of Allah is the strongest protection that resists the powerful pull of desires. It is very rare for anything to be more effective in repelling whims and desires than the fear of standing before Allah. For that reason, the Quran mentions them together in one verse.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-taammah-activity",
+        title: "Activity · Transgression and at-Taammah",
+        icon: "19",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt:
+                  "This surah mentions transgression twice. Quote those two places and identify the connection between them.",
+              },
+              {
+                n: "2",
+                prompt: "What is the reason:",
+                parts: [
+                  {
+                    text: "Why the Day of Resurrection is called at-Taammah (the Overwhelming Calamity)?",
+                  },
+                  {
+                    text: "Why are fear of the standing before Allah and restraining the self from following [unlawful] inclinations mentioned together in the same place?",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-hour",
+        title: "When is the Hour? (79:42–43)",
+        icon: "20",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · 79:42–46",
+            title: "They ask you about the Hour",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: NAZIAT_42_46,
+            translation:
+              "{They ask you, [O Muhammad], about the Hour: when is its arrival? In what [position] are you that you should mention it? To your Lord is its finality. You are only a warner for those who fear it. It will be, on the Day they see it, as though they had not remained [in the world] except for an afternoon or a morning thereof}",
+            ref: "[an-Nazi‘aat 79:42–46]",
+          },
+          {
+            type: "verse",
+            ayah: "{They ask you, [O Muhammad], about the Hour: when is its arrival?}",
+            paras: ["That is, when will it happen? What is meant is: when will the Hour begin?"],
+          },
+          {
+            type: "terms",
+            items: [
+              {
+                word: "mursaahaa",
+                gloss: "its arrival",
+                body: "Derived from the verb arsa, which refers to a ship dropping anchor off the coast.",
+              },
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "The onset of the Day of Resurrection is described in such terms by likening something that no one knows when it will happen to a ship on the sea, that no one knows when it will arrive until it actually drops anchor. What is meant is that no one knows when the Resurrection will happen until it actually happens.",
+          },
+          {
+            type: "verse",
+            ayah: "{In what [position] are you that you should mention it?}",
+            paras: ["That is, you have no knowledge of it at all."],
+          },
+        ],
+      },
+      {
+        id: "naziat-warner",
+        title: "Only a warner (79:44–46)",
+        icon: "21",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · commentary, continued",
+            title: "Knowledge of the Hour belongs to Allah",
+          },
+          {
+            type: "verse",
+            paras: [
+              "This was narrated in as-Sahihayn, in the hadith of Jibreel, when he asked the Prophet ﷺ about the Hour, and he ﷺ said: «The one who is asked about it does not know more than the one who is asking.»",
+              "If Jibreel, who was the most knowledgeable of the angels, and the Prophet, who was the most knowledgeable of all humans about the revelation of Allah, did not know when the Hour would begin, then what do you think of those who have less knowledge than them?",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{To your Lord is its finality}",
+            paras: ["That is, knowledge of it belongs only to Allah ﷻ, and no one else has any knowledge of it."],
+          },
+          {
+            type: "verse",
+            ayah: "{You are only a warner for those who fear it}",
+            paras: [
+              "That is, you have only been sent, O Prophet, to warn of the Hour; you have not been sent to tell people when it will happen.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "Al-Bukhari and Muslim narrated: A man said to the Prophet ﷺ: O Messenger of Allah, when will the Hour be? He said: «What have you prepared for it?» He said: Love of Allah and His Messenger ﷺ. He said: «You will be with those whom you love.»",
+          },
+          {
+            type: "verse",
+            ayah: "{as though they had not remained [in the world] except for an afternoon or a morning thereof}",
+            paras: [
+              "That is, when they rise from their graves for the gathering, they will think that the duration of the life of this world was so short that it was as if, in their view, it was no more than an afternoon or a morning of a single day.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The word translated here as “afternoon” refers to the time between noon and the setting of the sun. The word translated here as “morning” refers to the time between sunrise and midday.",
+          },
+          {
+            type: "terms",
+            items: [
+              {
+                word: "afternoon",
+                gloss: "noon until sunset",
+                body: "The time between noon and the setting of the sun.",
+              },
+              {
+                word: "morning",
+                gloss: "sunrise until midday",
+                body: "The time between sunrise and midday. On the Day they see the Hour, this life will seem no longer than one afternoon or one morning.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-hour-learn",
+        title: "What we learn from 79:42–46",
+        icon: "22",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat an-Nazi‘aat · 79:42–46",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "rose",
+                body: "Because of the interests served by withholding knowledge of when the Day of Resurrection will come, Allah ﷻ has withheld knowledge of when it will occur, so that people will strive hard in doing good deeds, fearing and worrying that the Day of Resurrection may come upon them at any moment.",
+              },
+              {
+                n: "2",
+                tone: "green",
+                body: "The fact that the warning mentioned in the verse {You are only a warner for those who fear it} is addressed specifically to those who fear it, does not mean that the Prophet ﷺ did not warn those who did not fear it. Rather what is meant is that those who will benefit from the warning are only those who fear Allah ﷻ. As for those who do not fear Him, they will not benefit from this warning or from other signs in most cases.",
+              },
+              {
+                n: "3",
+                tone: "gold",
+                body: "The verses point to the insignificance of this world, for it is no more than an afternoon or the morning thereof; it is short, temporary and transient, and will end in a very short time. Therefore it is not appropriate, for one who has reason, to neglect the life of the Hereafter for the sake of a mere afternoon or morning, or to lose Paradise for the sake of a transient desire.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "naziat-hour-activity",
+        title: "Activity · The Hour and the warning",
+        icon: "23",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt: "Fill in the blanks:",
+                parts: [{ text: "Afternoon ________" }, { text: "Morning ________" }],
+              },
+              {
+                n: "2",
+                prompt:
+                  "What do we learn from the fact that the word mursaahaa (its arrival) is used to refer to the onset of the Day of Resurrection.",
+              },
+              {
+                n: "3",
+                prompt: "What is the reason for:",
+                parts: [
+                  {
+                    text: "a. Withholding knowledge from people of when the Day of Resurrection will begin?",
+                  },
+                  {
+                    text: "b. Describing the warning as being specifically for those who fear Allah ﷻ, in the words {You are only a warner for those who fear it}?",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
   {
@@ -1718,11 +2534,200 @@ export const TAFSIR2_UNITS = [
     titleAr: "عبس",
     lessons: [
       {
-        id: "abasa",
-        title: "Commentary on Surat Abasa",
+        id: "abasa-opening",
+        title: "Surat Abasa (80:1–10)",
+        icon: "1",
+        sections: [
+          {
+            type: "heading",
+            kicker: "In this unit we will study",
+          },
+          {
+            type: "surahBanner",
+            title: "Surat Abasa",
+            lines: ["is a Makkan surah", "(revealed before the Hijrah)"],
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: ABASA_1_10,
+            translation:
+              "{The Prophet frowned and turned away Because there came to him the blind man, [interrupting]. But what would make you perceive, [O Muhammad], that perhaps he might be purified Or be reminded and the remembrance would benefit him? As for he who thinks himself without need, To him you give attention. And not upon you [is any blame] if he will not be purified. But as for he who came to you striving [for knowledge], While he fears [Allah], From him you are distracted}",
+            ref: "[Abasa 80:1–10]",
+          },
+          {
+            type: "note",
+            title: "The reason for revelation",
+            body: "It was narrated that Aisha رضي الله عنها said: The words {He [i.e., the Prophet] frowned and turned away} were revealed concerning Ibn Umm Maktum, the blind man رضي الله عنه. He came to the Messenger of Allah ﷺ and started saying: O Messenger of Allah, guide me. But with the Messenger of Allah there was one of the prominent figures among the polytheists, so the Messenger of Allah kept turning away from him [Ibn Umm Maktum] and towards the other man, saying: «Do you see anything wrong with what I am telling you?» and [the other man] kept saying: No. It was concerning this that this surah was revealed. Narrated by at-Tirmidhi; classed as sahih by al-Albani.",
+          },
+        ],
+      },
+      {
+        id: "abasa-frown",
+        title: "He frowned and turned away (80:1–4)",
+        icon: "2",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:1–4",
+            title: "The blind man who came striving",
+          },
+          {
+            type: "verse",
+            ayah: "{The Prophet frowned and turned away, Because there came to him the blind man, [interrupting]}",
+            paras: [
+              "A frown appeared on the face of the Prophet ﷺ and he turned away from the blind man who was asking him questions, because the blind man came to him to ask him about some matters, when the Prophet ﷺ was preoccupied calling the leaders of Quraysh to Islam.",
+              "The blind man was the great Sahabi Abdullah ibn Umm Maktum رضي الله عنه.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "Allah ﷻ did not address the Prophet ﷺ directly; rather He spoke of him in the third person {The Prophet frowned and turned away}. This was an indication from Allah ﷻ that He did not want to address the rebuke directly to His Prophet and His Beloved ﷺ, out of compassion and mercy towards him, and by way of honouring him.",
+          },
+          {
+            type: "benefits",
+            title: "Allah referred to the Sahabi as “the blind man” and did not mention him by name for two reasons:",
+            items: [
+              {
+                n: "1",
+                tone: "green",
+                body: "To soften the Prophet’s heart towards this blind man",
+              },
+              {
+                n: "2",
+                tone: "rose",
+                body: "To point out that the blind man had an excuse for interrupting the Prophet ﷺ when he was speaking to the prominent figures; the fact that he was blind was a reason to excuse him.",
+              },
+            ],
+          },
+          {
+            type: "verse",
+            paras: [
+              "Then after speaking of the Prophet ﷺ in the third person, Allah begins to address him directly, in the second person, so as to show the Prophet ﷺ that He is now speaking directly to him, after referring to him implicitly. So He says, addressing him directly:",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{But what would make you perceive, [O Muhammad], that perhaps he might be purified}",
+            paras: [
+              "That is, how do you know, O Muhammad, perhaps this blind man could be purified and cleansed of his sins by learning from your answers to what he came to ask you about?",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Or be reminded and the remembrance would benefit him?}",
+            paras: ["That is, how do you know, perhaps he would learn and benefit from your reminding him of Allah ﷻ?"],
+          },
+        ],
+      },
+      {
+        id: "abasa-attention",
+        title: "To him you give attention (80:5–10)",
         icon: "3",
-        draft: true,
-        sections: comingSoon("Commentary on Surat Abasa"),
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:5–10",
+            title: "The one without need, and the one who came striving",
+          },
+          {
+            type: "verse",
+            ayah: "{As for he who thinks himself without need, To him you give attention}",
+            paras: [
+              "That is, will you focus your attention on seeking out those who have no interest in your message and turn away from it?",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And not upon you [is any blame] if he will not be purified}",
+            paras: [
+              "That is, what harm will it do you if these polytheists whom you are so keen to guide do not purify themselves and cleanse their souls? There is no blame on you, because all that is required of you is to convey the message.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{But as for he who came to you striving [for knowledge]}",
+            paras: ["That is, as for this man who came to you eager and keen to listen to you and learn from you,"],
+          },
+          {
+            type: "verse",
+            ayah: "{While he fears [Allah]}",
+            paras: ["Lest he fall short in his efforts to learn about his religion,"],
+          },
+          {
+            type: "verse",
+            ayah: "{From him you are distracted}",
+            paras: ["That is, you are preoccupied with someone else and ignore him."],
+          },
+        ],
+      },
+      {
+        id: "abasa-learn",
+        title: "What we learn from 80:1–10",
+        icon: "4",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:1–10",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "rose",
+                body: [
+                  "The scholars derived a principle from these verses, and said: One should not ignore a matter that one is certain about for something that one is not certain about, and one should not give up pursuing something that will certainly lead to some benefit for something concerning which there is no certainty that it will lead to any results.",
+                  "So you should not turn away from one who has already become Muslim for the sake of someone who may or may not become Muslim and enter the faith.",
+                ],
+              },
+              {
+                n: "2",
+                tone: "rose",
+                body: "The point of these verses is not that it is not allowed to seek out those who are not interested in religion and call them to Islam; rather the point is that we should not be distracted and turn away from those who are interested.",
+              },
+              {
+                n: "3",
+                tone: "green",
+                body: "The fact that Allah left this rebuke to His Prophet in the Quran is one of the greatest proofs of the prophethood of Muhammad ﷺ, because if the Quran came from Muhammad ﷺ he would not have left in it anything that was indicative of a rebuke to him. Hence it was said: if the Messenger of Allah ﷺ were to have concealed anything of the revelation, he would have concealed this.",
+              },
+              {
+                n: "4",
+                tone: "sky",
+                body: "In these verses, Allah ﷻ is alerting callers and warning them that they should not give precedence, when calling people to Allah, to people of high standing because of their position, prominent figures because of their prominence, or relatives because of their close kinship. Rather people should be all the same to them, rich or poor, old or young, relatives or strangers.",
+              },
+              {
+                n: "5",
+                tone: "gold",
+                body: "At the beginning of the surah, {The Prophet frowned and turned away, Because there came to him the blind man}, there are three phrases in which Allah does not address the Prophet ﷺ directly, by way of showing kindness to him. Rather He speaks in the third person here, because this is a rebuke.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "abasa-activity",
+        title: "Activity · The frown and the rebuke",
+        icon: "5",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt:
+                  "The scholars say that Allah ﷻ spoke of the Prophet ﷺ in the third person in the phrase {The Prophet frowned and turned away} so as not to address the rebuke directly to him. Why does the wording shift to the second person in the following verses?",
+              },
+              {
+                n: "2",
+                prompt: "How can you quote these verses as evidence to prove that Allah loves the Prophet ﷺ?",
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -1772,8 +2777,8 @@ export const TAFSIR2_UNITS = [
     id: "practice",
     title: "Practice",
     lessons: [
-      { id: "flashcards", title: "Flashcards", icon: "🃏", kind: "tool", badge: "46" },
-      { id: "quiz", title: "Knowledge Quiz", icon: "✏️", kind: "tool", badge: "36" },
+      { id: "flashcards", title: "Flashcards", icon: "🃏", kind: "tool", badge: "65" },
+      { id: "quiz", title: "Knowledge Quiz", icon: "✏️", kind: "tool", badge: "55" },
     ],
   },
 ];
@@ -1797,7 +2802,8 @@ export const TAFSIR2_TOPICS = [
   { id: "judgement", label: "The Day of Judgement (78:17–30)" },
   { id: "righteous", label: "The righteous (78:31–36)" },
   { id: "true-day", label: "The True Day (78:37–40)" },
-  { id: "naziat", label: "Surat an-Nazi‘aat (79:1–14)" },
+  { id: "naziat", label: "Surat an-Nazi‘aat (79:1–46)" },
+  { id: "abasa", label: "Surat Abasa (80:1–10)" },
 ];
 
 export const TAFSIR2_FLASHCARDS = [
@@ -2030,6 +3036,101 @@ export const TAFSIR2_FLASHCARDS = [
     t: "naziat",
     q: "What is saahirah, and why is the gathering land called that?",
     a: "Flat, white land with no vegetation, which Allah will prepare for the people to be gathered for the reckoning. It is called saahirah because they will not be able to sleep — the root sahr also means staying up at night — from the fear and panic of that Day. The Trumpet is blown once, and the disbelievers find themselves alive on the face of the earth, after having been buried, to face the reckoning and the punishment.",
+  },
+  {
+    t: "naziat",
+    q: "Why is the story of Musa told here, and what is Tuwa?",
+    a: "It consoles the Prophet ﷺ. Tuwa is the name of the blessed, sacred valley where Allah called Musa عليه السلام. It was sacred because Allah sent revelation to him there. Allah said: Go to Pharaoh and call him to Allah, for he has transgressed.",
+  },
+  {
+    t: "naziat",
+    q: "What do tughyaan and “purify yourself” mean?",
+    a: "Tughyaan is going to extremes in sin and overstepping the mark. The same root is in {when the water overflowed [tughyan]} [al-Haqqah 69:11], and in taghut. “Purify yourself” means to be purified from faults, shortcomings and sins by saying Laa ilaaha illa Allah.",
+  },
+  {
+    t: "naziat",
+    q: "What is khashyah, and what was the greatest sign?",
+    a: "Khashyah is fear based on knowledge. Fear without knowledge is khawf mujarrad (pure fear). Guidance comes before fear, because fear of Allah follows knowing Him: {Only those fear Allah, from among His servants, who have knowledge} [Fatir 35:28]. The greatest sign was Musa’s hand, white to the onlookers, and his staff, which clearly turned into a snake.",
+  },
+  {
+    t: "naziat",
+    q: "What did Pharaoh do after the sign, and why is the Hereafter mentioned first?",
+    a: "He denied and disobeyed, turned his back striving against Tawhid, gathered his courtiers, troops and people, and called out, “I am your most exalted lord.” Allah seized him in this world and the Hereafter as a lesson. The Hereafter is mentioned first because it is more severe and more lasting. The story warns Quraysh, consoles the believers, and teaches that da‘wah is gentle even with tyrants.",
+  },
+  {
+    t: "naziat",
+    q: "What does “Are you a more difficult creation or is the heaven?” mean, and what is samk?",
+    a: "Is recreating you after death more difficult than creating the heaven? The One Who created the heaven can re-create you. Allah constructed it: He raised it like a structure or firmament. Samk, translated “ceiling,” means raising something in an open space, connected to the earth or not. Joining rafa‘a (He raised) to samk emphasizes the raising, so the heaven is vastly raised. He proportioned it with no imperfections, cracks or gaps.",
+  },
+  {
+    t: "naziat",
+    q: "What is meant by the night, the brightness, the spreading of the earth, and mataa?",
+    a: "He darkened the night by making the sun set, and extracted the day’s brightness. Day is called duha (lit. forenoon) because it is the best time of the day. After creating the heavens He spread the earth: smoothing out and levelling it. He brought forth springs, grass and vegetation, and fixed the mountains firmly. Mataa is provision one benefits from for a while, with a defined time limit.",
+  },
+  {
+    t: "naziat",
+    q: "How is there no contradiction between Fussilat and an-Nazi‘aat about the earth and the heaven?",
+    a: "Fussilat 41:9–11 says the heaven was created after the earth. An-Nazi‘aat says the heaven was constructed, and after that the earth was spread. The earth itself was created first, then the heaven was created, then the earth was spread out and levelled.",
+  },
+  {
+    t: "naziat",
+    q: "What is at-Taammah, and what will man remember on that Day?",
+    a: "at-Taammah, the Overwhelming Calamity, is a name of the Day of Resurrection. It is from tatimm, and from tamma al-maa, water when it covers things. It describes the extreme hardship and horror of that Day, and such words are used only for the most terrifying incidents. “Greatest” emphasizes how terrible it will be. On that Day man will remember what he did of good and evil, and Hell will be brought forth so people see it with their own eyes.",
+  },
+  {
+    t: "naziat",
+    q: "Who takes the Fire as a refuge, and who takes Paradise? What is hawa?",
+    a: "The one who over-stepped the mark in misguidance and evildoing, and preferred this world over his religion and his Hereafter, has the Fire as his ultimate destination. Refuge is the place to which one returns and settles. The one who dreaded standing before Allah, and so forbade himself whims, desires and pleasures, has Paradise. Hawa is inclination towards desires. It throws a person down (yahwi) into trouble here, and in the Hereafter it leads him to al-hawiyah, the pit of Hell.",
+  },
+  {
+    t: "naziat",
+    q: "Why is Hell exposed for all who see, and why are fear and restraining the soul mentioned together?",
+    a: "Believers and disbelievers will both see it. The believer appreciates the blessing bestowed on him. The disbeliever fears it before he is admitted to it. Fear of standing before Allah is the strongest protection against the pull of desires, so the Quran mentions that fear and forbidding the soul from unlawful inclination together in one verse.",
+  },
+  {
+    t: "naziat",
+    q: "What does mursaahaa mean, and who knows when the Hour will begin?",
+    a: "Mursaahaa, “its arrival,” comes from arsa: a ship dropping anchor off the coast. No one knows when the Resurrection will happen until it actually happens, just as no one knows when a ship will arrive until it drops anchor. The Prophet ﷺ has no knowledge of it at all. In the hadith of Jibreel in as-Sahihayn he said: «The one who is asked about it does not know more than the one who is asking.» If Jibreel and the Prophet did not know, still less does anyone with less knowledge. {To your Lord is its finality}: knowledge of it belongs only to Allah.",
+  },
+  {
+    t: "naziat",
+    q: "What was the Prophet sent to do about the Hour, and what did he tell the man who asked when it would be?",
+    a: "He was sent only to warn those who fear it, not to tell people when it will happen. Al-Bukhari and Muslim narrated that a man asked when the Hour would be. The Prophet ﷺ said: «What have you prepared for it?» The man said: Love of Allah and His Messenger ﷺ. He said: «You will be with those whom you love.»",
+  },
+  {
+    t: "naziat",
+    q: "How long will this life seem when they see the Hour, and what do afternoon and morning mean?",
+    a: "When they rise from their graves for the gathering, this life will seem, in their view, no more than an afternoon or a morning of a single day. Afternoon is the time between noon and the setting of the sun. Morning is the time between sunrise and midday.",
+  },
+  {
+    t: "naziat",
+    q: "Why has Allah withheld knowledge of when the Resurrection will come, and who benefits from the warning?",
+    a: "So that people will strive hard in good deeds, fearing the Day may come at any moment. {You are only a warner for those who fear it} does not mean the Prophet ﷺ did not warn those who did not fear. Those who benefit from the warning are only those who fear Allah. Those who do not fear Him will not benefit from this warning, or from other signs, in most cases.",
+  },
+  {
+    t: "naziat",
+    q: "What do these verses teach about this world?",
+    a: "It is no more than an afternoon or the morning thereof: short, temporary and transient, and it will end in a very short time. It is not appropriate, for one who has reason, to neglect the Hereafter for a mere afternoon or morning, or to lose Paradise for a transient desire.",
+  },
+  {
+    t: "abasa",
+    q: "Where was Surat Abasa revealed, and concerning whom?",
+    a: "It is Makkan, revealed before the Hijrah. Aisha رضي الله عنها said it was revealed concerning Ibn Umm Maktum, the blind man رضي الله عنه, the great Sahabi Abdullah ibn Umm Maktum. He came saying “O Messenger of Allah, guide me,” while a prominent polytheist was with the Prophet ﷺ, who kept turning towards that man and asking «Do you see anything wrong with what I am telling you?» Narrated by at-Tirmidhi; classed as sahih by al-Albani.",
+  },
+  {
+    t: "abasa",
+    q: "Why does the surah speak of the Prophet in the third person, and why “the blind man”?",
+    a: "Allah did not address the rebuke directly to His Prophet and His Beloved ﷺ, out of compassion, mercy, and honour. “The blind man,” rather than his name, softens the Prophet’s heart towards him, and shows he had an excuse for interrupting: he was blind. Allah then shifts to the second person, to show He is now speaking directly to him.",
+  },
+  {
+    t: "abasa",
+    q: "Who receives the Prophet’s attention in these verses, and who is ignored?",
+    a: "He gives attention to the one who thinks himself without need and turns away from the message. There is no blame if such polytheists are not purified, because he is only required to convey the message. The one who came striving, eager to learn, and fearing lest he fall short, is the one from whom he is distracted.",
+  },
+  {
+    t: "abasa",
+    q: "What principles do the scholars draw from 80:1–10?",
+    a: "Do not leave what is certain for what is uncertain, or a sure benefit for an unsure one: do not turn from someone already Muslim for someone who may never enter the faith. Still call those who are not interested; do not turn away from those who are. Leaving this rebuke in the Quran is a proof of prophethood. Callers must not prefer the high-ranking, the prominent, or relatives. The opening uses three third-person phrases, because this is a rebuke.",
   },
 ];
 
@@ -2455,6 +3556,234 @@ export const TAFSIR2_QUIZ = [
     ],
     ans: 0,
     fb: "Saahirah is flat, white land with no vegetation, prepared for the reckoning. The root sahr also means staying up at night. One blast, and the disbelievers are alive on the face of the earth after having been buried.",
+  },
+  {
+    t: "naziat",
+    q: "Tuwa is:",
+    opts: [
+      "The name of Pharaoh’s palace",
+      "The name of the sacred valley where Allah called Musa عليه السلام",
+      "Another name for the Horn",
+      "The festival day on which Pharaoh gathered his people",
+    ],
+    ans: 1,
+    fb: "Allah called Musa in the blessed, sacred valley of Tuwa. It was sacred because revelation was sent to him there. The story consoles the Prophet ﷺ.",
+  },
+  {
+    t: "naziat",
+    q: "Khashyah differs from khawf mujarrad because khashyah is:",
+    opts: [
+      "Fear based on knowledge",
+      "Fear with no knowledge at all",
+      "Fear of Pharaoh only",
+      "A name for the staff of Musa",
+    ],
+    ans: 0,
+    fb: "Fear without knowledge is khawf mujarrad (pure fear). Guidance is mentioned before fear, because fear of Allah follows knowing Him, as in Fatir 35:28.",
+  },
+  {
+    t: "naziat",
+    q: "The greatest sign shown to Pharaoh was:",
+    opts: [
+      "The splitting of the sea only",
+      "The hand of Musa, white to the onlookers, and his staff turning into a snake",
+      "The first blast of the trumpet",
+      "Rain sent by Mikaeel",
+    ],
+    ans: 1,
+    fb: "Pharaoh still denied and disobeyed, turned his back, and strove hard against what Musa called him to: obedience, fear of Allah, and Tawhid.",
+  },
+  {
+    t: "naziat",
+    q: "The punishment of the Hereafter is mentioned before the punishment in this world because:",
+    opts: [
+      "This world has no punishment",
+      "It is more severe and more lasting",
+      "Pharaoh was not punished in this life",
+      "The verse is speaking only about Quraysh",
+    ],
+    ans: 1,
+    fb: "It is the real punishment: severe and everlasting, seizing transgressors and sinners. Allah seized Pharaoh in both, and made him a lesson. Tughyaan means going to extremes and overstepping the mark.",
+  },
+  {
+    t: "naziat",
+    q: "{Are you a more difficult creation or is the heaven?} means:",
+    opts: [
+      "The heaven was harder for the angels to build than for Allah",
+      "People are a greater creation than the mountains",
+      "Recreating you after death is not more difficult than creating the heaven",
+      "Pharaoh’s creation was more difficult than Musa’s",
+    ],
+    ans: 2,
+    fb: "The One Who is able to create the heaven is able to re-create you after death. He raised it like a structure or firmament, and proportioned it with no imperfections, cracks or gaps.",
+  },
+  {
+    t: "naziat",
+    q: "Samk, translated “ceiling,” means:",
+    opts: [
+      "Raising something in an open space, so that joining it to rafa‘a shows the heaven is vastly raised",
+      "The darkness of the night",
+      "Provision that lasts only for a while",
+      "Smoothing out and levelling the earth",
+    ],
+    ans: 0,
+    fb: "Whether what is raised is connected to the earth or not. The verb rafa‘a (He raised) is joined to samk, whose name also refers to raising, to emphasize the action.",
+  },
+  {
+    t: "naziat",
+    q: "The order of creation in these verses, read with Fussilat, is:",
+    opts: [
+      "The heaven was spread out, then the earth was created, then the heaven was built",
+      "The earth and the heaven were created at the same moment",
+      "The earth was created first, then the heaven, then the earth was spread out",
+      "Fussilat and an-Nazi‘aat contradict one another",
+    ],
+    ans: 2,
+    fb: "The earth itself came before the heaven itself. After creating the heaven, Allah spread out the earth and levelled it. There is no contradiction.",
+  },
+  {
+    t: "naziat",
+    q: "at-Taammah is:",
+    opts: [
+      "A name of Pharaoh’s festival",
+      "The staff of Musa when it became a snake",
+      "One of the names of the Day of Resurrection, the Overwhelming Calamity",
+      "The flat land where people are gathered",
+    ],
+    ans: 2,
+    fb: "It is from tatimm, and from tamma al-maa, water when it covers things. It describes the extreme hardship and horror of that Day. “Greatest” emphasizes how terrible it will be.",
+  },
+  {
+    t: "naziat",
+    q: "Hellfire is the refuge of the one who:",
+    opts: [
+      "Feared standing before his Lord and restrained his soul",
+      "Transgressed and preferred the life of this world over his religion and his Hereafter",
+      "Saw the greatest sign and believed",
+      "Spread the earth and set the mountains firmly",
+    ],
+    ans: 1,
+    fb: "Refuge is the place to which one returns and settles. The one who dreaded the standing, and so forbade himself whims and pleasures, has Paradise as his refuge.",
+  },
+  {
+    t: "naziat",
+    q: "Hawa leads, in the Hereafter, to:",
+    opts: [
+      "al-hawiyah, the pit of Hell, because it throws a person down",
+      "The sacred valley of Tuwa",
+      "A full cup in Paradise",
+      "The second blast, when people are gathered",
+    ],
+    ans: 0,
+    fb: "Hawa is inclination towards desires. It throws a person down (yahwi) into trouble in this world. Fear of standing before Allah and restraining the soul are mentioned together, because that fear is the strongest protection against desire.",
+  },
+  {
+    t: "naziat",
+    q: "Mursaahaa, “its arrival,” likens the Hour to:",
+    opts: [
+      "A ship that no one knows will arrive until it drops anchor",
+      "The white hand of Musa",
+      "The first blast of the trumpet",
+      "Rain sent down by Mikaeel",
+    ],
+    ans: 0,
+    fb: "It is from arsa, a ship dropping anchor off the coast. No one knows when the Resurrection will happen until it actually happens. The Prophet has no knowledge of its time at all.",
+  },
+  {
+    t: "naziat",
+    q: "In the hadith of Jibreel, the Prophet ﷺ said about the Hour:",
+    opts: [
+      "It will come on a Friday",
+      "Jibreel knows the time, but people do not",
+      "The one who is asked about it does not know more than the one who is asking",
+      "It will be after a thousand years",
+    ],
+    ans: 2,
+    fb: "It is in as-Sahihayn. If Jibreel, the most knowledgeable of the angels, and the Prophet, the most knowledgeable of humans about the revelation, did not know, then those with less knowledge do not know either. Knowledge of it belongs only to Allah.",
+  },
+  {
+    t: "naziat",
+    q: "When a man asked when the Hour would be, the Prophet ﷺ asked what he had prepared, and then said:",
+    opts: [
+      "You will be with those whom you love",
+      "The Hour is tomorrow at sunrise",
+      "Only the angels will be saved",
+      "Love of Allah does not benefit on that Day",
+    ],
+    ans: 0,
+    fb: "The man said: Love of Allah and His Messenger ﷺ. The Prophet was sent to warn those who fear the Hour, not to tell people when it will happen. When they see it, this life will seem like one afternoon or one morning.",
+  },
+  {
+    t: "naziat",
+    q: "Allah withheld the time of the Resurrection so that people would:",
+    opts: [
+      "Stop doing good deeds until the time is known",
+      "Strive hard in good deeds, fearing it may come at any moment",
+      "Ask Jibreel to announce the day",
+      "Treat this world as longer than the Hereafter",
+    ],
+    ans: 1,
+    fb: "The interests served by withholding that knowledge are that people fear and worry the Day may come upon them at any moment, and so they strive in good deeds.",
+  },
+  {
+    t: "naziat",
+    q: "{You are only a warner for those who fear it} means:",
+    opts: [
+      "The Prophet ﷺ did not warn anyone who did not fear Allah",
+      "Only those who fear Allah benefit from the warning; those who do not fear Him usually do not",
+      "The warning is withheld from the believers",
+      "Fear of Allah cancels the need to prepare for the Hour",
+    ],
+    ans: 1,
+    fb: "He did warn those who did not fear. What is meant is that the ones who benefit are those who fear Allah. This world is short, temporary and transient: an afternoon or the morning thereof.",
+  },
+  {
+    t: "abasa",
+    q: "Surat Abasa was revealed concerning:",
+    opts: [
+      "A prominent leader of Quraysh who accepted Islam",
+      "Abdullah ibn Umm Maktum, the blind man, while the Prophet was calling a polytheist leader",
+      "The Companions at Badr",
+      "Aisha, when she asked about the Hour",
+    ],
+    ans: 1,
+    fb: "Aisha said he came asking to be guided, and the Prophet kept turning towards a prominent polytheist. Narrated by at-Tirmidhi; classed as sahih by al-Albani. The surah is Makkan.",
+  },
+  {
+    t: "abasa",
+    q: "Allah speaks of the frown in the third person in order to:",
+    opts: [
+      "Avoid addressing the rebuke directly to His Prophet, out of mercy and honour",
+      "Hide the incident from the Prophet",
+      "Name Ibn Umm Maktum in the verse",
+      "Praise the leaders of Quraysh",
+    ],
+    ans: 0,
+    fb: "He is His Prophet and His Beloved. “The blind man” softens the Prophet’s heart and excuses the interruption. The address then shifts to the second person.",
+  },
+  {
+    t: "abasa",
+    q: "There is no blame on the Prophet if the one who thinks himself without need is not purified, because:",
+    opts: [
+      "That man was already Muslim",
+      "Guidance is not required of anyone",
+      "All that is required is to convey the message",
+      "The blind man did not fear Allah",
+    ],
+    ans: 2,
+    fb: "The one who came striving and fearing, eager to learn, is the one who was ignored. Do not turn from the interested person toward the one who turns away.",
+  },
+  {
+    t: "abasa",
+    q: "Leaving this rebuke in the Quran is a proof of prophethood because:",
+    opts: [
+      "Only a human author would include a rebuke of himself",
+      "If the Quran were from Muhammad, he would have concealed a rebuke of himself",
+      "The verse names the Prophet in the second person from the first word",
+      "Ibn Umm Maktum wrote the surah",
+    ],
+    ans: 1,
+    fb: "If he were to have concealed anything of the revelation, he would have concealed this. Callers must not prefer rank, prominence, or kinship. The opening has three third-person phrases, because it is a rebuke.",
   },
 ];
 

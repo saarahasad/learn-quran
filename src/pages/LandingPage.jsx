@@ -37,18 +37,6 @@ function countWord(n, singular, plural = `${singular}s`) {
   return `${n} ${n === 1 ? singular : plural}`;
 }
 
-const JUZ_NAME_AR = { "juz-1": "الجزء الأول", "juz-30": "جزء عمّ" };
-
-const CATEGORY_AR = {
-  "Qur'an": "القرآن",
-  "Islamic Education": "التربية الإسلامية",
-  Fiqh: "الفقه",
-  Tafsir: "التفسير",
-  Hadith: "الحديث",
-  Aqeedah: "العقيدة",
-  "Arabic Grammar": "النحو",
-};
-
 function courseFacts(course) {
   const size = (course.meta ?? "")
     .split(" · ")
@@ -56,48 +44,38 @@ function courseFacts(course) {
     .slice(0, 2);
   const topicCount = course.topics?.length ?? 0;
   if (topicCount > 0) size.push(countWord(topicCount, "topic"));
-  return size;
+  return size.join(" · ");
 }
 
-function CourseCard({ course, progress }) {
+function CourseRow({ course, index, progress }) {
   const themeStyle = courseThemeStyle(course.color);
   const started = course.kind !== "juz" && progress.total > 0 && progress.pct > 0;
   const summary = course.range || course.tagline || course.description;
   const facts = courseFacts(course);
-  const nameAr = course.nameAr ?? JUZ_NAME_AR[course.id] ?? null;
 
   return (
-    <Link to={course.path} className="li-card course-themed" style={themeStyle}>
-      {nameAr && (
-        <span className="li-card-ar" dir="rtl" lang="ar">
-          {nameAr}
-        </span>
-      )}
-      <h3 className="li-card-title">{course.name}</h3>
-      {summary && <p className="li-card-summary">{summary}</p>}
-      <div className="li-card-foot">
-        {started ? (
-          <span className="li-card-progress" aria-label={`${progress.pct}% complete`}>
-            <span className="li-card-progress-track">
-              <span style={{ width: `${progress.pct}%` }} />
+    <Link
+      to={course.path}
+      className="course-row course-themed"
+      style={themeStyle}
+    >
+      <span className="course-row-num">{index}</span>
+      <div className="course-row-main">
+        <div className="course-row-title">
+          <h3>{course.name}</h3>
+          {course.nameAr && (
+            <span className="course-row-ar" dir="rtl">
+              {course.nameAr}
             </span>
-            <span>{progress.pct}%</span>
-          </span>
-        ) : (
-          facts.length > 0 && (
-            <ul className="li-card-facts">
-              {facts.map((fact) => (
-                <li key={fact}>{fact}</li>
-              ))}
-            </ul>
-          )
-        )}
-        <span className="li-card-go" aria-hidden>
-          <svg width="16" height="16" viewBox="0 0 24 24">
-            <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </span>
+          )}
+        </div>
+        {summary && <p className="course-row-summary">{summary}</p>}
       </div>
+      <div className="course-row-side">
+        {facts && <span className="course-row-meta">{facts}</span>}
+        {started && <span className="course-row-progress">{progress.pct}%</span>}
+      </div>
+      <span className="course-row-open" aria-hidden>›</span>
     </Link>
   );
 }
@@ -113,40 +91,51 @@ export default function LandingPage() {
     });
 
   const groups = courseGroups(courses);
+  let courseIndex = 0;
 
   return (
     <CourseLayout activeTab="home" wide>
-      <div className="li-page">
-        <header className="li-hero">
-          <p className="li-hero-ar" dir="rtl" lang="ar">الدورات</p>
+      <section className="course-catalog" aria-label="Course catalogue">
+        <header className="course-catalog-intro">
           <h1>Courses</h1>
-          <p className="li-hero-sub">
-            {countWord(courses.length, "course")} across {countWord(groups.length, "subject")}
-          </p>
+          <div className="course-catalog-counts">
+            <p>
+              <strong>{courses.length}</strong>
+              <span>{courses.length === 1 ? "course" : "courses"}</span>
+            </p>
+            <p>
+              <strong>{groups.length}</strong>
+              <span>{groups.length === 1 ? "topic" : "topics"}</span>
+            </p>
+          </div>
         </header>
-        <div className="li-groups">
+        <div className="course-catalog-list">
           {groups.map((group) => {
             const groupId = `catalog-${group.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
             return (
-              <section key={group.category} className="li-group" aria-labelledby={groupId}>
-                <header className="li-group-head">
+            <section key={group.category} className="course-catalog-group" aria-labelledby={groupId}>
+              <div className="course-catalog-rows">
+                <header className="course-catalog-group-head">
                   <h2 id={groupId}>{group.category}</h2>
-                  {CATEGORY_AR[group.category] && (
-                    <span className="li-group-ar" dir="rtl" lang="ar">
-                      {CATEGORY_AR[group.category]}
-                    </span>
-                  )}
+                  <span>{countWord(group.courses.length, "course")}</span>
                 </header>
-                <div className="li-grid">
-                  {group.courses.map((course) => (
-                    <CourseCard key={course.id} course={course} progress={getProgress(course)} />
-                  ))}
-                </div>
-              </section>
+                {group.courses.map((course) => {
+                  courseIndex += 1;
+                  return (
+                    <CourseRow
+                      key={course.id}
+                      course={course}
+                      index={courseIndex}
+                      progress={getProgress(course)}
+                    />
+                  );
+                })}
+              </div>
+            </section>
             );
           })}
         </div>
-      </div>
+      </section>
     </CourseLayout>
   );
 }
