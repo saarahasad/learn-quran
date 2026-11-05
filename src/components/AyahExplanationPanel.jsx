@@ -6,6 +6,8 @@ import AyahIraabProse from "./iraab/AyahIraabProse.jsx";
 import { useIraabDiagram } from "../hooks/useIraabDiagram.js";
 import { loadAyahWords } from "../utils/mushafPageData.js";
 import { buildWordByWord } from "../utils/ayahWordByWord.js";
+import { getWordRoot, JUZ30_ROOTS } from "../data/juz30WordRoots.js";
+import WordStudyPanel from "./WordStudyPanel.jsx";
 import { hasAyahRecitation } from "../utils/quranAudio.js";
 import { highlightMushafText, toArabicNum } from "../utils/mushafText.js";
 
@@ -36,6 +38,12 @@ export default function AyahExplanationPanel({
   }, [ayah, surahNumber, pages]);
 
   const iraab = useIraabDiagram(surahNumber, ayah?.n);
+
+  /* Selected word for the word-study panel; tied to the āyah so it clears on navigation */
+  const ayahKey = `${surahNumber}:${ayah?.n}`;
+  const [picked, setPicked] = useState({ key: null, index: null });
+  const pickedIndex = picked.key === ayahKey ? picked.index : null;
+  const studyable = surahNumber != null && JUZ30_ROOTS[surahNumber]?.[ayah?.n] != null;
 
   const words = useMemo(
     () =>
@@ -103,19 +111,55 @@ export default function AyahExplanationPanel({
 
         {words.length > 0 && (
           <div className="mushaf-explanation__word-row" dir="rtl" aria-label="Word by word">
-            {words.map((w, i) => (
-              <div key={i} className="mushaf-explanation__word">
-                <span className="mushaf-explanation__word-ar">{w.ar}</span>
-                {w.tr && (
-                  <span className="mushaf-explanation__word-tr">{w.tr}</span>
-                )}
-                <span className="mushaf-explanation__word-en">{w.en}</span>
-              </div>
-            ))}
+            {words.map((w, i) => {
+              const inner = (
+                <>
+                  <span className="mushaf-explanation__word-ar">{w.ar}</span>
+                  {w.tr && (
+                    <span className="mushaf-explanation__word-tr">{w.tr}</span>
+                  )}
+                  <span className="mushaf-explanation__word-en">{w.en}</span>
+                </>
+              );
+              if (!studyable) {
+                return (
+                  <div key={i} className="mushaf-explanation__word">
+                    {inner}
+                  </div>
+                );
+              }
+              const active = pickedIndex === i;
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  className="mushaf-explanation__word"
+                  aria-pressed={active}
+                  title="Root and dictionary entries"
+                  onClick={() => setPicked({ key: ayahKey, index: active ? null : i })}
+                >
+                  {inner}
+                </button>
+              );
+            })}
             <div className="mushaf-explanation__word-marker">
               <VerseMarker n={ayah.n} />
             </div>
+            {studyable && pickedIndex == null && (
+              <p className="mushaf-explanation__word-hint">
+                Tap a word for its root and what the classical dictionaries say
+              </p>
+            )}
           </div>
+        )}
+
+        {studyable && pickedIndex != null && words[pickedIndex] && (
+          <WordStudyPanel
+            key={`${ayahKey}:${pickedIndex}`}
+            word={words[pickedIndex]}
+            rootInfo={getWordRoot(surahNumber, ayah.n, pickedIndex)}
+            onClose={() => setPicked({ key: ayahKey, index: null })}
+          />
         )}
 
         {words.length === 0 && (
