@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { LEXICON_AUTHORS } from "../data/lexiconAuthors.js";
+import { getSurahMeta } from "../data/quranSurahMeta.js";
 import "../styles/word-study.css";
 
 /**
@@ -150,34 +151,230 @@ function AboutBook({ bookId }) {
   );
 }
 
-function LaneText({ segs, probe }) {
-  return segs.map(([kind, text], i) =>
-    kind === "a" ? (
-      <span
-        key={i}
-        className={`ws-lane-ar${probe && probe.test(text) ? " is-focus" : ""}`}
-        dir="rtl"
-        lang="ar"
-      >
-        {text}
-      </span>
-    ) : kind === "i" ? (
-      <em key={i}>{text}</em>
-    ) : (
-      <span key={i}>{text}</span>
-    ),
+/* ── Lane, laid out for reading (his words unchanged) ───────────────── */
+
+const LANE_SOURCES = {
+  S: "al-Jawharī, al-Ṣiḥāḥ",
+  K: "al-Fīrūzābādī, al-Qāmūs al-Muḥīṭ",
+  TA: "al-Zabīdī, Tāj al-ʿArūs",
+  Msb: "al-Fayyūmī, al-Miṣbāḥ al-Munīr",
+  M: "Ibn Sīdah, al-Muḥkam",
+  O: "al-Ṣaghānī, al-ʿUbāb",
+  A: "al-Zamakhsharī, Asās al-Balāgha",
+  L: "Ibn Manẓūr, Lisān al-ʿArab",
+  T: "al-Azharī, Tahdhīb al-Lugha",
+  Mgh: "al-Muṭarrizī, al-Mughrib",
+  IAar: "Ibn al-Aʿrābī",
+  Bd: "al-Bayḍāwī, tafsīr",
+  Jel: "Tafsīr al-Jalālayn",
+  Lth: "al-Layth",
+  Lh: "al-Liḥyānī",
+  Fr: "al-Farrāʾ",
+  Az: "al-Azharī",
+  As: "al-Aṣmaʿī",
+  AZ: "Abū Zayd",
+  AA: "Abū ʿAmr al-Shaybānī",
+  IAth: "Ibn al-Athīr, al-Nihāya",
+  Zj: "al-Zajjāj",
+  ISk: "Ibn al-Sikkīt",
+  ISd: "Ibn Sīdah",
+  Sgh: "al-Ṣaghānī",
+  Sb: "Sībawayh",
+  MF: "al-Fāsī's notes on al-Qāmūs",
+  TK: "Turkish translation of al-Qāmūs",
+  KL: "Kanz al-Lugha",
+  Ksh: "al-Zamakhsharī, al-Kashshāf",
+};
+const SOURCE_TOKEN = /^(?:[A-Z][A-Za-z]{0,4}|\*)$/;
+const ROMAN = { i: 1, v: 5, x: 10, l: 50, c: 100 };
+function romanToInt(r) {
+  let total = 0;
+  const s = r.toLowerCase();
+  for (let i = 0; i < s.length; i += 1) {
+    const v = ROMAN[s[i]];
+    const next = ROMAN[s[i + 1]] ?? 0;
+    total += v < next ? -v : v;
+  }
+  return total;
+}
+const FORM_ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+
+/** Split one English run into plain text, source chips, Lane's [notes] and Qur'an references. */
+function laneEnglish(rawText, key) {
+  const text = rawText.replace(/\s?-[A-Z]?\d+-\s?/g, " "); // Lane's section markers (-A2-, -b3-)
+  const out = [];
+  const re = /\(([^()]{1,60}?)[,;:.]?\)|\[[^[\]]{1,160}\]|Kur(?:-án)?\.?\s*\[?([ivxlc]+)\.\s*(\d+)\]?/gi;
+  let last = 0;
+  let n = 0;
+  for (const m of text.matchAll(re)) {
+    const whole = m[0];
+    let node = null;
+    if (m[2]) {
+      const sura = romanToInt(m[2]);
+      const meta = getSurahMeta(sura);
+      node = (
+        <span key={`${key}-${n++}`}>
+          {whole}
+          {meta && (
+            <span
+              className="ws-lane-ref"
+              title="Lane numbers verses by an older European edition of the Qurʾān; his verse number can differ by one or two from the muṣḥaf."
+            >
+              {meta.en}
+            </span>
+          )}
+        </span>
+      );
+    } else if (whole.startsWith("(")) {
+      const tokens = m[1].split(/[\s,;]+/).filter(Boolean);
+      if (tokens.length && tokens.every((t) => SOURCE_TOKEN.test(t))) {
+        node = (
+          <span key={`${key}-${n++}`} className="ws-lane-src">
+            {tokens.filter((t) => t !== "*").map((t, i) => (
+              <abbr key={i} title={LANE_SOURCES[t] ?? "Lane's source"}>{t}</abbr>
+            ))}
+          </span>
+        );
+      } else if (/^tropical:?$/i.test(m[1].trim())) {
+        node = (
+          <span key={`${key}-${n++}`} className="ws-lane-trop" title="Lane marks a figurative (majāz) use">
+            figurative
+          </span>
+        );
+      }
+    } else if (whole.startsWith("[")) {
+      node = (
+        <span key={`${key}-${n++}`} className="ws-lane-note" title="Lane's own explanation">
+          {whole}
+        </span>
+      );
+    }
+    if (!node) continue;
+    if (m.index > last) out.push(text.slice(last, m.index));
+    out.push(node);
+    last = m.index + whole.length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return out;
+}
+
+function LaneRun({ segs, probe, keyBase }) {
+  return segs.map(([kind, text], i) => {
+    const key = `${keyBase}-${i}`;
+    if (kind === "a") {
+      return (
+        <span
+          key={key}
+          className={`ws-lane-ar${probe && probe.test(text) ? " is-focus" : ""}`}
+          dir="rtl"
+          lang="ar"
+        >
+          {text}
+        </span>
+      );
+    }
+    if (kind === "i") {
+      return (
+        <strong key={key} className="ws-lane-mean">
+          {laneEnglish(text, key)}
+        </strong>
+      );
+    }
+    return <span key={key}>{laneEnglish(text, key)}</span>;
+  });
+}
+
+/** One Lane article: headword on top, then each sense (separated by ― in Lane) as its own block. */
+function LaneArticle({ word, probe }) {
+  let segs = word.segs.map(([k, t]) => [k, t]);
+  let form = null;
+  let head = word.key || null;
+
+  // Leading verb-form number ("1 رَصَدَهُ") becomes the article label.
+  if (segs[0]?.[0] === "t") {
+    const m = segs[0][1].match(/^\s*(\d{1,2})\b\s*/);
+    if (m && Number(m[1]) <= 12) {
+      form = Number(m[1]);
+      segs[0] = ["t", segs[0][1].slice(m[0].length)];
+    }
+  }
+  // The headword itself moves into the article header.
+  const firstAr = segs.findIndex(([k, t]) => k === "a" || t.trim());
+  if (firstAr >= 0 && segs[firstAr][0] === "a") {
+    head = segs[firstAr][1];
+    segs = segs.filter((_, i) => i !== firstAr);
+  }
+
+  // Senses: Lane separates them with "―".
+  const senses = [[]];
+  for (const [k, t] of segs) {
+    if (k !== "a" && t.includes("―")) {
+      const parts = t.split("―");
+      parts.forEach((part, i) => {
+        if (i > 0) senses.push([]);
+        if (part.trim()) senses[senses.length - 1].push([k, part]);
+      });
+    } else {
+      senses[senses.length - 1].push([k, t]);
+    }
+  }
+  const clean = senses
+    .map((sense) => {
+      const trimmed = [...sense];
+      while (trimmed.length && trimmed[0][0] === "t" && /^[\s,.;:]*$/.test(trimmed[0][1])) trimmed.shift();
+      if (trimmed[0]?.[0] === "t") trimmed[0] = ["t", trimmed[0][1].replace(/^[\s,.;:]+/, "")];
+      return trimmed;
+    })
+    .filter((sense) => sense.some(([, t]) => t.trim()));
+
+  return (
+    <section className="ws-lane-article">
+      <header className="ws-lane-head">
+        {head && (
+          <span className={`ws-lane-headword${probe && probe.test(head) ? " is-focus" : ""}`} dir="rtl" lang="ar">
+            {head}
+          </span>
+        )}
+        {form && <span className="ws-lane-form">Verb · form {FORM_ROMAN[form] ?? form}</span>}
+      </header>
+      {clean.map((sense, i) => (
+        <p key={i} className="ws-lane-sense">
+          <LaneRun segs={sense} probe={probe} keyBase={`s${i}`} />
+        </p>
+      ))}
+    </section>
+  );
+}
+
+function LaneKey() {
+  return (
+    <details className="ws-about ws-lane-key">
+      <summary>How to read Lane</summary>
+      <ul>
+        <li><strong className="ws-lane-mean">Bold</strong> — Lane’s English meaning (italic in his book).</li>
+        <li><span className="ws-lane-note">[Grey brackets]</span> — Lane’s own explanation, added to the source.</li>
+        <li><span className="ws-lane-src"><abbr>S</abbr><abbr>K</abbr></span> — the Arabic dictionaries he took it from; tap or hover for the name.</li>
+        <li><span className="ws-lane-trop">figurative</span> — Lane’s “tropical:”, a figurative (majāz) use.</li>
+        <li><em>aor.</em> = the present-tense form · <em>inf. n.</em> = verbal noun (maṣdar) · <em>i. q.</em> = means the same as · <em>syn.</em> = synonym · <em>pl.</em> = plural</li>
+        <li>↓ — that word has its own article in this root.</li>
+        <li><span className="ws-lane-ref">Al-Fajr</span> — the sūrah name, added beside Lane’s Roman-numeral references. His verse numbers follow an older European edition and can differ by one or two from the muṣḥaf.</li>
+      </ul>
+      <p className="ws-ai-label">This key is written by Claude (AI) from Lane’s conventions; Lane’s text above is unchanged.</p>
+    </details>
   );
 }
 
 /** Lane articles to show: the opening, then the articles where this word is headed or discussed. */
 function laneFocus(words, probe) {
   if (!probe) return [0];
-  const isRedirect = (w) => w.segs.length <= 4 && w.segs.some(([k, t]) => k !== "a" && /\bsee\b/.test(t));
+  const isRedirect = (w) =>
+    w.segs.length <= 6 && w.segs.some(([k, t]) => k !== "a" && /\bsee\b/.test(t));
   const keyHits = [];
   const bodyHits = [];
   words.forEach((w, i) => {
     if (i === 0) return;
-    if (probe.test(w.key) && !isRedirect(w)) keyHits.push(i);
+    if (isRedirect(w)) return;
+    if (probe.test(w.key)) keyHits.push(i);
     else if (w.segs.some(([k, t]) => k === "a" && probe.test(t))) bodyHits.push(i);
   });
   return [0, ...[...keyHits, ...bodyHits].slice(0, 2)].sort((a, b) => a - b);
@@ -205,13 +402,16 @@ function LaneCard({ entry, focusPattern }) {
       </header>
       <div className="ws-lane-body">
         {shown.map((i, n) => (
-          <p key={i}>
-            {n > 0 && trimmed && shown[n] - shown[n - 1] > 1 && <span className="ws-gap">… </span>}
-            <LaneText segs={words[i].segs} probe={probe} />
-          </p>
+          <div key={i}>
+            {n > 0 && trimmed && shown[n] - shown[n - 1] > 1 && (
+              <p className="ws-gap ws-lane-skip">… other words from this root …</p>
+            )}
+            <LaneArticle word={words[i]} probe={probe} />
+          </div>
         ))}
-        {trimmed && <p className="ws-gap">…</p>}
+        {trimmed && <p className="ws-gap ws-lane-skip">… more in Lane’s full entry</p>}
       </div>
+      <LaneKey />
       <footer className="ws-cite">
         <span>
           Lane, <cite>An Arabic-English Lexicon</cite> (London, 1863–1893), root «{entry.head}»
