@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import CourseLayout from "./CourseLayout.jsx";
+import CourseLayout, { CourseBreadcrumbs } from "./CourseLayout.jsx";
+import "../styles/course-overview.css";
 import {
   LESSON_XP,
   buildGamifiedUnits,
@@ -115,28 +116,36 @@ function lessonHref(item, studyPath, paramKey) {
 }
 
 function lessonTag(item) {
-  if (item.state === "current") return "Next";
+  if (item.state === "current") return "Up next";
   if (item.state === "done") return "Done";
   return item.meta || null;
 }
 
+const ACTIVITY_PREFIX = /^Activity\s*[·:–-]\s*/i;
+
 function OutlineLesson({ item, studyPath, paramKey }) {
   const tag = lessonTag(item);
+  const isActivity = ACTIVITY_PREFIX.test(item.label ?? "");
+  const label = isActivity ? item.label.replace(ACTIVITY_PREFIX, "") : item.label;
   const inner = (
     <>
-      <span className="course-outline-num">{item.state === "done" ? "✓" : item.num}</span>
-      <span className="course-outline-copy">
-        <span className="course-outline-name">{item.label}</span>
+      <span className="ov-num" aria-hidden>{item.state === "done" ? "✓" : item.num}</span>
+      <span className="ov-lesson-copy">
+        <span className="ov-lesson-name">{label}</span>
         {item.labelAr && (
-          <span className="course-outline-ar" dir="rtl">{item.labelAr}</span>
+          <span className="ov-lesson-ar" dir="rtl" lang="ar">{item.labelAr}</span>
         )}
       </span>
-      {tag && <span className={`course-outline-tag is-${item.state}`}>{tag}</span>}
+      <span className="ov-lesson-tags">
+        {isActivity && <span className="ov-chip ov-chip--activity">Activity</span>}
+        {item.badge && <span className="ov-chip">{item.badge}</span>}
+        {tag && <span className={`ov-chip ov-chip--${item.state ?? "available"}`}>{tag}</span>}
+      </span>
     </>
   );
 
-  const className = `course-outline-lesson is-${item.state ?? "available"}`;
-  if (!(studyPath || item.href)) {
+  const className = `ov-lesson is-${item.state ?? "available"}`;
+  if (!(studyPath || item.href) || item.state === "locked") {
     return <div className={className}>{inner}</div>;
   }
 
@@ -174,65 +183,106 @@ export default function CourseModuleOverview({
   const started = progress.completed > 0;
   const countWord = progressLabel === "memorised" ? "memorised" : "done";
 
+  const upNext = gamified.units.flatMap((unit) => unit.items).find((item) => item.state === "current");
+
   return (
-    <CourseLayout wide banner={banner} breadcrumbs={breadcrumbs} courseId={courseId}>
-      <div className="course-outline-page">
-        <header className="course-outline-bar">
-          <div>
-            {nameAr && <p className="course-outline-title-ar" dir="rtl">{nameAr}</p>}
-            <h2>{title === "Course modules" ? "Lessons" : title}</h2>
+    <CourseLayout wide courseId={courseId}>
+      <div className="ov-page">
+        {breadcrumbs && <CourseBreadcrumbs items={breadcrumbs} />}
+
+        <header className="ov-hero">
+          <div className="ov-hero-names">
+            {nameAr && (
+              <p className="ov-hero-ar" dir="rtl" lang="ar">
+                {nameAr}
+              </p>
+            )}
+            <h1>{banner?.title ?? title}</h1>
+            {banner?.code && <p className="ov-hero-kind">{banner.code}</p>}
+          </div>
+          {banner?.subtitle && <p className="ov-hero-sub">{banner.subtitle}</p>}
+          {banner?.meta?.length > 0 && (
+            <dl className="ov-hero-facts">
+              {banner.meta.map((item) => (
+                <div key={item.label}>
+                  <dt>{item.label}</dt>
+                  <dd>{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          <div className="ov-progress">
             {progress.total > 0 && (
-              <>
-                <p className="course-outline-count">
-                  {progress.completed} of {progress.total} {countWord}
-                </p>
-                <div className="course-outline-track" aria-hidden>
+              <div className="ov-progress-meter">
+                <div className="ov-progress-text">
+                  <strong>{progress.pct}%</strong>
+                  <span>
+                    {progress.completed} of {progress.total} lessons {countWord}
+                  </span>
+                </div>
+                <div className="ov-progress-track" aria-hidden>
                   <span style={{ width: `${progress.pct}%` }} />
                 </div>
-              </>
+              </div>
             )}
-          </div>
-          <div className="course-outline-actions">
-            <Link to={nextPath} className="course-btn primary">
-              {started ? "Continue" : "Start"}
-            </Link>
-            {nextName && <span className="course-outline-next">{nextName}</span>}
-            <Link to="/" className="course-outline-back">All courses</Link>
+            <div className="ov-progress-cta">
+              {(upNext?.label || nextName) && (
+                <span className="ov-progress-next">
+                  <span>Up next</span>
+                  {upNext?.label ?? nextName}
+                </span>
+              )}
+              <Link to={nextPath} className="ov-start">
+                {started ? "Continue" : "Start course"}
+              </Link>
+            </div>
           </div>
         </header>
+
         {(extraLinks.length > 0 || progressHref) && (
-          <div className="course-outline-more">
-            {progressHref && (
-              <Link to={progressHref} className="course-outline-back">{progressHrefLabel}</Link>
-            )}
+          <nav className="ov-links" aria-label="Course tools">
+            {progressHref && <Link to={progressHref}>{progressHrefLabel}</Link>}
             {extraLinks.map((link) => (
-              <Link key={link.to} to={link.to} className="course-outline-back">{link.label}</Link>
+              <Link key={link.to} to={link.to}>{link.label}</Link>
             ))}
-          </div>
+          </nav>
         )}
 
-        <div className="course-outline">
-          {gamified.units.map((unit) => (
-            <section key={unit.id} className="course-outline-unit" aria-label={unit.title}>
-              <header className="course-outline-unit-head">
-                <h3>
-                  {unit.kicker && <span>{unit.kicker}</span>}
-                  {unit.title}
-                </h3>
-                {unit.total > 0 && <span>{unit.completed}/{unit.total}</span>}
-              </header>
-              <div className="course-outline-lessons">
-                {unit.items.map((item) => (
-                  <OutlineLesson
-                    key={item.id}
-                    item={item}
-                    studyPath={studyPath}
-                    paramKey={paramKey}
-                  />
-                ))}
-              </div>
-            </section>
-          ))}
+        <div className="ov-units">
+          {gamified.units.map((unit) => {
+            const pct = unit.total ? Math.round((unit.completed / unit.total) * 100) : 0;
+            return (
+              <section key={unit.id} className="ov-unit" aria-label={unit.title}>
+                <header className="ov-unit-head">
+                  <div>
+                    {unit.kicker && <p className="ov-unit-kicker">{unit.kicker}</p>}
+                    <h2>{unit.title}</h2>
+                  </div>
+                  {unit.total > 0 && (
+                    <div className="ov-unit-count">
+                      <span>
+                        {unit.completed}/{unit.total}
+                      </span>
+                      <span className="ov-unit-track" aria-hidden>
+                        <span style={{ width: `${pct}%` }} />
+                      </span>
+                    </div>
+                  )}
+                </header>
+                <div className="ov-lessons">
+                  {unit.items.map((item) => (
+                    <OutlineLesson
+                      key={item.id}
+                      item={item}
+                      studyPath={studyPath}
+                      paramKey={paramKey}
+                    />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
       </div>
     </CourseLayout>
