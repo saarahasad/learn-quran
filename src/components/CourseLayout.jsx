@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { LEARN_ISLAM, getCourseTheme } from "../data/platform.js";
 import { courseThemeClass, courseThemeStyle, resolveCourseIdFromPath } from "../utils/courseTheme.js";
@@ -7,6 +7,22 @@ import "../styles/course-theme.css";
 
 const NAV_ITEMS = [{ id: "home", label: "Courses", path: "/" }];
 const SIDEBAR_COLLAPSED_KEY = "course_sidebar_collapsed_v1";
+const DRAWER_QUERY = "(max-width: 1023px)";
+
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia ? window.matchMedia(query).matches : false,
+  );
+  useEffect(() => {
+    if (!window.matchMedia) return undefined;
+    const mql = window.matchMedia(query);
+    const onChange = () => setMatches(mql.matches);
+    onChange();
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, [query]);
+  return matches;
+}
 
 export function CourseHeader() {
   const { pathname } = useLocation();
@@ -257,6 +273,40 @@ export default function CourseLayout({
     }
   }, [sidebarCollapsed]);
 
+  /* Below 1024px the outline becomes an off-canvas drawer */
+  const isDrawer = useMediaQuery(DRAWER_QUERY);
+  /* Remember which path the drawer was opened on: navigating or widening closes it */
+  const [drawerOpenedAt, setDrawerOpenedAt] = useState(null);
+  const drawerOpen = isDrawer && drawerOpenedAt === pathname;
+  const setDrawerOpen = (open) => setDrawerOpenedAt(open ? pathname : null);
+  const drawerRef = useRef(null);
+
+  useEffect(() => {
+    if (!drawerOpen) return undefined;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (event) => {
+      if (event.key === "Escape") setDrawerOpenedAt(null);
+    };
+    window.addEventListener("keydown", onKey);
+    const frame = window.requestAnimationFrame(() => {
+      const panel = drawerRef.current;
+      panel?.querySelector(".active")?.scrollIntoView({ block: "center" });
+      panel?.querySelector(".course-drawer__close")?.focus({ preventScroll: true });
+    });
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+      window.cancelAnimationFrame(frame);
+    };
+  }, [drawerOpen]);
+
+  /* Picking a lesson inside the drawer closes it */
+  const onDrawerClick = (event) => {
+    const hit = event.target.closest("a[href], li button");
+    if (hit && drawerRef.current?.contains(hit)) setDrawerOpen(false);
+  };
+
   if (lesson) {
     return (
       <div className={`course-lesson-shell${themeClass ? ` ${themeClass}` : ""}`} style={themeStyle}>
@@ -271,7 +321,59 @@ export default function CourseLayout({
     <div className={`site-shell${themeClass ? ` ${themeClass}` : ""}`} style={themeStyle}>
       <CourseHeader />
       {banner && <CourseBanner {...banner} />}
-      {sidebar ? (
+      {sidebar && isDrawer ? (
+        <div className="course-body course-body--drawer">
+          <div className="course-navbar">
+            <button
+              type="button"
+              className="course-outline-trigger"
+              aria-expanded={drawerOpen}
+              aria-controls="course-drawer-panel"
+              onClick={() => setDrawerOpen(true)}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+                <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+              </svg>
+              <span>Outline</span>
+            </button>
+            {breadcrumbs && <CourseBreadcrumbs items={breadcrumbs} />}
+          </div>
+          <div
+            className={`course-drawer${drawerOpen ? " is-open" : ""}`}
+            aria-hidden={!drawerOpen}
+            inert={drawerOpen ? undefined : ""}
+          >
+            <div className="course-drawer__backdrop" onClick={() => setDrawerOpen(false)} />
+            <div
+              id="course-drawer-panel"
+              className="course-drawer__panel"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Course outline"
+              ref={drawerRef}
+              onClick={onDrawerClick}
+            >
+              <div className="course-drawer__head">
+                <span>Course outline</span>
+                <button
+                  type="button"
+                  className="course-drawer__close"
+                  aria-label="Close outline"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  ×
+                </button>
+              </div>
+              <div className="course-drawer__body">{sidebar}</div>
+            </div>
+          </div>
+          <main className="course-main">
+            <div className={`course-main-inner${fullWidth ? " full" : wide ? " wide" : ""}`}>
+              {children}
+            </div>
+          </main>
+        </div>
+      ) : sidebar ? (
         <div
           className={`course-body${sidebarCollapsed ? " course-body--sidebar-collapsed" : ""}`}
         >
