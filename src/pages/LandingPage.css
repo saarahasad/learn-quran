@@ -1,9 +1,193 @@
 /* ── Course catalogue ──────────────────────────────────────────
    One centred column, bilingual cards. The Arabic course name leads;
    course colour is only used for the card spine and progress. */
-.course-main-inner.wide:has(> .li-page) {
-  max-width: none;
-  padding: 0;
+.course-main-inner.wide:has(> .li-page),
+.course-main-inner.wide:has(> .course-catalog) {
+  max-width: 52rem;
+}
+
+/* Numbered catalogue. The row is a link, so it has to be a grid —
+   an inline link splits its number and arrow onto separate lines. */
+.course-catalog {
+  --li-ink: #1c1917;
+  --li-muted: #6b645c;
+  --li-rule: #e7e5e4;
+  padding-inline: max(1.15rem, env(safe-area-inset-left, 0px))
+    max(1.15rem, env(safe-area-inset-right, 0px));
+  color: var(--li-ink);
+}
+
+.course-catalog-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid var(--li-rule);
+}
+
+.course-catalog-intro h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.course-catalog-counts {
+  display: flex;
+  gap: 1.1rem;
+}
+
+.course-catalog-counts p {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.course-catalog-counts strong {
+  font-size: 1.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.course-catalog-counts span {
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--li-muted);
+}
+
+.course-catalog-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.6rem 0 0.35rem;
+}
+
+.course-catalog-group-head h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.course-catalog-group-head span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--li-muted);
+}
+
+.course-row {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr) auto auto;
+  column-gap: 0.85rem;
+  align-items: center;
+  padding: 0.85rem 0.35rem;
+  border-top: 1px solid var(--li-rule);
+  color: inherit;
+  text-decoration: none;
+}
+
+.course-catalog-rows .course-row:last-child {
+  border-bottom: 1px solid var(--li-rule);
+}
+
+.course-row:hover {
+  background: #fafaf9;
+}
+
+.course-row:focus-visible {
+  outline: 2px solid var(--course-color, #9a6b2f);
+  outline-offset: 2px;
+}
+
+.course-row-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--li-muted);
+}
+
+.course-row-main {
+  min-width: 0;
+}
+
+.course-row-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.7rem;
+}
+
+.course-row-title h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.course-row:hover .course-row-title h3 {
+  color: var(--course-color, #9a6b2f);
+}
+
+.course-row-ar {
+  font-family: var(--edx-arabic);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: #9a6b2f;
+}
+
+.course-row-summary {
+  margin: 0.15rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--li-muted);
+}
+
+.course-row-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.course-row-meta,
+.course-row-progress {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--li-muted);
+  white-space: nowrap;
+}
+
+.course-row-open {
+  min-width: 1rem;
+  color: #a8a29e;
+  font-size: 1.35rem;
+  line-height: 1;
+  text-align: end;
+}
+
+@media (max-width: 720px) {
+  .course-row {
+    grid-template-columns: 1.5rem minmax(0, 1fr) 1.25rem;
+    row-gap: 0.2rem;
+    align-items: start;
+  }
+
+  .course-row-side {
+    grid-column: 2;
+    align-items: flex-start;
+  }
+
+  .course-row-open {
+    grid-row: 1 / span 2;
+    grid-column: 3;
+    align-self: center;
+  }
 }
 
 .li-page {
