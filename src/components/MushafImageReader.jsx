@@ -29,6 +29,10 @@ import {
 } from "../utils/mushafSpreadQuiz.js";
 import { getMushafWordBoxes } from "../utils/mushafWordBoxes.js";
 import "../styles/mushaf.css";
+import { createPortal } from "react-dom";
+import { ToolbarButton, ToolbarGroup } from "./study/StudyToolbar.jsx";
+import { Icons } from "./study/toolbarIcons.jsx";
+import { PAGE_MEMORY_MODES } from "../utils/pageVisualMemory.js";
 
 const MOBILE_MUSHAF_MQ = "(max-width: 1024px)";
 
@@ -142,6 +146,8 @@ export default function MushafImageReader({
   onFlipToNeighbour = null,
   /** (surahNumber, ayah, page) => void — an āyah of another sūrah on a shared page was tapped. */
   onOtherSurahAyahSelect = null,
+  /** DOM node in the page's study toolbar; when given, page / memory / mistake controls render there. */
+  toolbarSlot = null,
 }) {
   const pages = useMemo(
     () => getSurahMushafPages(surah.revelationOrder),
@@ -545,6 +551,80 @@ export default function MushafImageReader({
     closeMistakePopover();
   }
 
+  const inToolbar = Boolean(toolbarSlot) && !compact;
+  const memoryActive = pageMemoryMode !== "full";
+  const toolbarTools =
+    inToolbar &&
+    createPortal(
+      <>
+        <ToolbarGroup label="Page">
+          <ToolbarButton icon={Icons.next} onClick={goForward} disabled={!canGoForward} aria-label="Next page" title="Next page" />
+          <span className="study-toolbar__page" aria-live="polite">
+            صفحة {currentSpread.map((p) => toArabicNum(p)).join(" – ")}
+          </span>
+          <ToolbarButton icon={Icons.prev} onClick={goBack} disabled={!canGoBack} aria-label="Previous page" title="Previous page" />
+        </ToolbarGroup>
+        {!calibrateMode && (
+          <ToolbarGroup label="Visual memory">
+            <div className="study-toolbar__segmented" role="radiogroup" aria-label="How much of the page to hide">
+              {PAGE_MEMORY_MODES.map((mode) => (
+                <ToolbarButton
+                  key={mode.id}
+                  label={mode.label}
+                  active={mode.id === pageMemoryMode}
+                  role="radio"
+                  aria-checked={mode.id === pageMemoryMode}
+                  title={`${mode.short} — ${mode.description}`}
+                  onClick={() => setPageMemoryMode(mode.id)}
+                />
+              ))}
+            </div>
+            {memoryActive && (
+              <>
+                <ToolbarButton icon={Icons.shuffle} label="Shuffle" onClick={shufflePageMemory} title="New random pattern" />
+                <ToolbarButton
+                  icon={Icons.eye}
+                  label={pageMemoryShowAll ? "Hide again" : "Show all"}
+                  toggle
+                  active={pageMemoryShowAll}
+                  onClick={togglePageMemoryRevealAll}
+                />
+              </>
+            )}
+          </ToolbarGroup>
+        )}
+        {!calibrateMode && (
+          <ToolbarGroup label="Mistakes">
+            <ToolbarButton
+              icon={Icons.mark}
+              label="Mark words"
+              toggle
+              active={markMistakeMode}
+              onClick={() => setMarkMistakeMode(!markMistakeMode)}
+            />
+            <ToolbarButton
+              icon={Icons.flag}
+              label="Mistakes"
+              toggle
+              active={showMemorizationMistakes}
+              count={surahMistakes.length}
+              onClick={() => setShowMemorizationMistakes(!showMemorizationMistakes)}
+            />
+            {canShowIraab && (
+              <ToolbarButton
+                icon={Icons.grammar}
+                label="Iʿrāb on page"
+                toggle
+                active={showIraab}
+                onClick={() => setShowIraab((on) => !on)}
+              />
+            )}
+          </ToolbarGroup>
+        )}
+      </>,
+      toolbarSlot,
+    );
+
   return (
     <MushafWordBoxCalibratorProvider
       page={activeGuidePage ?? currentSpread[0] ?? pages[0]}
@@ -559,14 +639,15 @@ export default function MushafImageReader({
         pageMemorySeed={pageMemorySeed}
         onCount={setPageMemoryHiddenCount}
       />
-      <div className={`mushaf-lesson-reader${compact ? " mushaf-lesson-reader--compact" : ""}`}>
+      {toolbarTools}
+      <div className={`mushaf-lesson-reader${compact ? " mushaf-lesson-reader--compact" : ""}${inToolbar ? " mushaf-lesson-reader--toolbar" : ""}`}>
       <div
         ref={mushafRef}
         className={`mushaf-reader mushaf-reader--images${compact ? " mushaf-reader--compact" : ""}${mobileSinglePage ? " mushaf-reader--mobile-single" : ""}`}
         role="region"
         aria-label={`Mushaf: ${surah.name}`}
       >
-        <div className="mushaf-reader__toolbar">
+        {!inToolbar && <div className="mushaf-reader__toolbar">
           <span className="mushaf-reader__surah">{surah.nameAr}</span>
           <span className="mushaf-reader__meta">
             {surah.name}
@@ -574,7 +655,7 @@ export default function MushafImageReader({
               ? ` · صفحة ${toArabicNum(pages[0])}`
               : ` · صفحات ${toArabicNum(pages[0])}–${toArabicNum(pages[pages.length - 1])}`}
           </span>
-        </div>
+        </div>}
 
         {showPageGuide && !compact && activeGuidePage != null && activeGuidePage <= 11 && (
           <BaqarahStudyTimeline
@@ -595,6 +676,7 @@ export default function MushafImageReader({
 
         {!compact && !calibrateMode && (
           <MemorizationMistakesBar
+            showControls={!inToolbar}
             markMode={markMistakeMode}
             onMarkModeChange={setMarkMistakeMode}
             showMistakes={showMemorizationMistakes}
@@ -604,7 +686,7 @@ export default function MushafImageReader({
           />
         )}
 
-        {canShowIraab && !compact && !calibrateMode && (
+        {canShowIraab && !compact && !calibrateMode && !inToolbar && (
           <div className="mushaf-iraab-bar">
             <button
               type="button"
@@ -625,6 +707,7 @@ export default function MushafImageReader({
 
         {!compact && (
           <PageVisualMemoryPanel
+            hintOnly={inToolbar}
             modeId={pageMemoryMode}
             onModeChange={setPageMemoryMode}
             onShuffle={shufflePageMemory}

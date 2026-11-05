@@ -1,6 +1,7 @@
 import { toArabicNum } from "../../utils/mushafText.js";
 
 export default function MemorizationMistakesBar({
+  showControls = true,
   markMode = false,
   onMarkModeChange,
   showMistakes = false,
@@ -9,10 +10,12 @@ export default function MemorizationMistakesBar({
   totalCount = 0,
 }) {
   const hasSpreadMistakes = spreadMistakes.length > 0;
+  // Controls live in the study toolbar: only render when there is something to say.
+  if (!showControls && !markMode && !showMistakes) return null;
 
   return (
-    <section className="mem-mistakes-bar" aria-label="Memorization mistakes">
-      <div className="mem-mistakes-bar__controls">
+    <section className={`mem-mistakes-bar${showControls ? "" : " mem-mistakes-bar--info"}`} aria-label="Memorization mistakes">
+      {showControls && <div className="mem-mistakes-bar__controls">
         <button
           type="button"
           className={`mem-mistakes-bar__toggle${markMode ? " is-active" : ""}`}
@@ -35,7 +38,7 @@ export default function MemorizationMistakesBar({
             <span className="mem-mistakes-bar__count">{totalCount}</span>
           )}
         </button>
-      </div>
+      </div>}
 
       {markMode && (
         <p className="mem-mistakes-bar__hint">

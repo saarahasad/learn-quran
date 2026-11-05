@@ -7313,3 +7313,12 @@ body.has-ayah-dock {
     transition: none;
   }
 }
+
+/* Study toolbar owns the page arrows: hide the side arrows beside the page */
+.mushaf-lesson-reader--toolbar .mushaf-reader__nav {
+  display: none;
+}
+
+.mem-mistakes-bar--info {
+  padding-top: 0.5rem;
+}

@@ -84,6 +84,7 @@ export function MadaniMushafPage({
   getNeighbourPage = null,
   onFlipToNeighbour = null,
   onOtherSurahAyahSelect = null,
+  toolbarSlot = null,
 }) {
   return (
     <MushafImageReader
@@ -102,6 +103,7 @@ export function MadaniMushafPage({
       getNeighbourPage={getNeighbourPage}
       onFlipToNeighbour={onFlipToNeighbour}
       onOtherSurahAyahSelect={onOtherSurahAyahSelect}
+      toolbarSlot={toolbarSlot}
     />
   );
 }

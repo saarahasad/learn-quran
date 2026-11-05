@@ -1,6 +1,7 @@
 import { PAGE_MEMORY_MODES } from "../../utils/pageVisualMemory.js";
 
 export default function PageVisualMemoryPanel({
+  hintOnly = false,
   modeId,
   onModeChange,
   onShuffle,
@@ -11,6 +12,20 @@ export default function PageVisualMemoryPanel({
 }) {
   const activeMode = PAGE_MEMORY_MODES.find((mode) => mode.id === modeId) ?? PAGE_MEMORY_MODES[0];
   const isActive = activeMode.id !== "full";
+
+  // Mode buttons live in the study toolbar: only show the short guidance line.
+  if (hintOnly) {
+    if (!isActive) return null;
+    return (
+      <p className="study-toolbar__hint" aria-live="polite">
+        <strong>{activeMode.label}:</strong> {activeMode.description}
+        {!showAllRevealed && hiddenCount > 0 &&
+          (revealedCount > 0
+            ? ` · ${revealedCount} peeked, ${hiddenCount - revealedCount} still hidden — tap a blank to reveal one word`
+            : ` · ${hiddenCount} hidden — tap a blank to peek`)}
+      </p>
+    );
+  }
 
   return (
     <section className="page-visual-memory" aria-label="Page visual memory">

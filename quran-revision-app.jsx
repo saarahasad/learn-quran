@@ -14,6 +14,8 @@ import { hasBaqarahPageGuides } from "./src/data/baqarahPageGuides.js";
 import { getSurahMushafPages } from "./src/data/mushafPageMap.js";
 import TafsirDeck from "./src/components/tafsir/TafsirDeck.jsx";
 import { GENERATED_SURAHS } from "./src/data/generatedSurahs.js";
+import StudyToolbar, { ToolbarButton, ToolbarGroup } from "./src/components/study/StudyToolbar.jsx";
+import { Icons } from "./src/components/study/toolbarIcons.jsx";
 import { JUZ1_GENERATED_SURAHS } from "./src/data/juz1GeneratedSurahs.js";
 import { JUZ30_GENERATED_SURAHS } from "./src/data/juz30GeneratedSurahs.js";
 import {
@@ -438,6 +440,7 @@ export default function QuranRevisionApp() {
   const [mushafQuizScope, setMushafQuizScope] = useState(null);
   const [testOpen, setTestOpen] = useState(false);
   const [memorizeOpen, setMemorizeOpen] = useState(false);
+  const [toolbarSlot, setToolbarSlot] = useState(null);
   const [page10DrillOpen, setPage10DrillOpen] = useState(false);
 
   /** Where to open the muṣḥaf after flipping or tapping into a neighbouring sūrah. */
@@ -586,52 +589,36 @@ export default function QuranRevisionApp() {
       sidebar={studySidebar}
     >
       <style>{FONTS}</style>
-      <div className="juz-study-toolbar course-card">
-        <div className="juz-study-toolbar-title">
-          <span className="course-lesson-title-ar"><Ar size={22}>{surah.nameAr}</Ar></span>
-          <span className="course-lesson-title">{surah.name}</span>
-        </div>
-        <div className="juz-study-toolbar-actions">
+      <StudyToolbar title={surah.name} titleAr={surah.nameAr} onSlot={setToolbarSlot}>
+        <ToolbarGroup label="Practise">
           {surah.hasTextbook && (
-            <button type="button" className="course-btn ghost" onClick={() => goView("iraab")}>
-              Iʿrāb
-            </button>
+            <ToolbarButton icon={Icons.grammar} label="Iʿrāb" onClick={() => goView("iraab")} />
           )}
           {showSurahQuiz && (
-            <button type="button" className="course-btn secondary" onClick={() => goView("quiz")}>
-              Quiz
-            </button>
+            <ToolbarButton icon={Icons.quiz} label="Quiz" onClick={() => goView("quiz")} />
           )}
-          <button
-            type="button"
-            className="course-btn secondary"
+          <ToolbarButton
+            icon={Icons.memorize}
+            label="Memorize page"
             disabled={!mushafQuizScope?.ayahNumbers?.length}
             onClick={() => setMemorizeOpen(true)}
-          >
-            Memorize This Page
-          </button>
+          />
+          <ToolbarButton icon={Icons.test} label="Test" onClick={() => setTestOpen(true)} />
           {surah.id === "baqarah" && (
-            <button
-              type="button"
-              className="course-btn primary"
+            <ToolbarButton
+              icon={Icons.drill}
+              label="Page 10 drill"
               onClick={() => {
                 setGuidePage(10);
                 setPage10DrillOpen(true);
               }}
-            >
-              Page 10 drill
-            </button>
+            />
           )}
-          <button type="button" className="course-btn secondary" onClick={() => setTestOpen(true)}>
-            Test
-          </button>
           {SHOW_TEACHER && (
-            <button type="button" className="course-btn primary" onClick={() => goView("teacher")}>
-              Teach
-            </button>
+            <ToolbarButton icon={Icons.teach} label="Teach" onClick={() => goView("teacher")} />
           )}
-        </div>
-      </div>
+        </ToolbarGroup>
+      </StudyToolbar>
       <div className="mushaf-lesson-wrap">
         <MadaniMushafPage
           surah={surah}
@@ -644,6 +631,7 @@ export default function QuranRevisionApp() {
           getNeighbourPage={getNeighbourPage}
           onFlipToNeighbour={handleFlipToNeighbour}
           onOtherSurahAyahSelect={handleOtherSurahAyah}
+          toolbarSlot={toolbarSlot}
         />
         <TafsirDeck key={`tafsir-${surah.id}`} surah={surah.revelationOrder} />
         {testOpen && (
