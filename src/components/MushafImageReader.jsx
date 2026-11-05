@@ -551,49 +551,64 @@ export default function MushafImageReader({
     closeMistakePopover();
   }
 
-  const inToolbar = Boolean(toolbarSlot) && !compact;
+  const inToolbar = Boolean(toolbarSlot?.top && toolbarSlot?.bottom) && !compact;
   const memoryActive = pageMemoryMode !== "full";
-  const toolbarTools =
-    inToolbar &&
-    createPortal(
-      <>
-        <ToolbarGroup label="Page">
-          <ToolbarButton icon={Icons.next} onClick={goForward} disabled={!canGoForward} aria-label="Next page" title="Next page" />
-          <span className="study-toolbar__page" aria-live="polite">
-            صفحة {currentSpread.map((p) => toArabicNum(p)).join(" – ")}
-          </span>
-          <ToolbarButton icon={Icons.prev} onClick={goBack} disabled={!canGoBack} aria-label="Previous page" title="Previous page" />
-        </ToolbarGroup>
-        {!calibrateMode && (
-          <ToolbarGroup label="Visual memory">
-            <div className="study-toolbar__segmented" role="radiogroup" aria-label="How much of the page to hide">
-              {PAGE_MEMORY_MODES.map((mode) => (
-                <ToolbarButton
-                  key={mode.id}
-                  label={mode.label}
-                  active={mode.id === pageMemoryMode}
-                  role="radio"
-                  aria-checked={mode.id === pageMemoryMode}
-                  title={`${mode.short} — ${mode.description}`}
-                  onClick={() => setPageMemoryMode(mode.id)}
-                />
-              ))}
-            </div>
-            {memoryActive && (
-              <>
-                <ToolbarButton icon={Icons.shuffle} label="Shuffle" onClick={shufflePageMemory} title="New random pattern" />
-                <ToolbarButton
-                  icon={Icons.eye}
-                  label={pageMemoryShowAll ? "Hide again" : "Show all"}
-                  toggle
-                  active={pageMemoryShowAll}
-                  onClick={togglePageMemoryRevealAll}
-                />
-              </>
-            )}
+  const pageLabel = `صفحة ${currentSpread.map((p) => toArabicNum(p)).join(" – ")}`;
+  const toolbarTools = inToolbar && (
+    <>
+      {createPortal(
+        <>
+          <ToolbarGroup label="Turn pages">
+            <ToolbarButton
+              icon={Icons.next}
+              label="Next page"
+              onClick={goForward}
+              disabled={!canGoForward}
+              title="Next page (the muṣḥaf turns to the left)"
+            />
+            <span className="study-toolbar__page" aria-live="polite">{pageLabel}</span>
+            <ToolbarButton
+              label="Previous page"
+              iconEnd={Icons.prev}
+              onClick={goBack}
+              disabled={!canGoBack}
+              title="Previous page"
+            />
           </ToolbarGroup>
-        )}
-        {!calibrateMode && (
+          {!calibrateMode && (
+            <ToolbarGroup label="Hide words to test yourself">
+              <div className="study-toolbar__segmented" role="radiogroup" aria-label="How much of the page to hide">
+                {PAGE_MEMORY_MODES.map((mode) => (
+                  <ToolbarButton
+                    key={mode.id}
+                    label={mode.label}
+                    active={mode.id === pageMemoryMode}
+                    role="radio"
+                    aria-checked={mode.id === pageMemoryMode}
+                    title={`${mode.short} — ${mode.description}`}
+                    onClick={() => setPageMemoryMode(mode.id)}
+                  />
+                ))}
+              </div>
+              {memoryActive && (
+                <>
+                  <ToolbarButton icon={Icons.shuffle} label="Shuffle" onClick={shufflePageMemory} title="New random pattern" />
+                  <ToolbarButton
+                    icon={Icons.eye}
+                    label={pageMemoryShowAll ? "Hide again" : "Show all"}
+                    toggle
+                    active={pageMemoryShowAll}
+                    onClick={togglePageMemoryRevealAll}
+                  />
+                </>
+              )}
+            </ToolbarGroup>
+          )}
+        </>,
+        toolbarSlot.top,
+      )}
+      {!calibrateMode &&
+        createPortal(
           <ToolbarGroup label="Mistakes">
             <ToolbarButton
               icon={Icons.mark}
@@ -619,11 +634,11 @@ export default function MushafImageReader({
                 onClick={() => setShowIraab((on) => !on)}
               />
             )}
-          </ToolbarGroup>
+          </ToolbarGroup>,
+          toolbarSlot.bottom,
         )}
-      </>,
-      toolbarSlot,
-    );
+    </>
+  );
 
   return (
     <MushafWordBoxCalibratorProvider

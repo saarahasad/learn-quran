@@ -4,8 +4,8 @@
   top: var(--site-header-h, 64px);
   z-index: 55;
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  flex-direction: column;
+  gap: 0.35rem;
   margin: 0 0 1rem;
   padding: 0.45rem 0.6rem;
   border: 1px solid #e6e1d8;
@@ -165,34 +165,21 @@
   color: #57534e;
 }
 
-@media (max-width: 720px) {
-  .study-toolbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.35rem;
-    border-radius: 12px;
-  }
 
-  .study-toolbar__title {
-    border-right: none;
-  }
-
-  .study-toolbar__label {
-    font-size: 0.8rem;
-  }
+.study-toolbar__row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
 }
 
-/* Tablets/desktop: wrap onto a second row instead of hiding tools off-screen */
+.study-toolbar__row--bottom {
+  padding-top: 0.35rem;
+  border-top: 1px solid #f0ece5;
+}
+
+/* Tablets/desktop: rows may wrap rather than hide tools off-screen */
 @media (min-width: 721px) {
-  .study-toolbar {
-    align-items: flex-start;
-  }
-
-  .study-toolbar__title {
-    min-height: 36px;
-    align-items: center;
-  }
-
   .study-toolbar__scroll {
     flex-wrap: wrap;
     row-gap: 0.35rem;
@@ -200,14 +187,21 @@
   }
 }
 
-/* Phones: one swipeable row, with a fade that shows there is more */
+/* Phones: title on its own line, each row of tools swipes sideways with a fade hint */
 @media (max-width: 720px) {
   .study-toolbar {
     padding: 0.4rem 0.4rem 0.35rem;
   }
 
+  .study-toolbar__row--top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
   .study-toolbar__title {
     padding: 0 0.3rem;
+    border-right: none;
   }
 
   .study-toolbar__title-ar {
@@ -223,5 +217,23 @@
   .study-toolbar__btn {
     height: 34px;
     padding: 0 0.5rem;
+  }
+}
+
+/* Tablets: title on its own short line so page turning + hide switch share one row */
+@media (min-width: 721px) and (max-width: 1100px) {
+  .study-toolbar__row--top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+  }
+
+  .study-toolbar__title {
+    border-right: none;
+    padding-left: 0.4rem;
+  }
+
+  .study-toolbar__row--top .study-toolbar__scroll {
+    justify-content: space-between;
   }
 }

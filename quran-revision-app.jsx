@@ -440,7 +440,7 @@ export default function QuranRevisionApp() {
   const [mushafQuizScope, setMushafQuizScope] = useState(null);
   const [testOpen, setTestOpen] = useState(false);
   const [memorizeOpen, setMemorizeOpen] = useState(false);
-  const [toolbarSlot, setToolbarSlot] = useState(null);
+  const [toolbarSlots, setToolbarSlots] = useState(null);
   const [page10DrillOpen, setPage10DrillOpen] = useState(false);
 
   /** Where to open the muṣḥaf after flipping or tapping into a neighbouring sūrah. */
@@ -589,7 +589,7 @@ export default function QuranRevisionApp() {
       sidebar={studySidebar}
     >
       <style>{FONTS}</style>
-      <StudyToolbar title={surah.name} titleAr={surah.nameAr} onSlot={setToolbarSlot}>
+      <StudyToolbar title={surah.name} titleAr={surah.nameAr} onSlots={setToolbarSlots}>
         <ToolbarGroup label="Practise">
           {surah.hasTextbook && (
             <ToolbarButton icon={Icons.grammar} label="Iʿrāb" onClick={() => goView("iraab")} />
@@ -631,7 +631,7 @@ export default function QuranRevisionApp() {
           getNeighbourPage={getNeighbourPage}
           onFlipToNeighbour={handleFlipToNeighbour}
           onOtherSurahAyahSelect={handleOtherSurahAyah}
-          toolbarSlot={toolbarSlot}
+          toolbarSlot={toolbarSlots}
         />
         <TafsirDeck key={`tafsir-${surah.id}`} surah={surah.revelationOrder} />
         {testOpen && (

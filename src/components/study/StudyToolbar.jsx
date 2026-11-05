@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import "../../styles/study-toolbar.css";
 
 /**
@@ -6,20 +7,35 @@ import "../../styles/study-toolbar.css";
  * `onSlot` receives a DOM node that child components (the mushaf reader) can
  * portal their own groups into, so every control lives on this one bar.
  */
-export default function StudyToolbar({ title, titleAr, onSlot, children }) {
+export default function StudyToolbar({ title, titleAr, onSlots, children }) {
+  // Two slots the mushaf reader portals into: row 1 (page + view), row 2 (mistakes).
+  // Stable ref callbacks: a new function each render would detach/re-attach and loop.
+  const setTop = useCallback(
+    (node) => onSlots?.((cur) => (cur?.top === node ? cur : { ...cur, top: node })),
+    [onSlots],
+  );
+  const setBottom = useCallback(
+    (node) => onSlots?.((cur) => (cur?.bottom === node ? cur : { ...cur, bottom: node })),
+    [onSlots],
+  );
   return (
     <div className="study-toolbar" role="toolbar" aria-label="Study tools">
-      <div className="study-toolbar__title">
-        {titleAr && (
-          <span className="study-toolbar__title-ar" dir="rtl" lang="ar">
-            {titleAr}
-          </span>
-        )}
-        {title && <span className="study-toolbar__title-en">{title}</span>}
+      <div className="study-toolbar__row study-toolbar__row--top">
+        <div className="study-toolbar__title">
+          {titleAr && (
+            <span className="study-toolbar__title-ar" dir="rtl" lang="ar">
+              {titleAr}
+            </span>
+          )}
+          {title && <span className="study-toolbar__title-en">{title}</span>}
+        </div>
+        <div className="study-toolbar__scroll" ref={setTop} />
       </div>
-      <div className="study-toolbar__scroll">
-        <div className="study-toolbar__slot" ref={onSlot} />
-        {children}
+      <div className="study-toolbar__row study-toolbar__row--bottom">
+        <div className="study-toolbar__scroll">
+          <div className="study-toolbar__slot" ref={setBottom} />
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -33,7 +49,7 @@ export function ToolbarGroup({ label, children }) {
   );
 }
 
-export function ToolbarButton({ icon, label, active = false, toggle = false, count, ...props }) {
+export function ToolbarButton({ icon, iconEnd, label, active = false, toggle = false, count, ...props }) {
   return (
     <button
       type="button"
@@ -47,6 +63,11 @@ export function ToolbarButton({ icon, label, active = false, toggle = false, cou
         </span>
       )}
       {label && <span className="study-toolbar__label">{label}</span>}
+      {iconEnd && (
+        <span className="study-toolbar__icon" aria-hidden>
+          {iconEnd}
+        </span>
+      )}
       {count > 0 && <span className="study-toolbar__count">{count}</span>}
     </button>
   );
