@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { LEXICON_AUTHORS } from "../data/lexiconAuthors.js";
 import "../styles/word-study.css";
 
 /**
@@ -101,31 +102,151 @@ function pageLabel(pages, hasVolumes) {
   return hasVolumes ? `vol. ${v1}, p. ${p1}${tail}` : `p. ${p1}${tail}`;
 }
 
-/** For long entries (Lisān), show the opening plus the paragraph that discusses this word. */
-function excerpt(text, pattern, isLong) {
-  const paras = text.split("\n").filter(Boolean);
-  if (!isLong || paras.length <= 2) return { parts: paras, trimmed: false };
-  const first = paras[0];
+/** For long entries (Lisān), show the opening plus the paragraph that discusses this word.
+ *  Returns paragraph indices so translations stay aligned with the Arabic. */
+function excerpt(paras, pattern, isLong) {
+  const all = paras.map((_, i) => i);
+  if (!isLong || paras.length <= 2) return { idx: all, trimmed: false };
   let hit = -1;
   if (pattern) {
     const probe = new RegExp(pattern.source); // non-global copy: no lastIndex state
     hit = paras.findIndex((p, i) => i > 0 && probe.test(p));
   }
-  const parts = hit > 0 ? [first, paras[hit]] : paras.slice(0, 2);
-  return { parts, trimmed: true, gapBefore: hit > 1 };
+  return { idx: hit > 0 ? [0, hit] : [0, 1], trimmed: true, gapBefore: hit > 1 };
+}
+
+function AboutBook({ bookId }) {
+  const about = LEXICON_AUTHORS[bookId];
+  if (!about) return null;
+  return (
+    <details className="ws-about">
+      <summary>About this book and its author</summary>
+      <p className="ws-about-summary">{about.summary}</p>
+      <p className="ws-ai-label">{about.note ?? "Summary written by Claude (AI). The quotations below are the sources."}</p>
+      {about.abbreviations && (
+        <dl className="ws-abbr">
+          {about.abbreviations.map(([k, v]) => (
+            <div key={k}>
+              <dt>({k})</dt>
+              <dd>{v}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {about.quotes?.map((q) => (
+        <section key={q.title} className="ws-about-quote">
+          <h4>{q.title}</h4>
+          {q.ar.map((para, i) => (
+            <div key={i} className="ws-pair">
+              <p className="ws-pair-ar" dir="rtl" lang="ar">{para}</p>
+              {q.en?.[i] && <p className="ws-pair-en">{q.en[i]}</p>}
+            </div>
+          ))}
+          <p className="ws-about-cite">{q.cite}</p>
+          <p className="ws-ai-label">English: translation by Claude (AI) — the Arabic is the source.</p>
+        </section>
+      ))}
+    </details>
+  );
+}
+
+function LaneText({ segs, probe }) {
+  return segs.map(([kind, text], i) =>
+    kind === "a" ? (
+      <span
+        key={i}
+        className={`ws-lane-ar${probe && probe.test(text) ? " is-focus" : ""}`}
+        dir="rtl"
+        lang="ar"
+      >
+        {text}
+      </span>
+    ) : kind === "i" ? (
+      <em key={i}>{text}</em>
+    ) : (
+      <span key={i}>{text}</span>
+    ),
+  );
+}
+
+/** Lane articles to show: the opening, then the articles where this word is headed or discussed. */
+function laneFocus(words, probe) {
+  if (!probe) return [0];
+  const isRedirect = (w) => w.segs.length <= 4 && w.segs.some(([k, t]) => k !== "a" && /\bsee\b/.test(t));
+  const keyHits = [];
+  const bodyHits = [];
+  words.forEach((w, i) => {
+    if (i === 0) return;
+    if (probe.test(w.key) && !isRedirect(w)) keyHits.push(i);
+    else if (w.segs.some(([k, t]) => k === "a" && probe.test(t))) bodyHits.push(i);
+  });
+  return [0, ...[...keyHits, ...bodyHits].slice(0, 2)].sort((a, b) => a - b);
+}
+
+function LaneCard({ entry, focusPattern }) {
+  const [full, setFull] = useState(false);
+  const words = entry.words ?? [];
+  const probe = focusPattern ? new RegExp(focusPattern.source) : null;
+  const shown = full || words.length <= 3 ? words.map((_, i) => i) : laneFocus(words, probe);
+  const trimmed = shown.length < words.length;
+  const [p1, p2] = entry.pages ?? [];
+  const where = p1 ? `p. ${p1}${p2 && p2 !== p1 ? `–${p2}` : ""}` : "";
+
+  return (
+    <article className="ws-entry ws-entry--lane">
+      <header className="ws-entry-head">
+        <div>
+          <p className="ws-entry-title">Lane’s Arabic-English Lexicon</p>
+          <p className="ws-entry-author">
+            Edward William Lane (d. 1876) · <span>English, from the classical dictionaries</span>
+          </p>
+        </div>
+        <p className="ws-lane-root" dir="rtl" lang="ar">{entry.head}</p>
+      </header>
+      <div className="ws-lane-body">
+        {shown.map((i, n) => (
+          <p key={i}>
+            {n > 0 && trimmed && shown[n] - shown[n - 1] > 1 && <span className="ws-gap">… </span>}
+            <LaneText segs={words[i].segs} probe={probe} />
+          </p>
+        ))}
+        {trimmed && <p className="ws-gap">…</p>}
+      </div>
+      <footer className="ws-cite">
+        <span>
+          Lane, <cite>An Arabic-English Lexicon</cite> (London, 1863–1893), root «{entry.head}»
+          {where ? `, ${where}` : ""}. Letters in brackets name his Arabic sources.
+        </span>
+        <span className="ws-cite-links">
+          {words.length > 3 && (
+            <button type="button" onClick={() => setFull((v) => !v)}>
+              {full ? "Show the relevant part" : "Read Lane’s full entry"}
+            </button>
+          )}
+          <a href="https://github.com/laneslexicon/lexicon_xml" target="_blank" rel="noreferrer">
+            Digital text (Perseus / Lane’s Lexicon project, CC BY-SA)
+          </a>
+        </span>
+      </footer>
+      <AboutBook bookId="lane" />
+    </article>
+  );
 }
 
 function EntryCard({ entry, focusPattern }) {
   const book = LEXICON_BOOKS[entry.book];
   const [full, setFull] = useState(false);
+  const paras = entry.text.split("\n").filter(Boolean);
   const isLong = entry.text.length > 1400;
-  const view = excerpt(entry.text, focusPattern, isLong);
-  const parts = full ? entry.text.split("\n").filter(Boolean) : view.parts;
+  const view = excerpt(paras, focusPattern, isLong);
+  const idx = full ? paras.map((_, i) => i) : view.idx;
   const where = pageLabel(entry.pages, book.hasVolumes);
+  const tr = entry.tr ?? [];
+  const hasTranslation = idx.some((i) => tr[i]);
 
   return (
-    <article className="ws-entry">
-      <header className="ws-entry-head">
+    <details className="ws-entry ws-entry--ar">
+      <summary className="ws-entry-head">
         <div>
           <p className="ws-entry-title">{book.title}</p>
           <p className="ws-entry-author">
@@ -135,17 +256,26 @@ function EntryCard({ entry, focusPattern }) {
         <p className="ws-entry-title-ar" dir="rtl" lang="ar">
           {book.titleAr}
         </p>
-      </header>
+      </summary>
 
-      <blockquote className="ws-quote" dir="rtl" lang="ar">
-        {parts.map((p, i) => (
-          <p key={i}>
-            {!full && view.trimmed && i === 1 && view.gapBefore && <span className="ws-gap">… </span>}
-            <Highlighted text={p} pattern={focusPattern} />
-          </p>
+      <div className="ws-quote-wrap">
+        {idx.map((i, n) => (
+          <div key={i} className="ws-pair">
+            <p className="ws-pair-ar ws-quote" dir="rtl" lang="ar">
+              {!full && view.trimmed && n === 1 && view.gapBefore && <span className="ws-gap">… </span>}
+              <Highlighted text={paras[i]} pattern={focusPattern} />
+            </p>
+            {tr[i] && <p className="ws-pair-en">{tr[i]}</p>}
+          </div>
         ))}
-        {!full && view.trimmed && <p className="ws-gap">…</p>}
-      </blockquote>
+        {!full && view.trimmed && <p className="ws-gap ws-gap--ar">…</p>}
+        {hasTranslation && (
+          <p className="ws-ai-label">
+            English under each paragraph: translation by Claude (AI). The Arabic is the source — check
+            against it.
+          </p>
+        )}
+      </div>
 
       <footer className="ws-cite">
         <span>
@@ -163,7 +293,8 @@ function EntryCard({ entry, focusPattern }) {
           </a>
         </span>
       </footer>
-    </article>
+      <AboutBook bookId={entry.book} />
+    </details>
   );
 }
 
@@ -234,13 +365,26 @@ export default function WordStudyPanel({ word, rootInfo, onClose }) {
       )}
       {rootInfo && !loading && state.status === "ready" && state.data && (
         <>
-          {state.data.entries.map((entry) => (
-            <EntryCard key={entry.book} entry={entry} focusPattern={focusPattern} />
-          ))}
+          {state.data.entries.map((entry) =>
+            entry.book === "lane" ? (
+              <LaneCard key="lane" entry={entry} focusPattern={focusPattern} />
+            ) : null,
+          )}
+          {state.data.entries.some((e) => e.book !== "lane") && (
+            <p className="ws-section-label">
+              The original Arabic dictionaries — tap one to open it
+            </p>
+          )}
+          {state.data.entries.map((entry) =>
+            entry.book !== "lane" ? (
+              <EntryCard key={entry.book} entry={entry} focusPattern={focusPattern} />
+            ) : null,
+          )}
           <p className="ws-foot">
-            Quoted word for word from the printed editions named under each entry; the editors’
-            footnote numbers are left out. Root and dictionary form: Quranic Arabic Corpus
-            (corpus.quran.com). Digital texts: OpenITI / al-Maktaba al-Shāmila.
+            Dictionary text is quoted word for word from the printed editions named under each
+            entry (editors’ footnote numbers left out). Root and dictionary form: Quranic Arabic
+            Corpus (corpus.quran.com). Arabic digital texts: OpenITI / al-Maktaba al-Shāmila. Lane:
+            Perseus Digital Library / Lane’s Lexicon project.
           </p>
         </>
       )}

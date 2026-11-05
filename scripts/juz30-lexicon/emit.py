@@ -48,3 +48,21 @@ for s in sorted(words):
 lines.append("};\n\nexport function getWordRoot(surah, ayah, wordIndex) {\n  const w = JUZ30_ROOTS[surah]?.[ayah]?.[wordIndex];\n  return w ? { root: w[0], lemma: w[1], fileId: w[2] } : null;\n}\n")
 open(f"{REPO}/src/data/juz30WordRoots.js", "w", encoding="utf8").write("\n".join(lines))
 print("roots index KB", os.path.getsize(f"{REPO}/src/data/juz30WordRoots.js") // 1024)
+
+# ── Lane's Lexicon (English) ─────────────────────────────────────────────
+LANE = json.load(open(f"{D}/lane.json", encoding="utf8"))
+LM = json.load(open(f"{D}/lane_match.json", encoding="utf8"))
+added = 0
+for root, key in LM.items():
+    path = f"{REPO}/public/lexicon/juz30/{rid(root)}.json"
+    lane = LANE[key]
+    rec = {"book": "lane", "head": lane["root"], "pages": lane["pages"], "words": lane["entries"]}
+    if os.path.exists(path):
+        d = json.load(open(path, encoding="utf8"))
+        d["entries"] = [e for e in d["entries"] if e["book"] != "lane"]
+    else:
+        d = {"root": root, "entries": []}
+    d["entries"].insert(0, rec)
+    open(path, "w", encoding="utf8").write(json.dumps(d, ensure_ascii=False, separators=(",", ":")))
+    added += 1
+print("Lane added to", added, "root files")

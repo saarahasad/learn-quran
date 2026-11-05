@@ -275,3 +275,208 @@ button.mushaf-explanation__word:focus-visible {
     align-items: flex-start;
   }
 }
+
+/* ── Lane (English) + collapsible Arabic dictionaries + About ── */
+.ws-entry--lane {
+  border-color: #b7e4c7;
+}
+
+.ws-entry--lane .ws-entry-head {
+  background: #ecfdf3;
+}
+
+.ws-lane-root {
+  margin: 0;
+  font-family: "Noto Naskh Arabic", "Amiri", serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ws-green);
+}
+
+.ws-lane-body {
+  padding: 0.85rem 1rem 0.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--ws-ink);
+}
+
+.ws-lane-body p {
+  margin: 0 0 0.75rem;
+}
+
+.ws-lane-body em {
+  font-style: italic;
+  color: #14301e;
+}
+
+.ws-lane-ar {
+  font-family: "Noto Naskh Arabic", "Amiri", serif;
+  font-size: 1.12em;
+  font-weight: 600;
+  color: var(--ws-gold);
+  unicode-bidi: isolate;
+}
+
+.ws-section-label {
+  margin: 1rem 0.95rem 0.15rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ws-muted);
+}
+
+details.ws-entry > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details.ws-entry > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.ws-entry > summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 0.5rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--ws-rule);
+  font-size: 1.1rem;
+  color: var(--ws-ink);
+}
+
+details.ws-entry[open] > summary::after {
+  content: "−";
+}
+
+details.ws-entry:not([open]) > summary {
+  border-bottom: none;
+}
+
+.ws-quote-wrap {
+  padding: 0.75rem 0;
+}
+
+.ws-pair {
+  margin: 0 0 0.6rem;
+}
+
+.ws-quote-wrap .ws-quote {
+  padding: 0.1rem 1rem 0.1rem;
+  margin: 0;
+}
+
+.ws-pair-en {
+  margin: 0.15rem 1rem 0 1rem;
+  padding: 0.45rem 0.7rem;
+  border-left: 3px solid #c7d2fe;
+  border-radius: 0 8px 8px 0;
+  background: #f5f7ff;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #273046;
+}
+
+.ws-gap--ar {
+  padding: 0 1rem;
+  text-align: right;
+}
+
+.ws-ai-label {
+  margin: 0.5rem 1rem 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4f46e5;
+}
+
+.ws-about {
+  border-top: 1px solid #f2eee8;
+  background: #fbfaf7;
+}
+
+.ws-about > summary {
+  padding: 0.6rem 0.95rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ws-green);
+  cursor: pointer;
+}
+
+.ws-about-summary {
+  margin: 0 0.95rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ws-ink);
+}
+
+.ws-about .ws-ai-label {
+  margin: 0.35rem 0.95rem 0.6rem;
+}
+
+.ws-about-quote {
+  margin: 0.75rem 0.95rem 0.9rem;
+  padding: 0.75rem 0 0.6rem;
+  border: 1px solid var(--ws-rule);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.ws-about-quote h4 {
+  margin: 0 0.9rem 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ws-ink);
+}
+
+.ws-about-quote .ws-pair-ar {
+  margin: 0;
+  padding: 0 0.9rem;
+  font-family: "Noto Naskh Arabic", "Amiri", serif;
+  font-size: 1.05rem;
+  line-height: 1.95;
+  text-align: right;
+}
+
+.ws-about-quote .ws-pair-en {
+  margin: 0.2rem 0.9rem 0;
+}
+
+.ws-about-cite {
+  margin: 0.4rem 0.9rem 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--ws-muted);
+}
+
+.ws-abbr {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.25rem 1rem;
+  margin: 0.5rem 0.95rem 0.9rem;
+  font-size: 0.82rem;
+}
+
+.ws-abbr div {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.ws-abbr dt {
+  font-weight: 700;
+  color: var(--ws-ink);
+}
+
+.ws-abbr dd {
+  margin: 0;
+  color: var(--ws-muted);
+}
+
+.ws-lane-ar.is-focus {
+  padding: 0 0.15em;
+  border-radius: 4px;
+  background: #fde9b6;
+}

@@ -32,3 +32,12 @@ heading (كون → كان); Ibn Fāris's combined weak headings (رجى = رج�
 not name the other letter; Lisān's combined weak headings (لقا = لقو + لقي). Swapping
 و/ي inside a root is never done (عون ≠ عين). al-Mufradāt headings are accepted only when
 the entry's opening contains its own root letters.
+
+## Lane's Lexicon
+
+`lane/` = `git clone --depth 1 https://github.com/laneslexicon/lexicon_xml lane` (Perseus XML with the
+Lane's Lexicon project's corrections, CC BY-SA). `lane_extract.py lex` converts Lane's transliterated
+Arabic to vowelled Arabic script using the project's own table (laneslexicon/lexicon_parser `lane.pl`,
+`convertString`) and records his page numbers. Root matching (`lane_match.json`) uses the exact root,
+hamza written as alif, and Lane's two-letter headings for doubled roots (شدد → شد). `emit.py` then adds
+a `lane` entry first in each root file.
