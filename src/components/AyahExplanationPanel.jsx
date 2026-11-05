@@ -5,45 +5,9 @@ import IraabAyahDiagram from "./iraab/IraabAyahDiagram.jsx";
 import AyahIraabProse from "./iraab/AyahIraabProse.jsx";
 import { useIraabDiagram } from "../hooks/useIraabDiagram.js";
 import { loadAyahWords } from "../utils/mushafPageData.js";
+import { buildWordByWord } from "../utils/ayahWordByWord.js";
 import { hasAyahRecitation } from "../utils/quranAudio.js";
 import { highlightMushafText, toArabicNum } from "../utils/mushafText.js";
-
-function isPlaceholderTranslation(en) {
-  return !en || en === "—" || en === "(see translation)";
-}
-
-function mergeWordData(localWords, apiWords) {
-  if (!apiWords?.length) {
-    return (localWords ?? []).map((w) => ({
-      ar: w.ar,
-      tr: w.tr ?? "",
-      en: w.en ?? "",
-    }));
-  }
-
-  const sorted = [...apiWords].sort((a, b) => a.wordNum - b.wordNum);
-
-  if (!localWords?.length) {
-    return sorted.map((w) => ({
-      ar: w.textUthmani,
-      tr: w.transliteration,
-      en: w.translation,
-    }));
-  }
-
-  return sorted.map((api, i) => {
-    const local = localWords[i];
-    const en = local?.en && !isPlaceholderTranslation(local.en)
-      ? local.en
-      : api.translation || local?.en || "";
-
-    return {
-      ar: api.textUthmani || local?.ar,
-      tr: api.transliteration || local?.tr || "",
-      en,
-    };
-  });
-}
 
 export default function AyahExplanationPanel({
   ayah,
@@ -74,8 +38,17 @@ export default function AyahExplanationPanel({
   const iraab = useIraabDiagram(surahNumber, ayah?.n);
 
   const words = useMemo(
-    () => mergeWordData(ayah?.words, apiWords),
-    [ayah?.words, apiWords],
+    () =>
+      ayah
+        ? buildWordByWord({
+            surahNumber,
+            ayahNumber: ayah.n,
+            ayahAr: ayah.ar,
+            apiWords,
+            localWords: ayah.words,
+          })
+        : [],
+    [ayah, surahNumber, apiWords],
   );
 
   if (!ayah) {

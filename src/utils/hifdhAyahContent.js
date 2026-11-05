@@ -3,6 +3,7 @@ import { GENERATED_SURAHS } from "../data/generatedSurahs.js";
 import { JUZ1_GENERATED_SURAHS } from "../data/juz1GeneratedSurahs.js";
 import { JUZ30_GENERATED_SURAHS } from "../data/juz30GeneratedSurahs.js";
 import { loadAyahWords } from "./mushafPageData.js";
+import { buildWordByWord } from "./ayahWordByWord.js";
 
 const REVISION_SURAHS_BY_NUMBER = new Map();
 
@@ -31,22 +32,14 @@ export function getLocalAyah(surahNumber, ayahNumber, localAyahs = null) {
   );
 }
 
-export function mergeAyahWords(localAyah, apiWords) {
-  if (!apiWords?.length) {
-    return (localAyah?.words ?? []).map((word) => ({
-      ar: word.ar,
-      en: word.en ?? "",
-    }));
-  }
-
-  return [...apiWords]
-    .sort((a, b) => a.wordNum - b.wordNum)
-    .map((word, index) => ({
-      ar: word.textUthmani || localAyah?.words?.[index]?.ar || "",
-      en: word.translation || localAyah?.words?.[index]?.en || "",
-      tr: word.transliteration || "",
-    }))
-    .filter((word) => word.ar);
+export function mergeAyahWords(localAyah, apiWords, surahNumber = null, ayahNumber = null) {
+  return buildWordByWord({
+    surahNumber,
+    ayahNumber: ayahNumber ?? localAyah?.n ?? null,
+    ayahAr: localAyah?.ar,
+    apiWords,
+    localWords: localAyah?.words,
+  }).filter((word) => word.ar);
 }
 
 export async function fetchAyahWords(
@@ -57,7 +50,7 @@ export async function fetchAyahWords(
 ) {
   const localAyah = getLocalAyah(surahNumber, ayahNumber, localAyahs);
   const apiWords = await loadAyahWords([mushafPage], surahNumber, ayahNumber);
-  return mergeAyahWords(localAyah, apiWords);
+  return mergeAyahWords(localAyah, apiWords, surahNumber, ayahNumber);
 }
 
 export function getVerseStudy(mushafPage, ayahNumber) {

@@ -1,6 +1,8 @@
 // Generated from AlQuran.cloud Uthmani Arabic and Saheeh International English.
 // Existing hand-authored surahs stay in quran-revision-app.jsx and generatedSurahs.js.
 
+import { getJuz30Wbw } from "./juz30WordByWord.js";
+
 const SOURCE = [
   {
     "id": "naba",
@@ -1582,7 +1584,7 @@ const SOURCE = [
     "ayahs": [
       {
         "n": 1,
-        "ar": "بِّسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ وَٱلتِّينِ وَٱلزَّيْتُونِ",
+        "ar": "وَٱلتِّينِ وَٱلزَّيْتُونِ",
         "en": "By the fig and the olive"
       },
       {
@@ -1737,7 +1739,7 @@ const SOURCE = [
     "ayahs": [
       {
         "n": 1,
-        "ar": "بِّسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ إِنَّآ أَنزَلْنَٰهُ فِى لَيْلَةِ ٱلْقَدْرِ",
+        "ar": "إِنَّآ أَنزَلْنَٰهُ فِى لَيْلَةِ ٱلْقَدْرِ",
         "en": "Indeed, We sent the Qur'an down during the Night of Decree."
       },
       {
@@ -2133,8 +2135,12 @@ function cleanToken(token) {
   return TOKEN_TRAILING_MARKS.reduce((clean, mark) => clean.split(mark).join(""), token);
 }
 
-function makeWords(ar) {
+function makeWords(ar, surahNumber, ayahNumber) {
   const tokens = ar.split(/\s+/).map(cleanToken).filter(Boolean);
+  const wbw = getJuz30Wbw(surahNumber, ayahNumber);
+  if (wbw && wbw.length === tokens.length) {
+    return tokens.map((token, i) => ({ ar: token, tr: wbw[i].tr, en: wbw[i].en }));
+  }
   return tokens.slice(0, 6).map((token) => ({
     ar: token,
     en: token.length <= 2 ? "—" : "(see translation)",
@@ -2162,7 +2168,7 @@ function makeSurah(surah) {
       ar: ayah.ar,
       en: ayah.en,
       connects: ayah.n === surah.ayahCount ? "Complete." : "Then —",
-      words: makeWords(ayah.ar),
+      words: makeWords(ayah.ar, surah.revelationOrder, ayah.n),
     })),
   };
 }

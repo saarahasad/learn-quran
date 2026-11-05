@@ -300,7 +300,7 @@ export const GENERATED_SURAHS = {
       {
         "n": 1,
         "scene": 0,
-        "ar": "ٱلْكَٰفِرُونَ",
+        "ar": "قُلْ يَٰٓأَيُّهَا ٱلْكَٰفِرُونَ",
         "en": "Say, \"O disbelievers,",
         "connects": "Then —",
         "words": [
@@ -471,7 +471,7 @@ export const GENERATED_SURAHS = {
       {
         "n": 1,
         "scene": 0,
-        "ar": "ٱلْكَوْثَرَ",
+        "ar": "إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ",
         "en": "Indeed, We have granted you, [O Muhammad], al-Kawthar.",
         "connects": "Then —",
         "words": [
@@ -551,7 +551,7 @@ export const GENERATED_SURAHS = {
       {
         "n": 1,
         "scene": 0,
-        "ar": "قُرَيْشٍ",
+        "ar": "لِإِيلَٰفِ قُرَيْشٍ",
         "en": "For the accustomed security of the Quraysh -",
         "connects": "Then —",
         "words": [
@@ -680,7 +680,7 @@ export const GENERATED_SURAHS = {
       {
         "n": 1,
         "scene": 0,
-        "ar": "ٱلْفِيلِ",
+        "ar": "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَٰبِ ٱلْفِيلِ",
         "en": "Have you not considered, [O Muhammad], how your Lord dealt with the companions of the elephant?",
         "connects": "Then —",
         "words": [
@@ -822,7 +822,7 @@ export const GENERATED_SURAHS = {
       {
         "n": 1,
         "scene": 0,
-        "ar": "لُّمَزَةٍ",
+        "ar": "وَيْلٌ لِّكُلِّ هُمَزَةٍ لُّمَزَةٍ",
         "en": "Woe to every scorner and mocker",
         "connects": "Then —",
         "words": [
@@ -1168,7 +1168,7 @@ export const GENERATED_SURAHS = {
       {
         "n": 1,
         "scene": 0,
-        "ar": "ٱلتَّكَاثُرُ",
+        "ar": "أَلْهَىٰكُمُ ٱلتَّكَاثُرُ",
         "en": "Competition in [worldly] increase diverts you",
         "connects": "Then —",
         "words": [
