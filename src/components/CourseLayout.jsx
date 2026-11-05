@@ -24,15 +24,32 @@ function useMediaQuery(query) {
   return matches;
 }
 
+/** Eight-pointed star (two squares), the mark used to divide the Qur'an into sections. */
+export function BrandMark({ size = 38 }) {
+  return (
+    <svg className="site-header-mark" width={size} height={size} viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="11" fill="#14532d" />
+      <g transform="translate(20 20)" fill="none" stroke="#e2b763" strokeWidth="1.9" strokeLinejoin="round">
+        <rect x="-9.5" y="-9.5" width="19" height="19" />
+        <rect x="-9.5" y="-9.5" width="19" height="19" transform="rotate(45)" />
+      </g>
+      <circle cx="20" cy="20" r="3.1" fill="#e2b763" />
+    </svg>
+  );
+}
+
 export function CourseHeader() {
   const { pathname } = useLocation();
 
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <Link to="/" className="site-header-brand" aria-label={LEARN_ISLAM.name}>
-          <span className="site-header-brand-ar" dir="rtl">{LEARN_ISLAM.nameAr}</span>
-          <span className="site-header-brand-en">{LEARN_ISLAM.name}</span>
+        <Link to="/" className="site-header-brand" aria-label={`${LEARN_ISLAM.name} — home`}>
+          <BrandMark />
+          <span className="site-header-wordmark">
+            <span className="site-header-brand-ar" dir="rtl" lang="ar">{LEARN_ISLAM.nameAr}</span>
+            <span className="site-header-brand-en">{LEARN_ISLAM.name}</span>
+          </span>
         </Link>
         <nav className="site-header-nav" aria-label="Main">
           {pathname !== "/" && NAV_ITEMS.map((item) => {
