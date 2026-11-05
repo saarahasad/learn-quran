@@ -182,3 +182,29 @@
 @media (prefers-reduced-motion: reduce) {
   .iraab-dia * { transition: none !important; }
 }
+
+/* Summary paragraph from the source page, folded by default */
+.iraab-dia__summary {
+  margin: 0.6rem 0.9rem 0;
+  padding: 0.45rem 0.8rem;
+  border: 1px dashed #d8d2c6;
+  border-radius: 10px;
+  background: #fbfaf7;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.iraab-dia__summary > summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #14532d;
+}
+
+.iraab-dia__summary p {
+  margin: 0.35rem 0 0.2rem;
+}
+
+.iraab-dia__ln--ghost {
+  color: #8a8f98;
+  font-style: italic;
+}

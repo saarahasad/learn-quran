@@ -201,9 +201,9 @@ export default function IraabAyahDiagram({ ayah, source = null }) {
               aria-pressed={active === j}
             >
               <span className="iraab-dia__box">
-                {u.lines.map((t, k) => (
-                  <IraabLine key={k} text={t} />
-                ))}
+                {u.lines.length > 0
+                  ? u.lines.map((t, k) => <IraabLine key={k} text={t} />)
+                  : u.ghost && <span className="iraab-dia__ln iraab-dia__ln--ghost">{u.tag?.startsWith("آية") ? `من ${u.tag}` : "محذوف"}</span>}
               </span>
               <span className="iraab-dia__word">
                 {u.ghost ? (
@@ -238,6 +238,13 @@ export default function IraabAyahDiagram({ ayah, source = null }) {
       {ayah.notes?.map((note, k) => (
         <p key={k} className="iraab-dia__jumla" dir="rtl">{note}</p>
       ))}
+
+      {ayah.summary && (
+        <details className="iraab-dia__summary" dir="rtl">
+          <summary>ملخص إعراب الآية</summary>
+          <p>{ayah.summary}</p>
+        </details>
+      )}
 
       {source && (
         <p className="iraab-dia__src">

@@ -178,11 +178,14 @@ export default function AyahExplanationPanel({
           )}
         </div>
 
-        <AyahIraabProse
-          key={`iraab-prose-${surahNumber}-${ayah.n}`}
-          surahNumber={surahNumber}
-          ayahNumber={ayah.n}
-        />
+        {/* The diagram (surahquran.com) replaces the prose iʿrāb wherever it exists */}
+        {!iraab && (
+          <AyahIraabProse
+            key={`iraab-prose-${surahNumber}-${ayah.n}`}
+            surahNumber={surahNumber}
+            ayahNumber={ayah.n}
+          />
+        )}
 
         {iraab && (
           <IraabAyahDiagram
