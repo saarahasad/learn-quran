@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 /**
- * Download إعراب القرآن للدعاس (the iʿrāb surahquran.com shows) for Juz ʿAmma,
- * verbatim, from tafsir.app — the same source the app's dev proxy uses
- * (server/iraabDaasHandler.mjs).
+ * Download the iʿrāb of Juz ʿAmma from surahquran.com, verbatim, one āyah page
+ * at a time (https://surahquran.com/e3rab-aya-<a>-sora-<s>.html).
+ * surahquran.com's iʿrāb is إعراب القرآن للدعاس.
  *
  * Run from the repo root (Node 18+):
  *   node scripts/fetch-daas-juz30.mjs            # sūrahs 78–114
  *   node scripts/fetch-daas-juz30.mjs 78 80      # just a range
  *
- * Writes scripts/juz30-iraab-daas/<surah>.json. Already-downloaded sūrahs are
- * skipped, so it is safe to re-run if the connection drops.
+ * Writes scripts/juz30-iraab-daas/<surah>.json with, per āyah, the page's iʿrāb
+ * section as plain text (all of it: the word-by-word iʿrāb, the vowelled copy and
+ * the summary). Already-downloaded sūrahs are skipped, so re-running is safe.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -26,25 +27,58 @@ const OUT_DIR = path.join(process.cwd(), "scripts", "juz30-iraab-daas");
 const [from = 78, to = 114] = process.argv.slice(2).map(Number);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function fetchAyah(s, a) {
-  const url = `https://tafsir.app/get.php?src=iraab-daas&s=${s}&a=${a}&ver=1`;
-  for (let attempt = 1; attempt <= 4; attempt += 1) {
-    try {
-      const res = await fetch(url, {
-        headers: {
-          Accept: "application/json",
-          Referer: `https://tafsir.app/iraab-daas/${s}/${a}`,
-          "User-Agent": "learn-quran-juz30-iraab/1.0",
-        },
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return await res.json();
-    } catch (err) {
-      if (attempt === 4) throw err;
-      await sleep(1500 * attempt);
+const urlsFor = (s, a) => [
+  `https://surahquran.com/e3rab-aya-${a}-sora-${s}.html`,
+  `https://surahquran.com/quran-search/e3rab-aya-${a}-sora-${s}.html`,
+];
+
+async function fetchPage(s, a) {
+  let lastErr;
+  for (const url of urlsFor(s, a)) {
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        const res = await fetch(url, {
+          headers: { "User-Agent": "learn-quran-juz30-iraab/1.0 (personal study app)" },
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return { url, html: await res.text() };
+      } catch (err) {
+        lastErr = err;
+        await sleep(1200 * attempt);
+      }
     }
   }
-  return null;
+  throw new Error(`${s}:${a} — ${lastErr?.message}`);
+}
+
+/** HTML → plain text, keeping line breaks at block elements. */
+function toText(html) {
+  return html
+    .replace(/<(script|style|noscript|svg)[\s\S]*?<\/\1>/gi, "")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|div|h[1-6]|li|tr|section|article|blockquote)>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;|&apos;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/[ \t ]+/g, " ")
+    .replace(/ *\n */g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+/** Keep the iʿrāb section: from the first "إعراب …" heading to the end of the āyah summary. */
+function iraabSection(text) {
+  const lines = text.split("\n");
+  const start = lines.findIndex((l) => /^إعراب\s/.test(l) && !/كاملة|سورة .* كامل/.test(l));
+  if (start < 0) return text.slice(0, 20000);
+  let end = lines.findIndex((l, i) => i > start && /^إعراب الآية رقم/.test(l));
+  end = end < 0 ? Math.min(lines.length, start + 160) : Math.min(lines.length, end + 6);
+  return lines.slice(start, end).join("\n").trim();
 }
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -58,23 +92,18 @@ for (let s = from; s <= to; s += 1) {
     continue;
   }
   const ayat = [];
-  let a = 1;
-  while (a <= count) {
-    const p = await fetchAyah(s, a);
-    const start = Number(p?.ayahs_start) || a;
-    const n = Math.max(1, Number(p?.count) || 1);
-    // One tafsir.app entry can cover several āyāt; store it once with its range.
-    ayat.push({ from: start, to: start + n - 1, ayahText: p?.ayah ?? "", data: p?.data ?? "" });
-    process.stdout.write(`  ${s}:${start}${n > 1 ? `–${start + n - 1}` : ""} `);
-    a = Math.max(a + 1, start + n);
-    await sleep(350); // be polite to tafsir.app
+  for (let a = 1; a <= count; a += 1) {
+    const { url, html } = await fetchPage(s, a);
+    ayat.push({ n: a, url, text: iraabSection(toText(html)) });
+    process.stdout.write(`${s}:${a} `);
+    await sleep(400); // be polite to surahquran.com
   }
   fs.writeFileSync(
     file,
     JSON.stringify(
       {
         surah: s,
-        source: "إعراب القرآن للدعاس (al-Daʿʿās, Ḥumaydān, Qāsim) — via tafsir.app, as shown on surahquran.com",
+        source: "surahquran.com — إعراب القرآن للدعاس",
         fetchedAt: new Date().toISOString(),
         ayat,
       },
@@ -82,6 +111,6 @@ for (let s = from; s <= to; s += 1) {
       1,
     ),
   );
-  console.log(`\n✓ ${s}: ${ayat.length} entries saved`);
+  console.log(`\n✓ ${s}: ${ayat.length} āyāt saved`);
 }
 console.log("\nDone. Now commit and push scripts/juz30-iraab-daas/ so Claude can build the diagrams.");
