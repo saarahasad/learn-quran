@@ -7076,3 +7076,240 @@
   background: transparent;
 }
 
+
+/* ── Āyah audio dock: fixed at the bottom, separate from the explanation ── */
+body.has-ayah-dock {
+  padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+}
+
+.ayah-dock {
+  position: fixed;
+  left: 50%;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 250;
+  width: min(760px, calc(100vw - 24px));
+  transform: translateX(-50%);
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--mushaf-blue-deep, #134a82), var(--mushaf-blue, #185fa5));
+  box-shadow: 0 12px 34px rgba(19, 74, 130, 0.35);
+  color: #fff;
+  font-family: var(--edx-font, "DM Sans", sans-serif);
+  overflow: hidden;
+}
+
+.ayah-dock__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 0.7rem;
+}
+
+.ayah-dock__play {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--mushaf-blue-deep, #134a82);
+  cursor: pointer;
+}
+
+.ayah-dock__play.is-playing {
+  background: var(--mushaf-blue-light, #b5d4f4);
+}
+
+.ayah-dock__info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ayah-dock__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ayah-dock__reciter {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(181, 212, 244, 0.95);
+}
+
+.ayah-dock__time {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgba(181, 212, 244, 0.95);
+}
+
+.ayah-dock__progress {
+  position: relative;
+  height: 6px;
+  margin-top: 0.45rem;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ayah-dock__progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7ec8f7, var(--mushaf-blue-light, #b5d4f4));
+}
+
+.ayah-dock__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+.ayah-dock__icon.is-on {
+  background: var(--mushaf-blue-light, #b5d4f4);
+  border-color: transparent;
+  color: var(--mushaf-blue-deep, #134a82);
+}
+
+.ayah-dock__autoplay {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 38px;
+  padding: 0 0.75rem 0 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ayah-dock__switch {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.15s ease;
+}
+
+.ayah-dock__switch span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  transition: transform 0.15s ease;
+}
+
+.ayah-dock__autoplay.is-on .ayah-dock__switch {
+  background: #4ade80;
+}
+
+.ayah-dock__autoplay.is-on .ayah-dock__switch span {
+  transform: translateX(12px);
+}
+
+.ayah-dock button:focus-visible,
+.ayah-dock__progress:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.ayah-dock__settings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.7rem 0.9rem 0.2rem;
+}
+
+.ayah-dock__settings-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(181, 212, 244, 0.95);
+}
+
+.ayah-dock__delays {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.ayah-dock__delay {
+  min-height: 30px;
+  padding: 0 0.7rem;
+  border: 1px solid rgba(181, 212, 244, 0.4);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ayah-dock__delay.is-active {
+  background: var(--mushaf-blue-light, #b5d4f4);
+  border-color: transparent;
+  color: var(--mushaf-blue-deep, #134a82);
+}
+
+.ayah-dock__hint {
+  margin: 0;
+  padding: 0.5rem 0.9rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fde68a;
+}
+
+@media (max-width: 520px) {
+  .ayah-dock__bar {
+    gap: 0.4rem;
+    padding: 0.55rem 0.55rem;
+  }
+
+  .ayah-dock__autoplay {
+    padding: 0 0.55rem 0 0.35rem;
+    font-size: 0.72rem;
+  }
+
+  .ayah-dock__time {
+    display: none;
+  }
+
+  .ayah-dock__reciter {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ayah-dock__switch,
+  .ayah-dock__switch span {
+    transition: none;
+  }
+}

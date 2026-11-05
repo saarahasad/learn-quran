@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { getMinshawiAyahUrl, MINSHAWI_RECITER } from "../utils/quranAudio.js";
 
 const DELAY_OPTIONS = [
@@ -11,6 +12,16 @@ const DELAY_OPTIONS = [
   { value: 60, label: "1m" },
   { value: 90, label: "90s" },
 ];
+
+const AUTOPLAY_KEY = "ayah_autoplay_v1";
+
+function readAutoPlayPref() {
+  try {
+    return window.localStorage.getItem(AUTOPLAY_KEY) !== "0";
+  } catch {
+    return true;
+  }
+}
 
 function fmt(seconds) {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
@@ -29,7 +40,28 @@ export default function AyahAudioPlayer({
   const delayRef = useRef(15);
   const delayIntervalRef = useRef(null);
 
+  /* Remembered choice: tapping an āyah starts the recitation, or opens it silently */
+  const [autoPlayOn, setAutoPlayOn] = useState(readAutoPlayPref);
+  const autoPlayRef = useRef(autoPlayOn);
+  const toggleAutoPlay = () => {
+    const next = !autoPlayRef.current;
+    autoPlayRef.current = next;
+    setAutoPlayOn(next);
+    try {
+      window.localStorage.setItem(AUTOPLAY_KEY, next ? "1" : "0");
+    } catch {
+      /* storage unavailable: the choice lasts for this visit */
+    }
+  };
+
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
+
+  /* Leave room at the bottom of the page for the fixed dock */
+  useEffect(() => {
+    document.body.classList.add("has-ayah-dock");
+    return () => document.body.classList.remove("has-ayah-dock");
+  }, []);
   const [repeat, setRepeat] = useState(false);
   const [delaySec, setDelaySec] = useState(15);
   const [readingPause, setReadingPause] = useState(null);
@@ -143,7 +175,8 @@ export default function AyahAudioPlayer({
       audio.play().catch(() => setPlaying(false));
     };
 
-    if (autoPlay) {
+    // Read through a ref so flipping the switch never starts or restarts the current āyah.
+    if (autoPlay && autoPlayRef.current) {
       if (audio.readyState >= 2) tryPlay();
       else audio.addEventListener("canplay", tryPlay, { once: true });
     }
@@ -174,75 +207,125 @@ export default function AyahAudioPlayer({
     audio.currentTime = frac * duration;
   };
 
-  return (
-    <div className="mushaf-ayah-audio" aria-label={`Recitation: ${MINSHAWI_RECITER.label}`}>
+  const dock = (
+    <div className="ayah-dock" role="region" aria-label={`Recitation of āyah ${ayahNumber}`}>
       <audio ref={audioRef} src={src} preload="auto" />
 
-      <div className="mushaf-ayah-audio__meta">
-        <span className="mushaf-ayah-audio__reciter">{MINSHAWI_RECITER.label}</span>
-        <span className="mushaf-ayah-audio__time">
-          {fmt(currentTime)} / {fmt(duration)}
-        </span>
-      </div>
-
-      <div className="mushaf-ayah-audio__controls">
-        <button
-          type="button"
-          className={`mushaf-ayah-audio__play${playing ? " is-playing" : ""}`}
-          onClick={togglePlay}
-          aria-label={playing ? "Pause recitation" : "Play recitation"}
-        >
-          {playing ? "⏸" : "▶"}
-        </button>
-
-        <button
-          type="button"
-          className={`mushaf-ayah-audio__repeat${repeat ? " is-on" : ""}`}
-          onClick={() => setRepeat((value) => !value)}
-          aria-pressed={repeat}
-          title="Repeat this āyah"
-        >
-          ↺
-        </button>
-
-        <div
-          className="mushaf-ayah-audio__bar"
-          onClick={seek}
-          onKeyDown={() => {}}
-          role="slider"
-          aria-valuemin={0}
-          aria-valuemax={duration}
-          aria-valuenow={currentTime}
-          tabIndex={0}
-        >
-          <div className="mushaf-ayah-audio__bar-fill" style={{ width: `${progress}%` }} />
+      {settingsOpen && (
+        <div className="ayah-dock__settings" id="ayah-dock-settings">
+          <span className="ayah-dock__settings-label">Pause before repeating, to read along</span>
+          <div className="ayah-dock__delays" role="group" aria-label="Reading pause before repeat">
+            {DELAY_OPTIONS.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                className={`ayah-dock__delay${delaySec === option.value ? " is-active" : ""}`}
+                onClick={() => setDelaySec(option.value)}
+                aria-pressed={delaySec === option.value}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <div className="mushaf-ayah-audio__delay">
-        <span className="mushaf-ayah-audio__delay-label">Reading pause</span>
-        <div className="mushaf-ayah-audio__delay-options" role="group" aria-label="Reading pause before repeat">
-          {DELAY_OPTIONS.map((option) => (
-            <button
-              key={option.value}
-              type="button"
-              className={`mushaf-ayah-audio__delay-btn${
-                delaySec === option.value ? " is-active" : ""
-              }`}
-              onClick={() => setDelaySec(option.value)}
-              aria-pressed={delaySec === option.value}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
-      </div>
+      )}
 
       {readingPause != null && (
-        <p className="mushaf-ayah-audio__pause-hint" aria-live="polite">
+        <p className="ayah-dock__hint" aria-live="polite">
           Time to read — replays in {readingPause}s
         </p>
       )}
+
+      <div className="ayah-dock__bar">
+        <button
+          type="button"
+          className={`ayah-dock__play${playing ? " is-playing" : ""}`}
+          onClick={togglePlay}
+          aria-label={playing ? "Pause recitation" : "Play recitation"}
+        >
+          {playing ? (
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+              <rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor" />
+              <rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor" />
+            </svg>
+          ) : (
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+              <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" fill="currentColor" />
+            </svg>
+          )}
+        </button>
+
+        <div className="ayah-dock__info">
+          <div className="ayah-dock__title">
+            <span>Āyah {ayahNumber}</span>
+            <span className="ayah-dock__reciter">{MINSHAWI_RECITER.label}</span>
+            <span className="ayah-dock__time">
+              {fmt(currentTime)} / {fmt(duration)}
+            </span>
+          </div>
+          <div
+            className="ayah-dock__progress"
+            onClick={seek}
+            onKeyDown={() => {}}
+            role="slider"
+            aria-label="Seek"
+            aria-valuemin={0}
+            aria-valuemax={duration}
+            aria-valuenow={currentTime}
+            tabIndex={0}
+          >
+            <div className="ayah-dock__progress-fill" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className={`ayah-dock__icon${repeat ? " is-on" : ""}`}
+          onClick={() => setRepeat((value) => !value)}
+          aria-pressed={repeat}
+          aria-label="Repeat this āyah"
+          title="Repeat this āyah"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+            <path d="M17 2l3 3-3 3M4 11V9a4 4 0 0 1 4-4h12M7 22l-3-3 3-3M20 13v2a4 4 0 0 1-4 4H4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          role="switch"
+          aria-checked={autoPlayOn}
+          className={`ayah-dock__autoplay${autoPlayOn ? " is-on" : ""}`}
+          onClick={toggleAutoPlay}
+          title={
+            autoPlayOn
+              ? "On: tapping an āyah plays it. Turn off to open āyāt silently."
+              : "Off: tapping an āyah opens it silently. Turn on to play automatically."
+          }
+        >
+          <span className="ayah-dock__switch" aria-hidden>
+            <span />
+          </span>
+          <span className="ayah-dock__autoplay-label">Auto-play</span>
+        </button>
+
+        <button
+          type="button"
+          className={`ayah-dock__icon${settingsOpen ? " is-on" : ""}`}
+          onClick={() => setSettingsOpen((v) => !v)}
+          aria-expanded={settingsOpen}
+          aria-controls="ayah-dock-settings"
+          aria-label="Reading pause settings"
+          title="Reading pause"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+            <circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+            <path d="M12 9v4l2.5 2M9 2h6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
+
+  return typeof document !== "undefined" ? createPortal(dock, document.body) : dock;
 }
