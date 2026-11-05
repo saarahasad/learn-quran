@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import AyahAudioPlayer from "./AyahAudioPlayer.jsx";
 import VerseMarker from "./mushaf/VerseMarker.jsx";
 import IraabAyahDiagram from "./iraab/IraabAyahDiagram.jsx";
+import AyahIraabProse from "./iraab/AyahIraabProse.jsx";
 import { useIraabDiagram } from "../hooks/useIraabDiagram.js";
 import { loadAyahWords } from "../utils/mushafPageData.js";
 import { hasAyahRecitation } from "../utils/quranAudio.js";
@@ -159,6 +160,12 @@ export default function AyahExplanationPanel({
             <p className="mushaf-explanation__translation">{ayah.en}</p>
           )}
         </div>
+
+        <AyahIraabProse
+          key={`iraab-prose-${surahNumber}-${ayah.n}`}
+          surahNumber={surahNumber}
+          ayahNumber={ayah.n}
+        />
 
         {iraab && (
           <IraabAyahDiagram

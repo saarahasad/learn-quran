@@ -1,0 +1,81 @@
+.iraab-prose {
+  --ip-green: #1f7a3a;
+  --ip-ink: #14181f;
+  --ip-rule: rgba(20, 24, 31, 0.1);
+  --ip-paper: #fbfaf6;
+  margin-top: 1rem;
+  border: 1px solid var(--ip-rule);
+  border-radius: 14px;
+  background: var(--ip-paper);
+  overflow: hidden;
+}
+
+.iraab-prose__head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-bottom: 1px solid var(--ip-rule);
+  background: linear-gradient(90deg, #0f3d22, #1f7a3a);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.iraab-prose__title {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.iraab-prose__chev {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.iraab-prose__body {
+  padding: 0.85rem 1rem 1rem;
+}
+
+.iraab-prose__row {
+  margin: 0 0 0.55rem;
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: clamp(1.12rem, 3.6vw, 1.32rem);
+  line-height: 2;
+  color: var(--ip-ink);
+  text-align: right;
+}
+
+.iraab-prose__row:last-child {
+  margin-bottom: 0;
+}
+
+.iraab-prose__row--note {
+  padding-top: 0.45rem;
+  border-top: 1px dashed var(--ip-rule);
+  color: #374151;
+}
+
+.iraab-prose__w {
+  color: var(--ip-green);
+  font-weight: 700;
+}
+
+.iraab-prose__colon {
+  color: var(--ip-green);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .iraab-prose {
+    --ip-green: #5fd38a;
+    --ip-ink: #eef1f4;
+    --ip-rule: rgba(255, 255, 255, 0.12);
+    --ip-paper: #161a20;
+  }
+  :root:not([data-theme="light"]) .iraab-prose__row--note {
+    color: #c3c8cf;
+  }
+}
