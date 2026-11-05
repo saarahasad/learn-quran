@@ -534,3 +534,27 @@
     font-size: 1.5rem;
   }
 }
+
+@media (max-width: 1023px) {
+  .tf-passage-frame {
+    border-width: 7px;
+    padding: 1rem 0.85rem 1.1rem;
+  }
+
+  .tf-surah-banner {
+    max-width: min(26rem, 100%);
+  }
+}
+
+@media (max-width: 560px) {
+  .tf-passage-frame {
+    border-width: 5px;
+    border-radius: 14px;
+    padding: 0.8rem 0.6rem 0.9rem;
+  }
+
+  .tf-passage-ar {
+    font-size: 1.4rem;
+    gap: 0.25rem 0.6rem;
+  }
+}
