@@ -18,7 +18,7 @@ export default function PageVisualMemoryPanel({
     if (!isActive) return null;
     return (
       <p className="study-toolbar__hint" aria-live="polite">
-        <strong>{activeMode.label}:</strong> {activeMode.description}
+        <strong>Hiding {activeMode.hideLabel?.toLowerCase() ?? activeMode.label}:</strong> {activeMode.description}
         {!showAllRevealed && hiddenCount > 0 &&
           (revealedCount > 0
             ? ` · ${revealedCount} peeked, ${hiddenCount - revealedCount} still hidden — tap a blank to reveal one word`

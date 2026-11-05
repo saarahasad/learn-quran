@@ -38,8 +38,8 @@ export const JUZ_COURSES = [
   },
   {
     juz: 30,
-    title: "Juz 30 — Short Surahs",
-    shortTitle: "Juz 30 Short Surahs",
+    title: "Juz 30",
+    shortTitle: "Juz 30",
     range: "An-Naba — An-Nās",
     description:
       "Each lesson covers one surah with scene-based revision, active recall quizzes, recitation practice, and optional iʿrāb grammar study.",
@@ -85,7 +85,7 @@ export function juzCourseToUnit(course, number) {
     juz: course.juz,
     title: course.title,
     shortTitle: course.shortTitle,
-    sidebarTitle: `Juz ${course.juz} — ${course.shortTitle}`,
+    sidebarTitle: course.shortTitle,
     description: course.description,
     available: course.available,
   };

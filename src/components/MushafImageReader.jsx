@@ -576,26 +576,27 @@ export default function MushafImageReader({
             />
           </ToolbarGroup>
           {!calibrateMode && (
-            <ToolbarGroup label="Hide words to test yourself">
-              <div className="study-toolbar__segmented" role="radiogroup" aria-label="How much of the page to hide">
+            <ToolbarGroup label="Hide words to test your memory">
+              <span className="study-toolbar__caption" aria-hidden>Hide words</span>
+              <div className="study-toolbar__segmented" role="radiogroup" aria-label="Hide words to test your memory">
                 {PAGE_MEMORY_MODES.map((mode) => (
                   <ToolbarButton
                     key={mode.id}
-                    label={mode.label}
+                    label={mode.hideLabel ?? mode.label}
                     active={mode.id === pageMemoryMode}
                     role="radio"
                     aria-checked={mode.id === pageMemoryMode}
-                    title={`${mode.short} — ${mode.description}`}
+                    title={mode.description}
                     onClick={() => setPageMemoryMode(mode.id)}
                   />
                 ))}
               </div>
               {memoryActive && (
                 <>
-                  <ToolbarButton icon={Icons.shuffle} label="Shuffle" onClick={shufflePageMemory} title="New random pattern" />
+                  <ToolbarButton icon={Icons.shuffle} label="Hide different words" onClick={shufflePageMemory} />
                   <ToolbarButton
                     icon={Icons.eye}
-                    label={pageMemoryShowAll ? "Hide again" : "Show all"}
+                    label={pageMemoryShowAll ? "Hide them again" : "Reveal all"}
                     toggle
                     active={pageMemoryShowAll}
                     onClick={togglePageMemoryRevealAll}
@@ -609,17 +610,19 @@ export default function MushafImageReader({
       )}
       {!calibrateMode &&
         createPortal(
-          <ToolbarGroup label="Mistakes">
+          <ToolbarGroup label="Your mistakes">
             <ToolbarButton
               icon={Icons.mark}
-              label="Mark words"
+              label={markMistakeMode ? "Marking on — tap a word" : "Mark a mistake"}
+              title="Turn on, then tap any word on the page you got wrong while reciting"
               toggle
               active={markMistakeMode}
               onClick={() => setMarkMistakeMode(!markMistakeMode)}
             />
             <ToolbarButton
               icon={Icons.flag}
-              label="Mistakes"
+              label={showMemorizationMistakes ? "Hide my mistakes" : "Show my mistakes"}
+              title="Highlight the words you marked, and list them under the page"
               toggle
               active={showMemorizationMistakes}
               count={surahMistakes.length}
@@ -628,7 +631,7 @@ export default function MushafImageReader({
             {canShowIraab && (
               <ToolbarButton
                 icon={Icons.grammar}
-                label="Iʿrāb on page"
+                label="Iʿrāb boxes on page"
                 toggle
                 active={showIraab}
                 onClick={() => setShowIraab((on) => !on)}

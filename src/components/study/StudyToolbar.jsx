@@ -21,7 +21,7 @@ export default function StudyToolbar({ title, titleAr, onSlots, children }) {
     [onSlots],
   );
   const nav = useContext(CourseNavContext);
-  // Course crumbs between "home" and this page (e.g. "Juz 30 — Short Surahs").
+  // Course crumbs between "home" and this page (e.g. "Juz 30").
   const crumbs = (nav?.breadcrumbs ?? []).slice(1, -1).filter((c) => c.to);
 
   return (

@@ -3,6 +3,8 @@
 export const PAGE_MEMORY_MODES = [
   {
     id: "full",
+    /** Short label for the study toolbar ("Hide words: …"). */
+    hideLabel: "None",
     label: "Study",
     short: "Full page",
     description: "See the whole page — use as reference before testing yourself.",
@@ -10,6 +12,8 @@ export const PAGE_MEMORY_MODES = [
   },
   {
     id: "hints",
+    /** Short label for the study toolbar ("Hide words: …"). */
+    hideLabel: "A few",
     label: "Hints",
     short: "~25% words",
     description: "A few scattered words covered — recall what sits in each gap.",
@@ -17,6 +21,8 @@ export const PAGE_MEMORY_MODES = [
   },
   {
     id: "words",
+    /** Short label for the study toolbar ("Hide words: …"). */
+    hideLabel: "Most",
     label: "Words",
     short: "~55% words",
     description: "Most words gone — rebuild the page from memory, word by word.",
@@ -24,6 +30,8 @@ export const PAGE_MEMORY_MODES = [
   },
   {
     id: "verses",
+    /** Short label for the study toolbar ("Hide words: …"). */
+    hideLabel: "Whole āyāt",
     label: "Verses",
     short: "Whole āyāt",
     description: "Entire āyāt blanked — remember which verse starts where on the page.",
@@ -32,6 +40,8 @@ export const PAGE_MEMORY_MODES = [
   },
   {
     id: "blank",
+    /** Short label for the study toolbar ("Hide words: …"). */
+    hideLabel: "All",
     label: "Blank",
     short: "All words",
     description: "Full visual recall — picture the page in your mind, then peek.",

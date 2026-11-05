@@ -591,20 +591,21 @@ export default function QuranRevisionApp() {
     >
       <style>{FONTS}</style>
       <StudyToolbar title={surah.name} titleAr={surah.nameAr} onSlots={setToolbarSlots}>
-        <ToolbarGroup label="Practise">
+        <ToolbarGroup label="Practise this sūrah">
           {surah.hasTextbook && (
-            <ToolbarButton icon={Icons.grammar} label="Iʿrāb" onClick={() => goView("iraab")} />
+            <ToolbarButton icon={Icons.grammar} label="Grammar (iʿrāb)" title="Word-by-word grammar textbook for this sūrah" onClick={() => goView("iraab")} />
           )}
           {showSurahQuiz && (
-            <ToolbarButton icon={Icons.quiz} label="Quiz" onClick={() => goView("quiz")} />
+            <ToolbarButton icon={Icons.quiz} label="Meaning quiz" title="Flashcards and quizzes on the meanings of the āyāt" onClick={() => goView("quiz")} />
           )}
           <ToolbarButton
             icon={Icons.memorize}
-            label="Memorize page"
+            label="Memorise this page"
+            title="Guided step-by-step memorisation of the āyāt on this page"
             disabled={!mushafQuizScope?.ayahNumbers?.length}
             onClick={() => setMemorizeOpen(true)}
           />
-          <ToolbarButton icon={Icons.test} label="Test" onClick={() => setTestOpen(true)} />
+          <ToolbarButton icon={Icons.test} label="Recite & check" title="Recite from memory into the microphone; the app checks your words" onClick={() => setTestOpen(true)} />
           {surah.id === "baqarah" && (
             <ToolbarButton
               icon={Icons.drill}
