@@ -32,3 +32,4 @@ scripts/tamyiz_payload_partial.json
 scripts/tamyiz_rest.json
 scripts/dammah-insert.txt
 scripts/ocr-awamil-tmp/
+__pycache__/
