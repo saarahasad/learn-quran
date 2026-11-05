@@ -7,6 +7,7 @@
  * Run from the repo root (Node 18+):
  *   node scripts/fetch-daas-juz30.mjs            # sūrahs 78–114
  *   node scripts/fetch-daas-juz30.mjs 78 80      # just a range
+ *   node scripts/fetch-daas-juz30.mjs --repair   # re-download only incomplete pages
  *
  * Writes scripts/juz30-iraab-daas/<surah>.json with, per āyah, the page's iʿrāb
  * section as plain text (all of it: the word-by-word iʿrāb, the vowelled copy and
@@ -24,7 +25,8 @@ const AYAH_COUNTS = {
 };
 
 const OUT_DIR = path.join(process.cwd(), "scripts", "juz30-iraab-daas");
-const [from = 78, to = 114] = process.argv.slice(2).map(Number);
+const REPAIR = process.argv.includes("--repair");
+const [from = 78, to = 114] = process.argv.slice(2).filter((a) => !a.startsWith("--")).map(Number);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const urlsFor = (s, a) => [
@@ -71,14 +73,20 @@ function toText(html) {
     .trim();
 }
 
-/** Keep the iʿrāb section: from the first "إعراب …" heading to the end of the āyah summary. */
+/** Keep the iʿrāb section: from the first "إعراب …" heading to the tafsīr links that follow it. */
 function iraabSection(text) {
   const lines = text.split("\n");
-  const start = lines.findIndex((l) => /^إعراب\s/.test(l) && !/كاملة|سورة .* كامل/.test(l));
-  if (start < 0) return text.slice(0, 20000);
-  let end = lines.findIndex((l, i) => i > start && /^إعراب الآية رقم/.test(l));
-  end = end < 0 ? Math.min(lines.length, start + 160) : Math.min(lines.length, end + 6);
+  const start = lines.findIndex((l) => /^إعراب\s/.test(l) && !/كاملة/.test(l));
+  if (start < 0) return text;
+  let end = lines.findIndex((l, i) => i > start && /^تفسير الآية \d+/.test(l));
+  if (end < 0) end = lines.length;
   return lines.slice(start, end).join("\n").trim();
+}
+
+/** A page is complete when its detailed iʿrāb ("إعراب قوله تعالى") is followed by the āyah navigation. */
+function isComplete(text) {
+  const i = text.indexOf("إعراب قوله تعالى:");
+  return i >= 0 && text.indexOf("الآية السابقة", i) > i;
 }
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -88,7 +96,27 @@ for (let s = from; s <= to; s += 1) {
   if (!count) continue;
   const file = path.join(OUT_DIR, `${s}.json`);
   if (fs.existsSync(file)) {
-    console.log(`✓ ${s} already downloaded`);
+    if (!REPAIR) {
+      console.log(`✓ ${s} already downloaded`);
+      continue;
+    }
+    // --repair: re-download only the āyāt whose page text is incomplete
+    const saved = JSON.parse(fs.readFileSync(file, "utf8"));
+    let fixed = 0;
+    for (const ay of saved.ayat) {
+      if (isComplete(ay.text)) continue;
+      const { url, html } = await fetchPage(s, ay.n);
+      ay.url = url;
+      ay.text = iraabSection(toText(html));
+      fixed += 1;
+      process.stdout.write(`${s}:${ay.n} `);
+      await sleep(400);
+    }
+    if (fixed) {
+      saved.repairedAt = new Date().toISOString();
+      fs.writeFileSync(file, JSON.stringify(saved, null, 1));
+    }
+    console.log(fixed ? `\n✓ ${s}: ${fixed} āyāt repaired` : `✓ ${s} complete`);
     continue;
   }
   const ayat = [];
