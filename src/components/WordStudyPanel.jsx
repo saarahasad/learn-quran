@@ -241,8 +241,6 @@ function EntryCard({ entry, focusPattern }) {
   const view = excerpt(paras, focusPattern, isLong);
   const idx = full ? paras.map((_, i) => i) : view.idx;
   const where = pageLabel(entry.pages, book.hasVolumes);
-  const tr = entry.tr ?? [];
-  const hasTranslation = idx.some((i) => tr[i]);
 
   return (
     <details className="ws-entry ws-entry--ar">
@@ -265,16 +263,9 @@ function EntryCard({ entry, focusPattern }) {
               {!full && view.trimmed && n === 1 && view.gapBefore && <span className="ws-gap">… </span>}
               <Highlighted text={paras[i]} pattern={focusPattern} />
             </p>
-            {tr[i] && <p className="ws-pair-en">{tr[i]}</p>}
           </div>
         ))}
         {!full && view.trimmed && <p className="ws-gap ws-gap--ar">…</p>}
-        {hasTranslation && (
-          <p className="ws-ai-label">
-            English under each paragraph: translation by Claude (AI). The Arabic is the source — check
-            against it.
-          </p>
-        )}
       </div>
 
       <footer className="ws-cite">
