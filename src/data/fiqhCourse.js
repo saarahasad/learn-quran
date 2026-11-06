@@ -1,9 +1,9 @@
 /** Fiqh Level 1 course metadata and lesson outline. */
 export const FIQH_META = {
   id: "fiqh",
-  name: "Fiqh Level 1",
-  nameAr: "الفقه",
-  tagline: "Islamic jurisprudence — purification, prayer, and interactive practice.",
+  name: "Purification and Prayer",
+  nameAr: "الطهارة والصلاة",
+  tagline: "Zad Academy · Fiqh Level 1. Taharah, wudu, ghusl, and the prayer.",
   description:
     "Semester 1 study guide covering the Book of Purification (Ṭahārah): taharah, wudu, ghusl, tayammum, prayer times and conditions, with flashcards, quizzes, and matching exercises.",
   path: "/fiqh",

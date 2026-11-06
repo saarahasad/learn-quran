@@ -1443,7 +1443,7 @@ export const AJRUMIYYAH_CHAPTERS = [
 ];
 
 export const AJRUMIYYAH_META = {
-  name: "Al-Ājurrūmiyyah",
+  name: "Al-Ajrumiyyah",
   nameAr: "الْمُقَدِّمَةُ الْآجُرُّومِيَّةُ",
   tagline: "Classical Arabic grammar — line by line with audio and commentary.",
   chapterCount: 26,

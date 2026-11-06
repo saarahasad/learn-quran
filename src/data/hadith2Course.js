@@ -6,8 +6,8 @@
 
 export const HADITH2_META = {
   id: "hadith-2",
-  name: "Hadith 2",
-  nameAr: "الحديث ٢",
+  name: "Short Hadiths, Rich in Meaning",
+  nameAr: "الحديث",
   tagline: "Short narrations, rich in meaning.",
   description:
     "In this semester, we will study selected Prophetic narrations (Hadiths), starting with the Hadith: “He who becomes an enemy of one of My allies; the five daily prayers; this worldly life is green and sweet; be in this life like a stranger; he whom Allah wills goodness for; shun that which you have doubts about” etc., as well as other narrations which are short in wording but rich in meaning and which comprise of great Islamic meanings. Allah is the Granter of success.",

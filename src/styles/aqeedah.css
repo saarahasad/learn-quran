@@ -1038,6 +1038,9 @@
 .aq-condition--5 .aq-condition-n { background: #7c3aed; }
 .aq-condition--6 .aq-condition-n { background: #d97706; }
 .aq-condition--7 .aq-condition-n { background: #4338ca; }
+.aq-condition--8 .aq-condition-n { background: #0f766e; }
+.aq-condition--9 .aq-condition-n { background: #be185d; }
+.aq-condition--10 .aq-condition-n { background: #0369a1; }
 
 .aq-condition--1 { background: #ecfdf5; }
 .aq-condition--2 { background: #fef2f2; }
@@ -1046,6 +1049,9 @@
 .aq-condition--5 { background: #f5f3ff; }
 .aq-condition--6 { background: #fffbeb; }
 .aq-condition--7 { background: #eef2ff; }
+.aq-condition--8 { background: #f0fdfa; }
+.aq-condition--9 { background: #fdf2f8; }
+.aq-condition--10 { background: #f0f9ff; }
 
 .aq-cmap {
   padding: 0;

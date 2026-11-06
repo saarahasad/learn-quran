@@ -6,10 +6,10 @@ import { TARBIYAH2_META } from "./tarbiyah2Course.js";
 import { TAFSIR2_META } from "./tafsir2Course.js";
 import { HADITH2_META } from "./hadith2Course.js";
 
-/** Top-level Learn Islam platform metadata. */
+/** Top-level Al-Tibyan platform metadata. */
 export const LEARN_ISLAM = {
-  name: "Learn Islam",
-  nameAr: "تعلّم الإسلام",
+  name: "Al-Tibyan",
+  nameAr: "التبيان",
   tagline:
     "Structured, self-paced courses on the Qur'an, prayer, du'a, and more — open access for every learner.",
   institution: "Islamic Studies · Open Courses",
@@ -22,8 +22,8 @@ export const SHOW_SPEECH_CHECK = true;
 export const COURSE_CATALOG = [
   {
     id: "tarbiyah",
-    name: "Tarbiyah Islamiyah — Rights",
-    nameAr: "التربية الإسلامية — الحقوق",
+    name: "Rights of Allah, the Prophet, and the Family",
+    nameAr: "الحقوق",
     tagline: "Islamic education on the rights of Allah, the Prophet, family, and society.",
     description:
       "Complete study guide covering 24 lectures — from the rights of Allah to the rights of rulers, with notes, flashcards, and quizzes.",
@@ -101,7 +101,7 @@ export const COURSE_CATALOG = [
   },
   {
     id: "ajrumiyyah",
-    name: "Al-Ājurrūmiyyah",
+    name: "Al-Ajrumiyyah",
     nameAr: "الْمُقَدِّمَةُ الْآجُرُّومِيَّةُ",
     tagline: "Classical Arabic grammar — line by line with audio and commentary.",
     description:
@@ -142,6 +142,133 @@ export function getCourseTheme(courseId) {
 export function getCourse(id) {
   return COURSE_CATALOG.find((course) => course.id === id);
 }
+
+/**
+ * Catalogue-card copy. Internal course titles stay as they are inside each
+ * course; this is what the home-page card shows.
+ * School line is the Zad Academy series these guides belong to.
+ */
+const LANDING_CARDS = {
+  "juz-1": {
+    format: "memorise",
+    name: "Surah Al-Fatiha & Surah Al-Baqarah",
+    nameAr: "الفاتحة",
+    school: "",
+    cover: "cover-juz-1.jpg",
+    posterKicker: "Juz 1",
+    posterLine: "Ayat 1–141",
+    blurb: "Al-Fatiha in full, then Al-Baqarah from the opening through ayah 141.",
+  },
+  "juz-30": {
+    format: "memorise",
+    name: "An-Naba to An-Nas",
+    nameAr: "عمّ",
+    school: "",
+    cover: "cover-juz-30.jpg",
+    posterKicker: "Juz 30",
+    posterLine: "The short surahs of the last juz",
+    blurb: "Every surah from An-Naba through An-Nas.",
+  },
+  tarbiyah: {
+    format: "notes",
+    name: "Rights of Allah, the Prophet, and the Family",
+    nameAr: "الحقوق",
+    school: "Zad Academy",
+    cover: "cover-rights.jpg",
+    posterKicker: "Rights",
+    posterLine: "Allah, the Prophet, and the family",
+    blurb:
+      "Also the Companions, scholars, parents, spouses, relatives, neighbours, and rulers.",
+  },
+  "tarbiyah-2": {
+    format: "notes",
+    name: "Deeds of the Heart",
+    nameAr: "القلوب",
+    school: "Zad Academy",
+    cover: "cover-heart.jpg",
+    posterKicker: "The heart",
+    posterLine: "Sincerity, taqwa, hope, and piety",
+    blurb:
+      "Then fear, love, patience, gratitude, contentment, contemplation, self-accounting, and trust in Allah.",
+  },
+  fiqh: {
+    format: "notes",
+    name: "Purification and Prayer",
+    nameAr: "الفقه",
+    school: "Zad Academy · Fiqh Level 1",
+    cover: "cover-fiqh.jpg",
+    posterKicker: "Fiqh",
+    posterLine: "Wudu, ghusl, and the prayer",
+    blurb:
+      "Taharah, water, tayammum, impurities, the adhan, and the times and parts of salah.",
+  },
+  "tafsir-2": {
+    format: "notes",
+    name: "Tafsir of An-Naba to Al-Mutaffifin",
+    nameAr: "التفسير",
+    school: "Zad Academy",
+    cover: "cover-tafsir.jpg",
+    posterKicker: "Tafseer",
+    posterLine: "Six surahs, verse by verse",
+    blurb:
+      "An-Naba, An-Naziat, Abasa, At-Takwir, Al-Infitar, and Al-Mutaffifin — the benefits and rulings in each passage.",
+  },
+  "hadith-2": {
+    format: "notes",
+    name: "Short Hadiths, Rich in Meaning",
+    nameAr: "الحديث",
+    school: "Zad Academy",
+    cover: "cover-hadith.jpg",
+    posterKicker: "Hadith",
+    posterLine: "Short words, deep meaning",
+    blurb:
+      "The allies of Allah, the five daily prayers, this world as green and sweet, living as a stranger, and leaving what you doubt.",
+  },
+  "aqeedah-2": {
+    format: "notes",
+    name: "Worshipping Allah Alone",
+    nameAr: "التوحيد",
+    school: "Zad Academy",
+    cover: "cover-aqeedah.jpg",
+    posterKicker: "Aqeedah",
+    posterLine: "Tawhid, and the names of Allah",
+    blurb:
+      "Oneness of worship, the meaning of La ilaha illa Allah, and the names and attributes of Allah.",
+  },
+  ajrumiyyah: {
+    format: "course",
+    name: "Al-Ajrumiyyah",
+    nameAr: "الآجرومية",
+    school: "Zad Academy",
+    cover: "cover-ajrumiyyah.jpg",
+    posterKicker: "Grammar",
+    posterLine: "Arabic, line by line",
+    blurb:
+      "Ibn Ajrum's grammar — speech, i'rab, and the signs of raf', nasb, khafd, and jazm.",
+  },
+};
+
+/** Landing sections, in page order. */
+export const LANDING_FORMATS = [
+  {
+    id: "memorise",
+    title: "Memorisation",
+    titleAr: "الحفظ",
+    blurb: "Programs to memorise and revise.",
+  },
+  {
+    id: "notes",
+    title: "Notes",
+    titleAr: "المذكرات",
+    blurb: "Class notes, with flashcards and a quiz.",
+  },
+  {
+    id: "course",
+    title: "Courses",
+    titleAr: "الدورات",
+    blurb: "Work through it from the beginning.",
+  },
+];
 
 /** All courses shown on the landing page — juz courses plus topic courses. */
 export function getLandingCourses() {
@@ -189,8 +316,10 @@ export function getAvailableLandingCourses() {
     .filter((course) => course.available)
     .map((course) => {
       const theme = getCourseTheme(course.id);
+      const card = LANDING_CARDS[course.id] ?? {};
       return {
         ...course,
+        ...card,
         number: theme.number,
         markColor: theme.color,
         color: theme.color,

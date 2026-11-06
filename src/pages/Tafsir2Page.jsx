@@ -142,6 +142,19 @@ function AqeedahSection({ section }) {
     );
   }
 
+  if (section.type === "index") {
+    return (
+      <section className={`tf-index tf-index--${section.tone ?? "gold"}`}>
+        <h3>{section.title}</h3>
+        <ol>
+          {section.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      </section>
+    );
+  }
+
   if (section.type === "benefits") {
     return (
       <section className="tf-benefits">

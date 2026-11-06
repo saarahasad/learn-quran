@@ -24,7 +24,19 @@
   margin: 0 0 0.9rem;
   padding: 0;
   justify-content: flex-start;
-  font-size: 0.9rem;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+  color: var(--ov-muted);
+}
+
+.course-themed .ov-page > .course-breadcrumbs a {
+  color: var(--ov-ink);
+  font-weight: 600;
+}
+
+.course-themed .ov-page > .course-breadcrumbs a:hover {
+  color: var(--ov-gold);
 }
 
 /* ── Hero ── */

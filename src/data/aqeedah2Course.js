@@ -29,8 +29,8 @@
 
 export const AQEEDAH2_META = {
   id: "aqeedah-2",
-  name: "Aqeedah 2",
-  nameAr: "العقيدة ٢",
+  name: "Worshipping Allah Alone",
+  nameAr: "التوحيد",
   tagline: "Tawhid al-Uluhiyah, the word of Tawhid, and the names and attributes of Allah.",
   description:
     "This semester we will study Tawhid al-Uluhiyah (Oneness in Divinity) and its evidences, the meaning of “Laa ilaaha illa Allah”, worship and its pillars, Tawhid al-Asma wa’s-Sifat, the categories of people regarding it, transgression regarding the names and attributes, fundamentals and principles of dealing with them, and the fruits of believing in the names and attributes of Allah. Allah is the Granter of success.",

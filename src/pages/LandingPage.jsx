@@ -5,7 +5,7 @@ import { TARBIYAH2_STUDY_LESSONS } from "../data/tarbiyah2Course.js";
 import { TAFSIR2_STUDY_LESSONS } from "../data/tafsir2Course.js";
 import { HADITH2_STUDY_LESSONS } from "../data/hadith2Course.js";
 import { FIQH_LESSONS } from "../data/fiqhCourse.js";
-import { getAvailableLandingCourses } from "../data/platform.js";
+import { getAvailableLandingCourses, LANDING_FORMATS } from "../data/platform.js";
 import { TARBIYAH_CHAPTERS } from "../data/tarbiyahCourse.js";
 import { useDiaryStore } from "../hooks/useDiaryStore.js";
 import { getCourseProgressSummary } from "../utils/courseProgress.js";
@@ -23,61 +23,49 @@ const COURSE_LESSON_IDS = {
   "hadith-2": HADITH2_STUDY_LESSONS.map((lesson) => lesson.id),
 };
 
-function courseGroups(courses) {
-  const groups = [];
-  for (const course of courses) {
-    const last = groups[groups.length - 1];
-    if (last?.category === course.category) last.courses.push(course);
-    else groups.push({ category: course.category, courses: [course] });
-  }
-  return groups;
-}
-
 function countWord(n, singular, plural = `${singular}s`) {
   return `${n} ${n === 1 ? singular : plural}`;
 }
 
-const JUZ_NAME_AR = { "juz-1": "الجزء الأول", "juz-30": "جزء عمّ" };
-
-const CATEGORY_AR = {
-  "Qur'an": "القرآن",
-  "Islamic Education": "التربية الإسلامية",
-  Fiqh: "الفقه",
-  Tafsir: "التفسير",
-  Hadith: "الحديث",
-  Aqeedah: "العقيدة",
-  "Arabic Grammar": "النحو",
-};
+function coverUrl(file) {
+  return `${import.meta.env.BASE_URL}course-covers/${file}`;
+}
 
 function CourseCard({ course, progress }) {
   const themeStyle = courseThemeStyle(course.color);
   const started = course.kind !== "juz" && progress.total > 0 && progress.pct > 0;
-  const summary = course.range || course.tagline || course.description;
-  const nameAr = course.nameAr ?? JUZ_NAME_AR[course.id] ?? null;
+  const summary = course.blurb || course.description;
 
   return (
     <Link to={course.path} className="li-card course-themed" style={themeStyle}>
-      {nameAr && (
-        <span className="li-card-ar" dir="rtl" lang="ar">
-          {nameAr}
-        </span>
-      )}
-      <h3 className="li-card-title">{course.name}</h3>
-      {summary && <p className="li-card-summary">{summary}</p>}
-      <div className="li-card-foot">
-        {started ? (
-          <span className="li-card-progress" aria-label={`${progress.pct}% complete`}>
-            <span className="li-card-progress-track">
-              <span style={{ width: `${progress.pct}%` }} />
+      <div className="li-cover">
+        {course.cover && (
+          <img className="li-cover-img" src={coverUrl(course.cover)} alt="" />
+        )}
+        <div className="li-poster">
+          {course.posterKicker && <p className="li-poster-kicker">{course.posterKicker}</p>}
+          <h3 className="li-poster-title">{course.name}</h3>
+          {course.posterLine && <p className="li-poster-line">{course.posterLine}</p>}
+        </div>
+      </div>
+      <div className="li-card-body">
+        {course.school && <p className="li-card-school">{course.school}</p>}
+        {summary && <p className="li-card-summary">{summary}</p>}
+        <div className="li-card-foot">
+          {started ? (
+            <span className="li-card-progress" aria-label={`${progress.pct}% complete`}>
+              <span className="li-card-progress-track">
+                <span style={{ width: `${progress.pct}%` }} />
+              </span>
+              <span>{progress.pct}%</span>
             </span>
-            <span>{progress.pct}%</span>
+          ) : null}
+          <span className="li-card-go" aria-hidden>
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </span>
-        ) : null}
-        <span className="li-card-go" aria-hidden>
-          <svg width="16" height="16" viewBox="0 0 24 24">
-            <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </span>
+        </div>
       </div>
     </Link>
   );
@@ -93,33 +81,44 @@ export default function LandingPage() {
       diary,
     });
 
-  const groups = courseGroups(courses);
+  const formats = LANDING_FORMATS.map((format) => ({
+    ...format,
+    courses: courses.filter((course) => course.format === format.id),
+  })).filter((format) => format.courses.length > 0);
+
+  const tally = formats
+    .map((format) => {
+      if (format.id === "memorise") return countWord(format.courses.length, "memorisation program");
+      if (format.id === "notes") return countWord(format.courses.length, "set of notes", "sets of notes");
+      return countWord(format.courses.length, "course");
+    })
+    .join(", ")
+    .replace(/, ([^,]*)$/, ", and $1");
 
   return (
     <CourseLayout activeTab="home" wide>
       <div className="li-page">
         <header className="li-hero">
-          <p className="li-hero-ar" dir="rtl" lang="ar">الدورات</p>
-          <h1>Courses</h1>
-          <p className="li-hero-sub">
-            {countWord(courses.length, "course")} across {countWord(groups.length, "subject")}
-          </p>
+          <p className="li-hero-ar" dir="rtl" lang="ar">الدراسة</p>
+          <h1>Study</h1>
+          <p className="li-hero-sub">{tally}</p>
         </header>
         <div className="li-groups">
-          {groups.map((group) => {
-            const groupId = `catalog-${group.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+          {formats.map((format) => {
+            const groupId = `catalog-${format.id}`;
             return (
-              <section key={group.category} className="li-group" aria-labelledby={groupId}>
+              <section key={format.id} className="li-group" aria-labelledby={groupId}>
                 <header className="li-group-head">
-                  <h2 id={groupId}>{group.category}</h2>
-                  {CATEGORY_AR[group.category] && (
-                    <span className="li-group-ar" dir="rtl" lang="ar">
-                      {CATEGORY_AR[group.category]}
-                    </span>
-                  )}
+                  <div>
+                    <h2 id={groupId}>{format.title}</h2>
+                    <p className="li-group-blurb">{format.blurb}</p>
+                  </div>
+                  <span className="li-group-ar" dir="rtl" lang="ar">
+                    {format.titleAr}
+                  </span>
                 </header>
                 <div className="li-grid">
-                  {group.courses.map((course) => (
+                  {format.courses.map((course) => (
                     <CourseCard key={course.id} course={course} progress={getProgress(course)} />
                   ))}
                 </div>

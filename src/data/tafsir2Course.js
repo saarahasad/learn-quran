@@ -15,8 +15,8 @@
 
 export const TAFSIR2_META = {
   id: "tafsir-2",
-  name: "Tafsir 2",
-  nameAr: "التفسير ٢",
+  name: "Tafsir of An-Naba to Al-Mutaffifin",
+  nameAr: "التفسير",
   tagline: "Tafsir of six surahs from Juz ‘Amma — benefits and rulings, verse by verse.",
   description:
     "In this semester, we will study the Tafsir (exegesis) of a number of Surahs (chapters) from Juz (section) Amma: Surat an-Naba, An-Nazi‘aat, Abasa, At-Takweer, Al-Infitar, and al-Mutaffifeen. We will also learn the most important benefits extracted from the verses as well as the rulings pertaining to these verses. Allah is the Granter of success.",
@@ -289,6 +289,31 @@ const MUTAFFIFEEN_7_17 = [
   { n: "١٧", ar: "ثُمَّ يُقَالُ هَٰذَا الَّذِي كُنتُم بِهِ تُكَذِّبُونَ" },
 ];
 
+const MUTAFFIFEEN_18_28 = [
+  { n: "١٨", ar: "كَلَّا إِنَّ كِتَابَ الْأَبْرَارِ لَفِي عِلِّيِّينَ" },
+  { n: "١٩", ar: "وَمَا أَدْرَاكَ مَا عِلِّيُّونَ" },
+  { n: "٢٠", ar: "كِتَابٌ مَّرْقُومٌ" },
+  { n: "٢١", ar: "يَشْهَدُهُ الْمُقَرَّبُونَ" },
+  { n: "٢٢", ar: "إِنَّ الْأَبْرَارَ لَفِي نَعِيمٍ" },
+  { n: "٢٣", ar: "عَلَى الْأَرَائِكِ يَنظُرُونَ" },
+  { n: "٢٤", ar: "تَعْرِفُ فِي وُجُوهِهِمْ نَضْرَةَ النَّعِيمِ" },
+  { n: "٢٥", ar: "يُسْقَوْنَ مِن رَّحِيقٍ مَّخْتُومٍ" },
+  { n: "٢٦", ar: "خِتَامُهُ مِسْكٌ وَفِي ذَٰلِكَ فَلْيَتَنَافَسِ الْمُتَنَافِسُونَ" },
+  { n: "٢٧", ar: "وَمِزَاجُهُ مِن تَسْنِيمٍ" },
+  { n: "٢٨", ar: "عَيْنًا يَشْرَبُ بِهَا الْمُقَرَّبُونَ" },
+];
+
+const MUTAFFIFEEN_29_36 = [
+  { n: "٢٩", ar: "إِنَّ الَّذِينَ أَجْرَمُوا كَانُوا مِنَ الَّذِينَ آمَنُوا يَضْحَكُونَ" },
+  { n: "٣٠", ar: "وَإِذَا مَرُّوا بِهِمْ يَتَغَامَزُونَ" },
+  { n: "٣١", ar: "وَإِذَا انقَلَبُوا إِلَىٰ أَهْلِهِمُ انقَلَبُوا فَكِهِينَ" },
+  { n: "٣٢", ar: "وَإِذَا رَأَوْهُمْ قَالُوا إِنَّ هَٰؤُلَاءِ لَضَالُّونَ" },
+  { n: "٣٣", ar: "وَمَا أُرْسِلُوا عَلَيْهِمْ حَافِظِينَ" },
+  { n: "٣٤", ar: "فَالْيَوْمَ الَّذِينَ آمَنُوا مِنَ الْكُفَّارِ يَضْحَكُونَ" },
+  { n: "٣٥", ar: "عَلَى الْأَرَائِكِ يَنظُرُونَ" },
+  { n: "٣٦", ar: "هَلْ ثُوِّبَ الْكُفَّارُ مَا كَانُوا يَفْعَلُونَ" },
+];
+
 export const TAFSIR2_UNITS = [
   {
     id: "semester",
@@ -325,6 +350,104 @@ export const TAFSIR2_UNITS = [
             tone: "benefit",
             title: "With every passage",
             body: "Alongside the tafsir, we learn the most important benefits extracted from the verses, and the rulings that pertain to them.",
+          },
+        ],
+      },
+      {
+        id: "benefits-index",
+        title: "Index of benefits",
+        icon: "٢",
+        sections: [
+          {
+            type: "heading",
+            title: "Benefits from the verses",
+          },
+          {
+            type: "index",
+            tone: "gold",
+            title: "Surat an-Naba",
+            items: [
+              "The reason why the evidence for the resurrection begins with a reference to the creation of the earth",
+              "The verb nukhrij (lit. We bring forth) is used instead of nunbit (lit. We cause to grow)...",
+              "In the phrase {That We may bring forth thereby grain and vegetation ...}, grain is mentioned first",
+              "The Fire is already created and exists at present",
+              "Disbelief in the resurrection ... is the foundation of disbelief, misdemeanours and sins",
+              "So our gatherings should be free of idle talk and lies",
+              "Admittance to Paradise ... can only be attained by following the Prophet ﷺ",
+              "The concept of intercession is one of mercy",
+              "Description of the Day of Resurrection as the True Day",
+            ],
+          },
+          {
+            type: "index",
+            tone: "purple",
+            title: "Surat an-Nazi‘aat",
+            items: [
+              "The reason for the harshness with which the angels extract the souls of the disbelievers, and the gentleness with which they take the souls of the believers",
+              "Calling the Angel of Death Azraeel",
+              "Why the land of gathering is called as-saahirah (“the earth’s surface”)",
+              "The difference between khashyah and khawf",
+              "The reason why Allah tells us the story of Pharaoh after mentioning how the polytheists denied the resurrection",
+              "When calling people to Allah, it is essential to be gentle and kind",
+              "The creation of the earth itself came before the creation of the heaven itself",
+              "The bringing forth of Hell and how it will be viewed by believers and the disbelievers",
+              "The reason fear of Allah and prohibition of whims and desires are mentioned together",
+              "Why the word mursaahaa (its arrival) is used to refer to the onset of the Day of Resurrection",
+              "The interest served by withholding knowledge of when the Day of Resurrection will come",
+              "Describing the warning as being specifically for those who fear Allah",
+            ],
+          },
+          {
+            type: "index",
+            tone: "sky",
+            title: "Surat Abasa",
+            items: [
+              "The reason why Allah referred to the Sahabi as “the blind man”",
+              "One should not ignore a matter that one is certain about for something that one is not certain about",
+              "The caller (to Islam) should not discriminate between people while propagating",
+              "The reason why the angels are called safarah (“messenger-angels”)",
+              "Muslims must bury their dead",
+              "Why the pleasures of this worldly life are called mataa and the pleasures of Paradise are called naeem",
+              "The reason for elaboration in mentioning those from whom a man will flee on the Day of Resurrection",
+              "The reason why the wife is called sahibah (lit. companion)",
+            ],
+          },
+          {
+            type: "index",
+            tone: "green",
+            title: "Surat at-Takweer",
+            items: [
+              "The reason why the question will be addressed to the one who was buried alive",
+              "Reason why Allah refers to Himself as the Owner of the Throne",
+              "Description of the angelic messenger (Jibreel)",
+              "Reason why the Prophet ﷺ is referred to as {your companion}",
+            ],
+          },
+          {
+            type: "index",
+            tone: "teal",
+            title: "Surat al-Infitar",
+            items: [
+              "Description of the destruction of the world and the end of this life",
+              "Reason why the overturning of the graves is mentioned in particular",
+              "Description of the recording angels and their deeds",
+              "Description of the characteristics that are required in anyone who is in a position of looking after any of the ummah’s affairs",
+              "Why it is specifically mentioned that all matters are under the control of Allah on the Day of Resurrection",
+            ],
+          },
+          {
+            type: "index",
+            tone: "rose",
+            title: "Surat al-Mutaffifeen",
+            items: [
+              "Those who take people’s wealth by force or by stealth is more deserving of the warning than those who give short measure",
+              "Those who give short measure combine covetousness and stinginess",
+              "Zann (thinking) may refer to certainty",
+              "Warning against sins and their raan (stain)",
+              "Affirmation that the believers will see Allah ﷻ in the Hereafter",
+              "Competition between people should be for the Hereafter",
+              "The judgement of Allah ﷻ is based on either justice or grace and mercy",
+            ],
           },
         ],
       },
@@ -4575,14 +4698,409 @@ export const TAFSIR2_UNITS = [
           },
         ],
       },
+      {
+        id: "mutaffifeen-illiyyeen",
+        title: "The record in ‘illiyyeen (83:18–20)",
+        icon: "11",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:18–28",
+            title: "The record of the righteous",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: MUTAFFIFEEN_18_28,
+            translation:
+              "{No! Indeed, the record of the righteous is in ‘illiyyeen. And what can make you know what is ‘illiyyun? It is [their destination recorded in] a register inscribed, Which is witnessed by those brought near [to Allah]. Indeed, the righteous will be in pleasure, On adorned couches, observing. You will recognize in their faces the radiance of pleasure. They will be given to drink [pure] wine [which was] sealed. The last of it is musk. So for this let the competitors compete. And its mixture is of Tasneem, A spring from which those near [to Allah] drink}",
+            ref: "[al-Mutaffifeen 83:18–28]",
+          },
+          {
+            type: "verse",
+            ayah: "{No! Indeed, the record of the righteous is in ‘illiyyeen}",
+            paras: [
+              "Having mentioned that the book of the evildoers is in the lowest and narrowest of places, Allah ﷻ now mentions the book of the righteous, and that it is in the highest, broadest and most spacious part of Paradise.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The righteous (abrar, sing. barr) are those who obey Allah by doing what He enjoins and avoiding what He forbids. Their destination is Paradise, in the seventh heaven, in which the souls of the believers will be.",
+          },
+          {
+            type: "verse",
+            ayah: "{And what can make you know what is ‘illiyyun?}",
+            paras: [
+              "This is a rhetorical question by way of highlighting its importance and great significance. In other words: what can make you know what it is? For it is something of great significance; it is elevation upon elevation, sublimity upon sublimity.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{It is [their destination recorded in] a register inscribed}",
+            paras: [
+              "This is a description of the book of the righteous, as the book of the evildoers was described above.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-couches",
+        title: "Adorned couches (83:21–25)",
+        icon: "12",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:21–25",
+            title: "Radiance, and a sealed drink",
+          },
+          {
+            type: "verse",
+            ayah: "{Which is witnessed by those brought near [to Allah]}",
+            paras: [
+              "This refers to the angels; it was also said that it is witnessed by those from every heaven who are close to Allah, so they will be present and will see that register when it is taken up to illiyyun.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Indeed, the righteous will be in pleasure}",
+            paras: [
+              "That is, on the Day of Resurrection, they will be in eternal bliss, in the gardens in which are immense blessings. This includes both physical and spiritual pleasures.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{On adorned couches, observing}",
+            paras: [
+              "That is, looking at what Allah has blessed them with of bliss that no one in this world could imagine. {And no soul knows what has been hidden for them of comfort for eyes as reward for what they used to do} [as-Sajdah 32:17].",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "Some of the scholars said: This looking even includes gazing upon the countenance of Allah ﷻ. They regarded this verse as being among the evidence which proves that the believers will see Allah ﷻ in Paradise.",
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "Couches (araa'ik, sing. areekah) refers to an adorned couch that is surrounded by something like curtains. It is one of the finest types of couches.",
+          },
+          {
+            type: "verse",
+            ayah: "{You will recognize in their faces the radiance of pleasure}",
+            paras: [
+              "That is, if you look at their faces, you will recognize joy, delight, light and happiness, because of the immense blessing in which they will find themselves.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{They will be given to drink}",
+            paras: [
+              "That is, Allah ﷻ will give them to drink at the hands of the servants whom He describes elsewhere in the Quran: {There will circulate among them young boys made eternal, With vessels, pitchers and a cup [of wine] from a flowing spring} [al-Waqi‘ah 56:17–18].",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{[pure] wine}",
+            paras: [
+              "That is, of a pure drink, which will cause no intoxication or harm to one’s reason, and will not cause any headache.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "Raheeq (translated here as “[pure] wine”) is one of the names of wine; it refers to pure wine, the best and most mature thereof.",
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-tasneem",
+        title: "Tasneem (83:25–28)",
+        icon: "13",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:25–28",
+            title: "For this let the competitors compete",
+          },
+          {
+            type: "verse",
+            ayah: "{[which was] sealed}",
+            paras: [
+              "That is, it was sealed and prevented from being touched by anyone until the righteous break the seal.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{The last of it is musk}",
+            paras: [
+              "That is, the last of it is musk, with a delightful fragrance, unlike the wine of this world, the last of which has a bad smell.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{So for this let the competitors compete}",
+            paras: [
+              "That is, for this reward and recompense let the competitors compete in a race that will make them out of breath. This is a metaphor for going at speed in a race.",
+              "Competing in doing good is competing in obeying Allah ﷻ, in attaining that which is pleasing to Him, and in keeping away from that which displeases Allah ﷻ.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And its mixture is of Tasneem}",
+            paras: [
+              "That is, this pure wine that is described above is mixed with another drink, which is called tasneem; this is the noblest and best drink of the people of Paradise.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{A spring from which those near [to Allah] drink}",
+            paras: [
+              "That is, a spring from which those who are close to Allah drink; it is pure and not mixed with anything.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-illiyyeen-learn",
+        title: "What we learn from 83:18–28",
+        icon: "14",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:18–28",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "rose",
+                body: "Those who compete for some kind of worldly gain, no matter how great, splendid, sublime and important it is, are only competing for something insignificant and transient, which will soon end.",
+              },
+              {
+                n: "2",
+                tone: "amber",
+                body: "Competing for the Hereafter lifts the spirits of all the competitors, whereas competing for worldly gain brings down all the competitors.",
+              },
+              {
+                n: "3",
+                tone: "teal",
+                body: "Competing for the pleasure and bliss of the Hereafter will not lead to the ruin of one’s worldly affairs, as some may think. Rather Islam regards striving in the life of this world as being like tending a crop that one will reap in the Hereafter; and it regards populating the earth, taking care of worldly affairs and benefitting from the earth’s resources whilst adhering to righteousness and fearing Allah as being the role of the true believer.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-illiyyeen-activity",
+        title: "Activity · ‘Illiyyeen and Tasneem",
+        icon: "15",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt:
+                  "In the verse {They will be given to drink [pure] wine [which was] sealed}, who is the one who will give them to drink? What is the evidence for what you say?",
+              },
+              {
+                n: "2",
+                prompt:
+                  "Explain the contrast between the bliss of the righteous and the hell of the evildoers, from the verses of this surah.",
+              },
+              {
+                n: "3",
+                prompt: "Connect each word or phrase in list A with the word or phrase that matches it in list B:",
+                table: {
+                  columns: ["(A)", "(B)"],
+                  rows: [
+                    ["couches", "highest and broadest part of Paradise"],
+                    ["illiyyun", "wine"],
+                    ["raheeq", "the finest type of couches"],
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-laugh",
+        title: "They used to laugh (83:29–32)",
+        icon: "16",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:29–36",
+            title: "The evildoers mocked the believers",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: MUTAFFIFEEN_29_36,
+            translation:
+              "{Indeed, the evildoers used to laugh at those who believed. And when they passed by them, they would exchange derisive glances. And when they returned to their people, they would return jesting. And when they saw them, they would say, “Indeed, those are truly lost.” But they had not been sent as guardians over them. So Today those who believed are laughing at the disbelievers, On adorned couches, observing. Have the disbelievers [not] been rewarded [this Day] for what they used to do?}",
+            ref: "[al-Mutaffifeen 83:29–36]",
+          },
+          {
+            type: "verse",
+            ayah: "{Indeed, the evildoers used to laugh at those who believed}",
+            paras: [
+              "Those who earned sin and disbelieved in Allah in this world used to laugh at those who affirmed the oneness of Allah ﷻ and believed in Him, mocking them.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when they passed by them, they would exchange derisive glances}",
+            paras: [
+              "The word ghamz (translated here as “derisive glances”) means signalling with the eyelids and eyebrows. In other words, they would look at them in a mocking and criticizing manner, signalling to one another with their eyes.",
+              "The root meaning of the word ghamz is shame.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when they returned to their people, they would return jesting}",
+            paras: [
+              "That is, when these evildoers returned to their families from their gatherings, they would be filled with self-admiration, and joking about the believers, impugning them and mocking them.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when they saw them, they would say, “Indeed, those are truly lost”}",
+            paras: [
+              "When the evildoers saw the believers, they would say: These people have gone astray from the path of truth.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-today",
+        title: "Today the believers are laughing (83:33–36)",
+        icon: "17",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:33–36",
+            title: "Have they been rewarded?",
+          },
+          {
+            type: "verse",
+            ayah: "{But they had not been sent as guardians over them}",
+            paras: [
+              "That is, these disbelievers were not sent or appointed as guardians and keepers to watch over the actions of the believers. Rather they were enjoined to believe in Allah and to strive to obey Him.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{So Today those who believed are laughing at the disbelievers}",
+            paras: [
+              "That is, on the Day of Resurrection. For on that Day, the believers will laugh at the disbelievers when they see them humiliated and defeated, when the punishment comes upon them, as the disbelievers used to laugh at the believers in this world.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{On adorned couches, observing}",
+            paras: [
+              "That is, on couches made of pearls and rubies, {observing} the disbelievers as they are being punished in the Fire, as a requital for their having laughed at the believers in this world.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Have the disbelievers [not] been rewarded [this Day] for what they used to do?}",
+            paras: [
+              "This is a question that serves to affirm. In other words, have the disbelievers been requited for how they used to treat the believers by mocking and belittling them, or not?",
+              "The answer is: Yes, they have indeed been requited in full, by the justice and wisdom of Allah.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{been rewarded}",
+            paras: [
+              "The word thuwwiba (translated here as “been rewarded”) refers to what comes back to a person because of his actions (thawwab); it may refer to both good and bad.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-laugh-learn",
+        title: "What we learn from 83:29–36",
+        icon: "18",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:29–36",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "teal",
+                body: "These people who mocked the believers have successors in our own time. There are those who regard good people as backward and righteous people as extreme and overly strict.",
+              },
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The heirs of the messengers, namely the scholars and the religiously committed, will suffer at the hands of the enemies of the messengers that which the messengers also suffered of name-calling and mockery. One example of this is when the innovators accuse the Salafis of anthropomorphism and likening Allah to His creation, and so on.",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "2",
+                tone: "gold",
+                body: "The judgement of Allah ﷻ is based on either justice or grace and mercy. With regard to those who believe, His judgement and requital are based on grace; with regard to the disbelievers, His judgement and requital are based on justice.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-laugh-activity",
+        title: "Activity · The mockers",
+        icon: "19",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt: "These verses indicate that the requital matches the deed. Quote other verses which also prove that.",
+              },
+              {
+                n: "2",
+                prompt:
+                  "Allah describes those who mock the believers as {the evildoers}. Does this type of mocker exist in our own time? Give three examples of that.",
+              },
+              {
+                n: "3",
+                prompt:
+                  "{Have the disbelievers [not] been rewarded [this Day] for what they used to do?} Answer this question.",
+              },
+            ],
+          },
+          {
+            type: "note",
+            body: "And Allah is the source of strength.",
+          },
+        ],
+      },
     ],
   },
   {
     id: "practice",
     title: "Practice",
     lessons: [
-      { id: "flashcards", title: "Flashcards", icon: "🃏", kind: "tool", badge: "95" },
-      { id: "quiz", title: "Knowledge Quiz", icon: "✏️", kind: "tool", badge: "85" },
+      { id: "flashcards", title: "Flashcards", icon: "🃏", kind: "tool", badge: "101" },
+      { id: "quiz", title: "Knowledge Quiz", icon: "✏️", kind: "tool", badge: "91" },
     ],
   },
 ];
@@ -4610,7 +5128,7 @@ export const TAFSIR2_TOPICS = [
   { id: "abasa", label: "Surat Abasa (80:1–42)" },
   { id: "takweer", label: "Surat at-Takweer (81:1–29)" },
   { id: "infitar", label: "Surat al-Infitar (82:1–19)" },
-  { id: "mutaffifeen", label: "Surat al-Mutaffifeen (83:1–17)" },
+  { id: "mutaffifeen", label: "Surat al-Mutaffifeen (83:1–36)" },
 ];
 
 export const TAFSIR2_FLASHCARDS = [
@@ -5088,6 +5606,36 @@ export const TAFSIR2_FLASHCARDS = [
     t: "mutaffifeen",
     q: "What does it mean that they will be partitioned, then burn?",
     a: "Kallaa rebukes their denial again. They will be barred from seeing Allah ﷻ, just as they were barred from His law and His verses, which they called legends. Then they will be touched by the fire’s heat and punished with all kinds of torments. It will be said to them, by way of rebuke, “This is what you used to deny,” so physical pain is joined to the pain of regret. Ahl as-Sunnah wa'l-Jama'ah take the singling out of the evildoers as proof that the righteous, with whom Allah is pleased, will see Him.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "What is ‘illiyyeen, and who are the abrar?",
+    a: "After placing the evildoers’ book in the lowest and narrowest place, Allah places the book of the righteous in the highest, broadest and most spacious part of Paradise. ‘Illiyyun is elevation upon elevation, sublimity upon sublimity. The inscribed register describes that book, as it described the book of the evildoers. The abrar, singular barr, obey Allah by doing what He enjoins and avoiding what He forbids. Their destination is Paradise, in the seventh heaven, where the souls of the believers will be. The register is witnessed by the angels, and it was also said by those from every heaven who are close to Allah, when it is taken up to illiyyun.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "What are the couches, the radiance, and raheeq?",
+    a: "The righteous are in eternal bliss, physical and spiritual. On adorned couches they look at bliss no one in this world could imagine. Araa'ik, singular areekah, is an adorned couch surrounded by something like curtains, one of the finest couches. Some scholars said this looking includes gazing upon the countenance of Allah. Their faces show joy, delight, light and happiness. Allah gives them drink at the hands of the eternal young boys of al-Waqi‘ah 56:17–18. Raheeq is pure, mature wine: no intoxication, no harm to one’s reason, and no headache. It stays sealed until the righteous break the seal, and its last sip is musk, unlike worldly wine.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "What is Tasneem, and what is the race for?",
+    a: "The competitors race, out of breath, for this reward: obeying Allah, attaining what pleases Him, and keeping away from what displeases Him. The pure wine is mixed with tasneem, the noblest drink of the people of Paradise. Tasneem is also a spring from which those near to Allah drink, pure and unmixed.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "How did the evildoers treat the believers in this world?",
+    a: "They laughed at those who affirmed Allah’s oneness. When they passed them they exchanged derisive glances: ghamz is signalling with the eyelids and eyebrows, and its root meaning is shame. When they returned to their families they came back full of self-admiration, jesting, impugning the believers and mocking them. When they saw them they said, “Indeed, those are truly lost,” meaning they had gone astray from the truth.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "What happens on the Day of Resurrection, and what does thuwwiba mean?",
+    a: "The disbelievers were not sent as guardians over the believers. They were enjoined to believe and to strive to obey. Today the believers laugh at them, humiliated and defeated, from couches of pearls and rubies, observing them punished in the Fire, a requital for their mockery. The question {Have the disbelievers [not] been rewarded?} affirms that yes, they have been requited in full, by Allah’s justice and wisdom. Thuwwiba is what comes back to a person because of his actions (thawwab), whether good or bad.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "What do we learn about mockery and about Allah’s judgement?",
+    a: "Those who mocked the believers have successors who call good people backward and the righteous extreme. The scholars and the religiously committed, heirs of the messengers, meet the same name-calling. Allah’s judgement is justice or grace: grace for the believers, and justice for the disbelievers.",
   },
 ];
 
@@ -6101,6 +6649,78 @@ export const TAFSIR2_QUIZ = [
     ],
     ans: 1,
     fb: "They are barred from seeing Allah just as they were barred from His verses. Then they burn in Hellfire, and it is said to them: This is what you used to deny.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "‘Illiyyeen, compared with sijjeen, is:",
+    opts: [
+      "The same lowest earth, under another name",
+      "A valley in Hell",
+      "The highest, broadest part of Paradise, elevation upon elevation",
+      "The name of the sealed wine",
+    ],
+    ans: 2,
+    fb: "The abrar obey what Allah enjoins and avoid what He forbids. Their book is an inscribed register, witnessed when it is taken up.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "Raheeq is:",
+    opts: [
+      "Pure, mature wine, with no intoxication and no headache",
+      "The couch surrounded by curtains",
+      "The spring that is drunk unmixed",
+      "The stain that covers the heart",
+    ],
+    ans: 0,
+    fb: "Allah gives it at the hands of the eternal servants. It is sealed until the righteous break the seal, and the last of it is musk.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "Tasneem in these verses is:",
+    opts: [
+      "Only a curtain around the couches",
+      "The noblest drink of Paradise, and a pure spring for those near to Allah",
+      "The record kept in sijjeen",
+      "Worldly wine, whose last sip smells bad",
+    ],
+    ans: 1,
+    fb: "The race is for obeying Allah and for what pleases Him. Worldly competition is for something that soon ends.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "Ghamz in {they would exchange derisive glances} means:",
+    opts: [
+      "A sealed drink of musk",
+      "Signalling with the eyelids and eyebrows, and its root meaning is shame",
+      "A couch of pearls and rubies",
+      "Being sent as a guardian over the believers",
+    ],
+    ans: 1,
+    fb: "They laughed at the believers, returned to their families jesting, and said of them, “Indeed, those are truly lost.”",
+  },
+  {
+    t: "mutaffifeen",
+    q: "{Have the disbelievers [not] been rewarded [this Day]?} is:",
+    opts: [
+      "A question that affirms they have been requited in full",
+      "A denial that any requital will occur",
+      "A prayer that wayl be removed from them",
+      "A description of Tasneem",
+    ],
+    ans: 0,
+    fb: "Thuwwiba is what comes back because of one’s actions, good or bad. The believers laugh from couches of pearls and rubies, observing the punishment.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "Allah’s judgement, as these lessons state it, is:",
+    opts: [
+      "Justice for the believers and grace for the disbelievers",
+      "The same for everyone, with no distinction",
+      "Grace for those who believe, and justice for the disbelievers",
+      "Left to the guardians the disbelievers appointed",
+    ],
+    ans: 2,
+    fb: "The disbelievers were not sent as keepers over the believers. They were told to believe and to obey.",
   },
 ];
 

@@ -43,7 +43,7 @@ export default function TextbookStudy({ surah, onBack, onRevise, onQuiz }) {
       <style>{TEXTBOOK_FONTS}</style>
       <CourseHeader />
       <nav className="course-breadcrumbs" aria-label="Breadcrumb">
-        <Link to="/">Learn Islam</Link>
+        <Link to="/">Al-Tibyan</Link>
         <span aria-hidden>›</span>
         <Link to={juzCoursePath(surah.juz)}>Juz {surah.juz}</Link>
         <span aria-hidden>›</span>

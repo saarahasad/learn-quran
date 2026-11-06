@@ -280,7 +280,7 @@ export default function DiaryPage() {
         ],
       }}
       breadcrumbs={[
-        { label: "Learn Islam", to: "/" },
+        { label: "Al-Tibyan", to: "/" },
         { label: "Juz 1 Progress" },
       ]}
     >

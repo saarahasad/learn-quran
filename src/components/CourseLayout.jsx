@@ -6,7 +6,7 @@ import { courseThemeClass, courseThemeStyle, resolveCourseIdFromPath } from "../
 import AuthWidget from "./AuthWidget.jsx";
 import "../styles/course-theme.css";
 
-const NAV_ITEMS = [{ id: "home", label: "Courses", path: "/" }];
+const NAV_ITEMS = [{ id: "home", label: "Study", path: "/" }];
 const SIDEBAR_COLLAPSED_KEY = "course_sidebar_collapsed_v1";
 const DRAWER_QUERY = "(max-width: 1023px)";
 
@@ -25,16 +25,21 @@ function useMediaQuery(query) {
   return matches;
 }
 
-/** Eight-pointed star (two squares), the mark used to divide the Qur'an into sections. */
+/** Open pages with a line of light between them — tibyan, a clear explanation. */
 export function BrandMark({ size = 38 }) {
   return (
     <svg className="site-header-mark" width={size} height={size} viewBox="0 0 40 40" aria-hidden="true">
-      <rect width="40" height="40" rx="11" fill="#14532d" />
-      <g transform="translate(20 20)" fill="none" stroke="#e2b763" strokeWidth="1.9" strokeLinejoin="round">
-        <rect x="-9.5" y="-9.5" width="19" height="19" />
-        <rect x="-9.5" y="-9.5" width="19" height="19" transform="rotate(45)" />
-      </g>
-      <circle cx="20" cy="20" r="3.1" fill="#e2b763" />
+      <rect width="40" height="40" rx="12" fill="#14532d" />
+      <rect x="1.15" y="1.15" width="37.7" height="37.7" rx="11" fill="none" stroke="#e2b763" strokeOpacity="0.45" strokeWidth="0.8" />
+      <path
+        d="M17.1 13.2c-1.6 1.5-4.7 2.3-7.4 2.5-.4 0-.7.3-.7.7v11.2c0 .4.4.8.8.7 2.6-.5 5.2-1.4 7.3-2.9V13.2z"
+        fill="#f6e3b0"
+      />
+      <path
+        d="M22.9 13.2c1.6 1.5 4.7 2.3 7.4 2.5.4 0 .7.3.7.7v11.2c0 .4-.4.8-.8.7-2.6-.5-5.2-1.4-7.3-2.9V13.2z"
+        fill="#e2b763"
+      />
+      <path d="M20 11.2l2.15 3.5L20 18.2l-2.15-3.5L20 11.2z" fill="#fffaf0" />
     </svg>
   );
 }

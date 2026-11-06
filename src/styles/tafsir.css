@@ -365,6 +365,70 @@
   font-size: 0.9rem;
 }
 
+.tf-index {
+  margin: 0.35rem 0 1rem;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.tf-index h3 {
+  margin: 0;
+  padding: 0.9rem 1.15rem;
+  color: #fff;
+  font-size: 1.22rem;
+  letter-spacing: -0.01em;
+}
+
+.tf-index ol {
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0;
+}
+
+.tf-index li {
+  position: relative;
+  margin: 0;
+  padding: 0.8rem 1.15rem 0.8rem 2.35rem;
+  color: #111;
+  font-size: 1.06rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.tf-index li + li {
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.tf-index li::before {
+  content: "";
+  position: absolute;
+  left: 1.05rem;
+  top: 1.15rem;
+  width: 0.48rem;
+  height: 0.48rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.tf-index--gold { background: #fef9c3; }
+.tf-index--gold h3 { background: #ca8a04; }
+.tf-index--gold li::before { background: #a16207; }
+.tf-index--purple { background: #ede9fe; }
+.tf-index--purple h3 { background: #7c3aed; }
+.tf-index--purple li::before { background: #6d28d9; }
+.tf-index--sky { background: #e0f2fe; }
+.tf-index--sky h3 { background: #0284c7; }
+.tf-index--sky li::before { background: #0369a1; }
+.tf-index--green { background: #dcfce7; }
+.tf-index--green h3 { background: #16a34a; }
+.tf-index--green li::before { background: #15803d; }
+.tf-index--teal { background: #ccfbf1; }
+.tf-index--teal h3 { background: #0d9488; }
+.tf-index--teal li::before { background: #0f766e; }
+.tf-index--rose { background: #fce7f3; }
+.tf-index--rose h3 { background: #db2777; }
+.tf-index--rose li::before { background: #be185d; }
+
 .tf-benefits h3 {
   margin: 0 0 0.85rem;
   font-size: 1.35rem;

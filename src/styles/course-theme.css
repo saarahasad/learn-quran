@@ -2200,6 +2200,15 @@ html {
   color: var(--course-color, #b45309);
 }
 
+.course-themed .course-navbar .course-breadcrumbs a {
+  color: #1c1917;
+  font-weight: 600;
+}
+
+.course-themed .course-navbar .course-breadcrumbs a:hover {
+  color: var(--course-color);
+}
+
 .course-navbar .course-breadcrumbs {
   flex: 1 1 auto;
   min-width: 0;
@@ -2209,7 +2218,8 @@ html {
   flex-wrap: nowrap;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 0.88rem;
+  font-size: 0.84rem;
+  color: #6b645c;
   -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
   mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
 }

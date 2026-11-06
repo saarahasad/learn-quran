@@ -1,7 +1,7 @@
 /** Tarbiyah Islamiyah — Rights study guide data */
 export const TARBIYAH_META = {
-  name: "Tarbiyah Islamiyah — Rights",
-  nameAr: "التربية الإسلامية — الحقوق",
+  name: "Rights of Allah, the Prophet, and the Family",
+  nameAr: "الحقوق",
   tagline: "Complete study guide — all 24 lectures from the rights of Allah to the rights of rulers",
   lectures: 24,
   chapters: 9,
