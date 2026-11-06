@@ -165,6 +165,47 @@ const ABASA_1_10 = [
   { n: "١٠", ar: "فَأَنتَ عَنْهُ تَلَهَّىٰ" },
 ];
 
+const ABASA_11_23 = [
+  { n: "١١", ar: "كَلَّا إِنَّهَا تَذْكِرَةٌ" },
+  { n: "١٢", ar: "فَمَن شَاءَ ذَكَرَهُ" },
+  { n: "١٣", ar: "فِي صُحُفٍ مُّكَرَّمَةٍ" },
+  { n: "١٤", ar: "مَّرْفُوعَةٍ مُّطَهَّرَةٍ" },
+  { n: "١٥", ar: "بِأَيْدِي سَفَرَةٍ" },
+  { n: "١٦", ar: "كِرَامٍ بَرَرَةٍ" },
+  { n: "١٧", ar: "قُتِلَ الْإِنسَانُ مَا أَكْفَرَهُ" },
+  { n: "١٨", ar: "مِنْ أَيِّ شَيْءٍ خَلَقَهُ" },
+  { n: "١٩", ar: "مِن نُّطْفَةٍ خَلَقَهُ فَقَدَّرَهُ" },
+  { n: "٢٠", ar: "ثُمَّ السَّبِيلَ يَسَّرَهُ" },
+  { n: "٢١", ar: "ثُمَّ أَمَاتَهُ فَأَقْبَرَهُ" },
+  { n: "٢٢", ar: "ثُمَّ إِذَا شَاءَ أَنشَرَهُ" },
+  { n: "٢٣", ar: "كَلَّا لَمَّا يَقْضِ مَا أَمَرَهُ" },
+];
+
+const ABASA_24_32 = [
+  { n: "٢٤", ar: "فَلْيَنظُرِ الْإِنسَانُ إِلَىٰ طَعَامِهِ" },
+  { n: "٢٥", ar: "أَنَّا صَبَبْنَا الْمَاءَ صَبًّا" },
+  { n: "٢٦", ar: "ثُمَّ شَقَقْنَا الْأَرْضَ شَقًّا" },
+  { n: "٢٧", ar: "فَأَنبَتْنَا فِيهَا حَبًّا" },
+  { n: "٢٨", ar: "وَعِنَبًا وَقَضْبًا" },
+  { n: "٢٩", ar: "وَزَيْتُونًا وَنَخْلًا" },
+  { n: "٣٠", ar: "وَحَدَائِقَ غُلْبًا" },
+  { n: "٣١", ar: "وَفَاكِهَةً وَأَبًّا" },
+  { n: "٣٢", ar: "مَّتَاعًا لَّكُمْ وَلِأَنْعَامِكُمْ" },
+];
+
+const ABASA_33_42 = [
+  { n: "٣٣", ar: "فَإِذَا جَاءَتِ الصَّاخَّةُ" },
+  { n: "٣٤", ar: "يَوْمَ يَفِرُّ الْمَرْءُ مِنْ أَخِيهِ" },
+  { n: "٣٥", ar: "وَأُمِّهِ وَأَبِيهِ" },
+  { n: "٣٦", ar: "وَصَاحِبَتِهِ وَبَنِيهِ" },
+  { n: "٣٧", ar: "لِكُلِّ امْرِئٍ مِّنْهُمْ يَوْمَئِذٍ شَأْنٌ يُغْنِيهِ" },
+  { n: "٣٨", ar: "وُجُوهٌ يَوْمَئِذٍ مُّسْفِرَةٌ" },
+  { n: "٣٩", ar: "ضَاحِكَةٌ مُّسْتَبْشِرَةٌ" },
+  { n: "٤٠", ar: "وَوُجُوهٌ يَوْمَئِذٍ عَلَيْهَا غَبَرَةٌ" },
+  { n: "٤١", ar: "تَرْهَقُهَا قَتَرَةٌ" },
+  { n: "٤٢", ar: "أُولَٰئِكَ هُمُ الْكَفَرَةُ الْفَجَرَةُ" },
+];
+
 export const TAFSIR2_UNITS = [
   {
     id: "semester",
@@ -2729,6 +2770,509 @@ export const TAFSIR2_UNITS = [
           },
         ],
       },
+      {
+        id: "abasa-sheets",
+        title: "A reminder in honored sheets (80:11–14)",
+        icon: "6",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:11–23",
+            title: "These verses are a reminder",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: ABASA_11_23,
+            translation:
+              "{No! Indeed, they [i.e., these verses] are a reminder; So whoever wills may remember it. [It is recorded] in honored sheets, Exalted and purified, [Carried] by the hands of messenger-angels, Noble and dutiful. Cursed is man; how disbelieving is he. From what thing [i.e., substance] did He create him? From a sperm-drop He created him and ordained his development. Then He eased the way for him; Then He causes his death and provides a grave for him. Then when He wills, He will resurrect him. No! Man has not yet accomplished what He commanded him}",
+            ref: "[Abasa 80:11–23]",
+          },
+          {
+            type: "verse",
+            ayah: "{No!}",
+            paras: [
+              "That is, the matter should not have been as you did, O noble Messenger, when you frowned at the one who came to you, striving in pursuit of knowledge, and you let yourself be distracted from him in your paying attention to one who thought himself without need.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Indeed, these verses are a reminder}",
+            paras: ["That is, what is mentioned in this surah is an exhortation and a reminder."],
+          },
+          {
+            type: "verse",
+            ayah: "{So whoever wills may remember it}",
+            paras: ["So whoever among the slaves of Allah wants to remember Allah ﷻ, he will remember Him."],
+          },
+          {
+            type: "verse",
+            ayah: "{[It is recorded] in honored sheets}",
+            paras: ["That is, this surah and this reminder is recorded in respected, venerated pages."],
+          },
+          {
+            type: "verse",
+            ayah: "{Exalted and purified}",
+            paras: ["Held in high esteem, purified from any impurity, and free of any addition or subtraction."],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "What is meant by sheets or pages here is al-Lawh al-Mahfuz.",
+          },
+        ],
+      },
+      {
+        id: "abasa-safarah",
+        title: "Noble, dutiful emissaries (80:15–16)",
+        icon: "7",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:15–16",
+            title: "Carried by the hands of messenger-angels",
+          },
+          {
+            type: "verse",
+            ayah: "{[Carried] by the hands of messenger-angels}",
+            paras: ["They are the recording angels, the emissaries between Allah and His creation."],
+          },
+          {
+            type: "benefits",
+            title: "The reason why the angels are called safarah (translated above as “messenger-angels”) is one of two things:",
+            items: [
+              {
+                n: "1",
+                tone: "gold",
+                body: "Either because they write; this name is derived from the word sifr which means book.",
+              },
+              {
+                n: "2",
+                tone: "rose",
+                body: "Or the word safarah is the plural of safeer, which means an emissary or intermediary. They are so called because they are the intermediaries between Allah ﷻ and His creation.",
+              },
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Noble and dutiful}",
+            paras: ["That is, their attitude, manners and deeds are righteous, pure and perfect."],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "Al-Bukhari and Muslim narrated that Aisha رضي الله عنها said: The Messenger of Allah ﷺ said: «The one who recites the Quran skillfully will be with the noble, dutiful emissaries, and the one who recites it and finds it difficult will have a twofold reward.»",
+          },
+        ],
+      },
+      {
+        id: "abasa-nutfah",
+        title: "From a sperm-drop (80:17–19)",
+        icon: "8",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:17–19",
+            title: "How disbelieving is man",
+          },
+          {
+            type: "verse",
+            ayah: "{Cursed is man; how disbelieving is he}",
+            paras: [
+              "This is expressing astonishment at man’s disbelieving Allah Who created him and perfected his creation. In other words, the disbeliever is cursed, for how great is his disbelief, despite the abundant blessings and kindness that Allah ﷻ bestows upon him.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{From what substance did He create him?}",
+            paras: [
+              "This is a question which is intended to alert man to reflect on how his creation began, and from what substance Allah ﷻ created him. It is a rebuke to man for his arrogance and stubbornness in refusing to obey his Lord.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{From a sperm-drop He created him and ordained his development}",
+            paras: [
+              "That is, his creation began from a sperm drop, namely semen, then Allah decreed that he should go through stages, in the first of which he starts out as a sperm-drop (nutfah), then a clinging clot (alaqah), then a chewed lump of flesh (mudghah) and so on.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "Al-Bukhari and Muslim narrated that Ibn Mas‘ud رضي الله عنه said: The Messenger of Allah ﷺ, who was the one who spoke the truth and was believed, told us: «The creation of one of you is put together in his mother’s womb as a nutfah for forty days, then he becomes an alaqah for a similar period, then he becomes a mudghah for a similar period …»",
+          },
+        ],
+      },
+      {
+        id: "abasa-grave",
+        title: "Death, the grave, and the Resurrection (80:20–23)",
+        icon: "9",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:20–23",
+            title: "He eased the way, then He will resurrect him",
+          },
+          {
+            type: "verse",
+            ayah: "{Then He eased the way for him}",
+            paras: [
+              "Then after he emerged from his mother’s womb, Allah ﷻ made clear for him the path of good and evil. This is like the verse in which Allah ﷻ says: {Indeed, We guided him to the way, be he grateful or be he ungrateful} [al-Insan 76:3].",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Then He causes his death and provides a grave for him}",
+            paras: [
+              "Then after that, Allah ﷻ causes him to die and provides for him a place to be buried in. In other words, He makes him an occupant of a grave.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "From this verse, the scholars understood that Muslims must bury their dead, so it is not permissible to cremate them, or to leave them for wild animals, or to throw them into the sea, and so on, unless it is not possible to bury them for some reason.",
+          },
+          {
+            type: "verse",
+            ayah: "{Then when He wills, He will resurrect him}",
+            paras: [
+              "Then He will resurrect him on the Day of Resurrection from his grave, for the reckoning and the requital.",
+              "The reason why Allah said {Then when He wills} in this verse is that the disbelievers used to say: Why has Allah not yet resurrected the dead from their graves for the reckoning and the requital? So here Allah ﷻ explains that the delay of the Resurrection is connected to His will and decree.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{No! Man has not yet accomplished what He commanded him}",
+            paras: [
+              "The word kallaa (translated here as “No!”) is by way of rebuke. In other words, it is not as the disbeliever says, that he has fulfilled his duty towards Allah. Rather man has not accomplished or fulfilled what Allah has enjoined upon him of obligatory duties.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "abasa-passage-activity",
+        title: "Activity · The reminder and the grave",
+        icon: "10",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt:
+                  "The scholars derived a fiqh ruling from the verse, {Then He causes his death and provides a grave for him}. What is that ruling?",
+              },
+              {
+                n: "2",
+                prompt:
+                  "Put next to each of the following phrases a verse that matches it, taken from this passage.",
+                table: {
+                  columns: ["Phrase", "Appropriate verse:"],
+                  rows: [
+                    "Man has freedom of choice and is not compelled to do what he does",
+                    "How can a man who came out from the same place that urine comes out from be arrogant?",
+                    "Islam grants man honour that is not granted to other animals.",
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "abasa-food",
+        title: "Let man look at his food (80:24–29)",
+        icon: "11",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:24–32",
+            title: "Rain, grain, and the palm tree",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: ABASA_24_32,
+            translation:
+              "{Then let man look at his food – How We poured down water in torrents, Then We broke open the earth, splitting [it with sprouts], And caused to grow within it grain. And grapes and herbage. And olive and palm trees. And gardens of dense shrubbery. And fruit and grass – [As] enjoyment for you and your grazing livestock}",
+            ref: "[Abasa 80:24–32]",
+          },
+          {
+            type: "verse",
+            ayah: "{Then let man look at his food}",
+            paras: [
+              "Here Allah ﷻ instructs man to look at his food which sustains him, and to reflect upon its origin, how it reaches him, how he eats it, and so on, so that through this thinking, reflection and pondering he may come to know Allah ﷻ, and worship Him as He should be worshipped.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{How We poured down water in torrents}",
+            paras: [
+              "That is, Allah ﷻ begins the process of producing humanity’s food by sending down rain from the sky in abundance.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Then We broke open the earth, splitting [it with sprouts]}",
+            paras: [
+              "That is, We split it with the vegetation that emerges from it because of the sending down of rain.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And caused to grow within it grain}",
+            paras: [
+              "Then after the earth has been split, grain begins to grow. This refers to all types of grain that the earth produces, such as wheat, barley and so on.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And grapes and herbage}",
+            paras: [
+              "The word qadb (translated here as “herbage”) refers to fodder for animals. It is called qadb because it is given to animals when it is still fresh, and they chew it (tuqdab) in order to break it down.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And olive and palm trees}",
+            paras: [
+              "Allah ﷻ mentions the palm tree, and does not just mention its fruit, because palm trees bring many benefits. The Arabs used to eat the dates as food, and use the date stones as food for camels; they used to make use of the wood and leaves in building houses and roofs, and making vessels; and they used the palm fibers to make ropes.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "abasa-mataa",
+        title: "Gardens, fruit, and enjoyment (80:30–32)",
+        icon: "12",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:30–32",
+            title: "Enjoyment for you and your livestock",
+          },
+          {
+            type: "verse",
+            ayah: "{And gardens of dense shrubbery}",
+            paras: [
+              "The word translated here as “garden” refers to a garden that is enclosed by a wall. A “garden of dense shrubbery” is a garden of thickly growing shrubs or tall trees.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And fruit and grass}",
+            paras: [
+              "Fruits (fakihah) are crops that are eaten for pleasure (tafakkuḥ), not for basic sustenance, such as dates, grapes, pomegranates and almonds. The word translated here as “grass” refers to plants that animals eat, such as grasses and so on.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{[As] enjoyment for you and your grazing livestock}",
+            paras: [
+              "That is, We cause these things that humans eat to grow as enjoyment for you, O people, so that you may benefit from them and find pleasure in them. And We cause grasses and other plants to grow as enjoyment for your livestock to eat and benefit from.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "The pleasures of this worldly life are called mataa (translated above as “enjoyment”) because they soon fade and disappear. This is in contrast to the pleasures of Paradise which are called naeem, because they will never end.",
+          },
+        ],
+      },
+      {
+        id: "abasa-food-activity",
+        title: "Activity · Man’s food",
+        icon: "13",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt:
+                  "Write a brief summary in which you speak of the ways in which foods are described, according to what is said in these verses.",
+              },
+              {
+                n: "2",
+                prompt: "Draw a line from each word or phrase in List A to that which matches it in List B:",
+                table: {
+                  columns: ["(A)", "(B)"],
+                  rows: [
+                    ["Herbage", "Garden surrounded by a wall"],
+                    ["Gardens", "A garden of thickly growing shrubs or tall trees"],
+                    ["Gardens of dense shrubbery", "Grasses and plants that animals eat"],
+                    ["Grains", "Fodder for animals"],
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "abasa-blast",
+        title: "The Deafening Blast (80:33–37)",
+        icon: "14",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:33–42",
+            title: "A man will flee from his brother",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: ABASA_33_42,
+            translation:
+              "{But when there comes the Deafening Blast On the Day a man will flee from his brother. And his mother and his father. And his wife and his children, For every man, that Day, will be a matter adequate for him. [Some] faces, that Day, will be bright – Laughing, rejoicing at good news. And [other] faces, that Day, will have upon them dust. Blackness will cover them. Those are the disbelievers, the wicked ones}",
+            ref: "[Abasa 80:33–42]",
+          },
+          {
+            type: "verse",
+            ayah: "{But when there comes the Deafening Blast}",
+            paras: [
+              "Which is the blast of the Trumpet on the Day of Resurrection. The word as-saakhkhah (translated above as “the Deafening Blast”) comes from the word saakha, which means to listen to someone.",
+              "And it was said that it is so called because it deafens (tasukhkh); in other words, its sound will overwhelm people’s hearing to the point that it almost deafens them.",
+              "And it was said that as-Saakhkhah is one of the names of the Day of Resurrection.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{On the Day a man will flee from his brother}",
+            paras: [
+              "This is a description of the Day of Resurrection, on which a man will flee from his relatives.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And his mother and his father, And his wife and his children}",
+            paras: [
+              "The words translated here as “mother” and “father” refer to one’s immediate parents and also grandparents.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "The reason why a man will flee from his relatives is that he will be afraid that they will ask him for what there is between them of unfulfilled rights and acts of injustice. Qatadah said: There will be nothing more difficult for a person on the Day of Resurrection than seeing someone he knows and fearing that that person will ask him to settle some matter of injustice with him.",
+          },
+          {
+            type: "verse",
+            ayah: "{For every man, that Day, will be a matter adequate for him}",
+            paras: [
+              "On the Day of Resurrection, each person will have something that will preoccupy him and prevent him from paying attention to anyone else.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "abasa-faces",
+        title: "Bright faces and dark faces (80:38–42)",
+        icon: "15",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:38–42",
+            title: "The people of Paradise and the people of Hell",
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "Al-Bukhari and Muslim narrated that Aisha رضي الله عنها said: The Messenger of Allah ﷺ said: «You will be gathered barefoot, naked and uncircumcised.» I said: O Messenger of Allah, men and women looking at one another?! He said: «The matter will be too overwhelming for anyone to worry about that.»",
+          },
+          {
+            type: "verse",
+            ayah: "{[Some] faces, that Day, will be bright}",
+            paras: [
+              "That is, the faces of the people of Paradise will be shining and glowing on the Day of Resurrection.",
+              "The same verb in Arabic is used to refer to a person’s face when he looks good, and to the dawn when it glows brightly.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Laughing, rejoicing at good news}",
+            paras: [
+              "That is, laughing with joy at what Allah has given them of delights and honour, rejoicing at the increase of these blessings.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And [other] faces, that Day, will have upon them dust}",
+            paras: ["That is, the faces of the people of Hell will be dark and gloomy."],
+          },
+          {
+            type: "verse",
+            ayah: "{Blackness will cover them}",
+            paras: ["That is, their faces will be covered with humiliation."],
+          },
+          {
+            type: "verse",
+            ayah: "{Those are the disbelievers, the wicked ones}",
+            paras: [
+              "That is, those who are described in this manner are the ones who disbelieved in the signs of Allah ﷻ in this world, and they did evil and transgressed.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "abasa-blast-learn",
+        title: "What we learn from 80:33–42",
+        icon: "16",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat Abasa · 80:33–42",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "Someone may say: Isn’t saying “The Day man will flee from his relatives” more concise than saying {On the Day a man will flee from his brother And his mother and his father And his wife and his children}? So why is there this elaboration? The answer is: elaboration in this context is more alarming to the reader, as it enables him to imagine this terrifying situation.",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "rose",
+                body: [
+                  "Why is the wife in this context called sahibah (lit. companion)?",
+                  "That is because not all wives are truly companions to their husbands. A wife may live with her husband because she has no choice, although she hates to live with him. In this case she is a wife, not a companion. In the case of a woman such as this, it is not far-fetched to think that the husband would flee from her. As for the wife who is a companion, she is the one who helps her husband to cope with any calamity he faces, and she lives alongside him at times of hardship. In the case of such a wife, her husband hopes that she will help him in this situation. Thus the Quran explains that even with a wife such as this, she will flee from you and you will flee from her in this difficult situation, despite the great love and compassion that existed between you in this world, so how about a wife who is not like that?",
+                ],
+              },
+              {
+                n: "2",
+                tone: "amber",
+                body: "In this passage, {On the Day a man will flee from his brother. And his mother and his father. And his wife and his children}, Allah ﷻ listed a person’s loved ones in order of the level of compassion he feels towards them. So He started with the lowest level, which is the brother, and ended with the one towards whom the greatest compassion is felt, namely the child, because a person usually feels the greatest compassion towards his children.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "abasa-blast-activity",
+        title: "Activity · The Deafening Blast",
+        icon: "17",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt:
+                  "{On the Day a man will flee from his brother, And his mother and his father, And his wife and his children}. In this verse there are three eloquent and subtle points. Discuss them briefly.",
+              },
+              {
+                n: "2",
+                prompt:
+                  "At the end of Surat an-Nazi‘aat, the people of Hell are mentioned before the people of Paradise. At the end of Surat Abasa, the people of Paradise are mentioned before the people of Hell. Reflect on the two surahs and work out the reason why the people of Hell are mentioned first in the previous surah and the people of Paradise are mentioned first here.",
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
   {
@@ -2777,8 +3321,8 @@ export const TAFSIR2_UNITS = [
     id: "practice",
     title: "Practice",
     lessons: [
-      { id: "flashcards", title: "Flashcards", icon: "🃏", kind: "tool", badge: "65" },
-      { id: "quiz", title: "Knowledge Quiz", icon: "✏️", kind: "tool", badge: "55" },
+      { id: "flashcards", title: "Flashcards", icon: "🃏", kind: "tool", badge: "75" },
+      { id: "quiz", title: "Knowledge Quiz", icon: "✏️", kind: "tool", badge: "65" },
     ],
   },
 ];
@@ -2803,7 +3347,7 @@ export const TAFSIR2_TOPICS = [
   { id: "righteous", label: "The righteous (78:31–36)" },
   { id: "true-day", label: "The True Day (78:37–40)" },
   { id: "naziat", label: "Surat an-Nazi‘aat (79:1–46)" },
-  { id: "abasa", label: "Surat Abasa (80:1–10)" },
+  { id: "abasa", label: "Surat Abasa (80:1–42)" },
 ];
 
 export const TAFSIR2_FLASHCARDS = [
@@ -3131,6 +3675,56 @@ export const TAFSIR2_FLASHCARDS = [
     t: "abasa",
     q: "What principles do the scholars draw from 80:1–10?",
     a: "Do not leave what is certain for what is uncertain, or a sure benefit for an unsure one: do not turn from someone already Muslim for someone who may never enter the faith. Still call those who are not interested; do not turn away from those who are. Leaving this rebuke in the Quran is a proof of prophethood. Callers must not prefer the high-ranking, the prominent, or relatives. The opening uses three third-person phrases, because this is a rebuke.",
+  },
+  {
+    t: "abasa",
+    q: "What does {No!} at the start of 80:11 mean, and what are the honored sheets?",
+    a: "The matter should not have been as the Prophet ﷺ did when he frowned at the one striving for knowledge and turned to the one who thought himself without need. The surah is an exhortation and a reminder. Whoever among the slaves of Allah wants to remember Him will remember Him. It is recorded in respected, venerated pages: exalted, purified, and free of addition or subtraction. Those sheets are al-Lawh al-Mahfuz.",
+  },
+  {
+    t: "abasa",
+    q: "Who are the safarah, and what did the Prophet ﷺ say about reciting the Quran?",
+    a: "They are the recording angels, the emissaries between Allah and His creation. Safarah is either from sifr, a book, because they write, or the plural of safeer, an emissary, because they are intermediaries between Allah and His creation. They are noble and dutiful: righteous, pure and perfect. Al-Bukhari and Muslim narrated that Aisha رضي الله عنها said the Prophet ﷺ said: «The one who recites the Quran skillfully will be with the noble, dutiful emissaries, and the one who recites it and finds it difficult will have a twofold reward.»",
+  },
+  {
+    t: "abasa",
+    q: "How does the surah rebuke man’s disbelief, and how did his creation begin?",
+    a: "Man is cursed for disbelieving the One Who created him and perfected him, despite Allah’s blessings. {From what substance did He create him?} rebukes arrogance. He began as a sperm-drop (nutfah), then a clinging clot (alaqah), then a chewed lump of flesh (mudghah). Al-Bukhari and Muslim narrated that Ibn Mas‘ud رضي الله عنه said each of those stages lasts forty days.",
+  },
+  {
+    t: "abasa",
+    q: "What do 80:20–23 teach about guidance, burial, and the Resurrection?",
+    a: "After man emerges from the womb, Allah makes the path of good and evil clear, as in {Indeed, We guided him to the way, be he grateful or be he ungrateful} [al-Insan 76:3]. He then causes death and provides a grave: Muslims must bury their dead, and may not cremate them, leave them for wild animals, or throw them into the sea, unless burial is not possible. Resurrection waits upon Allah’s will and decree. Kallaa (“No!”) rebukes the claim that man has fulfilled his duty: he has not yet accomplished the obligatory duties Allah enjoined.",
+  },
+  {
+    t: "abasa",
+    q: "Why does Allah tell man to look at his food, and how does that food begin?",
+    a: "So that by reflecting on its origin, how it reaches him, and how he eats it, he may come to know Allah and worship Him as He should be worshipped. Allah begins by sending rain down in abundance, then splits the earth with the vegetation that emerges, then causes grain to grow, such as wheat and barley.",
+  },
+  {
+    t: "abasa",
+    q: "What do qadb, the palm tree, and a garden of dense shrubbery mean?",
+    a: "Qadb, translated “herbage,” is fodder given to animals while it is still fresh, which they chew (tuqdab) to break it down. Allah mentions the palm tree, not only its fruit, because of its many benefits: dates for food, date stones for camels, wood and leaves for houses, roofs and vessels, and fibers for ropes. A garden is enclosed by a wall. A garden of dense shrubbery is thickly growing shrubs or tall trees.",
+  },
+  {
+    t: "abasa",
+    q: "What is fakihah, what is the “grass,” and why is this life called mataa?",
+    a: "Fakihah are crops eaten for pleasure (tafakkuḥ), not for basic sustenance, such as dates, grapes, pomegranates and almonds. The “grass” is plants that animals eat. These grow as enjoyment for people and for their livestock. Mataa, “enjoyment,” soon fades and disappears. The pleasures of Paradise are called naeem, because they will never end.",
+  },
+  {
+    t: "abasa",
+    q: "What is as-saakhkhah, and why will a man flee from his relatives?",
+    a: "It is the blast of the Trumpet on the Day of Resurrection. The word comes from saakha, to listen, and it was said that it deafens (tasukhkh), because its sound almost deafens people. It is also a name of that Day. A man will flee from his brother, his parents and grandparents, his wife and his children, fearing they will ask him to settle unfulfilled rights and acts of injustice. Qatadah said nothing will be harder than seeing someone he knows and fearing that claim. Each person will be preoccupied with a matter that keeps him from anyone else.",
+  },
+  {
+    t: "abasa",
+    q: "How does the surah describe the faces of that Day?",
+    a: "Some faces will be bright, shining like the dawn, laughing and rejoicing at the delights and honour Allah has given them: the people of Paradise. Other faces will have dust upon them, covered with blackness and humiliation: the people of Hell, the disbelievers and the wicked, who disbelieved in Allah’s signs and transgressed. Al-Bukhari and Muslim narrated that the gathering will be barefoot, naked and uncircumcised, and the matter will be too overwhelming for anyone to worry about looking at one another.",
+  },
+  {
+    t: "abasa",
+    q: "Why does the surah name each relative, and why is the wife called sahibah?",
+    a: "Naming them one by one is more alarming than saying only “his relatives,” because the reader can imagine the scene. Sahibah means companion: not every wife is truly a companion. Even a wife who stands with her husband in hardship will flee, and he will flee from her. Allah lists the loved ones from the least compassion, the brother, to the greatest, the child.",
   },
 ];
 
@@ -3784,6 +4378,126 @@ export const TAFSIR2_QUIZ = [
     ],
     ans: 1,
     fb: "If he were to have concealed anything of the revelation, he would have concealed this. Callers must not prefer rank, prominence, or kinship. The opening has three third-person phrases, because it is a rebuke.",
+  },
+  {
+    t: "abasa",
+    q: "The honored sheets in 80:13–14 are:",
+    opts: [
+      "The pages Ibn Umm Maktum was writing",
+      "The books of the recording angels only",
+      "al-Lawh al-Mahfuz: respected pages, exalted and free of addition or subtraction",
+      "The scripture of the leaders of Quraysh",
+    ],
+    ans: 2,
+    fb: "{No!} rebukes the frown. The surah is a reminder for whoever wills to remember Allah. The sheets are al-Lawh al-Mahfuz.",
+  },
+  {
+    t: "abasa",
+    q: "The angels are called safarah because:",
+    opts: [
+      "They write, from sifr (book), or they are emissaries, from safeer",
+      "They travel only at night",
+      "They were created from a sperm-drop",
+      "They withhold the Quran from people who find it difficult",
+    ],
+    ans: 0,
+    fb: "They are the recording angels, noble and dutiful. Al-Bukhari and Muslim: the skillful reciter will be with them, and the one who finds recitation difficult has a twofold reward.",
+  },
+  {
+    t: "abasa",
+    q: "Ibn Mas‘ud reported that each early stage in the womb lasts:",
+    opts: [
+      "Seven days",
+      "Forty days: nutfah, then alaqah, then mudghah",
+      "One year",
+      "Until the person chooses good or evil",
+    ],
+    ans: 1,
+    fb: "Narrated by al-Bukhari and Muslim. The verse rebukes man for disbelief and arrogance, though he began as a sperm-drop.",
+  },
+  {
+    t: "abasa",
+    q: "The scholars derived from {Then He causes his death and provides a grave for him} that:",
+    opts: [
+      "Cremation is the Sunnah when a journey is long",
+      "The dead may be left for wild animals if the family prefers it",
+      "Resurrection is delayed because Allah is unable",
+      "Muslims must bury their dead, unless burial is not possible",
+    ],
+    ans: 3,
+    fb: "Allah also made the way of good and evil clear. Resurrection is when He wills. Kallaa rebukes the claim that man has already fulfilled what Allah commanded.",
+  },
+  {
+    t: "abasa",
+    q: "Allah tells man to look at his food so that:",
+    opts: [
+      "He will stop eating grain and eat only fruit",
+      "Reflection on its origin may lead him to know Allah and worship Him",
+      "He will learn to store dates for camels only",
+      "Rain is withheld until he asks for it",
+    ],
+    ans: 1,
+    fb: "Food begins with rain poured down in abundance. The earth is then split by the vegetation, and grain such as wheat and barley grows.",
+  },
+  {
+    t: "abasa",
+    q: "Qadb, translated “herbage,” is:",
+    opts: [
+      "A garden enclosed by a wall",
+      "Fruit eaten for pleasure, such as almonds",
+      "Fresh fodder that animals chew in order to break it down",
+      "The wood of the olive tree",
+    ],
+    ans: 2,
+    fb: "The palm is mentioned, not only its fruit, because dates, date stones, wood, leaves and fibers all have uses. A garden of dense shrubbery is thickly growing shrubs or tall trees.",
+  },
+  {
+    t: "abasa",
+    q: "This worldly enjoyment is called mataa because:",
+    opts: [
+      "It soon fades, unlike the naeem of Paradise, which never ends",
+      "It is stored in al-Lawh al-Mahfuz",
+      "It is only for livestock, not for people",
+      "It is the name of the basic grains, wheat and barley",
+    ],
+    ans: 0,
+    fb: "Fakihah is eaten for pleasure, not basic sustenance. The “grass” is what animals eat. Both people and their livestock are given these plants as enjoyment.",
+  },
+  {
+    t: "abasa",
+    q: "As-saakhkhah is:",
+    opts: [
+      "The rain poured down in torrents",
+      "The blast of the Trumpet, so named because it almost deafens",
+      "The name of the pages in al-Lawh al-Mahfuz",
+      "The garden enclosed by a wall",
+    ],
+    ans: 1,
+    fb: "A man will flee from brother, parents, wife and children, fearing claims of injustice. Qatadah said nothing that Day is harder than that fear. Each person will be too preoccupied to notice anyone else.",
+  },
+  {
+    t: "abasa",
+    q: "The bright, laughing faces on that Day are:",
+    opts: [
+      "The people of Hell, covered with dust",
+      "Everyone who is gathered naked",
+      "The people of Paradise, rejoicing at what Allah has given them",
+      "Only the recording angels",
+    ],
+    ans: 2,
+    fb: "Other faces will be dark, covered with humiliation: the disbelievers, the wicked ones. The gathering itself will be too overwhelming for anyone to worry about looking at one another.",
+  },
+  {
+    t: "abasa",
+    q: "The wife is called sahibah in this passage because:",
+    opts: [
+      "The verse means a wife who is a true companion, and even she will flee",
+      "Every wife is a companion, so the word adds nothing",
+      "Sahibah means the child, towards whom compassion is greatest",
+      "The husband flees only from a wife he hates",
+    ],
+    ans: 0,
+    fb: "Listing each relative is more alarming than saying “his relatives.” Allah begins with the brother and ends with the child, the one towards whom compassion is usually greatest.",
   },
 ];
 

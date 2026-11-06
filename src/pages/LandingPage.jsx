@@ -49,21 +49,10 @@ const CATEGORY_AR = {
   "Arabic Grammar": "النحو",
 };
 
-function courseFacts(course) {
-  const size = (course.meta ?? "")
-    .split(" · ")
-    .filter((part) => /\d/.test(part) && /page|surah|chapter|unit|lesson/i.test(part))
-    .slice(0, 2);
-  const topicCount = course.topics?.length ?? 0;
-  if (topicCount > 0) size.push(countWord(topicCount, "topic"));
-  return size;
-}
-
 function CourseCard({ course, progress }) {
   const themeStyle = courseThemeStyle(course.color);
   const started = course.kind !== "juz" && progress.total > 0 && progress.pct > 0;
   const summary = course.range || course.tagline || course.description;
-  const facts = courseFacts(course);
   const nameAr = course.nameAr ?? JUZ_NAME_AR[course.id] ?? null;
 
   return (
@@ -83,15 +72,7 @@ function CourseCard({ course, progress }) {
             </span>
             <span>{progress.pct}%</span>
           </span>
-        ) : (
-          facts.length > 0 && (
-            <ul className="li-card-facts">
-              {facts.map((fact) => (
-                <li key={fact}>{fact}</li>
-              ))}
-            </ul>
-          )
-        )}
+        ) : null}
         <span className="li-card-go" aria-hidden>
           <svg width="16" height="16" viewBox="0 0 24 24">
             <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />

@@ -346,25 +346,6 @@
   padding-top: 0.9rem;
 }
 
-.li-card-facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.li-card-facts li {
-  padding: 0.18rem 0.55rem;
-  border-radius: 999px;
-  background: #f5f2ed;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #57514a;
-  white-space: nowrap;
-}
-
 .li-card-progress {
   display: flex;
   align-items: center;
@@ -393,6 +374,7 @@
 }
 
 .li-card-go {
+  margin-left: auto;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
