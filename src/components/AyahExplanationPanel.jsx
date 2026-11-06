@@ -17,6 +17,7 @@ export default function AyahExplanationPanel({
   pages = [],
   onPrevAyah = null,
   onNextAyah = null,
+  nextCue = null,
 }) {
   const [apiWords, setApiWords] = useState([]);
 
@@ -103,9 +104,10 @@ export default function AyahExplanationPanel({
 
         {showRecitation && (
           <AyahAudioPlayer
-            key={`audio-${surahNumber}-${ayah.n}`}
             surahNumber={surahNumber}
             ayahNumber={ayah.n}
+            nextCue={nextCue}
+            onAdvance={onNextAyah}
           />
         )}
 

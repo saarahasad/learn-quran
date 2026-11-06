@@ -34,11 +34,17 @@ export default function AyahAudioPlayer({
   surahNumber,
   ayahNumber,
   autoPlay = true,
+  nextCue = null,
+  onAdvance = null,
 }) {
   const audioRef = useRef(null);
   const repeatRef = useRef(false);
   const delayRef = useRef(15);
   const delayIntervalRef = useRef(null);
+  const nextCueRef = useRef(nextCue);
+  const onAdvanceRef = useRef(onAdvance);
+  /* The ended handler starts the next file before React catches up. */
+  const continueRef = useRef(false);
 
   /* Remembered choice: tapping an āyah starts the recitation, or opens it silently */
   const [autoPlayOn, setAutoPlayOn] = useState(readAutoPlayPref);
@@ -71,6 +77,8 @@ export default function AyahAudioPlayer({
 
   repeatRef.current = repeat;
   delayRef.current = delaySec;
+  nextCueRef.current = nextCue;
+  onAdvanceRef.current = onAdvance;
 
   const src = getMinshawiAyahUrl(surahNumber, ayahNumber);
 
@@ -133,11 +141,20 @@ export default function AyahAudioPlayer({
         } else {
           playFromStart();
         }
-      } else {
-        setPlaying(false);
-        setProgress(0);
-        setCurrentTime(0);
+        return;
       }
+      const next = nextCueRef.current;
+      if (next && onAdvanceRef.current) {
+        const nextSrc = getMinshawiAyahUrl(next.surahNumber, next.ayahNumber);
+        continueRef.current = true;
+        audio.src = nextSrc;
+        audio.play().catch(() => setPlaying(false));
+        onAdvanceRef.current();
+        return;
+      }
+      setPlaying(false);
+      setProgress(0);
+      setCurrentTime(0);
     };
     const onPlay = () => setPlaying(true);
     const onPause = () => setPlaying(false);
@@ -155,13 +172,26 @@ export default function AyahAudioPlayer({
       audio.removeEventListener("ended", onEnded);
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
-      audio.pause();
     };
   }, [src, playFromStart, clearReadingPause, startReadingPause]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return undefined;
+
+    const releaseStream = () => {
+      if (continueRef.current) return;
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
+    };
+
+    if (continueRef.current && audio.getAttribute("src") === src) {
+      continueRef.current = false;
+      if (audio.paused) audio.play().catch(() => setPlaying(false));
+      return releaseStream;
+    }
+    continueRef.current = false;
 
     clearReadingPause();
     setProgress(0);
@@ -186,9 +216,8 @@ export default function AyahAudioPlayer({
       audio.removeEventListener("canplay", tryPlay);
       // Release the network stream: tapping many āyāt quickly on iPad otherwise leaves
       // several MP3 downloads alive, which stalls Safari and can force a tab reload.
-      audio.pause();
-      audio.removeAttribute("src");
-      audio.load();
+      // An advance already started the next file on this element, so leave it playing.
+      releaseStream();
     };
   }, [src, autoPlay, surahNumber, ayahNumber, clearReadingPause]);
 
@@ -209,7 +238,7 @@ export default function AyahAudioPlayer({
 
   const dock = (
     <div className="ayah-dock" role="region" aria-label={`Recitation of āyah ${ayahNumber}`}>
-      <audio ref={audioRef} src={src} preload="auto" />
+      <audio ref={audioRef} preload="auto" />
 
       {settingsOpen && (
         <div className="ayah-dock__settings" id="ayah-dock-settings">
@@ -283,8 +312,8 @@ export default function AyahAudioPlayer({
           className={`ayah-dock__icon${repeat ? " is-on" : ""}`}
           onClick={() => setRepeat((value) => !value)}
           aria-pressed={repeat}
-          aria-label="Repeat this āyah"
-          title="Repeat this āyah"
+          aria-label={repeat ? "Repeat is on" : "Repeat this āyah"}
+          title={repeat ? "Repeat is on — this āyah plays again" : "Repeat this āyah. Off: the next āyah plays"}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
             <path d="M17 2l3 3-3 3M4 11V9a4 4 0 0 1 4-4h12M7 22l-3-3 3-3M20 13v2a4 4 0 0 1-4 4H4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

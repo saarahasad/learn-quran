@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { highlight, toPlainArabic } from "./AyahIraabProse.jsx";
 import "../../styles/iraabDiagram.css";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
@@ -119,32 +120,40 @@ function drawArrows(stage, plan, isolated, uid) {
     text.textContent = l.label;
     g.appendChild(text);
     svg.appendChild(g);
-    maxY = Math.max(maxY, l.lowY + 10);
+    maxY = Math.max(maxY, l.lowY + 14);
   });
 
   stage.style.paddingBottom = `${Math.max(8, maxY - stage.offsetHeight + 8)}px`;
   svg.setAttribute("width", stage.scrollWidth);
-  svg.setAttribute("height", maxY + 10);
+  svg.setAttribute("height", maxY + 16);
   stage.appendChild(svg);
+  svg.querySelectorAll("text").forEach((text) => {
+    const bb = text.getBBox();
+    if (!bb.width) return;
+    const bg = document.createElementNS(SVG_NS, "rect");
+    bg.setAttribute("x", bb.x - 6);
+    bg.setAttribute("y", bb.y - 3);
+    bg.setAttribute("width", bb.width + 12);
+    bg.setAttribute("height", bb.height + 6);
+    bg.setAttribute("rx", 7);
+    bg.setAttribute("fill", "#fff");
+    bg.setAttribute("stroke", text.getAttribute("fill") || "#111");
+    bg.setAttribute("stroke-width", "1.25");
+    text.parentNode.insertBefore(bg, text);
+  });
 }
 
-/** "الواو: حرف عطف…" → bold label + text. */
+/** Full iʿrāb line, with case, role, and word-type marked so the sentence can be scanned. */
 function IraabLine({ text }) {
-  const i = text.indexOf(": ");
-  if (i > 0 && i < 18) {
-    return (
-      <span className="iraab-dia__ln">
-        <b>{text.slice(0, i)}:</b> {text.slice(i + 2)}
-      </span>
-    );
-  }
-  return <span className="iraab-dia__ln">{text}</span>;
+  return <span className="iraab-dia__ln">{highlight(toPlainArabic(text))}</span>;
 }
 
 function widthClass(unit) {
   if (unit.ghost) return "";
   const len = unit.lines.join("").length;
-  return len > 150 ? " is-w2" : len > 80 ? " is-w1" : "";
+  if (len > 160) return " is-w2";
+  if (len > 70) return " is-w1";
+  return "";
 }
 
 export default function IraabAyahDiagram({ ayah, source = null }) {

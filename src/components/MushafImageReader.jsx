@@ -849,6 +849,15 @@ export default function MushafImageReader({
             ? () => goToAyah(selectedAyahN + 1)
             : null
         }
+        nextCue={
+          selectedAyahN == null
+            ? null
+            : selectedAyahN < ayahCount
+              ? { surahNumber: surah.revelationOrder, ayahNumber: selectedAyahN + 1 }
+              : canCrossSurah && hasNextSurah
+                ? { surahNumber: surah.revelationOrder + 1, ayahNumber: 1 }
+                : null
+        }
       />
 
       {showPageGuide && !compact && (

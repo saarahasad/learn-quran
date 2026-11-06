@@ -12,6 +12,18 @@
   --iraab-line: #d9dcdd;
   --iraab-soft: #f6f7f7;
   --iraab-ghost: #9a9fa2;
+  --ip-rafa: #1d4ed8;
+  --ip-rafa-bg: #e8efff;
+  --ip-nasb: #b45309;
+  --ip-nasb-bg: #fff2df;
+  --ip-jarr: #0f766e;
+  --ip-jarr-bg: #e0f5f1;
+  --ip-jazm: #be123c;
+  --ip-jazm-bg: #ffe8ee;
+  --ip-mabni: #475569;
+  --ip-mabni-bg: #eef1f5;
+  --ip-role: #6d28d9;
+  --ip-role-bg: #f1eaff;
   --iraab-jar: #c08a00;
   --iraab-atf: #d1344f;
   --iraab-taaluq: #1f6fd1;
@@ -72,28 +84,28 @@
   align-items: stretch;
   gap: 10px;
   flex: 0 0 auto;
-  width: 168px;
+  width: 248px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.iraab-dia__col.is-w1 { width: 196px; }
-.iraab-dia__col.is-w2 { width: 228px; }
+.iraab-dia__col.is-w1 { width: 292px; }
+.iraab-dia__col.is-w2 { width: 336px; }
 .iraab-dia__col:focus-visible { outline: 2px solid var(--iraab-ink); outline-offset: 4px; border-radius: 10px; }
 
 .iraab-dia__box {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
   box-sizing: border-box;
   width: 100%;
-  padding: 9px 11px 11px;
+  padding: 12px 14px 14px;
   border: 1.5px solid var(--iraab-line);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--iraab-soft);
   text-align: right;
   font-family: var(--iraab-f-ar);
-  line-height: 1.7;
+  line-height: 2.05;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 .iraab-dia__box::after {
@@ -108,9 +120,9 @@
   border-bottom: 1.5px solid var(--iraab-line);
   transform: translateX(-50%) rotate(45deg);
 }
-.iraab-dia__ln { display: block; font-size: 15px; }
-.iraab-dia__ln + .iraab-dia__ln { padding-top: 4px; border-top: 1px dashed var(--iraab-line); }
-.iraab-dia__ln b { font-weight: 700; }
+.iraab-dia__ln { display: block; font-size: 17px; line-height: 2.05; }
+.iraab-dia__ln + .iraab-dia__ln { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--iraab-line); }
+.iraab-dia__ln .ip-t { line-height: 1.85; }
 .iraab-dia__col.is-ghost .iraab-dia__box { border-style: dashed; background: transparent; color: var(--iraab-muted); text-align: center; }
 .iraab-dia__col.is-on .iraab-dia__box {
   border-color: var(--iraab-ink);
@@ -140,11 +152,8 @@
 .iraab-dia__arrows g.is-dim { opacity: 0.1; }
 .iraab-dia__arrows text {
   font-family: var(--iraab-f-ar);
-  font-size: 14px;
-  font-weight: 600;
-  paint-order: stroke;
-  stroke: #fff;
-  stroke-width: 5px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .iraab-dia__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
@@ -174,9 +183,10 @@
 .iraab-dia__src { margin: 8px 0 0; font-size: 12px; color: var(--iraab-muted); }
 
 @media (max-width: 560px) {
-  .iraab-dia__col { width: 148px; }
-  .iraab-dia__col.is-w1 { width: 176px; }
-  .iraab-dia__col.is-w2 { width: 204px; }
+  .iraab-dia__col { width: 220px; }
+  .iraab-dia__col.is-w1 { width: 252px; }
+  .iraab-dia__col.is-w2 { width: 286px; }
+  .iraab-dia__ln { font-size: 16px; }
   .iraab-dia__word { font-size: 30px; }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -978,8 +978,13 @@
 /* Only real hover devices: on iPad/iPhone :hover sticks to the last tapped box,
    which made it look like the wrong āyah was selected. */
 @media (hover: hover) and (pointer: fine) {
-  .mushaf-ayah-hit:hover {
-    background: rgba(255, 240, 180, 0.22);
+  .mushaf-ayah-hit:hover::before {
+    content: "";
+    position: absolute;
+    inset: 12% 0 14%;
+    border-radius: 7px;
+    background: rgba(196, 146, 42, 0.14);
+    pointer-events: none;
   }
 }
 
@@ -992,14 +997,40 @@
   background: transparent;
 }
 
-.mushaf-ayah-hit.is-selected {
-  background: rgba(255, 245, 200, 0.38);
-  box-shadow: inset 0 0 0 1px rgba(200, 160, 40, 0.2);
+/* The hit box stays the full line. The wash is drawn inside it so the
+   selection reads as a band on the words, not a sticker on the page. */
+.mushaf-ayah-hit.is-selected,
+.mushaf-ayah-hit.is-current {
+  background: transparent;
+  box-shadow: none;
 }
 
-.mushaf-ayah-hit.is-selected.is-current {
-  background: rgba(255, 230, 120, 0.52);
-  box-shadow: inset 0 0 0 2px rgba(200, 140, 20, 0.35);
+.mushaf-ayah-hit.is-selected::before,
+.mushaf-ayah-hit.is-current::before {
+  content: "";
+  position: absolute;
+  inset: 4% 0 18%;
+  border-radius: 8px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(214, 168, 48, 0) 0%,
+    rgba(201, 150, 40, 0.26) 24%,
+    rgba(184, 130, 24, 0.34) 62%,
+    rgba(201, 150, 40, 0.08) 100%
+  );
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10px, #000 calc(100% - 10px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10px, #000 calc(100% - 10px), transparent);
+}
+
+.mushaf-ayah-hit.is-selected.is-current::before {
+  background: linear-gradient(
+    180deg,
+    rgba(222, 176, 52, 0) 0%,
+    rgba(198, 142, 28, 0.38) 22%,
+    rgba(176, 118, 16, 0.5) 58%,
+    rgba(198, 142, 28, 0.12) 100%
+  );
 }
 
 /* Hifdh session: subtle side border instead of fill highlight */

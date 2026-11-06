@@ -11,7 +11,7 @@ import "../../styles/iraab-prose.css";
  */
 
 /* ── Plain-script normalisation (strip Uthmani-only marks) ── */
-function toPlainArabic(text) {
+export function toPlainArabic(text) {
   return String(text ?? "")
     .replace(/ٱ/g, "ا") // ٱ → ا
     .replace(/ىٰ/g, "ى") // ىٰ → ى
@@ -67,7 +67,7 @@ const RULES = [
 ];
 
 /** Split text into plain strings and highlighted spans (earliest, then longest match wins). */
-function highlight(text) {
+export function highlight(text) {
   const out = [];
   let rest = text;
   let key = 0;
