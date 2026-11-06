@@ -428,6 +428,8 @@
 .tf-benefit--rose .tf-benefit-n { background: #dc2626; }
 .tf-benefit--teal { background: #ccfbf1; }
 .tf-benefit--teal .tf-benefit-n { background: #0f766e; }
+.tf-benefit--purple { background: #ede9fe; }
+.tf-benefit--purple .tf-benefit-n { background: #6d28d9; }
 
 .tf-reflect-lead {
   margin: 0 0 1rem;

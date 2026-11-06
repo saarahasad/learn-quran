@@ -206,6 +206,89 @@ const ABASA_33_42 = [
   { n: "٤٢", ar: "أُولَٰئِكَ هُمُ الْكَفَرَةُ الْفَجَرَةُ" },
 ];
 
+const TAKWEER_1_14 = [
+  { n: "١", ar: "إِذَا الشَّمْسُ كُوِّرَتْ" },
+  { n: "٢", ar: "وَإِذَا النُّجُومُ انكَدَرَتْ" },
+  { n: "٣", ar: "وَإِذَا الْجِبَالُ سُيِّرَتْ" },
+  { n: "٤", ar: "وَإِذَا الْعِشَارُ عُطِّلَتْ" },
+  { n: "٥", ar: "وَإِذَا الْوُحُوشُ حُشِرَتْ" },
+  { n: "٦", ar: "وَإِذَا الْبِحَارُ سُجِّرَتْ" },
+  { n: "٧", ar: "وَإِذَا النُّفُوسُ زُوِّجَتْ" },
+  { n: "٨", ar: "وَإِذَا الْمَوْءُودَةُ سُئِلَتْ" },
+  { n: "٩", ar: "بِأَيِّ ذَنبٍ قُتِلَتْ" },
+  { n: "١٠", ar: "وَإِذَا الصُّحُفُ نُشِرَتْ" },
+  { n: "١١", ar: "وَإِذَا السَّمَاءُ كُشِطَتْ" },
+  { n: "١٢", ar: "وَإِذَا الْجَحِيمُ سُعِّرَتْ" },
+  { n: "١٣", ar: "وَإِذَا الْجَنَّةُ أُزْلِفَتْ" },
+  { n: "١٤", ar: "عَلِمَتْ نَفْسٌ مَّا أَحْضَرَتْ" },
+];
+
+const TAKWEER_15_29 = [
+  { n: "١٥", ar: "فَلَا أُقْسِمُ بِالْخُنَّسِ" },
+  { n: "١٦", ar: "الْجَوَارِ الْكُنَّسِ" },
+  { n: "١٧", ar: "وَاللَّيْلِ إِذَا عَسْعَسَ" },
+  { n: "١٨", ar: "وَالصُّبْحِ إِذَا تَنَفَّسَ" },
+  { n: "١٩", ar: "إِنَّهُ لَقَوْلُ رَسُولٍ كَرِيمٍ" },
+  { n: "٢٠", ar: "ذِي قُوَّةٍ عِندَ ذِي الْعَرْشِ مَكِينٍ" },
+  { n: "٢١", ar: "مُطَاعٍ ثَمَّ أَمِينٍ" },
+  { n: "٢٢", ar: "وَمَا صَاحِبُكُم بِمَجْنُونٍ" },
+  { n: "٢٣", ar: "وَلَقَدْ رَآهُ بِالْأُفُقِ الْمُبِينِ" },
+  { n: "٢٤", ar: "وَمَا هُوَ عَلَى الْغَيْبِ بِضَنِينٍ" },
+  { n: "٢٥", ar: "وَمَا هُوَ بِقَوْلِ شَيْطَانٍ رَّجِيمٍ" },
+  { n: "٢٦", ar: "فَأَيْنَ تَذْهَبُونَ" },
+  { n: "٢٧", ar: "إِنْ هُوَ إِلَّا ذِكْرٌ لِّلْعَٰلَمِينَ" },
+  { n: "٢٨", ar: "لِمَن شَاءَ مِنكُمْ أَن يَسْتَقِيمَ" },
+  { n: "٢٩", ar: "وَمَا تَشَاءُونَ إِلَّا أَن يَشَاءَ اللَّهُ رَبُّ الْعَٰلَمِينَ" },
+];
+
+const INFITAR_1_8 = [
+  { n: "١", ar: "إِذَا السَّمَاءُ انفَطَرَتْ" },
+  { n: "٢", ar: "وَإِذَا الْكَوَاكِبُ انتَثَرَتْ" },
+  { n: "٣", ar: "وَإِذَا الْبِحَارُ فُجِّرَتْ" },
+  { n: "٤", ar: "وَإِذَا الْقُبُورُ بُعْثِرَتْ" },
+  { n: "٥", ar: "عَلِمَتْ نَفْسٌ مَّا قَدَّمَتْ وَأَخَّرَتْ" },
+  { n: "٦", ar: "يَٰٓأَيُّهَا الْإِنسَانُ مَا غَرَّكَ بِرَبِّكَ الْكَرِيمِ" },
+  { n: "٧", ar: "الَّذِي خَلَقَكَ فَسَوَّاكَ فَعَدَلَكَ" },
+  { n: "٨", ar: "فِي أَيِّ صُورَةٍ مَّا شَاءَ رَكَّبَكَ" },
+];
+
+const INFITAR_9_19 = [
+  { n: "٩", ar: "كَلَّا بَلْ تُكَذِّبُونَ بِالدِّينِ" },
+  { n: "١٠", ar: "وَإِنَّ عَلَيْكُمْ لَحَافِظِينَ" },
+  { n: "١١", ar: "كِرَامًا كَاتِبِينَ" },
+  { n: "١٢", ar: "يَعْلَمُونَ مَا تَفْعَلُونَ" },
+  { n: "١٣", ar: "إِنَّ الْأَبْرَارَ لَفِي نَعِيمٍ" },
+  { n: "١٤", ar: "وَإِنَّ الْفُجَّارَ لَفِي جَحِيمٍ" },
+  { n: "١٥", ar: "يَصْلَوْنَهَا يَوْمَ الدِّينِ" },
+  { n: "١٦", ar: "وَمَا هُمْ عَنْهَا بِغَائِبِينَ" },
+  { n: "١٧", ar: "وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ" },
+  { n: "١٨", ar: "ثُمَّ مَا أَدْرَاكَ مَا يَوْمُ الدِّينِ" },
+  { n: "١٩", ar: "يَوْمَ لَا تَمْلِكُ نَفْسٌ لِّنَفْسٍ شَيْئًا وَالْأَمْرُ يَوْمَئِذٍ لِّلَّهِ" },
+];
+
+const MUTAFFIFEEN_1_6 = [
+  { n: "١", ar: "وَيْلٌ لِّلْمُطَفِّفِينَ" },
+  { n: "٢", ar: "الَّذِينَ إِذَا اكْتَالُوا عَلَى النَّاسِ يَسْتَوْفُونَ" },
+  { n: "٣", ar: "وَإِذَا كَالُوهُمْ أَو وَّزَنُوهُمْ يُخْسِرُونَ" },
+  { n: "٤", ar: "أَلَا يَظُنُّ أُولَٰئِكَ أَنَّهُم مَّبْعُوثُونَ" },
+  { n: "٥", ar: "لِيَوْمٍ عَظِيمٍ" },
+  { n: "٦", ar: "يَوْمَ يَقُومُ النَّاسُ لِرَبِّ الْعَٰلَمِينَ" },
+];
+
+const MUTAFFIFEEN_7_17 = [
+  { n: "٧", ar: "كَلَّا إِنَّ كِتَابَ الْفُجَّارِ لَفِي سِجِّينٍ" },
+  { n: "٨", ar: "وَمَا أَدْرَاكَ مَا سِجِّينٌ" },
+  { n: "٩", ar: "كِتَابٌ مَّرْقُومٌ" },
+  { n: "١٠", ar: "وَيْلٌ يَوْمَئِذٍ لِّلْمُكَذِّبِينَ" },
+  { n: "١١", ar: "الَّذِينَ يُكَذِّبُونَ بِيَوْمِ الدِّينِ" },
+  { n: "١٢", ar: "وَمَا يُكَذِّبُ بِهِ إِلَّا كُلُّ مُعْتَدٍ أَثِيمٍ" },
+  { n: "١٣", ar: "إِذَا تُتْلَىٰ عَلَيْهِ آيَاتُنَا قَالَ أَسَاطِيرُ الْأَوَّلِينَ" },
+  { n: "١٤", ar: "كَلَّا بَلْ رَانَ عَلَىٰ قُلُوبِهِم مَّا كَانُوا يَكْسِبُونَ" },
+  { n: "١٥", ar: "كَلَّا إِنَّهُمْ عَن رَّبِّهِمْ يَوْمَئِذٍ لَّمَحْجُوبُونَ" },
+  { n: "١٦", ar: "ثُمَّ إِنَّهُمْ لَصَالُوا الْجَحِيمِ" },
+  { n: "١٧", ar: "ثُمَّ يُقَالُ هَٰذَا الَّذِي كُنتُم بِهِ تُكَذِّبُونَ" },
+];
+
 export const TAFSIR2_UNITS = [
   {
     id: "semester",
@@ -3281,11 +3364,486 @@ export const TAFSIR2_UNITS = [
     titleAr: "التكوير",
     lessons: [
       {
-        id: "takweer",
-        title: "Commentary on Surat at-Takweer",
+        id: "takweer-opening",
+        title: "Surat at-Takweer (81:1–14)",
+        icon: "1",
+        sections: [
+          {
+            type: "heading",
+            kicker: "In this unit we will study",
+          },
+          {
+            type: "surahBanner",
+            title: "Surat at-Takweer",
+            lines: ["is a Makkan surah", "(revealed before the Hijrah)"],
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: TAKWEER_1_14,
+            translation:
+              "{When the sun is wrapped up [in darkness]. And when the stars fall, dispersing. And when the mountains are removed. And when full-term she-camels are neglected. And when the wild beasts are gathered. And when the seas are filled with flames. And when the souls are paired. And when the girl [who was] buried alive is asked. For what sin she was killed. And when the pages are made public. And when the sky is stripped away. And when Hellfire is set ablaze. And when Paradise is brought near, A soul will [then] know what it has brought [with it]}",
+            ref: "[at-Takweer 81:1–14]",
+          },
+          {
+            type: "note",
+            body: "At-Tirmidhi narrated, in a report that he classed as hasan, that Ibn Umar رضي الله عنه said: The Messenger of Allah ﷺ said: «Whoever would like to see the Day of Resurrection as if seeing it with his own eyes, let him read: {When the sun is wrapped up [in darkness]} [Surat at-Takweer], {When the sky breaks apart} [Surat al-Infitar] and {When the sky has split [open]} [Surat al-Inshiqaq].»",
+          },
+        ],
+      },
+      {
+        id: "takweer-upheaval",
+        title: "The sun, the stars, and the camels (81:1–5)",
+        icon: "2",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat at-Takweer · 81:1–5",
+            title: "When the world is overturned",
+          },
+          {
+            type: "verse",
+            ayah: "{When the sun is wrapped up [in darkness]}",
+            paras: [
+              "The word translated here as “wrapped up” (takweer) refers to putting the parts of a thing together, such as wrapping a turban around the head. Thus, parts of the sun will be put together and wrapped up, and once it is wrapped up, its light will disappear.",
+              "What is meant is that the sun will undergo a change and its light will vanish.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when the stars fall, dispersing}",
+            paras: ["That is, when they are scattered, fall and change."],
+          },
+          {
+            type: "verse",
+            ayah: "{And when the mountains are removed}",
+            paras: [
+              "That is, on that Day, Allah will cause the mountains to be removed from the face of the earth, so they will become like a mirage, and like scattered dust.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when heavily pregnant she-camels are neglected}",
+            paras: [
+              "The word translated here as “heavily pregnant she-camels” refers to she-camels that have completed ten months of pregnancy.",
+              "What is meant by neglecting them is that they will be ignored and no attention will be paid to them.",
+              "The majority of the Arabs’ wealth, and that which was most precious, was camels, and the most valuable of that wealth, for which they would compete, was she-camels in the tenth month of pregnancy.",
+              "But on that Day, people will neglect this precious wealth because of the immense terror they will face.",
+              "The point of this idea which is presented in the Quran is to highlight the fact that people will be distracted from their wealth by the terror of that momentous Day.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when the wild beasts are gathered}",
+            paras: [
+              "That is, when the wild animals are gathered so that Allah might settle the scores among them.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "Muslim narrated from Abu Hurayrah رضي الله عنه that the Messenger of Allah ﷺ said: «All rights will be restored on the Day of Resurrection, to the extent that the hornless sheep will settle its score with the horned sheep.»",
+          },
+        ],
+      },
+      {
+        id: "takweer-seas",
+        title: "The seas and the paired souls (81:6–7)",
+        icon: "3",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat at-Takweer · 81:6–7",
+            title: "Seas set alight, souls brought together",
+          },
+          {
+            type: "verse",
+            ayah: "{And when the seas are filled with flames}",
+            paras: [
+              "That is, when the seas are set alight, and despite their vastness will become burning fire.",
+              "It was also said that what is meant by sujjirat (translated above as “are filled with flames”) is that their water will disappear, be absorbed into the earth and will dry up, so not a single drop will remain.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when the souls are paired}",
+            paras: [
+              "That is, each person who did a good deed will be paired with his counterpart, and those who love one another for the sake of Allah will be paired in Paradise, and those who love one another in doing that which pleases the Shaytan will be paired in Hell, as Allah ﷻ says elsewhere: {And you become [of] three kinds} [al-Waqi‘ah 56:7], that is, of three types.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "takweer-buried",
+        title: "The buried girl and the reckoning (81:8–14)",
         icon: "4",
-        draft: true,
-        sections: comingSoon("Commentary on Surat at-Takweer"),
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat at-Takweer · 81:8–14",
+            title: "Pages, the sky, Hell, and Paradise",
+          },
+          {
+            type: "verse",
+            ayah: "{And when the girl [who was] buried alive is asked}",
+            paras: [
+              "This refers to the female infant who was buried alive; on that Day she will be asked about the reason why she was killed.",
+              "She is described as maw’oodah (translated above as “buried alive”) because of what was thrown onto her of soil, so that it suffocated her (ya’ooduha); in other words, it weighed heavily upon her until she died.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{For what sin she was killed}",
+            paras: ["What was the sin for which the one who buried her alive killed her?"],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The question will be addressed to the one who was buried alive, and not to her killer, to indicate that the killer is subject to the utmost divine wrath, to the point that he does not even deserve to be addressed directly and questioned about that.",
+          },
+          {
+            type: "verse",
+            ayah: "{And when the pages are made public}",
+            paras: [
+              "That is, when the pages containing the records of people’s deeds are presented to people, with all that they contain of good and bad deeds.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when the sky is stripped away}",
+            paras: [
+              "That is, when it is pulled off and removed from its place.",
+              "The word translated here as “stripped away” refers to something that is stuck firmly and is pulled off forcefully. So the sky will be stripped away as the skin is stripped away from the ram (after slaughter).",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when Hellfire is set ablaze}",
+            paras: ["That is, when the fire of Hell is stoked and will heat up."],
+          },
+          {
+            type: "verse",
+            ayah: "{And when Paradise is brought near}",
+            paras: [
+              "It will be brought close to its people, the righteous. This is like the verse in which Allah ﷻ says: {And Paradise will be brought near to the righteous, not far} [Qaf 50:31].",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{A soul will [then] know what it has brought [with it]}",
+            paras: [
+              "When all of the above comes to pass, each soul will know what it sent forth of deeds in this world, whether it did good that will lead it to Paradise, or it did evil that will lead it to Hell.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "takweer-learn",
+        title: "What we learn from 81:1–14",
+        icon: "5",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat at-Takweer · 81:1–14",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "amber",
+                body: "The wild beasts will be gathered in one place, and will mix with one another, due to intense fear. So animals that would naturally stay away from one another will come together in one place, and they will not transgress against one another, due to intense fear; they will no longer act according to their nature, which is to attack and prey on one another. If that is the case with regard to wild animals that possess no power of reason, then what will the state of humans be on that Day?",
+              },
+              {
+                n: "2",
+                tone: "rose",
+                body: "On the Day of Resurrection, each type of human will be brought together with others like him. So good people will be brought together with good people, evil people will be brought together with evil people, and this ummah will be brought together.",
+              },
+              {
+                n: "3",
+                tone: "sky",
+                body: "Every deed that you did, words or actions, is written down and recorded in documents by the trustworthy hands of the noble scribes who know what you do. Then when the Day of Resurrection comes, as Allah ﷻ says in His Book: {And [for] every person We have fastened his deeds to his neck and We will produce for him on the Day of Resurrection a record which he will encounter spread open. [It will be said], “Read your record. Sufficient is yourself against you this Day as a reckoner”} [al-Isra 17:13–14].",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "takweer-activity",
+        title: "Activity · The great events",
+        icon: "6",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt:
+                  "In the table below, put next to each verse taken from the passage quoted above another verse that is similar to it, from a different surah:",
+                table: {
+                  columns: ["Verse", "Similar verse"],
+                  rows: [
+                    "{And when the mountains are removed}",
+                    "{And when the souls are paired}",
+                    "{And when the pages are made public}",
+                    "{And when Paradise is brought near}",
+                    "{A soul will [then] know what it has brought [with it]}",
+                  ],
+                },
+              },
+              {
+                n: "2",
+                prompt: "Draw a line from each word or phrase in List A to that which matches it in List B:",
+                table: {
+                  columns: ["(A)", "(B)"],
+                  rows: [
+                    ["wrapped up [in darkness]", "are stoked"],
+                    ["fall, dispersing", "are neglected"],
+                    ["are neglected", "is wound around"],
+                    ["are gathered", "are scattered and fall"],
+                    ["are filled with flames", "are brought together"],
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "takweer-oath",
+        title: "The oath by the stars (81:15–18)",
+        icon: "7",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat at-Takweer · 81:15–29",
+            title: "So I swear by the retreating stars",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: TAKWEER_15_29,
+            translation:
+              "{So I swear by the retreating stars, Those that run [their courses] and disappear, And by the night as it closes in, And by the dawn when it breathes, [That] indeed, the Qur'an is a word [conveyed by] a noble messenger, [Who is] possessed of power and with the Owner of the Throne, secure [in position], Obeyed there and trustworthy. And your companion is not [at all] mad, And he has already seen Gabriel in the clear horizon. And Muhammad is not a withholder of [knowledge of] the unseen, And the Qur'an is not the word of an accursed devil. So where are you going? It is not except a reminder to the worlds, For whoever wills among you to take a right course. And you do not will except that Allah wills - Lord of the worlds}",
+            ref: "[at-Takweer 81:15–29]",
+          },
+          {
+            type: "verse",
+            ayah: "{So I swear by the retreating stars}",
+            paras: [
+              "The word laa (lit. not; it is not translated here) is used for emphasis in this verse.",
+              "The word translated as “the retreating stars” refers to the stars whose light is hidden by day.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Those that run [their courses] and disappear}",
+            paras: [
+              "This refers to the stars; those that disappear are the stars that are hidden in their constellations.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And by the night as it closes in}",
+            paras: [
+              "Here Allah ﷻ swears by the night when it comes with its darkness and when it goes.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "amber",
+            body: "The Arabs say as'asa al-layl (the night has closed in) when night comes, and they say sa'sa'a al-layl [inverting the consonants] when there is nothing left of the night but a little.",
+          },
+          {
+            type: "verse",
+            ayah: "{And by the dawn when it breathes}",
+            paras: ["This is an oath by the dawn, when its light first begins to appear."],
+          },
+        ],
+      },
+      {
+        id: "takweer-jibreel",
+        title: "A noble messenger (81:19–23)",
+        icon: "8",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat at-Takweer · 81:19–23",
+            title: "Jibreel, possessed of power",
+          },
+          {
+            type: "verse",
+            ayah: "{[That] indeed, the Qur'an is a word [conveyed by] a noble messenger}",
+            paras: [
+              "This is the matter that is attested to by the oath.",
+              "The noble messenger is Jibreel عليه السلام.",
+              "In other words, this Quran is something that was conveyed by a noble messenger, namely Jibreel عليه السلام, who conveyed it from the Lord of Glory to our Prophet Muhammad ﷺ.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{[Who is] possessed of power and with the Owner of the Throne, secure [in position]}",
+            paras: [
+              "He is possessed of power in carrying out what Allah commands him to do. One example of his power is that he turned the city of the people of Lut upside down and destroyed them.",
+              "And he also possesses high status before the Owner of the Throne, namely Allah ﷻ.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Obeyed there and trustworthy}",
+            paras: [
+              "The word “there” refers to the heavens.",
+              "In other words, the angels there in heaven obey him, and he is trustworthy and entrusted with the revelation which he brings down.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And your companion is not [at all] mad}",
+            paras: [
+              "Muhammad ﷺ is not a madman, and this Quran that he brought is not the gibberish of one who is insane.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And he has already seen Gabriel}",
+            paras: [
+              "Muhammad ﷺ saw Jibreel in his true form in which Allah created him, with six hundred wings. He filled the entire horizon, as is mentioned in as-Sahihayn and elsewhere.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{in the clear horizon}",
+            paras: [
+              "That is, in the direction where the sun rises, towards the east, because when the sun rises from this direction, it is clear and things can be seen clearly in its direction.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "In Sahih Muslim, it is narrated that Aisha رضي الله عنها said: I was the first of this ummah to ask the Messenger of Allah ﷺ about that – meaning this seeing that is mentioned in this verse – and he said: «He is Jibreel. I never saw him in his true form in which he was created except on these two occasions. I saw him coming down from heaven, his immense size filling the space between heaven and earth.»",
+          },
+        ],
+      },
+      {
+        id: "takweer-reminder",
+        title: "A reminder to the worlds (81:24–29)",
+        icon: "9",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat at-Takweer · 81:24–29",
+            title: "Not a withholder, and not the word of a devil",
+          },
+          {
+            type: "verse",
+            ayah: "{And Muhammad is not a withholder of [knowledge of] the unseen}",
+            paras: [
+              "What is meant by the unseen here is the revelation and the Quran.",
+              "The word daneen, translated here as “withholder” refers to one who is miserly or stingy.",
+              "The phrase danantu bi'sh-shay means: I withheld the thing out of stinginess.",
+              "In other words, Muhammad ﷺ does not withhold the revelation and fail to convey it to the people.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And the Qur'an is not the word of an accursed devil}",
+            paras: [
+              "The word rajeem (translated here as “accursed”) refers to one who is cursed and cast out from the mercy of Allah.",
+              "What is meant is, the Quran is not the word of one of the devils who eavesdrop on the heavens and are struck by meteors; rather it is the word and the revelation of the Lord of the Worlds.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{So where are you going?}",
+            paras: [
+              "That is, where are you going and drifting away from the Book of Allah ﷻ and from obedience to Him, when there is definitive proof that it is true?",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{It is not except a reminder to the worlds}",
+            paras: [
+              "The pronoun “it” refers to the Quran.",
+              "In other words, the Quran is but an exhortation from Allah ﷻ to all the people, to whom Muhammad ﷺ was sent.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{For whoever wills among you to take a right course}",
+            paras: [
+              "That is, to follow the truth.",
+              "After explaining in the previous verse that this Quran is an exhortation and a reminder to all the worlds, in this verse Allah ﷻ explains that the reminder and the revelation cannot in fact benefit any but those who want to take a right course and steadfastly follow the path of truth. As for the one who turns away, this Quran is of no benefit to him so long as he is turning away from it.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And you do not will except that Allah wills - Lord of the worlds}",
+            paras: [
+              "That is, you will not be able to adhere to the truth except after Allah ﷻ wills that for you.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "takweer-oath-learn",
+        title: "What we learn from 81:15–29",
+        icon: "10",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat at-Takweer · 81:15–29",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "purple",
+                body: "Allah ﷻ did not refer to Himself by name; rather He referred to Himself as the Owner of the Throne, in the context of speaking about Jibreel, so as to give a likeness of Jibreel and his position before Allah as that of a vizier who is always carrying out the commands of the King, and he occupies an honourable position before Him.",
+              },
+            ],
+          },
+          {
+            type: "note",
+            tone: "warning",
+            body: "The angelic messenger who brought down the Quran from Allah ﷻ is described with the most beautiful attributes, and the human messenger to whom the Quran was brought is described with the best attributes. This is indicative of how honourable this message – the Quran – is, for usually when kings send messengers with important messages, they only send such messages with the noblest of their envoys.",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "2",
+                tone: "gold",
+                body: "The Prophet ﷺ is referred to as {your companion} by way of rebuke to the polytheists of Quraysh who accused him of being insane and practising witchcraft and so on, because they had known him and lived close to him for a lengthy portion of his life, more than forty years, during which they had not seen anything from him to suggest that he was insane or a practitioner of witchcraft, so how come they were making all these accusations against him now?!",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "takweer-oath-activity",
+        title: "Activity · The noble messenger",
+        icon: "11",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt: "Mention the attributes of Jibreel عليه السلام that are referred to in these verses.",
+              },
+              {
+                n: "2",
+                prompt:
+                  "“The bearer of the Quran should be a person of noble character, trustworthy, far removed from immature and foolish behaviour, strong in his adherence to the Book of Allah and the Sunnah of His Prophet ﷺ.” Where do you see this meaning in this passage?",
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -3295,11 +3853,325 @@ export const TAFSIR2_UNITS = [
     titleAr: "الانفطار",
     lessons: [
       {
-        id: "infitar",
-        title: "Commentary on Surat al-Infitar",
+        id: "infitar-opening",
+        title: "Surat al-Infitar (82:1–8)",
+        icon: "1",
+        sections: [
+          {
+            type: "heading",
+            kicker: "In this unit we will study",
+          },
+          {
+            type: "surahBanner",
+            title: "Surat al-Infitar",
+            lines: ["is a Makkan surah", "(revealed before the Hijrah)"],
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: INFITAR_1_8,
+            translation:
+              "{When the sky breaks apart. And when the stars fall, scattering, And when the seas are erupted. And when the graves are overturned, A soul will [then] know what it has put forth and kept back. O mankind, what has deceived you concerning your Lord, the Generous, Who created you, proportioned you, and balanced you? In whatever form He willed has He assembled you}",
+            ref: "[al-Infitar 82:1–8]",
+          },
+          {
+            type: "note",
+            body: "It was narrated that Ibn Umar رضي الله عنه said: The Messenger of Allah ﷺ said: «Whoever would like to see the Day of Resurrection as if seeing it with his own eyes, let him read: {When the sun is wrapped up [in darkness]} [Surat at-Takweer], {When the sky breaks apart} [Surat al-Infitar] and {When the sky has split [open]} [Surat al-Inshiqaq].» Narrated by at-Tirmidhi; classed as sahih by al-Albani.",
+          },
+        ],
+      },
+      {
+        id: "infitar-sky",
+        title: "When the sky breaks apart (82:1–5)",
+        icon: "2",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Infitar · 82:1–5",
+            title: "The sky, the stars, the seas, and the graves",
+          },
+          {
+            type: "verse",
+            ayah: "{When the sky breaks apart}",
+            paras: [
+              "Breaking apart means splitting. This is like the verse in which Allah says: {And [mention] the Day when the heaven will split open with [emerging] clouds, and the angels will be sent down in successive descent} [al-Furqan 25:25].",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when the stars fall, scattering}",
+            paras: ["They will fall, scattered and dispersed."],
+          },
+          {
+            type: "verse",
+            ayah: "{And when the seas are erupted}",
+            paras: [
+              "Allah will cause them to burst forth onto one another, mixing the freshwater with the saltwater.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And when the graves are overturned}",
+            paras: ["That is, turned upside down."],
+          },
+          {
+            type: "verse",
+            ayah: "{A soul will [then] know what it has put forth and kept back}",
+            paras: [
+              "That is, at that time, when these momentous events unfold, deeds will be presented, and each soul will know what it put forth and kept back, whereas in this world it had forgotten.",
+              "So each person will be informed about all that he did, as Allah ﷻ says elsewhere: {Man will be informed that Day of what he sent ahead and kept back} [al-Qiyamah 75:13].",
+            ],
+          },
+        ],
+      },
+      {
+        id: "infitar-generous",
+        title: "Your Lord, the Generous (82:6–8)",
+        icon: "3",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Infitar · 82:6–8",
+            title: "What has deceived you?",
+          },
+          {
+            type: "verse",
+            ayah: "{O mankind, what has deceived you concerning your Lord, the Generous?}",
+            paras: [
+              "This is addressed to sinners: what caused you to be deceived about your Lord, so that you committed sins?",
+              "Allah describes Himself as generous in this context, so as to draw attention to the fact that no one should respond to the Most Generous by committing evil and immoral deeds.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "It was narrated from Umar ibn al-Khattab رضي الله عنه that he recited this verse, {what has deceived you concerning your Lord, the Generous?}, then he said: By Allah, his ignorance has deceived him.",
+          },
+          {
+            type: "verse",
+            ayah: "{Who created you, proportioned you, and balanced you}",
+            paras: ["That is, He made you in proportion, standing upright, in the best shape."],
+          },
+          {
+            type: "verse",
+            ayah: "{In whatever form He willed has He assembled you}",
+            paras: [
+              "That is, He has made you in the form that He ﷻ willed. Thus some people resemble their fathers, or their mothers, or their maternal uncles, or their paternal uncles, and so on. Some people are good-looking, some are ugly, some are white, and some are black.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "infitar-learn",
+        title: "What we learn from 82:1–8",
+        icon: "4",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Infitar · 82:1–8",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "teal",
+                body: "In these verses, Allah discusses the destruction of the world and the end of this life. He starts by mentioning the destruction of the roof of this world, which is the heaven and all that it contains of stars and planets. Then He mentions the destruction of everything on the face of the earth, and causing the seas to erupt. Then He discusses the destruction of the structure of the earth, with the overturning of the graves.",
+              },
+              {
+                n: "2",
+                tone: "gold",
+                body: "The overturning of the graves is one of the incidents in which the earth will be turned upside down and landslides will occur. It is singled out for mention among the other events that will happen to the earth, because of its terrifying impact when one envisages what will happen to the earth, when it throws onto the surface what was inside the graves of corpses and bones.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "infitar-activity",
+        title: "Activity · The sky breaks apart",
         icon: "5",
-        draft: true,
-        sections: comingSoon("Commentary on Surat al-Infitar"),
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt: "Explain the events of the Day of Resurrection in the light of what you have read in these verses.",
+              },
+              {
+                n: "2",
+                prompt:
+                  "What is the reason why the verse describes Allah ﷻ as generous, in the context of the verses quoted above?",
+              },
+              {
+                n: "3",
+                prompt: "For each verse of the passage quoted above, quote a similar verse from the Quran.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "infitar-keepers",
+        title: "Noble keepers (82:9–13)",
+        icon: "6",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Infitar · 82:9–19",
+            title: "You deny the Recompense",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: INFITAR_9_19,
+            translation:
+              "{No! But you deny the Recompense. And indeed, [appointed] over you are keepers, Noble and recording. They know whatever you do. Indeed, the righteous will be in pleasure, And indeed, the wicked will be in Hellfire. They will [enter to] burn therein on the Day of Recompense, And never therefrom will they be absent. And what can make you know what is the Day of Recompense? Then, what can make you know what is the Day of Recompense? It is the Day when a soul will not possess for another soul [power to do] a thing; and the command, that Day, is [entirely] with Allah}",
+            ref: "[al-Infitar 82:9–19]",
+          },
+          {
+            type: "verse",
+            ayah: "{No! But you deny the Recompense}",
+            paras: [
+              "No, the matter is not as you say, O disbelievers, that you are following the truth when you worship anyone or anything other than Allah. In fact, you deny the Day of the reckoning and the requital.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And indeed, [appointed] over you are keepers}",
+            paras: ["They are the angels who record your deeds."],
+          },
+          {
+            type: "verse",
+            ayah: "{Noble and recording}",
+            paras: [
+              "This refers to the angels who are honourable before Allah ﷻ, who write down the deeds that you do, compiling those deeds and listing them in your record.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{They know whatever you do}",
+            paras: ["So nothing of your deeds is hidden from them."],
+          },
+          {
+            type: "verse",
+            ayah: "{Indeed, the righteous will be in pleasure}",
+            paras: [
+              "The righteous are the ones who carry out the obligatory duties enjoined by Allah, and avoid disobeying Him. They will be in pleasure in this world, meaning that they will find pleasure in remembering Allah, and they will enjoy bliss in al-barzakh and enjoy bliss in the Hereafter, in Paradise.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "infitar-hell",
+        title: "The Day of Recompense (82:14–19)",
+        icon: "7",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Infitar · 82:14–19",
+            title: "The wicked will be in Hellfire",
+          },
+          {
+            type: "verse",
+            ayah: "{And indeed, the wicked will be in Hellfire}",
+            paras: [
+              "That is, those who commit evil will live in a kind of hell in this world, as their hearts will feel pain and anxiety due to being far away from Allah ﷻ. They will suffer torment in al-barzakh and in Hell in the Hereafter.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{They will [enter to] burn therein on the Day of Recompense}",
+            paras: [
+              "These evildoers will enter Hell on the Day of Recompense, the Day of Judgement, and will burn therein.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And never therefrom will they be absent}",
+            paras: [
+              "These evildoers will never be absent from the torment of Hell once they enter it. They will never be absent from the Fire in any way whatsoever; they will not die and thus be free from torment, and they will not exit from it, or be given any respite from it.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And what can make you know what is the Day of Recompense?}",
+            paras: [
+              "What can make you understand how momentous the Day of Recompense will be?",
+              "Then the question is repeated, in order to emphasize the momentous nature of the Day of Judgement and how serious the matter is, and how terrifying it will be.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{It is the Day when a soul will not possess for another soul [power to do] a thing; and the command, that Day, is [entirely] with Allah}",
+            paras: [
+              "On the Day of Reckoning, no one will be able to benefit anyone else; rather the command will belong entirely to Allah Alone.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "infitar-keepers-learn",
+        title: "What we learn from 82:9–19",
+        icon: "8",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Infitar · 82:9–19",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "sky",
+                body: "Each person has angels who record everything that he says and everything that he does. These scribes are noble, and they are not of a mean or base character; rather they are possessed of integrity that prevents them from wronging anyone by recording something that he did not do, or failing to record something that he did do. That is because they are noble and possess integrity.",
+              },
+              {
+                n: "2",
+                tone: "rose",
+                body: "Whoever is in a position of looking after any of the ummah’s affairs, whether they be rulers or others, must have these characteristics: a caring attitude, noble character, literacy, and knowledge of what he has been appointed in charge of.",
+              },
+              {
+                n: "3",
+                tone: "green",
+                body: "All matters are under the control of Allah, on the Day of Resurrection and on all other days. The Day of Resurrection is mentioned specifically in these verses because the fact that all things are under His control will be more obvious on that Day than it is in this world. In this world, a person may go against the commands of Allah ﷻ, and some transgressors and tyrants may try to compete with Him in having control over matters. This is in contrast to the Day of Resurrection, for on that Day all matters will clearly be under the control of Allah Alone.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "infitar-keepers-activity",
+        title: "Activity · The keepers and the Recompense",
+        icon: "9",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt:
+                  "List the terrifying events of the Day of Resurrection, from what you have read in the four previous soorahs (an-Nazi‘aat, Abasa, at-Takweer and al-Infitar), in the right sequence as much as possible.",
+              },
+              {
+                n: "2",
+                prompt:
+                  "{A soul will [then] know what it has put forth and kept back}. Write a brief exhortation to a group of people, explaining this verse.",
+              },
+              {
+                n: "3",
+                prompt:
+                  "{what has deceived you concerning your Lord, the Generous?}; {Noble and recording} – what do you conclude from these two verses?",
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -3309,11 +4181,399 @@ export const TAFSIR2_UNITS = [
     titleAr: "المطففين",
     lessons: [
       {
-        id: "mutaffifeen",
-        title: "Commentary on Surat al-Mutaffifeen",
+        id: "mutaffifeen-opening",
+        title: "Surat al-Mutaffifeen (83:1–6)",
+        icon: "1",
+        sections: [
+          {
+            type: "heading",
+            kicker: "In this unit we will study",
+          },
+          {
+            type: "surahBanner",
+            title: "Surat al-Mutaffifeen",
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "Ibn Abbas رضي الله عنه said: Surat al-Mutaffifeen is Madinan (revealed after the Hijrah), except for eight verses: {The Day when mankind will stand before the Lord of the worlds} until the end of the surah; these verses are Makkan (revealed before the Hijrah).",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: MUTAFFIFEEN_1_6,
+            translation:
+              "{Woe to those who give less [than due], Who, when they take a measure from people, take in full. But if they give by measure or by weight to them, they give them less than their due. Do they not think that they will be resurrected For a tremendous Day – The Day when mankind will stand before the Lord of the worlds?}",
+            ref: "[al-Mutaffifeen 83:1–6]",
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-tatfeef",
+        title: "Those who give less than due (83:1–3)",
+        icon: "2",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:1–3",
+            title: "Short measure",
+          },
+          {
+            type: "note",
+            title: "The reason for revelation",
+            body: "It was narrated that Ibn Abbas رضي الله عنه said: When the Prophet of Allah ﷺ came to Madinah, they were the worst of people with regard to weights and measures. So Allah revealed the words: {Woe to those who give less [than due]}. So they began to improve with regard to weights and measures after that. Narrated by Ibn Majah; classed as sahih by al-Albani.",
+          },
+          {
+            type: "verse",
+            ayah: "{Woe to those who give less [than due]}",
+            paras: [
+              "Giving less than is due means being unfair with regard to weights and measures, either asking for more than is due when taking from people, or by giving less than is due when giving to them. The word tatfeef (from which the title of this surah, al-Mutaffifeen, is derived) refers to giving less and giving short measure.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "The scholars of the Arabic language said: The one who gives less and gives short measure is called a mutaffif (one who gives short measure) because he only steals a little when weighing and measuring.",
+          },
+          {
+            type: "verse",
+            paras: [
+              "“Woe to them”: wayl (translated here as “woe”) is a word of warning. What is meant is praying against them, praying that they will suffer loss, be doomed and be severely punished in the Hereafter.",
+              "It was also said that wayl is a valley in Hell which flows with the pus of the people of the Fire.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Who, when they take a measure from people, take in full}",
+            paras: [
+              "This is an explanation of what is meant by “those who give less [than due]” (mutaffifeen): when they take from people, they take their rights in full with regard to weighing and measuring.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{But if they give by measure or by weight to them, they give them less than their due}",
+            paras: ["That is, they deduct something when weighing and measuring for other people."],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-day",
+        title: "A tremendous Day (83:4–6)",
+        icon: "3",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:4–6",
+            title: "Will they not be resurrected?",
+          },
+          {
+            type: "verse",
+            ayah: "{Do they not think that they will be resurrected}",
+            paras: [
+              "Do these people not believe with certainty that they will be resurrected and made to stand before Allah on the Day of Resurrection?",
+              "In other words, this is what gives them the audacity to give short measure. Otherwise, if they truly believed and knew that they would stand before Allah ﷻ, they would give up that evil practice and repent from it.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{For a tremendous Day}",
+            paras: [
+              "That is, the Day of Resurrection, which will be very hard for the disbelievers. Allah ﷻ says: {For the disbelievers – not easy} [al-Muddaththir 74:10] and {The disbelievers will say, “This is a difficult Day”} [al-Qamar 54:8].",
+              "But for the believers, by Allah’s grace, it will be as easy for the believer as doing an obligatory prayer.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{The Day when mankind will stand before the Lord of the worlds}",
+            paras: [
+              "That is, they will rise from their graves on Allah’s command, for the reckoning and the requital. On that Day, all sovereignty will be diminished, except the sovereignty of the Lord of the Worlds ﷻ. Allah ﷻ says: {To whom belongs [all] sovereignty this Day? To Allah, the One, the Prevailing} [Ghafir 40:16].",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "Nafi said: Ibn Umar رضي الله عنه would pass by vendors, saying: Fear Allah, and give in full when weighing and measuring, for those who give short measure will be made to stand on the Day of Resurrection until their sweat will overwhelm them and come to half way up their ears.",
+          },
+          {
+            type: "ribbon",
+            tone: "teal",
+            body: "Al-Bukhari and Muslim narrated from Ibn Umar رضي الله عنه that the Prophet ﷺ said: «{The Day when mankind will stand before the Lord of the worlds} that is, until one of them will be submerged in his sweat to halfway up his ears.»",
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-learn",
+        title: "What we learn from 83:1–6",
+        icon: "4",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:1–6",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "gold",
+                body: "That if the warning is addressed to those who cheat people by giving short measure, then the one who takes people’s wealth by force or by stealth is more deserving of the warning than those who give short measure.",
+              },
+              {
+                n: "2",
+                tone: "sky",
+                body: "Just as a person may take from people what is due to him, he must also give them everything that is due to them, of wealth, rights and so on.",
+              },
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "Those who give short measure combine two things: covetousness and stinginess. Covetousness means demanding their rights in full whilst accepting no excuse and showing no forbearance. Stinginess means withholding what is due from them and not giving it in full when weighing or measuring. This example that Allah ﷻ mentions with regard to weights and measures also applies to everyone who demands his rights in full with regard to what is owed to him, but withholds the rights of others with regard to what he owes.",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "3",
+                tone: "rose",
+                body: "In principle, thinking (zann) refers to when one is not certain about a thing, but in Arabic it may also refer to certainty. This occurs frequently in the Quran. Allah ﷻ says: {Who are certain [yazunnoona] that they will meet their Lord} [al-Baqarah 2:46]. And Allah ﷻ says: {Indeed, I was certain [zanantu] that I would be meeting my account} [al-Haqqah 69:20].",
+              },
+              {
+                n: "4",
+                tone: "purple",
+                body: "It says in al-Khashshaf: This is a denunciation and an expression of astonishment (at their audacity). The word think (with certainty) and the description of the Day of Resurrection as tremendous, and of the standing of the people in full submission before Allah on that Day, and the description that Allah gives of Himself as Lord of the Worlds, all serve to highlight how great their sin is, and how great the sin of tatfeef (giving short measure) may be, and how serious is the sin of the one who gives short measure and does not conduct himself in a fair and proper manner.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-activity",
+        title: "Activity · Short measure",
+        icon: "5",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt:
+                  "{Who, when they take a measure from people, take in full, But if they give by measure or by weight to them, they cause loss}. Talk about one of the types of commercial transactions that is equivalent to giving short measure nowadays.",
+              },
+              {
+                n: "2",
+                prompt:
+                  "No matter how small sins are, they are still serious in the sight of Allah. Where do you find support for this idea in these verses?",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-sijjeen",
+        title: "The record in sijjeen (83:7–9)",
         icon: "6",
-        draft: true,
-        sections: comingSoon("Commentary on Surat al-Mutaffifeen"),
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:7–17",
+            title: "The record of the wicked",
+          },
+          {
+            type: "passage",
+            lead: "Allah ﷻ says:",
+            verses: MUTAFFIFEEN_7_17,
+            translation:
+              "{No! Indeed, the record of the wicked is in sijjeen. And what can make you know what is sijjeen? It is [their destination recorded in] a register inscribed. Woe, that Day, to the deniers, Who deny the Day of Recompense. And none deny it except every sinful transgressor. When Our verses are recited to him, he says, “Legends of the former peoples.” No! Rather, the stain has covered their hearts of that which they were earning. No! Indeed, from their Lord, that Day, they will be partitioned, Then indeed, they will [enter and] burn in Hellfire, Then it will be said [to them], “This is what you used to deny”}",
+            ref: "[al-Mutaffifeen 83:7–17]",
+          },
+          {
+            type: "verse",
+            ayah: "{No! Indeed, the record of the wicked is in sijjeen}",
+            paras: [
+              "The word kallaa (translated here as “No!”) is by way of rebuke. In other words, the matter is not as these disbelievers think, that they will not be resurrected or punished. Rather, their book in which are recorded their deeds that they used to do is in sijjeen, which is the seventh and lowest earth, the abode of the evildoers, where they will settle when they are resurrected.",
+              "{Sijjeen} is derived from the word sijn (prison).",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And what can make you know what is sijjeen?}",
+            paras: [
+              "That is, What will tell you about it? This is a rhetorical question which serves to emphasize how serious the matter is, for that is not something that you or your people know; rather it is a very serious matter, an eternal prison and an everlasting punishment.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "{It is [their destination recorded in] a register inscribed}. This is not an explanation of what {sijjeen} is. Rather, it is a description of the register or book mentioned. In other words, what is decreed for them and their ultimate fate in sijjeen is decreed and the matter is finished with; nothing will be added to it or subtracted from it.",
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-deniers",
+        title: "Woe to the deniers (83:10–13)",
+        icon: "7",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:10–13",
+            title: "Every sinful transgressor",
+          },
+          {
+            type: "verse",
+            ayah: "{Woe, that Day, to the deniers}",
+            paras: [
+              "That is, doom and loss is theirs. That is when what Allah warned them about of detention and humiliating punishment befalls them on the Day of Resurrection.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Who deny the Day of Recompense}",
+            paras: [
+              "This is a description of the deniers; they are the ones who do not believe that the Day of Resurrection will happen and who think it unlikely.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{And none deny it except every sinful transgressor}",
+            paras: [
+              "That is, every evildoer and miscreant who is immersed in sin and commits a great deal thereof.",
+              "This is the one who transgresses in his actions because of his unlawful earnings.",
+              "He is sinful in his words, so when he speaks he lies, when he makes a promise he breaks it, and when he disputes he resorts to foul speech.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{When Our verses are recited to him, he says, “Legends of the former peoples”}",
+            paras: [
+              "That is, when the verses of Our Book are recited to him, he says: This is what was written by the former peoples, by way of mocking it and rejecting it.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The {legends of the former peoples} are fables and falsehoods that they wrote and presented in an attractive manner.",
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-raan",
+        title: "The stain on the heart (83:14–17)",
+        icon: "8",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:14–17",
+            title: "Partitioned from their Lord",
+          },
+          {
+            type: "verse",
+            ayah: "{No! Rather, the stain has covered their hearts of that which they were earning}",
+            paras: [
+              "The word kallaa (translated here as “No!”) is by way of rebuke. In other words, this is not the legends of the former peoples.",
+              "Rather, their hearts are overwhelmed with the sins that they were earning, so they became covered until they could no longer see the truth.",
+            ],
+          },
+          {
+            type: "ribbon",
+            tone: "rose",
+            body: "The root meaning of the word raan (translated here as “stain”) is overwhelming or covering. Hence it is said Raanat al-khamru ala aqlihi (the alcohol overwhelmed his reason), so he became drunk.",
+          },
+          {
+            type: "ribbon",
+            tone: "gold",
+            body: "At-Tirmidhi narrated, and classed the report as sahih, from Abu Hurayrah رضي الله عنه that the Messenger of Allah ﷺ said: «When a person commits a sin, a black spot appears on his heart. If he gives it up, asks Allah for forgiveness and repents, his heart will be cleansed, but if he does it again, the black spot will grow until it covers his heart.» This is the raan (stain) that Allah mentions in His Book: {No! Rather, the stain [raan] has covered their hearts of that which they were earning}.",
+          },
+          {
+            type: "verse",
+            ayah: "{No! Indeed, from their Lord, that Day, they will be partitioned}",
+            paras: [
+              "The word kallaa (translated here as “No!”) is another rebuke for their denial of the Day of Judgement. Then Allah goes on to say: {Indeed, from their Lord, that Day, they will be partitioned}. This refers to the Day of Resurrection. They will be barred from seeing Allah ﷻ just as they were barred from seeing His law and His verses, so they thought that they were legends of the former peoples.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Then indeed, they will [enter and] burn in Hellfire}",
+            paras: [
+              "The word translated here as “burn” means they will be touched by the heat of the fire and be burned by it. In other words, then they will enter it and be burned by its heat, and punished with all kinds of torments in it.",
+            ],
+          },
+          {
+            type: "verse",
+            ayah: "{Then it will be said [to them]}",
+            paras: ["By way of rebuke and scolding."],
+          },
+          {
+            type: "verse",
+            ayah: "{“This is what you used to deny”}",
+            paras: [
+              "Thus this physical torment and pain will be combined for them with the psychological pain of being rebuked and made to regret.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-sijjeen-learn",
+        title: "What we learn from 83:7–17",
+        icon: "9",
+        sections: [
+          {
+            type: "heading",
+            kicker: "Surat al-Mutaffifeen · 83:7–17",
+            title: "What we learn from the verses",
+          },
+          {
+            type: "benefits",
+            items: [
+              {
+                n: "1",
+                tone: "sky",
+                body: "These verses warn against sin, for sin stains the heart and covers it little by little, until its light is extinguished and it loses its insight, whereupon it will see things other than they really are. Thus it will see falsehood as truth and truth as falsehood. This is one of the punishments and consequences of sins.",
+              },
+              {
+                n: "2",
+                tone: "rose",
+                body: "Ahl as-Sunnah wa'l-Jama'ah quote as evidence to prove that the believers will see Allah ﷻ the words {No! Indeed, from their Lord, that Day, they will be partitioned}. The connection is clear: if these people are partitioned and screened when Allah is angry with them, then the righteous will be able to see Him because He is pleased with them. What is meant is: if the partitioning or screening were applicable to everyone, then there would be no point in saying that the evildoers in particular will be partitioned or screened.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "mutaffifeen-sijjeen-activity",
+        title: "Activity · Sijjeen and the stain",
+        icon: "10",
+        sections: [
+          {
+            type: "worksheet",
+            title: "Activities",
+            items: [
+              {
+                n: "1",
+                prompt: "Explain the meaning of the following words and phrases:",
+                parts: [
+                  { text: "a. sijjeen" },
+                  { text: "b. inscribed" },
+                  { text: "c. legends of the former peoples" },
+                  { text: "d. stain (raan)" },
+                  { text: "e. they will [enter and] burn in Hellfire" },
+                ],
+              },
+              {
+                n: "2",
+                prompt:
+                  "How does this verse – {No! Indeed, from their Lord, that Day, they will be partitioned} – prove that the people of Paradise will see Allah ﷻ?",
+              },
+              {
+                n: "3",
+                prompt:
+                  "The partition or screen reflects a subtle connection between these two verses: {No! Rather, the stain has covered their hearts of that which they were earning} and {No! Indeed, from their Lord, that Day, they will be partitioned}. Try to explain this connection.",
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -3321,8 +4581,8 @@ export const TAFSIR2_UNITS = [
     id: "practice",
     title: "Practice",
     lessons: [
-      { id: "flashcards", title: "Flashcards", icon: "🃏", kind: "tool", badge: "75" },
-      { id: "quiz", title: "Knowledge Quiz", icon: "✏️", kind: "tool", badge: "65" },
+      { id: "flashcards", title: "Flashcards", icon: "🃏", kind: "tool", badge: "95" },
+      { id: "quiz", title: "Knowledge Quiz", icon: "✏️", kind: "tool", badge: "85" },
     ],
   },
 ];
@@ -3348,6 +4608,9 @@ export const TAFSIR2_TOPICS = [
   { id: "true-day", label: "The True Day (78:37–40)" },
   { id: "naziat", label: "Surat an-Nazi‘aat (79:1–46)" },
   { id: "abasa", label: "Surat Abasa (80:1–42)" },
+  { id: "takweer", label: "Surat at-Takweer (81:1–29)" },
+  { id: "infitar", label: "Surat al-Infitar (82:1–19)" },
+  { id: "mutaffifeen", label: "Surat al-Mutaffifeen (83:1–17)" },
 ];
 
 export const TAFSIR2_FLASHCARDS = [
@@ -3725,6 +4988,106 @@ export const TAFSIR2_FLASHCARDS = [
     t: "abasa",
     q: "Why does the surah name each relative, and why is the wife called sahibah?",
     a: "Naming them one by one is more alarming than saying only “his relatives,” because the reader can imagine the scene. Sahibah means companion: not every wife is truly a companion. Even a wife who stands with her husband in hardship will flee, and he will flee from her. Allah lists the loved ones from the least compassion, the brother, to the greatest, the child.",
+  },
+  {
+    t: "takweer",
+    q: "Where was Surat at-Takweer revealed, and which hadith tells you to read it?",
+    a: "It is a Makkan surah, revealed before the Hijrah. At-Tirmidhi narrated, in a report he classed as hasan, that Ibn Umar رضي الله عنه said the Messenger of Allah ﷺ said: whoever would like to see the Day of Resurrection as if with his own eyes, let him read Surat at-Takweer, Surat al-Infitar, and Surat al-Inshiqaq.",
+  },
+  {
+    t: "takweer",
+    q: "What happens to the sun, the stars, the mountains, the she-camels, and the wild beasts?",
+    a: "Takweer means putting parts together, like wrapping a turban, until the sun’s light disappears. The stars are scattered, fall, and change. The mountains are removed and become like a mirage and scattered dust. The heavily pregnant she-camels, ten months with young and the most precious Arab wealth, are neglected because of the terror. The wild beasts are gathered so Allah may settle the scores among them. Muslim narrated from Abu Hurayrah that even the hornless sheep will settle its score with the horned sheep.",
+  },
+  {
+    t: "takweer",
+    q: "What is said about the seas, the paired souls, and the girl buried alive?",
+    a: "The seas are set alight despite their vastness. It was also said that sujjirat means their water is absorbed and dries up until not a drop remains. Souls are paired: good with good in Paradise, and those who loved what pleases the Shaytan together in Hell. The maw’oodah is the female infant buried alive. Soil was thrown on her until it suffocated her (ya’ooduha). She, not her killer, is asked for what sin she was killed, because the killer is under such wrath that he does not deserve to be addressed.",
+  },
+  {
+    t: "takweer",
+    q: "What do the pages, the sky, Hell, and Paradise show, and what does each soul then know?",
+    a: "The pages of deeds, good and bad, are presented. The sky is pulled off forcefully, as skin is stripped from a ram. Hell is stoked and heats up. Paradise is brought near the righteous, as in {And Paradise will be brought near to the righteous, not far} [Qaf 50:31]. Each soul then knows the deeds it sent forth, whether they lead to Paradise or to Hell.",
+  },
+  {
+    t: "takweer",
+    q: "What does Allah swear by at the end of Surat at-Takweer, and what does laa mean here?",
+    a: "He swears by the retreating stars, whose light is hidden by day, the ones that run their courses and disappear into their constellations, by the night as it closes in, and by the dawn when its light first appears. Laa (lit. not) is not translated; it is used for emphasis. The Arabs say as'asa al-layl when night comes, and sa'sa'a al-layl, inverting the consonants, when only a little of the night remains.",
+  },
+  {
+    t: "takweer",
+    q: "Who is the noble messenger, and what did the Prophet see?",
+    a: "Jibreel عليه السلام, who conveyed the Quran from the Lord of Glory to Muhammad ﷺ. He is possessed of power — he turned the city of the people of Lut upside down — and he has high status before the Owner of the Throne. The angels in heaven obey him, and he is trustworthy with the revelation. Muhammad ﷺ saw him in his true form, with six hundred wings, filling the horizon toward the east. Aisha رضي الله عنها said she was the first of this ummah to ask about that seeing, and the Prophet ﷺ said he saw Jibreel in his true form on only two occasions, filling the space between heaven and earth.",
+  },
+  {
+    t: "takweer",
+    q: "What do daneen and rajeem mean, and who benefits from the reminder?",
+    a: "Daneen, “withholder,” is one who is miserly. Danantu bi'sh-shay means: I withheld the thing out of stinginess. Muhammad ﷺ does not withhold the revelation. Rajeem, “accursed,” is one cursed and cast out from Allah’s mercy. The Quran is not the word of a devil who eavesdrops and is struck by a meteor; it is the revelation of the Lord of the Worlds. It is a reminder to all the worlds, but it benefits only whoever wills to follow the truth, and no one wills that except after Allah, Lord of the worlds, wills it.",
+  },
+  {
+    t: "infitar",
+    q: "Where was Surat al-Infitar revealed, and which report tells you to read it?",
+    a: "It is a Makkan surah, revealed before the Hijrah. Ibn Umar رضي الله عنه narrated that the Messenger of Allah ﷺ said whoever would like to see the Day of Resurrection as if with his own eyes should read Surat at-Takweer, Surat al-Infitar, and Surat al-Inshiqaq. Narrated by at-Tirmidhi; classed as sahih by al-Albani.",
+  },
+  {
+    t: "infitar",
+    q: "What happens when the sky breaks apart, and what will each soul know?",
+    a: "Breaking apart means splitting, as in al-Furqan 25:25. The stars fall, scattered and dispersed. The seas burst forth onto one another, mixing freshwater with saltwater. The graves are turned upside down. Deeds are presented, and each soul knows what it put forth and kept back, though it had forgotten that in this world, as in {Man will be informed that Day of what he sent ahead and kept back} [al-Qiyamah 75:13].",
+  },
+  {
+    t: "infitar",
+    q: "Why is Allah called the Generous here, and how did He form you?",
+    a: "The question is addressed to sinners: what deceived you about your Lord so that you committed sins? Naming Him the Generous shows that no one should answer the Most Generous with evil and immoral deeds. Umar ibn al-Khattab رضي الله عنه recited the verse and said: By Allah, his ignorance has deceived him. Allah made you in proportion, standing upright, in the best shape, and assembled you in whatever form He willed, so people resemble their fathers, mothers, or uncles, and differ in looks and colour.",
+  },
+  {
+    t: "infitar",
+    q: "Who are the keepers, and where are the righteous and the wicked?",
+    a: "Kalla: the disbelievers are not on the truth when they worship other than Allah; they deny the Day of reckoning and requital. The keepers are the angels who record deeds. They are noble and recording, honourable before Allah, and nothing you do is hidden from them. The righteous carry out what Allah enjoined and avoid disobedience. They find pleasure in remembering Him in this world, and bliss in al-barzakh and in Paradise. The wicked live in a kind of hell already, with pain and anxiety from being far from Allah, then torment in al-barzakh and in Hell.",
+  },
+  {
+    t: "infitar",
+    q: "What happens to the evildoers on the Day of Recompense, and who holds the command?",
+    a: "They enter Hell and burn there, and they are never absent from it: they do not die and so escape the torment, they do not leave, and they are given no respite. The question “what is the Day of Recompense?” is repeated to stress how momentous, serious, and terrifying that Day is. On it, no soul can benefit another soul at all. The command belongs entirely to Allah Alone.",
+  },
+  {
+    t: "infitar",
+    q: "What do we learn about the recording angels and about authority?",
+    a: "The scribes are noble and have integrity, so they do not record what a person did not do, or leave out what he did. Whoever looks after any of the ummah’s affairs, ruler or otherwise, needs a caring attitude, noble character, literacy, and knowledge of his charge. All matters are under Allah’s control every day, and on the Day of Resurrection that control is unmistakable, unlike this world, where transgressors try to compete with Him.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "Where was Surat al-Mutaffifeen revealed, and why?",
+    a: "Ibn Abbas رضي الله عنه said it is Madinan, revealed after the Hijrah, except eight verses from {The Day when mankind will stand before the Lord of the worlds} to the end, which are Makkan. When the Prophet ﷺ came to Madinah, the people were the worst in weights and measures, so Allah revealed {Woe to those who give less [than due]}, and they improved after that. Ibn Majah; classed as sahih by al-Albani.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "What is tatfeef, who is a mutaffif, and what is wayl?",
+    a: "Tatfeef is giving less and giving short measure: taking more than is due, or giving less than is due. A mutaffif is called that because he only steals a little when weighing and measuring. Wayl, “woe,” is a warning: a prayer that they suffer loss and severe punishment. It was also said that wayl is a valley in Hell which flows with the pus of the people of the Fire.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "How do they deal in measure, and what gives them the audacity?",
+    a: "When they take a measure they take their rights in full, and when they give by measure or weight they deduct something. They do this because they do not believe with certainty that they will stand before Allah. Zann can mean uncertainty, and in Arabic it can also mean certainty, as in al-Baqarah 2:46 and al-Haqqah 69:20. The Day is tremendous and hard for the disbelievers, and for the believer, by Allah’s grace, as easy as an obligatory prayer.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "What is said about standing before the Lord of the worlds?",
+    a: "People will rise from their graves by Allah’s command for the reckoning. All sovereignty will be diminished except His, as in Ghafir 40:16. Nafi said Ibn Umar رضي الله عنه warned vendors that those who give short measure will stand until sweat reaches half way up their ears. Al-Bukhari and Muslim narrated that one of them will be submerged in his sweat to halfway up his ears.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "What is sijjeen, and what is the inscribed register?",
+    a: "Kallaa, “No!”, rebukes the disbelievers who think they will not be resurrected or punished. Their record of deeds is in sijjeen, the seventh and lowest earth, the abode of the evildoers, from sijn, prison. “What can make you know what is sijjeen?” stresses that it is an eternal prison and an everlasting punishment. The inscribed register is not a definition of sijjeen. It describes the book: their fate there is decreed and finished; nothing will be added or subtracted.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "Who denies the Day of Recompense, and what is raan?",
+    a: "Woe that Day is doom and humiliating punishment. The deniers think the Resurrection unlikely. None deny it except every sinful transgressor: he transgresses because of unlawful earnings, lies, breaks promises, and uses foul speech in dispute. When the verses are recited he calls them legends of the former peoples, meaning fables written and presented attractively. Kallaa: this is not those legends. Raan, the stain, means overwhelming or covering, as in Raanat al-khamru ala aqlihi, the alcohol overwhelmed his reason. At-Tirmidhi, classed sahih, from Abu Hurayrah: a black spot appears with each sin, is cleansed by repentance, and grows until it covers the heart if the sin is repeated.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "What does it mean that they will be partitioned, then burn?",
+    a: "Kallaa rebukes their denial again. They will be barred from seeing Allah ﷻ, just as they were barred from His law and His verses, which they called legends. Then they will be touched by the fire’s heat and punished with all kinds of torments. It will be said to them, by way of rebuke, “This is what you used to deny,” so physical pain is joined to the pain of regret. Ahl as-Sunnah wa'l-Jama'ah take the singling out of the evildoers as proof that the righteous, with whom Allah is pleased, will see Him.",
   },
 ];
 
@@ -4498,6 +5861,246 @@ export const TAFSIR2_QUIZ = [
     ],
     ans: 0,
     fb: "Listing each relative is more alarming than saying “his relatives.” Allah begins with the brother and ends with the child, the one towards whom compassion is usually greatest.",
+  },
+  {
+    t: "takweer",
+    q: "Takweer, the wrapping up of the sun, means:",
+    opts: [
+      "The sun’s light is increased",
+      "Parts of the sun are put together, as a turban is wrapped, until its light disappears",
+      "The stars are paired with one another",
+      "The pages of deeds are spread open",
+    ],
+    ans: 1,
+    fb: "The stars fall and scatter, the mountains become like a mirage and dust, and the ten-month she-camels are neglected because terror distracts people from their most precious wealth.",
+  },
+  {
+    t: "takweer",
+    q: "The report in Muslim about the hornless sheep is cited to show that:",
+    opts: [
+      "Only humans will be judged",
+      "The seas will dry up before any animal is questioned",
+      "Wild beasts are gathered so scores can be settled, and every right will be restored",
+      "The she-camels will be the first to speak",
+    ],
+    ans: 2,
+    fb: "Abu Hurayrah رضي الله عنه narrated that all rights will be restored, to the extent that the hornless sheep settles its score with the horned sheep.",
+  },
+  {
+    t: "takweer",
+    q: "The question {For what sin she was killed} is addressed to:",
+    opts: [
+      "The girl who was buried alive, not to her killer",
+      "The killer, so that he can defend himself",
+      "The noble scribes who wrote the record",
+      "The people of Paradise when it is brought near",
+    ],
+    ans: 0,
+    fb: "Maw’oodah means the infant on whom soil was thrown until it suffocated her. Asking her, and not the killer, shows that he is under such wrath that he does not deserve to be addressed.",
+  },
+  {
+    t: "takweer",
+    q: "When the sky is stripped away, the wording means:",
+    opts: [
+      "It is folded gently, like a turban",
+      "Its water is absorbed until nothing remains",
+      "It is stoked until it heats up",
+      "Something stuck firmly is pulled off by force, as skin is stripped from a ram",
+    ],
+    ans: 3,
+    fb: "Hell is set ablaze, Paradise is brought near the righteous, and each soul then knows what it sent forth of deeds.",
+  },
+  {
+    t: "takweer",
+    q: "Laa in {So I swear by the retreating stars} is:",
+    opts: [
+      "A denial that Allah swears at all",
+      "The name of the dawn when it breathes",
+      "Used for emphasis, and it is not translated in this verse",
+      "The word for the constellations in which the stars hide",
+    ],
+    ans: 2,
+    fb: "The retreating stars are those whose light is hidden by day. As'asa al-layl means the night has closed in; sa'sa'a al-layl, with the consonants inverted, means little of the night is left.",
+  },
+  {
+    t: "takweer",
+    q: "The noble messenger in this oath is:",
+    opts: [
+      "Jibreel عليه السلام, obeyed in heaven and trustworthy with the revelation",
+      "A devil who eavesdrops on the heavens",
+      "One of the polytheists of Quraysh",
+      "The human companion only, with no angel mentioned",
+    ],
+    ans: 0,
+    fb: "He is possessed of power, as when he overturned the city of the people of Lut, and he is secure in position before the Owner of the Throne. The Prophet ﷺ saw him in his true form on two occasions.",
+  },
+  {
+    t: "takweer",
+    q: "Daneen and rajeem in these verses mean:",
+    opts: [
+      "A retreating star, and the dawn",
+      "A madman, and a companion",
+      "A king, and his vizier",
+      "A miser who withholds, and one cursed and cast out from Allah’s mercy",
+    ],
+    ans: 3,
+    fb: "Muhammad ﷺ does not withhold the revelation. The Quran is not the word of an accursed devil. It benefits whoever wills to take a right course, and that will itself is only by the will of Allah.",
+  },
+  {
+    t: "infitar",
+    q: "When the seas are erupted, the commentary says:",
+    opts: [
+      "Their water dries up until not a drop remains",
+      "They burst forth onto one another, mixing freshwater with saltwater",
+      "They are set alight and become burning fire",
+      "They are stripped away like the skin of a ram",
+    ],
+    ans: 1,
+    fb: "The sky splits, the stars fall and scatter, and the graves are turned upside down. Each soul then knows what it put forth and kept back.",
+  },
+  {
+    t: "infitar",
+    q: "Umar ibn al-Khattab, after reciting {what has deceived you concerning your Lord, the Generous?}, said:",
+    opts: [
+      "By Allah, his ignorance has deceived him",
+      "By Allah, his wealth has deceived him",
+      "The Generous means only the noble messenger",
+      "The question is addressed to the angels, not to sinners",
+    ],
+    ans: 0,
+    fb: "Allah calls Himself generous here so that no one answers the Most Generous with evil and immoral deeds.",
+  },
+  {
+    t: "infitar",
+    q: "{In whatever form He willed has He assembled you} means:",
+    opts: [
+      "Every person is given the same form",
+      "The form is chosen by the parents",
+      "Allah made each person in the form He willed, so people resemble fathers, mothers, or uncles",
+      "The graves assemble the bodies on their own",
+    ],
+    ans: 2,
+    fb: "He also proportioned you and balanced you: upright, in the best shape. The overturning of the graves is singled out because the earth will throw out what was buried in them.",
+  },
+  {
+    t: "infitar",
+    q: "The keepers appointed over you are:",
+    opts: [
+      "The righteous people of this ummah",
+      "Angels who are noble and who record the deeds, missing nothing",
+      "Only the angel of death",
+      "Human scribes in the market",
+    ],
+    ans: 1,
+    fb: "They are honourable before Allah. The righteous find pleasure in remembering Him here, then bliss in al-barzakh and in Paradise. The wicked feel a kind of hell already, then torment in al-barzakh and in Hell.",
+  },
+  {
+    t: "infitar",
+    q: "{And never therefrom will they be absent} means the evildoers:",
+    opts: [
+      "Will not die, leave the Fire, or be given any respite from it",
+      "Will be absent from Hell during the night",
+      "May leave if another soul intercedes",
+      "Will be in pleasure in al-barzakh",
+    ],
+    ans: 0,
+    fb: "They enter Hell on the Day of Recompense and burn there. The repeated question stresses how momentous that Day is. The command that Day belongs entirely to Allah Alone.",
+  },
+  {
+    t: "infitar",
+    q: "The recording angels are described as noble so that we learn they:",
+    opts: [
+      "Record only the sins, not the good deeds",
+      "May leave out a deed if the person is a ruler",
+      "Write in a language only the angels know, so people cannot be judged",
+      "Have integrity and will not record what a person did not do, or omit what he did",
+    ],
+    ans: 3,
+    fb: "Whoever looks after the ummah’s affairs needs a caring attitude, noble character, literacy, and knowledge of his charge. On the Day of Resurrection, control over all matters belongs clearly to Allah Alone.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "A mutaffif is so called because he:",
+    opts: [
+      "Steals a great deal in one weighing",
+      "Refuses to trade at all",
+      "Only steals a little when weighing and measuring",
+      "Records deeds like the noble scribes",
+    ],
+    ans: 2,
+    fb: "Tatfeef is giving less than is due. Wayl is a warning, and it was also said to be a valley in Hell flowing with pus.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "When these people measure, they:",
+    opts: [
+      "Take in full for themselves and give others less than their due",
+      "Give others more than they take",
+      "Refuse both weighing and measuring",
+      "Measure only for the poor",
+    ],
+    ans: 0,
+    fb: "They dare to do this because they do not believe they will stand before Allah. For the believer that Day is as easy as an obligatory prayer.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "The report in al-Bukhari and Muslim about this standing says:",
+    opts: [
+      "The graves will be left closed",
+      "One of them will be submerged in his sweat to halfway up his ears",
+      "The believer’s sweat will reach his knees only",
+      "Wayl is the name of the market in Madinah",
+    ],
+    ans: 1,
+    fb: "Nafi said Ibn Umar warned vendors of the same standing, until sweat comes half way up their ears. Sovereignty that Day belongs to Allah alone, the One, the Prevailing.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "Zann in {Do they not think that they will be resurrected} is explained as:",
+    opts: [
+      "Only a doubtful guess, never certainty",
+      "The name of short measure",
+      "A valley in Hell",
+      "Certainty, as the word is also used elsewhere in the Quran",
+    ],
+    ans: 3,
+    fb: "Al-Khashshaf says the verse denounces their audacity. Short measure is serious, and taking wealth by force or stealth is even more deserving of the warning.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "Sijjeen in these verses is:",
+    opts: [
+      "A valley of pus called wayl",
+      "The seventh and lowest earth, from sijn, prison, where the evildoers’ record is kept",
+      "The inscribed line added to a correct measure",
+      "The name of the Madinan market",
+    ],
+    ans: 1,
+    fb: "Kallaa rebukes those who think they will not be punished. The inscribed register describes that book: their fate is finished, with nothing added or taken away.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "The root meaning of raan, the stain, is:",
+    opts: [
+      "Overwhelming or covering, as when alcohol overwhelms a person’s reason",
+      "Giving short measure",
+      "A fable of the former peoples",
+      "Seeing Allah on the Day of Resurrection",
+    ],
+    ans: 0,
+    fb: "At-Tirmidhi narrated that a black spot appears with each sin, is cleansed if the person repents, and grows until it covers the heart if he repeats it.",
+  },
+  {
+    t: "mutaffifeen",
+    q: "Ahl as-Sunnah wa'l-Jama'ah quote the partition verse to show that:",
+    opts: [
+      "No one will see Allah, righteous or wicked",
+      "Only the evildoers are screened, so the righteous will see Him",
+      "The partition is the stain of sin in this world only",
+      "The deniers will enter Paradise after being rebuked",
+    ],
+    ans: 1,
+    fb: "They are barred from seeing Allah just as they were barred from His verses. Then they burn in Hellfire, and it is said to them: This is what you used to deny.",
   },
 ];
 
