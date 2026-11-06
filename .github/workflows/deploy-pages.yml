@@ -56,46 +56,55 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # A Pages deployment left in progress blocks every later one with
-      # "cancel <sha> first". The deploy action cannot raise its 10 minute cap.
+      # Pages names a deployment by its commit SHA. A deployment left in
+      # progress blocks every later one until that SHA is cancelled.
       - name: Cancel a stuck Pages deployment
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 - << 'PY'
-          import json, os, time, urllib.request
+          import os, time, urllib.error, urllib.request
           token = os.environ["GH_TOKEN"]
           repo = os.environ["GITHUB_REPOSITORY"]
-          terminal = {"success", "failure", "error", "inactive", "cancelled", "deployment_cancelled"}
+          # Deploys after the last successful publish. Do not cancel 1e05d16.
+          shas = [
+              "f224a9ccbaaace38b87414dc643e4ae44c8ec8e6",
+              "6cc619e266626009915ca2e220694d4d81b8f651",
+              "9d04fa5ff1a3003420321131106d51059f405066",
+              "b319295d6b45c87204b112dc5b72c15c81ad3d86",
+              "63251682d408b015aad091dae85ec1b8cd493188",
+              "a37ff842e29a1cbbcf51f1b1d4c4c7365f5bb1c0",
+          ]
 
           def call(method, url):
-              req = urllib.request.Request(url, method=method, headers={
+              req = urllib.request.Request(url, data=b"" if method == "POST" else None, method=method, headers={
                   "Authorization": f"Bearer {token}",
                   "Accept": "application/vnd.github+json",
                   "X-GitHub-Api-Version": "2022-11-28",
                   "User-Agent": "learn-quran-pages",
               })
-              with urllib.request.urlopen(req) as resp:
-                  body = resp.read().decode()
-                  return json.loads(body) if body else {}
+              try:
+                  with urllib.request.urlopen(req) as resp:
+                      body = resp.read().decode()
+                      print(method, resp.status, url.split("/")[-2:], body[:300])
+                      return resp.status
+              except urllib.error.HTTPError as err:
+                  body = err.read().decode()
+                  print(method, err.code, url.split("/")[-2:], body[:500])
+                  return err.code
 
-          deps = call("GET", f"https://api.github.com/repos/{repo}/pages/deployments?per_page=30")
-          if isinstance(deps, dict):
-              print(deps.get("message", deps))
-              raise SystemExit(0)
           cancelled = False
-          for dep in deps:
-              status = dep.get("status")
-              print(dep.get("id"), status, dep.get("sha", ""))
-              if status in terminal:
+          for sha in shas:
+              status = call("GET", f"https://api.github.com/repos/{repo}/pages/deployments/{sha}")
+              if status == 404:
                   continue
-              print(f"Cancelling {dep['id']} ({status})")
-              call("POST", f"https://api.github.com/repos/{repo}/pages/deployments/{dep['id']}/cancel")
-              cancelled = True
+              code = call("POST", f"https://api.github.com/repos/{repo}/pages/deployments/{sha}/cancel")
+              if 200 <= code < 300:
+                  cancelled = True
           if cancelled:
               time.sleep(15)
           else:
-              print("No stuck Pages deployment.")
+              print("No in-progress Pages deployment to cancel.")
           PY
 
       - name: Deploy to GitHub Pages
