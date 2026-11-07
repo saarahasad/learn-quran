@@ -3,7 +3,7 @@ export const FIQH_META = {
   id: "fiqh",
   name: "Purification and Prayer",
   nameAr: "الطهارة والصلاة",
-  tagline: "Zad Academy · Fiqh Level 1. Taharah, wudu, ghusl, and the prayer.",
+  tagline: "Zad Academy · Fiqh Semester 1. Taharah, wudu, ghusl, and the prayer.",
   description:
     "Semester 1 study guide covering the Book of Purification (Ṭahārah): taharah, wudu, ghusl, tayammum, prayer times and conditions, with flashcards, quizzes, and matching exercises.",
   path: "/fiqh",
