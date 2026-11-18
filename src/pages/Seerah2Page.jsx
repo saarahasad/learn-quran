@@ -17,14 +17,17 @@ import {
   SEERAH2_UNITS,
   seerah2CoursePath,
 } from "../data/seerah2Course.js";
+import SeerahPortraitExplorer from "../components/seerah/SeerahPortraitExplorer.jsx";
 import { LEARN_ISLAM } from "../data/platform.js";
 import "../styles/aqeedah.css";
 import "../styles/seerah.css";
+import "../styles/seerah-portrait.css";
 
 const DEFAULT_LESSON_ID = SEERAH2_STUDY_LESSONS[0]?.id ?? "contents";
 
 const SEERAH2_LESSONS_OR_TOOLS = new Set([
   ...SEERAH2_STUDY_LESSONS.map((lesson) => lesson.id),
+  "portrait",
   "flashcards",
   "quiz",
 ]);
@@ -823,7 +826,13 @@ export default function Seerah2Page() {
 
   const breadcrumbLabel =
     activeLesson?.title ??
-    (activeId === "flashcards" ? "Flashcards" : activeId === "quiz" ? "Knowledge Quiz" : "Study");
+    (activeId === "portrait"
+      ? "Portrait Map"
+      : activeId === "flashcards"
+        ? "Flashcards"
+        : activeId === "quiz"
+          ? "Knowledge Quiz"
+          : "Study");
 
   return (
     <CourseLayout
@@ -847,6 +856,9 @@ export default function Seerah2Page() {
           onToggleComplete={() => toggle(activeLesson.id)}
           onSelectLesson={selectLesson}
         />
+      )}
+      {activeId === "portrait" && (
+        <SeerahPortraitExplorer onOpenLesson={selectLesson} />
       )}
       {activeId === "flashcards" && <FlashcardsPanel />}
       {activeId === "quiz" && (

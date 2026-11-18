@@ -192,6 +192,10 @@ export const SEERAH2_UNITS = [
             type: "cards",
             items: [
               {
+                title: "Portrait Map",
+                body: "Open Practice → Portrait Map. Tap hair, face, beard, or a topic chip to see the key facts — then jump into the full chapter when you want depth.",
+              },
+              {
                 title: "Daily micro-goal",
                 body: "One lesson + 5 flashcards + one activity sentence. Fifteen focused minutes beat an hour of skimming.",
               },
@@ -864,6 +868,13 @@ export const SEERAH2_UNITS = [
     titleAr: "التدريب",
     lessons: [
       {
+        id: "portrait",
+        title: "Portrait Map",
+        icon: "◎",
+        kind: "tool",
+        badge: "Explore",
+      },
+      {
         id: "flashcards",
         title: "Flashcards",
         icon: "◈",
@@ -1293,7 +1304,7 @@ export function seerah2Banner() {
     meta: [
       { label: "Units", value: String(SEERAH2_META.units) },
       { label: "Lessons", value: String(SEERAH2_STUDY_LESSONS.length) },
-      { label: "Practice", value: "Portrait Path · Cards · Quiz" },
+      { label: "Practice", value: "Map · Cards · Quiz" },
     ],
   };
 }

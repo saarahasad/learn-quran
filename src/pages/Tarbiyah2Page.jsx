@@ -20,7 +20,7 @@ import {
 import { LEARN_ISLAM } from "../data/platform.js";
 import "../styles/aqeedah.css";
 
-const DEFAULT_LESSON_ID = TARBIYAH2_STUDY_LESSONS[0]?.id ?? "unit-map";
+const DEFAULT_LESSON_ID = TARBIYAH2_STUDY_LESSONS[0]?.id ?? "contents";
 
 const TARBIYAH2_LESSONS_OR_TOOLS = new Set([
   ...TARBIYAH2_STUDY_LESSONS.map((lesson) => lesson.id),
@@ -37,7 +37,82 @@ function shuffleArray(items) {
   return arr;
 }
 
-function AqeedahSection({ section }) {
+function TocRow({ entry, onSelectLesson }) {
+  const clickable = Boolean(entry.lessonId && onSelectLesson);
+  const Tag = clickable ? "button" : "div";
+  return (
+    <Tag
+      type={clickable ? "button" : undefined}
+      className={`aq-toc-row${clickable ? " is-link" : ""}`}
+      onClick={clickable ? () => onSelectLesson(entry.lessonId) : undefined}
+    >
+      <span className="aq-toc-row-title">{entry.title}</span>
+      <span className="aq-toc-leader" aria-hidden="true" />
+      <span className="aq-toc-row-page">{entry.page}</span>
+    </Tag>
+  );
+}
+
+function AqeedahSection({ section, onSelectLesson }) {
+  if (section.type === "bookToc") {
+    return (
+      <section className="aq-toc">
+        <header className="aq-toc-banner">
+          {section.kicker && <p className="aq-toc-kicker">{section.kicker}</p>}
+          <h3>{section.title}</h3>
+        </header>
+        <div className="aq-toc-grid">
+          {section.chapters.map((chapter) => {
+            const openChapter =
+              chapter.lessonId && onSelectLesson
+                ? () => onSelectLesson(chapter.lessonId)
+                : undefined;
+            return (
+              <article
+                key={chapter.title}
+                className={`aq-toc-chapter aq-toc-chapter--${chapter.tone ?? "teal"}`}
+              >
+                <header className="aq-toc-chapter-head">
+                  <span className="aq-toc-page">{chapter.page}</span>
+                  {openChapter ? (
+                    <button type="button" className="aq-toc-chapter-open" onClick={openChapter}>
+                      <span className="aq-toc-chapter-title">{chapter.title}</span>
+                      {chapter.titleAr && (
+                        <span className="aq-toc-ar" dir="rtl" lang="ar">
+                          {chapter.titleAr}
+                        </span>
+                      )}
+                    </button>
+                  ) : (
+                    <div className="aq-toc-chapter-open">
+                      <span className="aq-toc-chapter-title">{chapter.title}</span>
+                      {chapter.titleAr && (
+                        <span className="aq-toc-ar" dir="rtl" lang="ar">
+                          {chapter.titleAr}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </header>
+                {chapter.entries?.length > 0 && (
+                  <div className="aq-toc-entries">
+                    {chapter.entries.map((entry) => (
+                      <TocRow
+                        key={`${chapter.title}-${entry.title}`}
+                        entry={entry}
+                        onSelectLesson={onSelectLesson}
+                      />
+                    ))}
+                  </div>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    );
+  }
+
   if (section.type === "heading") {
     return (
       <header className="aq-heading">
@@ -308,23 +383,42 @@ function AqeedahSection({ section }) {
   return null;
 }
 
-function LessonPanel({ lesson, onPrev, onNext, hasPrev, hasNext, isDone, onToggleComplete }) {
-  const studyCount = TARBIYAH2_STUDY_LESSONS.length;
-  const lessonNum = TARBIYAH2_STUDY_LESSONS.findIndex((item) => item.id === lesson.id) + 1;
+function LessonPanel({
+  lesson,
+  onPrev,
+  onNext,
+  hasPrev,
+  hasNext,
+  isDone,
+  onToggleComplete,
+  onSelectLesson,
+}) {
+  const notesLessons = TARBIYAH2_STUDY_LESSONS.filter((item) => item.id !== "contents");
+  const isContents = lesson.id === "contents";
+  const studyCount = notesLessons.length;
+  const lessonNum = notesLessons.findIndex((item) => item.id === lesson.id) + 1;
 
   return (
-    <article className="aq-lesson">
+    <article className={`aq-lesson${isContents ? " aq-lesson--toc" : ""}`}>
       <CourseLessonKicker
-        label={`Lesson ${lessonNum} of ${studyCount}`}
+        label={isContents ? "Book of Islamic Education (2)" : `Lesson ${lessonNum} of ${studyCount}`}
         titleAr={lesson.unitTitleAr}
         title={lesson.title}
         subtitle={
-          lesson.unitNum ? `Unit ${lesson.unitNum} · ${lesson.unitTitle}` : lesson.unitTitle
+          isContents
+            ? undefined
+            : lesson.unitNum
+              ? `Unit ${lesson.unitNum} · ${lesson.unitTitle}`
+              : lesson.unitTitle
         }
       />
       <div className="aq-body">
         {lesson.sections?.map((section, index) => (
-          <AqeedahSection key={`${lesson.id}-${index}`} section={section} />
+          <AqeedahSection
+            key={`${lesson.id}-${index}`}
+            section={section}
+            onSelectLesson={onSelectLesson}
+          />
         ))}
       </div>
       <CourseLessonNav hasPrev={hasPrev} hasNext={hasNext} onPrev={onPrev} onNext={onNext}>
@@ -682,6 +776,7 @@ export default function Tarbiyah2Page() {
           onNext={() => goLesson(1)}
           isDone={isDone(activeLesson.id)}
           onToggleComplete={() => toggle(activeLesson.id)}
+          onSelectLesson={selectLesson}
         />
       )}
       {activeId === "flashcards" && <FlashcardsPanel />}

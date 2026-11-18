@@ -16,14 +16,14 @@ export const TARBIYAH2_META = {
     "This semester, we will study the deeds of the heart starting with sincerity, which is the core of deeds and the key (to their acceptance), piety, fear, hope, reliance, gratitude, reflection, love, perseverance and other great deeds which strengthen the bond between the slaves and their Lord. Allah is the Granter of success.",
   path: "/tarbiyah-2",
   category: "Islamic Education",
-  meta: "14 units · Notes, flashcards & quiz",
+  meta: "13 units · Notes, flashcards & quiz",
   accent: "teal",
   topics: [
     "Deeds of the heart",
     "Sincerity (ikhlas)",
     "Taqwa, hope & tawakkul",
   ],
-  units: 14,
+  units: 13,
 };
 
 const comingSoon = (title) => [
@@ -35,6 +35,224 @@ const comingSoon = (title) => [
 ];
 
 export const TARBIYAH2_UNITS = [
+  {
+    id: "contents-unit",
+    title: "Contents",
+    titleAr: "المحتويات",
+    lessons: [
+      {
+        id: "contents",
+        title: "Contents",
+        icon: "✦",
+        sections: [
+          {
+            type: "bookToc",
+            kicker: "Book of Islamic Education (2)",
+            title: "Contents",
+            chapters: [
+              {
+                page: "11",
+                title: "Sincerity (ikhlas)",
+                titleAr: "الإخلاص",
+                tone: "rose",
+                lessonId: "ikhlas-meaning",
+                entries: [
+                  { title: "The importance of the intention (niyyah)", page: "11", lessonId: "niyyah" },
+                  {
+                    title: "Ruling on intending to gain some worldly benefit when doing some deeds for the Hereafter",
+                    page: "14",
+                    lessonId: "worldly-benefit",
+                  },
+                  { title: "Riya (showing off)", page: "15", lessonId: "riya" },
+                  { title: "When is doing a good deed openly prescribed?", page: "16", lessonId: "open-secret" },
+                ],
+              },
+              {
+                page: "18",
+                title: "Mindfulness of Allah (taqwa)",
+                titleAr: "التقوى",
+                tone: "amber",
+                lessonId: "taqwa",
+                entries: [
+                  {
+                    title: "Does refraining from perfectly permissible things come under the heading of being mindful of Allah (tawqa)?",
+                    page: "20",
+                    lessonId: "taqwa-levels",
+                  },
+                ],
+              },
+              {
+                page: "26",
+                title: "Fear (khawf)",
+                titleAr: "الخوف",
+                tone: "sky",
+                lessonId: "khawf",
+                entries: [
+                  { title: "The status of fear of Allah (khawf)", page: "27", lessonId: "khawf-status" },
+                  {
+                    title: "People fall into different categories in terms of fearing Allah",
+                    page: "27",
+                    lessonId: "khawf-types",
+                  },
+                ],
+              },
+              {
+                page: "33",
+                title: "Hope (raja)",
+                titleAr: "الرجاء",
+                tone: "teal",
+                lessonId: "raja",
+                entries: [
+                  { title: "The difference between hope and wishful thinking", page: "33", lessonId: "raja-true" },
+                  {
+                    title: "The attitude of the Sufis regarding fear and hope",
+                    page: "37",
+                    lessonId: "raja-texts",
+                  },
+                ],
+              },
+              {
+                page: "39",
+                title: "Love (mahabbah)",
+                titleAr: "المحبة",
+                tone: "violet",
+                lessonId: "mahabbah",
+                entries: [
+                  { title: "Ruling on love of Allah ﷻ", page: "39", lessonId: "mahabbah-ruling" },
+                  {
+                    title: "Ways of attaining Allah’s love for you and of attaining love for Allah ﷻ",
+                    page: "40",
+                    lessonId: "mahabbah-ways",
+                  },
+                ],
+              },
+              {
+                page: "43",
+                title: "Patience (sabr)",
+                titleAr: "الصبر",
+                tone: "orange",
+                lessonId: "sabr",
+                entries: [
+                  { title: "Outcomes of gratitude (shukr’)", page: "47", lessonId: "shukr-outcomes" },
+                ],
+              },
+              {
+                page: "49",
+                title: "Gratitude (shukr)",
+                titleAr: "الشكر",
+                tone: "green",
+                lessonId: "shukr",
+                entries: [
+                  {
+                    title: "The difference between praise (hamd) and gratitude (shukr)",
+                    page: "49",
+                    lessonId: "shukr-hamd",
+                  },
+                  {
+                    title: "Ruling on being ungrateful for the blessings of Allah",
+                    page: "51",
+                    lessonId: "shukr-ingratitude",
+                  },
+                  { title: "Patience (sabr) and gratitude (shukr)", page: "54", lessonId: "shukr-sabr" },
+                ],
+              },
+              {
+                page: "56",
+                title: "Piety (wara)",
+                titleAr: "الورع",
+                tone: "cyan",
+                lessonId: "wara",
+                entries: [
+                  {
+                    title: "The difference between asceticism (zuhd) and piety (wara)",
+                    page: "59",
+                    lessonId: "wara-zuhd",
+                  },
+                  { title: "Piety (wara) is mentioned alongside knowledge", page: "60", lessonId: "wara-stories" },
+                ],
+              },
+              {
+                page: "63",
+                title: "Contentment (rida)",
+                titleAr: "الرضا",
+                tone: "pink",
+                lessonId: "rida",
+                entries: [
+                  {
+                    title: "The obligation to be content with Allah and be content with His will and decree",
+                    page: "63",
+                    lessonId: "rida-obligation",
+                  },
+                  {
+                    title: "Matters that do not contradict contentment with the divine decree",
+                    page: "66",
+                    lessonId: "rida-decree",
+                  },
+                ],
+              },
+              {
+                page: "70",
+                title: "Reflection (tafakkur)",
+                titleAr: "التفكر",
+                tone: "indigo",
+                lessonId: "tafakkur",
+                entries: [
+                  {
+                    title: "Examples of reflection among the early generations (the salaf)",
+                    page: "74",
+                    lessonId: "tafakkur-salaf",
+                  },
+                ],
+              },
+              {
+                page: "78",
+                title: "Taking stock of oneself (muhasabah)",
+                titleAr: "المحاسبة",
+                tone: "lime",
+                lessonId: "muhasabah",
+                entries: [
+                  {
+                    title: "Types of taking stock of oneself: muhasabah is of two types",
+                    page: "79",
+                    lessonId: "muhasabah-obligation",
+                  },
+                  {
+                    title: "The righteous early generations (as-salaf as-salih) and taking stock of oneself (muhasabah)",
+                    page: "84",
+                    lessonId: "muhasabah-salaf",
+                  },
+                ],
+              },
+              {
+                page: "85",
+                title: "Relying on Allah (tawakkul)",
+                titleAr: "التوكل",
+                tone: "slate",
+                lessonId: "tawakkul",
+                entries: [
+                  {
+                    title: "Saying Hasbuna Allahu wa ni‘am al-wakeel (Allah is sufficient for us and the best one on whom to depend)",
+                    page: "86",
+                    lessonId: "tawakkul-faith",
+                  },
+                  {
+                    title: "The importance of taking appropriate measures",
+                    page: "87",
+                    lessonId: "tawakkul-means",
+                  },
+                  {
+                    title: "Relying on someone other than Allah ﷻ and categories thereof",
+                    page: "88",
+                    lessonId: "tawakkul-other",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
   {
     id: "unit-1",
     num: 1,
@@ -5435,180 +5653,6 @@ export const TARBIYAH2_UNITS = [
               "How can one reconcile between trusting Allah and relying upon Him, and taking appropriate measures?",
               "Write a response to those who say that there is no need to take measures, highlighting how foolish and contradictory their thinking is.",
               "Write briefly about things that are contrary to relying on Allah (tawakkul).",
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "unit-14",
-    num: 14,
-    title: "Contents",
-    titleAr: "المحتويات",
-    lessons: [
-      {
-        id: "contents",
-        title: "Contents",
-        icon: "111",
-        sections: [
-          {
-            type: "heading",
-            kicker: "Book of Islamic Education (2)",
-            title: "Contents",
-          },
-          {
-            type: "heading",
-            kicker: "11",
-            title: "Sincerity (ikhlas)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "The importance of the intention (niyyah)", body: "11" },
-              {
-                title: "Ruling on intending to gain some worldly benefit when doing some deeds for the Hereafter",
-                body: "14",
-              },
-              { title: "Riya (showing off)", body: "15" },
-              { title: "When is doing a good deed openly prescribed?", body: "16" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "18",
-            title: "Mindfulness of Allah (taqwa)",
-          },
-          {
-            type: "list",
-            items: [
-              {
-                title: "Does refraining from perfectly permissible things come under the heading of being mindful of Allah (tawqa)?",
-                body: "20",
-              },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "26",
-            title: "Fear (khawf)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "The status of fear of Allah (khawf)", body: "27" },
-              { title: "People fall into different categories in terms of fearing Allah", body: "27" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "33",
-            title: "Hope (raja)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "The difference between hope and wishful thinking", body: "33" },
-              { title: "The attitude of the Sufis regarding fear and hope", body: "37" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "39",
-            title: "Love (mahabbah)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "Ruling on love of Allah ﷻ", body: "39" },
-              { title: "Ways of attaining Allah’s love for you and of attaining love for Allah ﷻ", body: "40" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "43",
-            title: "Patience (sabr)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "Outcomes of gratitude (shukr’)", body: "47" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "49",
-            title: "Gratitude (shukr)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "The difference between praise (hamd) and gratitude (shukr)", body: "49" },
-              { title: "Ruling on being ungrateful for the blessings of Allah", body: "51" },
-              { title: "Patience (sabr) and gratitude (shukr)", body: "54" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "56",
-            title: "Piety (wara)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "The difference between asceticism (zuhd) and piety (wara)", body: "59" },
-              { title: "Piety (wara) is mentioned alongside knowledge", body: "60" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "12 · 63",
-            title: "Contentment (rida)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "The obligation to be content with Allah and be content with His will and decree", body: "63" },
-              { title: "Matters that do not contradict contentment with the divine decree", body: "66" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "70",
-            title: "Reflection (tafakkur)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "Examples of reflection among the early generations (the salaf)", body: "74" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "78",
-            title: "Taking stock of oneself (muhasabah)",
-          },
-          {
-            type: "list",
-            items: [
-              { title: "Types of taking stock of oneself: muhasabah is of two types", body: "79" },
-              { title: "The righteous early generations (as-salaf as-salih) and taking stock of oneself (muhasabah)", body: "84" },
-            ],
-          },
-          {
-            type: "heading",
-            kicker: "85",
-            title: "Relying on Allah (tawakkul)",
-          },
-          {
-            type: "list",
-            items: [
-              {
-                title: "Saying Hasbuna Allahu wa ni‘am al-wakeel (Allah is sufficient for us and the best one on whom to depend)",
-                body: "86",
-              },
-              { title: "The importance of taking appropriate measures", body: "87" },
-              { title: "Relying on someone other than Allah ﷻ and categories thereof", body: "88" },
             ],
           },
         ],
