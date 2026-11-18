@@ -26,6 +26,7 @@ export function resolveCourseIdFromPath(pathname) {
   if (pathname.startsWith("/tarbiyah-2")) return "tarbiyah-2";
   if (pathname.startsWith("/tafsir-2")) return "tafsir-2";
   if (pathname.startsWith("/hadith-2")) return "hadith-2";
+  if (pathname.startsWith("/seerah-2")) return "seerah-2";
   if (pathname.startsWith("/tarbiyah")) return "tarbiyah";
   if (pathname.startsWith("/aqeedah-2")) return "aqeedah-2";
   return null;

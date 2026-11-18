@@ -5,6 +5,7 @@ import { FIQH_META } from "./fiqhCourse.js";
 import { TARBIYAH2_META } from "./tarbiyah2Course.js";
 import { TAFSIR2_META } from "./tafsir2Course.js";
 import { HADITH2_META } from "./hadith2Course.js";
+import { SEERAH2_META } from "./seerah2Course.js";
 
 /** Top-level Al-Tibyan platform metadata. */
 export const LEARN_ISLAM = {
@@ -100,6 +101,19 @@ export const COURSE_CATALOG = [
     topics: AQEEDAH2_META.topics,
   },
   {
+    id: SEERAH2_META.id,
+    name: SEERAH2_META.name,
+    nameAr: SEERAH2_META.nameAr,
+    tagline: SEERAH2_META.tagline,
+    description: SEERAH2_META.description,
+    available: true,
+    path: SEERAH2_META.path,
+    category: SEERAH2_META.category,
+    meta: SEERAH2_META.meta,
+    accent: SEERAH2_META.accent,
+    topics: SEERAH2_META.topics,
+  },
+  {
     id: "ajrumiyyah",
     name: "Al-Ajrumiyyah",
     nameAr: "الْمُقَدِّمَةُ الْآجُرُّومِيَّةُ",
@@ -125,6 +139,7 @@ export const COURSE_THEME_BY_ID = {
   "tarbiyah-2": { number: 7, color: "#0F766E" },
   "tafsir-2": { number: 8, color: "#0891B2" },
   "hadith-2": { number: 9, color: "#0369A1" },
+  "seerah-2": { number: 10, color: "#9F2D55" },
 };
 
 /** @deprecated Use COURSE_THEME_BY_ID[courseId].color */
@@ -234,6 +249,16 @@ const LANDING_CARDS = {
     posterLine: "Tawhid, and the names of Allah",
     blurb:
       "Oneness of worship, the meaning of La ilaha illa Allah, and the names and attributes of Allah.",
+  },
+  "seerah-2": {
+    format: "notes",
+    name: "The Prophet’s Characteristics",
+    nameAr: "الشمائل النبوية",
+    school: "Zad Academy · Seerah (2) · Semester 2",
+    posterKicker: "Seerah (2)",
+    posterLine: "Ash-Shama’il an-Nabawiyah",
+    blurb:
+      "The Prophet’s Biography — characteristics, appearance, manners, clothing, worship, and legacy.",
   },
   ajrumiyyah: {
     format: "course",

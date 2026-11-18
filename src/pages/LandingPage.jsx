@@ -4,6 +4,7 @@ import { AQEEDAH2_STUDY_LESSONS } from "../data/aqeedah2Course.js";
 import { TARBIYAH2_STUDY_LESSONS } from "../data/tarbiyah2Course.js";
 import { TAFSIR2_STUDY_LESSONS } from "../data/tafsir2Course.js";
 import { HADITH2_STUDY_LESSONS } from "../data/hadith2Course.js";
+import { SEERAH2_STUDY_LESSONS } from "../data/seerah2Course.js";
 import { FIQH_LESSONS } from "../data/fiqhCourse.js";
 import { getAvailableLandingCourses, LANDING_FORMATS } from "../data/platform.js";
 import { TARBIYAH_CHAPTERS } from "../data/tarbiyahCourse.js";
@@ -21,6 +22,7 @@ const COURSE_LESSON_IDS = {
   "tarbiyah-2": TARBIYAH2_STUDY_LESSONS.map((lesson) => lesson.id),
   "tafsir-2": TAFSIR2_STUDY_LESSONS.map((lesson) => lesson.id),
   "hadith-2": HADITH2_STUDY_LESSONS.map((lesson) => lesson.id),
+  "seerah-2": SEERAH2_STUDY_LESSONS.map((lesson) => lesson.id),
 };
 
 function countWord(n, singular, plural = `${singular}s`) {

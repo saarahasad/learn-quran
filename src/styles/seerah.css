@@ -1,0 +1,211 @@
+/* Seerah 2 — Portrait Path visuals (spine TOC, quotes, glossary) */
+
+.sr-spine {
+  list-style: none;
+  margin: 0.4rem 0 1.4rem;
+  padding: 0.5rem 0 0.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+}
+
+.sr-spine::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 3px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #9f2d55, #c2410c, #a16207, #0f766e);
+  border-radius: 999px;
+  opacity: 0.55;
+}
+
+.sr-spine-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0.7rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.sr-spine-node {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+  background: #9f2d55;
+  box-shadow: 0 0 0 4px #fff7f3;
+}
+
+.sr-spine-row--1 .sr-spine-node { background: #4d7c0f; }
+.sr-spine-row--2 .sr-spine-node { background: #a21caf; }
+.sr-spine-row--3 .sr-spine-node { background: #ca8a04; }
+.sr-spine-row--4 .sr-spine-node { background: #c2410c; }
+.sr-spine-row--5 .sr-spine-node { background: #57534e; }
+.sr-spine-row--6 .sr-spine-node { background: #be185d; }
+
+.sr-spine-bubble {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 16px;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  text-align: start;
+  border: none;
+  color: #1c1917;
+  font-family: inherit;
+  background: #fef3c7;
+}
+
+.sr-spine-bubble--left {
+  justify-self: end;
+  text-align: end;
+}
+
+.sr-spine-bubble--right {
+  justify-self: start;
+}
+
+.sr-spine-row--1 .sr-spine-bubble--left { background: #fef08a; }
+.sr-spine-row--1 .sr-spine-bubble--right { background: #d9f99d; }
+.sr-spine-row--2 .sr-spine-bubble--left { background: #bbf7d0; }
+.sr-spine-row--2 .sr-spine-bubble--right { background: #e9d5ff; }
+.sr-spine-row--3 .sr-spine-bubble--left { background: #bfdbfe; }
+.sr-spine-row--3 .sr-spine-bubble--right { background: #fde68a; }
+.sr-spine-row--4 .sr-spine-bubble--left { background: #bae6fd; }
+.sr-spine-row--4 .sr-spine-bubble--right { background: #fbcfe8; }
+.sr-spine-row--5 .sr-spine-bubble--left { background: #fde68a; }
+.sr-spine-row--5 .sr-spine-bubble--right { background: #fdba74; }
+.sr-spine-row--6 .sr-spine-bubble--left { background: #e7e5e4; }
+.sr-spine-row--6 .sr-spine-bubble--right { background: #99f6e4; }
+
+.sr-spine-bubble.is-link {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sr-spine-bubble.is-link:hover,
+.sr-spine-bubble.is-link:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(28, 25, 23, 0.1);
+  outline: none;
+}
+
+.sr-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0.3rem 0 1.2rem;
+}
+
+.sr-quote {
+  margin: 0;
+  padding: 1rem 1.1rem 0.95rem;
+  border-radius: 16px;
+  background: #f0f9ff;
+  border-left: 4px solid #0369a1;
+}
+
+.sr-quote--2 { background: #faf5ff; border-left-color: #7e22ce; }
+.sr-quote--3 { background: #fff7ed; border-left-color: #c2410c; }
+.sr-quote--4 { background: #ecfdf5; border-left-color: #047857; }
+.sr-quote--5 { background: #fdf2f8; border-left-color: #be185d; }
+
+.sr-quote p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #1c1917;
+}
+
+.sr-quote footer {
+  margin-top: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: baseline;
+}
+
+.sr-quote cite {
+  font-style: normal;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sr-quote footer span {
+  font-size: 0.92rem;
+  color: #57534e;
+}
+
+.sr-glossary {
+  margin: 0.5rem 0 1.2rem;
+  padding: 0.95rem 1rem;
+  border-radius: 16px;
+  background: #fffbeb;
+}
+
+.sr-glossary-title {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+}
+
+.sr-glossary dl {
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.sr-glossary-item {
+  display: grid;
+  grid-template-columns: minmax(7rem, 9rem) 1fr;
+  gap: 0.65rem;
+  align-items: start;
+}
+
+.sr-glossary dt {
+  font-weight: 700;
+  color: #9f2d55;
+}
+
+.sr-glossary dd {
+  margin: 0;
+  line-height: 1.5;
+  color: #1c1917;
+}
+
+@media (max-width: 720px) {
+  .sr-spine::before {
+    left: 1rem;
+    transform: none;
+  }
+
+  .sr-spine-row {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.45rem 0.65rem;
+  }
+
+  .sr-spine-node {
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+
+  .sr-spine-bubble--left,
+  .sr-spine-bubble--right {
+    justify-self: stretch;
+    text-align: start;
+  }
+
+  .sr-glossary-item {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}

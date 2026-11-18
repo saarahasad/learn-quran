@@ -22,6 +22,8 @@ import Tafsir2OverviewPage from "./pages/Tafsir2OverviewPage.jsx";
 import Tafsir2Page from "./pages/Tafsir2Page.jsx";
 import Hadith2OverviewPage from "./pages/Hadith2OverviewPage.jsx";
 import Hadith2Page from "./pages/Hadith2Page.jsx";
+import Seerah2OverviewPage from "./pages/Seerah2OverviewPage.jsx";
+import Seerah2Page from "./pages/Seerah2Page.jsx";
 import FiqhOverviewPage from "./pages/FiqhOverviewPage.jsx";
 import FiqhPage from "./pages/FiqhPage.jsx";
 import TarbiyahOverviewPage from "./pages/TarbiyahOverviewPage.jsx";
@@ -73,6 +75,8 @@ function AppRoutes() {
       <Route path="/tafsir-2/study" element={<Tafsir2Page />} />
       <Route path="/hadith-2" element={<Hadith2OverviewPage />} />
       <Route path="/hadith-2/study" element={<Hadith2Page />} />
+      <Route path="/seerah-2" element={<Seerah2OverviewPage />} />
+      <Route path="/seerah-2/study" element={<Seerah2Page />} />
       <Route path="/juz/:juzNum" element={<JuzOverviewPage />} />
       <Route path="/juz/:juzNum/study" element={<QuranRevisionApp />} />
       <Route path="/surahs" element={<Navigate to="/juz/30" replace />} />
