@@ -7,10 +7,10 @@ import { TAFSIR2_META } from "./tafsir2Course.js";
 import { HADITH2_META } from "./hadith2Course.js";
 import { SEERAH2_META } from "./seerah2Course.js";
 
-/** Top-level Al-Tibyan platform metadata. */
+/** Top-level platform metadata. */
 export const LEARN_ISLAM = {
-  name: "Al-Tibyan",
-  nameAr: "التبيان",
+  name: "Study",
+  nameAr: "",
   tagline:
     "Structured, self-paced courses on the Qur'an, prayer, du'a, and more — open access for every learner.",
   institution: "Islamic Studies · Open Courses",
@@ -279,7 +279,7 @@ export const LANDING_FORMATS = [
     id: "memorise",
     title: "Memorisation",
     titleAr: "الحفظ",
-    blurb: "Programs to memorise and revise.",
+    blurb: "",
   },
   {
     id: "notes",

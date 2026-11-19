@@ -4,6 +4,7 @@ import {
   PORTRAIT_MAP_INTRO,
   PORTRAIT_TOPICS,
   getPortraitItem,
+  seerahImageUrl,
 } from "../../data/seerahPortraitMap.js";
 
 function FeatureSilhouette({ activeId, onSelect }) {
@@ -101,6 +102,11 @@ function DetailPanel({ item, onOpenLesson }) {
   return (
     <aside className={`sr-map-detail sr-map-detail--${item.tone}`} aria-live="polite">
       <header className="sr-map-detail-head">
+        {item.image && (
+          <div className="sr-map-detail-art">
+            <img src={seerahImageUrl(item.image)} alt="" />
+          </div>
+        )}
         <p className="sr-map-detail-kicker">{item.group === "body" ? "Feature" : "Topic"}</p>
         <h3>
           {item.label}
@@ -206,6 +212,9 @@ export default function SeerahPortraitExplorer({ onOpenLesson, initialId = "face
                 onClick={() => setActiveId(topic.id)}
                 aria-pressed={active}
               >
+                {topic.image && (
+                  <img className="sr-map-chip-img" src={seerahImageUrl(topic.image)} alt="" />
+                )}
                 <strong>{topic.label}</strong>
                 <span dir="rtl" lang="ar">
                   {topic.labelAr}

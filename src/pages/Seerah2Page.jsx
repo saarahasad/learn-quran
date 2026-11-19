@@ -130,6 +130,42 @@ function AqeedahSection({ section, onSelectLesson }) {
     return <p className="aq-intro">{section.text}</p>;
   }
 
+  if (section.type === "figure") {
+    const src = `${import.meta.env.BASE_URL}images/seerah/${section.src}`;
+    return (
+      <figure className={`sr-figure${section.wide ? " sr-figure--wide" : ""}`}>
+        <img src={src} alt={section.alt ?? ""} />
+        {(section.caption || section.title) && (
+          <figcaption>
+            {section.title && <strong>{section.title}</strong>}
+            {section.caption && <span>{section.caption}</span>}
+          </figcaption>
+        )}
+      </figure>
+    );
+  }
+
+  if (section.type === "figureRow") {
+    return (
+      <div className="sr-figure-row">
+        {section.items.map((item) => {
+          const src = `${import.meta.env.BASE_URL}images/seerah/${item.src}`;
+          return (
+            <figure key={item.src} className="sr-figure sr-figure--card">
+              <img src={src} alt={item.alt ?? ""} />
+              {(item.caption || item.title) && (
+                <figcaption>
+                  {item.title && <strong>{item.title}</strong>}
+                  {item.caption && <span>{item.caption}</span>}
+                </figcaption>
+              )}
+            </figure>
+          );
+        })}
+      </div>
+    );
+  }
+
   if (section.type === "definition") {
     return (
       <div className="aq-definition">

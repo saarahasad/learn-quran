@@ -25,10 +25,6 @@ const COURSE_LESSON_IDS = {
   "seerah-2": SEERAH2_STUDY_LESSONS.map((lesson) => lesson.id),
 };
 
-function countWord(n, singular, plural = `${singular}s`) {
-  return `${n} ${n === 1 ? singular : plural}`;
-}
-
 function coverUrl(file) {
   return `${import.meta.env.BASE_URL}course-covers/${file}`;
 }
@@ -88,22 +84,11 @@ export default function LandingPage() {
     courses: courses.filter((course) => course.format === format.id),
   })).filter((format) => format.courses.length > 0);
 
-  const tally = formats
-    .map((format) => {
-      if (format.id === "memorise") return countWord(format.courses.length, "memorisation program");
-      if (format.id === "notes") return countWord(format.courses.length, "set of notes", "sets of notes");
-      return countWord(format.courses.length, "course");
-    })
-    .join(", ")
-    .replace(/, ([^,]*)$/, ", and $1");
-
   return (
     <CourseLayout activeTab="home" wide>
       <div className="li-page">
         <header className="li-hero">
-          <p className="li-hero-ar" dir="rtl" lang="ar">الدراسة</p>
           <h1>Study</h1>
-          <p className="li-hero-sub">{tally}</p>
         </header>
         <div className="li-groups">
           {formats.map((format) => {
@@ -113,7 +98,7 @@ export default function LandingPage() {
                 <header className="li-group-head">
                   <div>
                     <h2 id={groupId}>{format.title}</h2>
-                    <p className="li-group-blurb">{format.blurb}</p>
+                    {format.blurb ? <p className="li-group-blurb">{format.blurb}</p> : null}
                   </div>
                   <span className="li-group-ar" dir="rtl" lang="ar">
                     {format.titleAr}

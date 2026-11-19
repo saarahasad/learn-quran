@@ -25,7 +25,7 @@ function useMediaQuery(query) {
   return matches;
 }
 
-/** Open pages with a line of light between them — tibyan, a clear explanation. */
+/** Open pages with a line of light between them. */
 export function BrandMark({ size = 38 }) {
   return (
     <svg className="site-header-mark" width={size} height={size} viewBox="0 0 40 40" aria-hidden="true">
@@ -53,7 +53,9 @@ export function CourseHeader() {
         <Link to="/" className="site-header-brand" aria-label={`${LEARN_ISLAM.name} — home`}>
           <BrandMark />
           <span className="site-header-wordmark">
-            <span className="site-header-brand-ar" dir="rtl" lang="ar">{LEARN_ISLAM.nameAr}</span>
+            {LEARN_ISLAM.nameAr ? (
+              <span className="site-header-brand-ar" dir="rtl" lang="ar">{LEARN_ISLAM.nameAr}</span>
+            ) : null}
             <span className="site-header-brand-en">{LEARN_ISLAM.name}</span>
           </span>
         </Link>

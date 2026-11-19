@@ -209,3 +209,70 @@
     gap: 0.15rem;
   }
 }
+
+/* Lesson figure illustrations */
+.sr-figure {
+  margin: 0.2rem 0 1rem;
+  padding: 1rem 1.1rem 0.95rem;
+  border-radius: 20px;
+  background:
+    radial-gradient(80% 70% at 100% 0%, rgba(253, 230, 138, 0.35), transparent 55%),
+    #fffaf5;
+  border: 1px solid rgba(159, 45, 85, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  text-align: center;
+}
+
+.sr-figure img {
+  width: min(100%, 220px);
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.sr-figure figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  max-width: 28rem;
+}
+
+.sr-figure figcaption strong {
+  font-size: 1.05rem;
+  color: #1c1917;
+}
+
+.sr-figure figcaption span {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #57534e;
+}
+
+.sr-figure-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+  margin: 0.2rem 0 1rem;
+}
+
+.sr-figure--card {
+  margin: 0;
+  padding: 0.85rem 0.75rem 0.8rem;
+}
+
+.sr-figure--card img {
+  width: min(100%, 140px);
+}
+
+.sr-figure--wide img {
+  width: min(100%, 280px);
+}
+
+@media (max-width: 520px) {
+  .sr-figure-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
